@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 
-import NavigationBar from "@/components/navigation-bar";
+import Menu from "@/components/menu";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({
       <body
         className="antialiased"
       >
-        <NavigationBar/>
+        <Menu/>
         <div className="flex flex-col">
           {children}
           <Footer/>
