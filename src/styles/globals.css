@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 @font-face {
   font-family: FutureTense;
   src: url("/fonts/FutureTense-Regular.woff2") format("woff2");
@@ -7,6 +9,7 @@
 
 @theme inline {
   --font-futuretense: FutureTense, "sans-serif";
+  --font-montserrat: "Montserrat", sans-serif; 
 
   --color-background-base: #121212;
   --color-background-highlight: #242424;
@@ -14,8 +17,22 @@
   --color-foreground-base: #FFFFFF;
   --color-foreground-subdued: #FFFFFF99;
   --color-accent: #E1C340;
+
+  --spacing-content: 1rem; 
 }
 
-.main {
-  @apply text-5xl uppercase font-futuretense
+.title {
+  @apply text-4xl uppercase font-futuretense;
+}
+
+.subtitle {
+  @apply text-xs uppercase font-futuretense;
+}
+
+.readable {
+  @apply text-base font-montserrat;
+}
+
+.explanation {
+  @apply text-xs font-montserrat;
 }

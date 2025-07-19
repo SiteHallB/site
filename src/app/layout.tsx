@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 
 import NavigationBar from "@/components/navigation-bar";
+import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Hall B",
@@ -16,10 +17,13 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body
-        className="font-montserrat antialiased"
+        className="antialiased"
       >
         <NavigationBar/>
-        {children}
+        <div className="flex flex-col">
+          {children}
+          <Footer/>
+        </div>
       </body>
     </html>
   );
