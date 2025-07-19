@@ -1,0 +1,21 @@
+@font-face {
+  font-family: FutureTense;
+  src: url("/fonts/FutureTense-Regular.woff2") format("woff2");
+}
+
+@import "tailwindcss";
+
+@theme inline {
+  --font-futuretense: FutureTense, "sans-serif";
+
+  --color-background-base: #121212;
+  --color-background-highlight: #242424;
+  --color-background-subdued: #000000;
+  --color-foreground-base: #FFFFFF;
+  --color-foreground-subdued: #FFFFFF99;
+  --color-accent: #E1C340;
+}
+
+.main {
+  @apply text-5xl uppercase font-futuretense
+}
