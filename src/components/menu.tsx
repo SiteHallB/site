@@ -11,6 +11,7 @@ import { Menu as MenuIcon, X } from 'lucide-react';
 import LinkedButton from "@/components/ui/linked-buttons";
 
 const links = [
+    { label: "Accueil", path: "/"}, 
     { label: "Tarifs", path: "/tarifs"}, 
     { label: "Plannings", path: "/plannings"}, 
     { label: "Nous contacter", path: "/contact"}, 
@@ -23,7 +24,7 @@ export default function Menu() {
 
     const tl = useRef<gsap.core.Timeline | null>(null);
     useGSAP(() => {
-        gsap.set(".menu-link-item-holder", { y: 75 });
+        gsap.set(".menu-link-item-holder", { y: 60 });
 
         tl.current = gsap.timeline({ paused: true })
         .to(".menu-overlay", {
@@ -33,7 +34,7 @@ export default function Menu() {
         })
         .to(".menu-link-item-holder", {
             y: 0, 
-            duration: 1, 
+            duration: 0.5, 
             stagger: 0.1, 
             ease: "power4.inOut", 
             delay: -0.75, 
@@ -55,7 +56,7 @@ export default function Menu() {
     return (
         <div ref={container}>
             {/* Barre de navigation */}
-            <div className="fixed top-0 left-0 w-screen flex justify-between items-center z-2 px-4 lg:px-8 py-1 bg-background-subdued/70">
+            <div className="fixed top-0 left-0 w-screen flex justify-between items-center z-50 px-4 lg:px-8 py-1 bg-background-subdued/70">
                 <Link href="/" className="" onClick={() => setIsMenuOpen(false)}>
                     <Image
                     src="/images/logo-hallb.png"
@@ -66,7 +67,7 @@ export default function Menu() {
                     />
                 </Link>
                 <div className="flex space-x-4">
-                    <LinkedButton id="Subscribe" text="Je m'inscris"/>
+                    <LinkedButton id="Subscribe" text="Je m'inscris" onClick={() => setIsMenuOpen(false)}/>
                     <div onClick={toggleMenu}>
                         {isMenuOpen ? <X size={24} className="text-foreground-base"/> : 
                             <MenuIcon size={24} className="text-foreground-base"/>}
@@ -75,14 +76,14 @@ export default function Menu() {
             </div>
 
             {/* Overlay menu */}
-            <div className="menu-overlay fixed z-1 inset-0 bg-accent flex flex-col justify-between pb-30 pt-40 px-3">
+            <div className="menu-overlay fixed z-40 inset-0 bg-background-subdued flex flex-col justify-between pb-30 pt-40 px-3">
                 <nav>
                     {links.map((link, index) => (
                         <div className="menu-link-item" key={index}>
                             <div className="menu-link-item-holder" onClick={toggleMenu}>
                                 <Link
                                     href={link.path}
-                                    className="text-4xl uppercase leading-[1.4rem]"
+                                    className="text-accent menu"
                                 >
                                     {link.label}
                                 </Link>

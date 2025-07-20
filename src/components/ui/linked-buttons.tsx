@@ -29,11 +29,12 @@ const linkedButtonVariants = cva(
 type LinkedButtonProps =
     { id: string } &
     { text: string } &
+    { onClick?: () => void } &
     VariantProps<typeof linkedButtonVariants> & {
         className?: string;
     };
 
-export default function LinkedButton({ id, text, className, variant, color, size, ...props }: LinkedButtonProps) {
+export default function LinkedButton({ id, text, onClick, className, variant, color, size, ...props }: LinkedButtonProps) {
     const linkObject = links.find(item => item.id === id);
     let link = ""
     if (linkObject) {
@@ -44,6 +45,7 @@ export default function LinkedButton({ id, text, className, variant, color, size
             href = {link}
             className={clsx(linkedButtonVariants({ variant, color, size }), className)}
             {...props}
+            onClick={onClick}
         >
             {text}
         </Link>

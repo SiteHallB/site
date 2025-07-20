@@ -27,12 +27,24 @@
   @apply text-4xl uppercase font-futuretense;
 }
 
+.title-long {
+  @apply text-2xl font-montserrat
+}
+
+.menu {
+  @apply text-4xl uppercase leading-[1.4rem]
+}
+
 .subtitle {
   @apply text-xs uppercase font-futuretense;
 }
 
 .readable {
   @apply text-base font-montserrat;
+}
+
+.readable-big {
+  @apply text-lg font-montserrat;
 }
 
 .explanation {
