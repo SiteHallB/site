@@ -6,31 +6,90 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { timeStamp } from "console";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function Formule() {
+type Image = { src: string, width: number, height: number, alt: string };
+type FormuleProps = { images: Image[] };
+
+function Formule({ images }: FormuleProps ) {
+    const n = images.length;
+
     const container = useRef<HTMLDivElement>(null);
+    const imageFrame = useRef<HTMLDivElement>(null);
+    const scrollEnter = useRef<"down" | "up">("down");
 
-    useGSAP(() => {
-        gsap.set(".image", {
-            opacity: 1, 
-            scale: 0.5, 
-            rotation: 45
-        })
+    const imageId = (i: number): string => `.image-${i}`;
+    const imageContainerId = (i: number): string => `.image-container-${i}`;
+    const otherImageContainerId = (i: number): string[] =>
+        Array.from({ length: n }, (_, j) => j)
+            .filter(j => j !== i)
+            .map(imageContainerId);
 
-        gsap.to(".image", {
-            scrollTrigger: {
-                trigger: ".image", 
-                toggleActions: "restart none none none", 
-                markers: true
-            }, 
-            duration: 1, 
-            stagger: 1,  
-            scale: 1, 
-            rotation: 0, 
-        })
-    }, { scope: container });
+    // POSSIBLEMENT PAS CLEAN
+    const screenPart = (i: number): string => {
+        const scrollHeight = window.innerHeight - (imageFrame.current?.offsetHeight ?? 0);
+        return `${Math.round( scrollHeight / window.innerHeight / n * 100 * (n - i))}%`;
+    }
+
+    images.forEach((el, i) => {
+        useGSAP(() => {
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: imageFrame.current, 
+                    start: `top ${screenPart(i)}`, 
+                    end: `top ${screenPart(i+1)}`, 
+                    toggleActions: `${i !== 0 ? "restart" : "none"} none ${i !== n - 1 ? "restart" : "none"} none`, 
+                    onEnter: () => (scrollEnter.current = "down"),
+                    onEnterBack: () => (scrollEnter.current = "up"),
+                }
+            })
+
+            // Mettre le container i au dessus du précédent (grisé) qui sera au dessus des autres
+            otherImageContainerId(i).forEach((id, _) => {
+                tl.set(id, {
+                    zIndex: 0, 
+                })
+            })
+            tl.set(imageContainerId(i), {
+                zIndex: 20, 
+                filter: "grayscale(0%)", 
+            })
+            const previousId = scrollEnter.current === "down" && i !== 0 ? i - 1
+                : scrollEnter.current === "up" && i !== n - 1 ? i + 1
+                : null;
+            if (previousId !== null) {
+                tl.set(imageContainerId(previousId), {
+                    zIndex: 10, 
+                    filter: "grayscale(60%)", 
+                })
+            }
+
+            // Animation
+            tl.set(imageContainerId(i), {
+                scale: 0.4, 
+                rotation: 15, 
+                delay: i
+            })
+            .set(imageId(i), {
+                scale: 1.5, 
+                rotation: -10, 
+            })
+            .to(imageContainerId(i), {
+                duration: 1.5, 
+                scale: 1, 
+                rotation: 0, 
+                ease: "power4.out"
+            })
+            .to(imageId(i), {
+                duration: 1.2, 
+                scale: 1, 
+                rotation: 0, 
+                ease: "power4.out"
+            }, "<")
+        }, { scope: container })
+    })
 
     return (
         <div
@@ -53,25 +112,49 @@ function Formule() {
             </div>
 
             {/* Images */}
-            <div className="relative w-full h-full rounded-xl">
-                <div className="opacity-0 z-10 absolute inset-0 image rounded-xl flex items-center justify-center overflow-hidden">
+            <div className="relative w-full h-full rounded-xl overflow-hidden">
+                {images.map((image, i) => (
+                    <div className={`absolute m-auto inset-0 rounded-xl flex overflow-hidden `"}>
+                        <Image 
+                            src="/images/concept.jpg"
+                            width={3024}
+                            height={4032}
+                            className="object-cover image"
+                            alt=""
+                        />
+                    </div> 
+                ))}
+
+
+
+
+                <Image 
+                    src="/images/valeurs.jpg"
+                    width={3024}
+                    height={4032}
+                    className="object-cover absolute inset-0 m-auto image-base"
+                    alt=""
+                />
+                <div className="opacity-0 z-10 absolute m-auto inset-0 rounded-xl flex overflow-hidden image-container">
                     <Image 
                         src="/images/concept.jpg"
                         width={3024}
                         height={4032}
-                        className="object-cover"
+                        className="object-cover image"
                         alt=""
                     />
-                </div>
-                <div className="opacity-0 z-20 absolute m-auto inset-0 image rounded-xl flex items-center justify-center overflow-hidden">
+                </div> 
+                <div className="opacity-0 z-10 absolute m-auto inset-0 rounded-xl flex overflow-hidden image-container">
                     <Image 
                         src="/images/histoire.jpg"
                         width={3024}
                         height={4032}
-                        className="object-cover"
+                        className="object-cover image"
                         alt=""
                     />
-                </div>
+                </div> 
+               
+            
             </div>
 
             {/* Description */}
@@ -109,7 +192,7 @@ export default function Page() {
                 <p className="explanation text-foreground-subdued text-center">
                     Explication possiblement détaillée sur comment les abonnement marchent
                 </p>
-                
+                <div className="h-[200px]"></div>
                 <Formule/>
 
                 {/* Exemple */}
