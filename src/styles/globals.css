@@ -32,7 +32,7 @@
 }
 
 .menu {
-  @apply text-4xl uppercase leading-[1.5rem]
+  @apply text-4xl uppercase leading-[1.6rem]
 }
 
 .subtitle {

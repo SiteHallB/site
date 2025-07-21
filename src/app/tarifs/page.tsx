@@ -30,7 +30,7 @@ function Formule({ images }: FormuleProps ) {
     // POSSIBLEMENT PAS CLEAN
     const screenPart = (i: number): string => {
         const scrollHeight = window.innerHeight - (imageFrame.current?.offsetHeight ?? 0);
-        return `${Math.round( scrollHeight / window.innerHeight * 100 * (n - 1 - i) / (n - 2))}%`;
+        return `${Math.round( scrollHeight / window.innerHeight * 100 * (n - i - 0.5) / (n - 1))}%`;
     }
 
     useGSAP(() => {
