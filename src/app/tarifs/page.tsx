@@ -16,8 +16,8 @@ function Formule({ images }: FormuleProps ) {
     const n = images.length;
 
     const imageFrame = useRef<HTMLDivElement>(null);
-    const imageContainers = useRef<HTMLDivElement[]>([]);
-
+    const imageContainers = useRef<(HTMLDivElement | null)[]>([]);
+    
     const imageClass = (i: number): string => `image-${i}`;
     const imageContainerClass = (i: number): string => `image-container-${i}`;
     const imageSelector = (i: number): string => `.${imageClass(i)}`;
@@ -32,6 +32,7 @@ function Formule({ images }: FormuleProps ) {
     useGSAP(() => {
         const updateStacking = (i: number, direction: ("fromTop" | "fromBottom")) => {
             for (let j = 0; j < n; j++) {
+                if (!imageContainers.current[j]) return;
                 imageContainers.current[j].style.zIndex = "0";
                 if (j === i) { imageContainers.current[j].style.zIndex = "20"; }
                 else if (j === i + 1 || j === i - 1) {
@@ -106,9 +107,7 @@ function Formule({ images }: FormuleProps ) {
                 {images.map((image, i) => (
                     <div
                         key={i}
-                        ref={(el) => {
-                            imageContainers.current[i] = el;
-                        }}
+                        ref={el => { imageContainers.current[i] = el; }}
                         className={`absolute m-auto inset-0 rounded-xl flex overflow-hidden ${imageContainerClass(i)} ${i == 0 ? "z-10" : "z-0"}`}
                     >
                         <Image 
