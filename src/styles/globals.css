@@ -28,11 +28,11 @@
 }
 
 .title-long {
-  @apply text-2xl font-montserrat
+  @apply text-2xl font-montserrat leading-[1.5rem]
 }
 
 .menu {
-  @apply text-4xl uppercase leading-[1.7rem]
+  @apply text-2xl font-montserrat
 }
 
 .subtitle {

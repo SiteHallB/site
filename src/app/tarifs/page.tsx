@@ -154,7 +154,7 @@ function Formule({ title, subtitle, prix, description, images, checkDescription,
             </div>
 
             {/* Bouton */}
-            <LinkedButton mode={{src: actionLink}} text="En savoir plus" className="text-xl" color="accent" variant="adaptable"/>
+            <LinkedButton mode={{src: actionLink}} text={`S'abonner pour ${prix}€ par mois`} className="text-xl" color="accent" variant="adaptable"/>
         </div>
     );
 }
@@ -162,21 +162,18 @@ function Formule({ title, subtitle, prix, description, images, checkDescription,
 export default function Page() {
     return (
         <div className="bg-background-base w-full px-content">
-            <div className="py-18 flex flex-col w-full space-y-5 items-center">
-                <p className="mt-5 text-foreground-subdued title-long text-center">
-                    Des
-                    <span className="menu text-foreground-base"> tarifs</span> adaptés à tous les
-                    <span className="text-foreground-base"> pratiquants</span>, tous les
-                    <span className="text-foreground-base"> goûts</span> et
-                    <span className="text-foreground-base"> projets</span>.
-                </p>
-
-                <p className="explanation text-foreground-subdued text-center">
-                    Explication possiblement détaillée sur comment les abonnement marchent
-                </p>
-
-                <div className="h-[200px]"></div>
-
+            <div className="pt-20 pb-10 flex flex-col w-full space-y-10 items-center">
+                <div className="flex flex-col items-center space-y-2">
+                    <h1 className="text-foreground-base title">Tarifs</h1>
+                    <p className="text-foreground-subdued title-long text-center">
+                        Des
+                        <span className="text-foreground-base"> tarifs</span> adaptés à tous les
+                        <span className="text-foreground-base"> pratiquants</span>, tous les
+                        <span className="text-foreground-base"> goûts</span> et
+                        <span className="text-foreground-base"> projets</span>.
+                    </p>
+                </div>
+                
                 <Formule 
                     title="Classic"
                     subtitle="Muscu & Cardio accès libre"
@@ -185,7 +182,6 @@ export default function Page() {
                     images={[
                         { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
                         { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
-                        { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
                     ]}
                     checkDescription={[
                         "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
@@ -198,7 +194,7 @@ export default function Page() {
                 <Formule 
                     title="Boost"
                     subtitle="Classic + Cours collectifs"
-                    prix={40}
+                    prix={50}
                     description="Blabla"
                     images={[
                         { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
@@ -212,8 +208,11 @@ export default function Page() {
                     ]}
                     actionLink=""
                 />
+
+                <p className="explanation text-foreground-subdued text-center">
+                    Explication possiblement détaillée sur comment les abonnements marchent
+                </p>
             </div>
-            
         </div>
     );
 }

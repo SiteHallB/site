@@ -7,10 +7,10 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu as MenuIcon, X } from 'lucide-react';
+import { Menu as MenuIcon, X, Instagram, Facebook } from 'lucide-react';
 import LinkedButton from "@/components/ui/linked-buttons";
 
-const links = [
+const navLinks = [
     { label: "Accueil", path: "/"}, 
     { label: "Tarifs", path: "/tarifs"}, 
     { label: "Plannings", path: "/plannings"}, 
@@ -67,7 +67,7 @@ export default function Menu() {
                     />
                 </Link>
                 <div className="flex space-x-4">
-                    <LinkedButton mode={{id: "Subscribe"}} text="Je m'inscris" onClick={() => setIsMenuOpen(false)}/>
+                    <LinkedButton mode={{id: "Subscribe"}} text="Je m'inscris" onClick={() => setIsMenuOpen(false)} color="accent"/>
                     <div onClick={toggleMenu}>
                         {isMenuOpen ? <X size={24} className="text-foreground-base"/> : 
                             <MenuIcon size={24} className="text-foreground-base"/>}
@@ -76,9 +76,9 @@ export default function Menu() {
             </div>
 
             {/* Overlay menu */}
-            <div className="menu-overlay fixed z-40 inset-0 bg-background-subdued flex flex-col justify-between pb-30 pt-40 px-3">
-                <nav>
-                    {links.map((link, index) => (
+            <div className="menu-overlay fixed z-40 inset-0 bg-background-subdued flex flex-col justify-between pb-30 pt-25 px-content items-center">
+                <nav className="flex flex-col">
+                    {navLinks.map((link, index) => (
                         <div className="menu-link-item" key={index}>
                             <div className="menu-link-item-holder" onClick={toggleMenu}>
                                 <Link
@@ -90,11 +90,33 @@ export default function Menu() {
                             </div>
                         </div>
                     ))}
+                    <div className="mt-10 menu-link-item">
+                        <div className="menu-link-item-holder" onClick={toggleMenu}>
+                            <LinkedButton mode={{id: "Osteo"}} text="Consultation Osteopathe"
+                            variant="menuOverlay"
+                            size="menuOverlay"/>
+                        </div>
+                    </div>
+                    <div className="menu-link-item">
+                        <div className="menu-link-item-holder" onClick={toggleMenu}>
+                            <LinkedButton mode={{id: "Osteo"}} text="Réservation Squash"
+                            variant="menuOverlay"
+                            size="menuOverlay"/>
+                        </div>
+                    </div>
+                    
+                    
                 </nav>
-                <div className="flex flex-col text-foreground-base text-2xl">
-                    <Link href=""> Instagram &#8599; </Link>
-                    <Link href=""> Facebook &#8599; </Link>
-                    <Link href=""> TikTok &#8599; </Link>
+
+                <div className="mr-auto flex flex-col text-foreground-subdued readable">
+                    <Link href="" className="flex flex-row space-x-5">
+                        <Instagram/>
+                        <p>Instagram &#8599;</p>
+                    </Link>
+                    <Link href="" className="flex flex-row space-x-5">
+                        <Facebook/>
+                        <p>Facebook &#8599;</p>
+                    </Link>
                 </div>
             </div>
         </div>

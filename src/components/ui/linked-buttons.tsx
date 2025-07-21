@@ -4,24 +4,27 @@ import Link from 'next/link';
 import links from "@/interface/links.json"
 
 const linkedButtonVariants = cva(
-  "font-futuretense uppercase",
+  "font-futuretense",
   {
     variants: {
         variant: {
             menu: "rounded-full px-2 py-1", 
-            adaptable: "rounded-sm w-full py-1 text-center"
+            adaptable: "rounded-sm w-full py-1 text-center", 
+            menuOverlay: "text-accent", 
         }, 
         color: {
+            default: "", 
             foreground: "bg-foreground-base text-background-base", 
             accent: "bg-accent text-background-base", 
         }, 
         size: {
             default: "text-xs", 
+            menuOverlay: "menu", 
         }, 
     },
     defaultVariants: {
       variant: "menu",
-      color: "accent", 
+      color: "default", 
       size: "default", 
     },
   }
