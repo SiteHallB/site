@@ -6,7 +6,17 @@ import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Hall B",
-  description: "Le site",
+  description: "Hall B",
+  openGraph: {
+    images: [
+      {
+        url: "https://res.cloudinary.com/dsm7uifdv/image/upload/v1753139358/logo-hallb_ksd6aa.png", 
+        width: 1240,
+        height: 1328,
+        alt: ""
+      }
+    ]
+  },
 };
 
 export default function RootLayout({
