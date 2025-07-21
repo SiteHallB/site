@@ -7,8 +7,11 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu as MenuIcon, X, Instagram, Facebook } from 'lucide-react';
+import { Menu as MenuIcon, X, Instagram, Facebook, ChevronRight } from 'lucide-react';
 import LinkedButton from "@/components/ui/linked-buttons";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
     { label: "Accueil", path: "/"}, 
@@ -16,6 +19,33 @@ const navLinks = [
     { label: "Plannings", path: "/plannings"}, 
     { label: "Nous contacter", path: "/contact"}, 
 ];
+
+type MenuLink = {
+  path: string;
+  label: string;
+};
+
+type MenuItemProps = {
+  linkInfo: MenuLink;
+  onClick?: () => void;
+};
+
+function MenuItem({ linkInfo, onClick }: MenuItemProps) {
+    return (
+        <div className="menu-link-item">
+            <div
+                className="menu-link-item-holder flex flex-row items-center"
+                onClick={onClick}
+            >
+                <ChevronRight size={24} className="text-accent" />
+                <Link href={linkInfo.path} className="text-foreground-base menu">
+                {linkInfo.label}
+                </Link>
+            </div>
+        </div>
+    );
+    
+}
 
 export default function Menu() {
     const container = useRef<HTMLDivElement>(null);
@@ -56,57 +86,40 @@ export default function Menu() {
     return (
         <div ref={container}>
             {/* Barre de navigation */}
-            <div className="fixed top-0 left-0 w-screen flex justify-between items-center z-50 px-4 lg:px-8 py-1 bg-background-subdued/70">
-                <Link href="/" className="" onClick={() => setIsMenuOpen(false)}>
-                    <Image
-                    src="/images/logo-hallb.png"
-                    alt="Logo Hall B"
-                    width={2363}
-                    height={2363}
-                    className="h-16 w-auto mr-2"
-                    />
-                </Link>
-                <div className="flex space-x-4">
-                    <LinkedButton mode={{id: "Subscribe"}} text="Je m'inscris" onClick={() => setIsMenuOpen(false)} color="accent"/>
-                    <div onClick={toggleMenu}>
-                        {isMenuOpen ? <X size={24} className="text-foreground-base"/> : 
-                            <MenuIcon size={24} className="text-foreground-base"/>}
-                    </div>
+            <div className="py-5 fixed top-0 left-0 w-screen flex justify-around items-center z-50 px-4 lg:px-8 py-1 nav-bar space-x-2">
+                
+                <LinkedButton mode={{id: "FreeTrial"}} text="Essai offert" color="transparent"/>
+                <LinkedButton mode={{id: "Subscribe"}} text="Je m'inscris" onClick={() => setIsMenuOpen(false)} color="accent"/>
+                <div onClick={toggleMenu}>
+                    {isMenuOpen ? <X size={24} className="text-foreground-base"/> : 
+                        <MenuIcon size={24} className="text-foreground-base"/>}
                 </div>
             </div>
 
             {/* Overlay menu */}
-            <div className="menu-overlay fixed z-40 inset-0 bg-background-subdued flex flex-col justify-between pb-30 pt-25 px-content items-center">
-                <nav className="flex flex-col">
-                    {navLinks.map((link, index) => (
-                        <div className="menu-link-item" key={index}>
-                            <div className="menu-link-item-holder" onClick={toggleMenu}>
-                                <Link
-                                    href={link.path}
-                                    className="text-accent menu"
-                                >
-                                    {link.label}
-                                </Link>
-                            </div>
-                        </div>
+            <div className="menu-overlay fixed z-40 inset-0 bg-background-subdued flex flex-col justify-around space-y-10 pt-30 pb-8 px-content items-center">
+                <nav className="flex flex-col w-full">
+                    {navLinks.map((el, index) => (
+                        <MenuItem linkInfo={el} onClick={toggleMenu} key={index}/>
                     ))}
-                    <div className="mt-10 menu-link-item">
-                        <div className="menu-link-item-holder" onClick={toggleMenu}>
-                            <LinkedButton mode={{id: "Osteo"}} text="Consultation Osteopathe"
-                            variant="menuOverlay"
-                            size="menuOverlay"/>
-                        </div>
-                    </div>
-                    <div className="menu-link-item">
-                        <div className="menu-link-item-holder" onClick={toggleMenu}>
-                            <LinkedButton mode={{id: "Osteo"}} text="Réservation Squash"
-                            variant="menuOverlay"
-                            size="menuOverlay"/>
-                        </div>
-                    </div>
-                    
-                    
                 </nav>
+                
+                <div className="flex flex-col w-full">
+                    <MenuItem linkInfo={{ path: "", label: "Consultation Ostéopathe" }} onClick={toggleMenu}/>
+                    <MenuItem linkInfo={{ path: "", label: "Réservation Squash" }} onClick={toggleMenu}/>
+                </div>
+                
+                <div className="relative flex overflow-hidden w-full h-full ">
+                    <div className="absolute inset-y-0 left-0 w-[7rem] bg-gradient-to-r from-background-subdued to-transparent z-10"/>
+                    <div className="absolute inset-y-0 right-0 w-[7rem] bg-gradient-to-l from-background-subdued to-transparent z-10"/>
+                    <Image 
+                        src="/images/concept.jpg"
+                        width={3024}
+                        height={4032}
+                        className="object-cover"
+                        alt=""
+                    />
+                </div> 
 
                 <div className="mr-auto flex flex-col text-foreground-subdued readable">
                     <Link href="" className="flex flex-row space-x-5">

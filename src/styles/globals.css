@@ -34,7 +34,7 @@
 }
 
 .menu {
-  @apply text-2xl font-montserrat
+  @apply text-sm font-futuretense uppercase
 }
 
 .subtitle {

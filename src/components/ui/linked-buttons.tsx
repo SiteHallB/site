@@ -17,6 +17,7 @@ const linkedButtonVariants = cva(
             default: "", 
             foreground: "bg-foreground-base text-background-base", 
             accent: "bg-accent text-background-base", 
+            transparent: "text-foreground-base outline-2 outline-foreground-base"
         }, 
         size: {
             default: "text-xs", 

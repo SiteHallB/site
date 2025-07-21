@@ -154,7 +154,7 @@ function Formule({ title, subtitle, prix, description, images, checkDescription,
             </div>
 
             {/* Bouton */}
-            <LinkedButton mode={{src: actionLink}} text={`S'abonner pour ${prix}€ par mois`} className="text-xl" color="accent" variant="adaptable"/>
+            <LinkedButton mode={{src: actionLink}} text={`S'abonner pour ${prix}€ par mois`} className="text-xl font-futuretense" color="accent" variant="adaptable"/>
         </div>
     );
 }
@@ -166,12 +166,8 @@ export default function Page() {
                 {/* Titre */}
                 <div className="flex flex-col items-center space-y-2">
                     <h1 className="text-foreground-base title">Tarifs</h1>
-                    <p className="text-foreground-subdued title-long text-center">
-                        Des
-                        <span className="text-foreground-base"> tarifs</span> adaptés à tous les
-                        <span className="text-foreground-base"> pratiquants</span>, tous les
-                        <span className="text-foreground-base"> goûts</span> et
-                        <span className="text-foreground-base"> projets</span>.
+                    <p className="text-foreground-subdued readable">
+                        Choisissez la formule adaptée à vos besoins
                     </p>
                 </div>
                 
