@@ -163,6 +163,7 @@ export default function Page() {
     return (
         <div className="bg-background-base w-full px-content">
             <div className="pt-20 pb-10 flex flex-col w-full space-y-10 items-center">
+                {/* Titre */}
                 <div className="flex flex-col items-center space-y-2">
                     <h1 className="text-foreground-base title">Tarifs</h1>
                     <p className="text-foreground-subdued title-long text-center">

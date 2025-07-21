@@ -1,3 +1,5 @@
+import LinkedButton from "./ui/linked-buttons"
+
 export default function Footer() {
     return (
         <footer className="bg-background-subdued">
@@ -9,10 +11,22 @@ export default function Footer() {
             </div>
 
             {/* Loi */}
-            <div className="explanation px-content text-foreground-subdued flex flex-col w-full py-5 space-y-4">
-                <p>Conditions Générales d'Utilisation</p>
-                <p>Protection des données</p>
-                <p>Paramètres des cookies</p>
+            <div className="px-content text-foreground-subdued flex flex-col w-full py-5 space-y-4">
+                <LinkedButton
+                    variant="legal"
+                    mode={{src: ""}}
+                    text="Mentions légales"
+                />
+                <LinkedButton
+                    variant="legal"
+                    mode={{src: ""}}
+                    text="Politique de confidentialité"
+                />
+                <LinkedButton
+                    variant="legal"
+                    mode={{src: ""}}
+                    text="Politique cookies"
+                />
             </div>
         </footer>
     );

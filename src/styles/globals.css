@@ -19,6 +19,8 @@
   --color-foreground-base: #FFFFFF;
   --color-foreground-subdued: #FFFFFF99;
   --color-accent: #E1C340;
+  --color-yes: #15803D; 
+  --color-no: #EF4444; 
 
   --spacing-content: 1rem; 
 }
@@ -49,4 +51,8 @@
 
 .explanation {
   @apply text-xs font-montserrat;
+}
+
+.hour {
+  @apply text-xl font-futuretense;
 }
