@@ -6,7 +6,6 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { timeStamp } from "console";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,16 +15,13 @@ type FormuleProps = { images: Image[] };
 function Formule({ images }: FormuleProps ) {
     const n = images.length;
 
-    const container = useRef<HTMLDivElement>(null);
     const imageFrame = useRef<HTMLDivElement>(null);
-    const scrollEnter = useRef<"down" | "up">("down");
+    const imageContainers = useRef<HTMLDivElement[]>([]);
 
-    const imageId = (i: number): string => `.image-${i}`;
-    const imageContainerId = (i: number): string => `.image-container-${i}`;
-    const otherImageContainerId = (i: number): string[] =>
-        Array.from({ length: n }, (_, j) => j)
-            .filter(j => j !== i)
-            .map(imageContainerId);
+    const imageClass = (i: number): string => `image-${i}`;
+    const imageContainerClass = (i: number): string => `image-container-${i}`;
+    const imageSelector = (i: number): string => `.${imageClass(i)}`;
+    const imageContainerSelector = (i: number): string => `.${imageContainerClass(i)}`;
 
     // POSSIBLEMENT PAS CLEAN
     const screenPart = (i: number): string => {
@@ -33,69 +29,60 @@ function Formule({ images }: FormuleProps ) {
         return `${Math.round( scrollHeight / window.innerHeight / n * 100 * (n - i))}%`;
     }
 
-    images.forEach((el, i) => {
-        useGSAP(() => {
+    useGSAP(() => {
+        const updateStacking = (i: number, direction: ("fromTop" | "fromBottom")) => {
+            for (let j = 0; j < n; j++) {
+                imageContainers.current[j].style.zIndex = "0";
+                if (j === i) { imageContainers.current[j].style.zIndex = "20"; }
+                else if (j === i + 1 || j === i - 1) {
+                    const previousId =
+                        direction === "fromTop" && i !== 0 ? i - 1 :
+                        direction === "fromBottom" && i !== n - 1 ? i + 1 :
+                        null;
+                    if (j === previousId) imageContainers.current[j].style.zIndex = "10";
+                }
+                imageContainers.current[j].style.filter = j === i ? "grayscale(0%)" : "grayscale(60%)";
+            }
+        }
+
+        images.forEach((el, i) => {
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: imageFrame.current, 
-                    start: `top ${screenPart(i)}`, 
-                    end: `top ${screenPart(i+1)}`, 
-                    toggleActions: `${i !== 0 ? "restart" : "none"} none ${i !== n - 1 ? "restart" : "none"} none`, 
-                    onEnter: () => (scrollEnter.current = "down"),
-                    onEnterBack: () => (scrollEnter.current = "up"),
+                    start: () => `top ${screenPart(i)}`, 
+                    end: () => `top ${screenPart(i+1)}`, 
+                    toggleActions:  `${i !== 0 ? "restart" : "none"} none ${i !== n - 1 ? "restart" : "none"} none`, 
+                    onEnter: () => updateStacking(i, "fromTop"),
+                    onEnterBack: () => updateStacking(i, "fromBottom"),
                 }
             })
 
-            // Mettre le container i au dessus du précédent (grisé) qui sera au dessus des autres
-            otherImageContainerId(i).forEach((id, _) => {
-                tl.set(id, {
-                    zIndex: 0, 
-                })
-            })
-            tl.set(imageContainerId(i), {
-                zIndex: 20, 
-                filter: "grayscale(0%)", 
-            })
-            const previousId = scrollEnter.current === "down" && i !== 0 ? i - 1
-                : scrollEnter.current === "up" && i !== n - 1 ? i + 1
-                : null;
-            if (previousId !== null) {
-                tl.set(imageContainerId(previousId), {
-                    zIndex: 10, 
-                    filter: "grayscale(60%)", 
-                })
-            }
-
             // Animation
-            tl.set(imageContainerId(i), {
+            tl.set(imageContainerSelector(i), {
                 scale: 0.4, 
                 rotation: 15, 
-                delay: i
             })
-            .set(imageId(i), {
+            .set(imageSelector(i), {
                 scale: 1.5, 
                 rotation: -10, 
             })
-            .to(imageContainerId(i), {
+            .to(imageContainerSelector(i), {
                 duration: 1.5, 
                 scale: 1, 
                 rotation: 0, 
                 ease: "power4.out"
             })
-            .to(imageId(i), {
+            .to(imageSelector(i), {
                 duration: 1.2, 
                 scale: 1, 
                 rotation: 0, 
                 ease: "power4.out"
             }, "<")
-        }, { scope: container })
+        }, { scope: imageFrame })
     })
 
     return (
-        <div
-            ref={container}
-            className="relative flex flex-col bg-background-highlight w-full h-[80vh] rounded-xl px-3 py-5 items-center justify-around space-y-5"
-        >
+        <div className="relative flex flex-col bg-background-highlight w-full h-[80vh] rounded-xl px-3 py-5 items-center justify-around space-y-5">
             {/* Prix */}
             <div className="px-2 font-futuretense flex items-center justify-center absolute left-[-0.5rem] top-[-0.9rem] rounded-xs bg-accent">
                 <p className="text-base">40€<span className="text-[0.7rem]">/mois</span></p>
@@ -112,49 +99,27 @@ function Formule({ images }: FormuleProps ) {
             </div>
 
             {/* Images */}
-            <div className="relative w-full h-full rounded-xl overflow-hidden">
+            <div
+                ref={imageFrame}
+                className="relative w-full h-full rounded-xl overflow-hidden"
+            >
                 {images.map((image, i) => (
-                    <div className={`absolute m-auto inset-0 rounded-xl flex overflow-hidden `"}>
+                    <div
+                        key={i}
+                        ref={(el) => {
+                            imageContainers.current[i] = el;
+                        }}
+                        className={`absolute m-auto inset-0 rounded-xl flex overflow-hidden ${imageContainerClass(i)} ${i == 0 ? "z-10" : "z-0"}`}
+                    >
                         <Image 
-                            src="/images/concept.jpg"
-                            width={3024}
-                            height={4032}
-                            className="object-cover image"
-                            alt=""
+                            src={image.src}
+                            width={image.width}
+                            height={image.height}
+                            className={`object-cover ${imageClass(i)}`}
+                            alt={image.alt}
                         />
                     </div> 
-                ))}
-
-
-
-
-                <Image 
-                    src="/images/valeurs.jpg"
-                    width={3024}
-                    height={4032}
-                    className="object-cover absolute inset-0 m-auto image-base"
-                    alt=""
-                />
-                <div className="opacity-0 z-10 absolute m-auto inset-0 rounded-xl flex overflow-hidden image-container">
-                    <Image 
-                        src="/images/concept.jpg"
-                        width={3024}
-                        height={4032}
-                        className="object-cover image"
-                        alt=""
-                    />
-                </div> 
-                <div className="opacity-0 z-10 absolute m-auto inset-0 rounded-xl flex overflow-hidden image-container">
-                    <Image 
-                        src="/images/histoire.jpg"
-                        width={3024}
-                        height={4032}
-                        className="object-cover image"
-                        alt=""
-                    />
-                </div> 
-               
-            
+                ))}            
             </div>
 
             {/* Description */}
@@ -193,7 +158,11 @@ export default function Page() {
                     Explication possiblement détaillée sur comment les abonnement marchent
                 </p>
                 <div className="h-[200px]"></div>
-                <Formule/>
+                <Formule images={[
+                    { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
+                    { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
+                    { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
+                ]}/>
 
                 {/* Exemple */}
                 <div className="bg-background-highlight w-full h-[80vh] rounded-xl p-2">
