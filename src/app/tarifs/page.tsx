@@ -30,7 +30,7 @@ function Formule({ images }: FormuleProps ) {
     // POSSIBLEMENT PAS CLEAN
     const screenPart = (i: number): string => {
         const scrollHeight = window.innerHeight - (imageFrame.current?.offsetHeight ?? 0);
-        return `${Math.round( scrollHeight / window.innerHeight / n * 100 * (n - i))}%`;
+        return `${Math.round( scrollHeight / window.innerHeight * 100 * (n - 1 - i) / (n - 2))}%`;
     }
 
     useGSAP(() => {
@@ -71,13 +71,13 @@ function Formule({ images }: FormuleProps ) {
                 rotation: -10, 
             })
             .to(imageContainerSelector(i), {
-                duration: 1.5, 
+                duration: 1, 
                 scale: 1, 
                 rotation: 0, 
                 ease: "power4.out"
             })
             .to(imageSelector(i), {
-                duration: 1.2, 
+                duration: 0.7, 
                 scale: 1, 
                 rotation: 0, 
                 ease: "power4.out"
