@@ -6,13 +6,33 @@ import { useRef, useCallback } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import LinkedButton from "@/components/ui/linked-buttons";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type Image = { src: string, width: number, height: number, alt: string };
-type FormuleProps = { images: Image[] };
+type FormuleProps = 
+    { title: string } &
+    { subtitle: string } &
+    { description: string } &
+    { prix: number } &
+    { images: Image[] } &
+    { checkDescription: string[] } &
+    { actionLink: string };
 
-function Formule({ images }: FormuleProps ) {
+function Check({ text }: { text: string }) {
+    return (
+        <div className="flex flex-row space-x-3">
+            <CheckCheck size={24} className="text-accent shrink-0"/>
+            <p className="text-foreground-base readable">
+                {text}
+            </p>
+        </div>
+    );
+}
+
+// ATTENTION : il faut passer au moins 2 images
+function Formule({ title, subtitle, prix, description, images, checkDescription, actionLink }: FormuleProps ) {
     const n = images.length;
 
     const imageFrame = useRef<HTMLDivElement>(null);
@@ -89,18 +109,17 @@ function Formule({ images }: FormuleProps ) {
         <div className="relative flex flex-col bg-background-highlight w-full h-[80vh] rounded-xl px-3 py-5 items-center justify-around space-y-5">
             {/* Prix */}
             <div className="px-2 font-futuretense flex items-center justify-center absolute left-[-0.5rem] top-[-0.9rem] rounded-xs bg-accent">
-                <p className="text-base">40€<span className="text-[0.7rem]">/mois</span></p>
+                <p className="text-base">{prix}€<span className="text-[0.7rem]">/mois</span></p>
             </div>
 
             {/* Titre */}
             <div className="mb-auto flex flex-col items-center">
-                <h2 className="title text-foreground-base mx-auto">
-                    Classic
-                </h2>
-                <p className="text-foreground-subdued mb-4 subtitle">
-                    Muscu & Cardio accès libre
-                </p>
+                <h2 className="title text-foreground-base">{title}</h2>
+                <p className="text-foreground-subdued mb-4 subtitle">{subtitle}</p>
             </div>
+
+            {/* Description */}
+            <p className="text-foreground-base mb-4 readable mr-auto">{description}</p>
 
             {/* Images */}
             <div
@@ -124,22 +143,18 @@ function Formule({ images }: FormuleProps ) {
                 ))}            
             </div>
 
-            {/* Description */}
+            {/* Check description */}
             <div className="flex flex-col space-y-2">
-                <div className="flex flex-row space-x-3">
-                    <CheckCheck size={24} className="text-accent shrink-0"/>
-                    <p className="text-foreground-base readable">Accès 7jours/7 de 7h à 23h au plateau muscu/cardio</p>
-                </div>
-                <div className="flex flex-row space-x-3">
-                    <CheckCheck size={24} className="text-accent"/>
-                    <p className="text-foreground-base readable">Autre truc à dire</p>
-                </div>
+                {checkDescription.map((el, i) => (
+                    <Check 
+                        key={i}
+                        text={el}
+                    />
+                ))}
             </div>
 
             {/* Bouton */}
-            <div className="text-xl text-foreground-base">
-                Action
-            </div>
+            <LinkedButton mode={{src: actionLink}} text="En savoir plus" className="text-xl" color="accent" variant="adaptable"/>
         </div>
     );
 }
@@ -159,19 +174,44 @@ export default function Page() {
                 <p className="explanation text-foreground-subdued text-center">
                     Explication possiblement détaillée sur comment les abonnement marchent
                 </p>
-                <div className="h-[200px]"></div>
-                <Formule images={[
-                    { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
-                    { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
-                    { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
-                ]}/>
 
-                {/* Exemple */}
-                <div className="bg-background-highlight w-full h-[80vh] rounded-xl p-2">
-                    <h2 className="title text-foreground-base">
-                        Boost
-                    </h2>
-                </div>
+                <div className="h-[200px]"></div>
+
+                <Formule 
+                    title="Classic"
+                    subtitle="Muscu & Cardio accès libre"
+                    prix={40}
+                    description="Blabla"
+                    images={[
+                        { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
+                        { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
+                        { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
+                    ]}
+                    checkDescription={[
+                        "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
+                        "Autre truc à dire", 
+                        "Encore un"
+                    ]}
+                    actionLink=""
+                />
+
+                <Formule 
+                    title="Boost"
+                    subtitle="Classic + Cours collectifs"
+                    prix={40}
+                    description="Blabla"
+                    images={[
+                        { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
+                        { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
+                        { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
+                    ]}
+                    checkDescription={[
+                        "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
+                        "Autre truc à dire", 
+                        "Encore un"
+                    ]}
+                    actionLink=""
+                />
             </div>
             
         </div>

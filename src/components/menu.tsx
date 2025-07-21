@@ -67,7 +67,7 @@ export default function Menu() {
                     />
                 </Link>
                 <div className="flex space-x-4">
-                    <LinkedButton id="Subscribe" text="Je m'inscris" onClick={() => setIsMenuOpen(false)}/>
+                    <LinkedButton mode={{id: "Subscribe"}} text="Je m'inscris" onClick={() => setIsMenuOpen(false)}/>
                     <div onClick={toggleMenu}>
                         {isMenuOpen ? <X size={24} className="text-foreground-base"/> : 
                             <MenuIcon size={24} className="text-foreground-base"/>}

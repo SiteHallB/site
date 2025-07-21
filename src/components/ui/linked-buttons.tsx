@@ -9,6 +9,7 @@ const linkedButtonVariants = cva(
     variants: {
         variant: {
             menu: "rounded-full px-2 py-1", 
+            adaptable: "rounded-sm w-full py-1 text-center"
         }, 
         color: {
             foreground: "bg-foreground-base text-background-base", 
@@ -27,18 +28,22 @@ const linkedButtonVariants = cva(
 );
 
 type LinkedButtonProps =
-    { id: string } &
+    { mode: ( { id: string } | { src: string } )} &
     { text: string } &
     { onClick?: () => void } &
     VariantProps<typeof linkedButtonVariants> & {
         className?: string;
     };
 
-export default function LinkedButton({ id, text, onClick, className, variant, color, size, ...props }: LinkedButtonProps) {
-    const linkObject = links.find(item => item.id === id);
-    let link = ""
-    if (linkObject) {
-        link = linkObject["link"]
+export default function LinkedButton({ mode, text, onClick, className, variant, color, size, ...props }: LinkedButtonProps) {
+    let link=""
+    if ("id" in mode) {
+        const linkObject = links.find(item => item.id === mode.id);
+        if (linkObject) {
+            link = linkObject["link"]
+        }
+    } else if ("src" in mode) {
+        link = mode.src
     }
     return (
         <Link
