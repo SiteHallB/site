@@ -30,7 +30,7 @@ export default function RootLayout({
         className="antialiased"
       >
         <Menu/>
-        <div className="flex flex-col">
+        <div className="relative flex flex-col">
           {children}
           <Footer/>
         </div>

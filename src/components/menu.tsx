@@ -67,8 +67,10 @@ export default function Menu() {
             duration: 0.5, 
             stagger: 0.1, 
             ease: "power4.inOut", 
-            delay: -0.75, 
+            delay: -1, 
         })
+
+        tl.current.duration(1);
     }, { scope: container });
 
     useEffect(() => {
