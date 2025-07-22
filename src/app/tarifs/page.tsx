@@ -218,8 +218,6 @@ function Formule({ title, subtitle, prix, description, images, checkDescription,
                 onEnterBack: () => {
                     setFromImage({ previous: index + 1, current: index })
                 }, 
-                id: `${index}`, 
-                markers: index === 0
             })
         })
     }, { scope: container })
