@@ -131,7 +131,7 @@ export default function Hero() {
     })
     
     return (
-        <div ref={container} className="relative h-dvh w-full">
+        <section id="hero" ref={container} className="relative h-dvh w-full">
 
             {/* Vidéo */}
             <div className="absolute inset-0">
@@ -186,6 +186,7 @@ export default function Hero() {
 
                 <ArrowDown size={24} className="absolute bottom-4 text-foreground-subdued arrow" onClick={onArrowClick}/>
             </div>
-      </div>
+            
+      </section>
     );
 }

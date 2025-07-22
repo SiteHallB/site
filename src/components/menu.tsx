@@ -86,7 +86,7 @@ export default function Menu() {
     }, [isMenuOpen]);
 
     return (
-        <div ref={container}>
+        <section id="menu" ref={container}>
             {/* Barre de navigation */}
             <div className="py-5 fixed top-0 left-0 w-screen flex justify-around items-center z-50 px-4 lg:px-8 py-1 nav-bar space-x-2">
                 
@@ -134,6 +134,6 @@ export default function Menu() {
                     </Link>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
