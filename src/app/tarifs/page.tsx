@@ -12,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 type Image = { src: string, width: number, height: number, alt: string };
 type FormuleProps = 
+    { aboveFold: boolean } &
     { title: string } &
     { subtitle: string } &
     { description: string } &
@@ -187,7 +188,7 @@ type From = { previous: number, current: number}
 
 import { useState } from "react";
 
-function Formule({ title, subtitle, prix, description, images, checkDescription, actionLink }: FormuleProps ) {
+function Formule({ aboveFold, title, subtitle, prix, description, images, checkDescription, actionLink }: FormuleProps ) {
     const container = useRef<HTMLDivElement>(null);
     const imageFrame = useRef<HTMLDivElement>(null);
     const imageRefs = useRef<HTMLDivElement[]>([]);
@@ -204,7 +205,6 @@ function Formule({ title, subtitle, prix, description, images, checkDescription,
         const scrollHeight = window.innerHeight - (imageFrame.current?.offsetHeight ?? 0);
         return `${Math.round( scrollHeight / window.innerHeight * 100 * (nbImages - i - 0.5) / (nbImages - 1))}%`;
     }
-
     
     useGSAP(() => {
         images.forEach((_, index) => {
@@ -223,9 +223,8 @@ function Formule({ title, subtitle, prix, description, images, checkDescription,
     }, { scope: container })
 
     useGSAP(() => {
-        console.log(fromImage)
         const current = imageRefs.current[fromImage.current]
-        if (fromImage.previous === -1 || fromImage.previous === nbImages) {
+        if (fromImage.previous === -1 || fromImage.previous == nbImages) {
             gsap.set(current, {
                 autoAlpha: 1, 
                 zIndex: 10, 
@@ -244,17 +243,36 @@ function Formule({ title, subtitle, prix, description, images, checkDescription,
             autoAlpha: 1, 
             scale: 0.5, 
             zIndex: 10, 
-            rotate: 8
+            rotate: 6
         }, ">")
         .to(current, {
             scale: 1, 
-            rotate: 0
+            rotate: 0, 
+            ease: "power2.out"
         }, ">")
         .set(previous, {
             autoAlpha: 1, 
             filter: "grayscale(0%)"
         }, ">")
     }, { dependencies: [fromImage], scope: container })
+
+    // Check animation
+    useGSAP(() => {
+        gsap.to(".check", {
+            scale: 1.6, 
+            ease: "power3.out", 
+            stagger: {
+                each: 0.5, 
+                repeat: 1, 
+                yoyo: true, 
+                yoyoEase: "power1.out", 
+            }, 
+            scrollTrigger: {
+                trigger: ".check-holder", 
+                start: "center 70%", 
+            }
+        })
+    }, { scope: container })
 
     return (
         <div ref={container} className="relative flex flex-col bg-background-highlight w-full h-[80vh] rounded-xl px-3 py-5 items-center justify-around space-y-5">
@@ -274,15 +292,25 @@ function Formule({ title, subtitle, prix, description, images, checkDescription,
 
             {/* Images */}
             <div ref={imageFrame} className="relative size-full rounded-xl overflow-hidden outline-foreground-subdued outline-1">
+                <div className="absolute size-full rounded-xl overflow-hidden">
+                    <Image 
+                        src={images[0].src}
+                        width={images[0].width}
+                        height={images[0].height}
+                        className="object-cover object-center size-full"
+                        alt={images[0].alt}
+                        priority={aboveFold}
+                    />
+                </div>
                 {images.map((el, index) => (
-                    <div key={index} className={`absolute size-full rounded-xl overflow-hidden ${index===fromImage.current ? "" : "invisible"}`} ref={el => { addToRefs(el, index); }}>
+                    <div key={index} className="invisible absolute size-full rounded-xl overflow-hidden" ref={el => { addToRefs(el, index); }}>
                         <Image 
                             src={el.src}
                             width={el.width}
                             height={el.height}
                             className="object-cover object-center size-full"
                             alt={el.alt}
-                            priority={index===0 || index===1}
+                            priority={aboveFold}
                         />
                     </div>
                 ))}    
@@ -319,6 +347,7 @@ export default function Page() {
             </div>
             
             <Formule 
+                aboveFold={true}
                 title="Classic"
                 subtitle="Muscu & Cardio accès libre"
                 prix={40}
@@ -334,8 +363,9 @@ export default function Page() {
                 ]}
                 actionLink=""
             />
-{/* 
+
             <Formule 
+                aboveFold={false}
                 title="Boost"
                 subtitle="Classic + Cours collectifs"
                 prix={50}
@@ -351,7 +381,7 @@ export default function Page() {
                     "Encore un"
                 ]}
                 actionLink=""
-            /> */}
+            />
 
             <p className="explanation text-foreground-subdued text-center">
                 Explication possiblement détaillée sur comment les abonnements marchent

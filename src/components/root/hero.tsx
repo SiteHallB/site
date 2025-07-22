@@ -187,6 +187,6 @@ export default function Hero() {
                 <ArrowDown size={24} className="absolute bottom-4 text-foreground-subdued arrow" onClick={onArrowClick}/>
             </div>
 
-      </section>
+        </section>
     );
 }
