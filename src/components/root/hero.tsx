@@ -131,7 +131,7 @@ export default function Hero() {
     })
     
     return (
-        <section id="hero" ref={container} className="relative h-vh w-full">
+        <section id="hero" ref={container} className="relative h-[100vh] w-full">
 
             {/* Vidéo */}
             <div className="absolute inset-0">
@@ -154,7 +154,7 @@ export default function Hero() {
             </div>
             
             {/* Texte écran d'accueil */}
-            <div className="absolute inset-0 px-content z-20 flex flex-col items-center justify-around pt-20 pb-10 parallax-text">
+            <div className="absolute inset-0 px-content z-20 flex flex-col items-center justify-around pt-20 pb-20 parallax-text">
                 <div className="flex flex-col items-center space-y-2">
                     <Image
                         src="/images/logo-hallb.png"
@@ -184,7 +184,7 @@ export default function Hero() {
                     <LinkedButton mode={{id: "Subscribe"}} text="Je m'inscris" className="text-center w-full text-foreground-base outline-foreground-base outline-1 py-2"/>
                 </div>
 
-                <ArrowDown size={24} className="absolute bottom-4 text-foreground-subdued arrow" onClick={onArrowClick}/>
+                <ArrowDown size={24} className="absolute bottom-20 text-foreground-subdued arrow" onClick={onArrowClick}/>
             </div>
 
         </section>
