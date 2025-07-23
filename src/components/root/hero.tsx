@@ -122,7 +122,7 @@ export default function Hero() {
     const onArrowClick = contextSafe(() => {
         gsap.to(window, {
             scrollTo: {
-                y: "#valeurs",
+                y: "#title-valeurs",
                 offsetY: 55, 
             }, 
             ease: "power2.inOut", 
@@ -141,7 +141,7 @@ export default function Hero() {
             {/* Dégradé */}
             <div>
             <div className="absolute inset-x-0 top-[60dvh] bottom-0 bg-gradient-to-t from-background-base to-transparent z-10 parallax-gradient"/>
-            <div className="absolute inset-0 bg-background-base parallax-fill z-10">
+            <div className="absolute size-full bg-background-base parallax-fill z-10">
                 {/* Texte dessous */}
                 <div className="absolute bottom-0 inset-x-0 flex flex-col items-center space-y-5 pb-4">
                 <div className="pt-20 inline-flex overflow-hidden">
