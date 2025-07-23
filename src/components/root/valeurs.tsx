@@ -37,15 +37,9 @@ function Cadre({ image }: { image: Image }) {
 function ScrollText({ text }: { text: string }) {
     return (
         <div className="py-2 flex items-center justify-center overflow-hidden">
-        <p className="text-4xl uppercase text-accent scale-y-140">
+        <p className="text-4xl uppercase text-foreground-base">
             {text}
         </p>
-        
-        <div className="absolute w-25 py-10 overflow-hidden flex items-center justify-center">
-            <p className="text-4xl uppercase text-foreground-subdued scale-y-140 z-10">
-                {text}
-            </p>
-        </div>
         </div>
     );
 }
@@ -123,19 +117,21 @@ export default function Valeurs() {
                     <h2 id="title-valeurs" className="text-center text-foreground-base title-small w-full bg-background-base pb-10">
                         Nos Valeurs
                     </h2>
-                    <div className="background-transition-invert bg-background-base w-full h-[25px]"/> 
+                    <div className="bg-gradient-to-b from-background-base to-transparent w-full h-[50px]"/> 
                 </div>
                 <div className="scroll-section w-full flex flex-col space-y-3 items-center bg-background-subdued pt-20">
                     {[...Array(9)].map((_, i) => (
                         <Cadre key={i} image={images[i % 3]} />
                     ))}
                 </div>
-                
             </div>
+
+            {/* Transition basse */}
             <div className="relative top-[-52px] flex flex-col space-y-[-1px]">
-                <div className="background-transition bg-background-base w-full h-[25px]"/> 
-                <div className="bg-background-base w-full h-[50vh]"/>  
+                <div className="bg-gradient-to-t from-background-base to-transparent w-full h-[50px]"/> 
+                <div className="bg-background-base w-full h-[100px]"/>
             </div>
+            <div className="absolute bg-background-base h-[53px] bottom-0 w-full"/>
 
             <div className="fixed inset-0 flex items-center justify-center">
                 <div className="relative w-full h-[65px] flex items-center justify-center overflow-hidden">
