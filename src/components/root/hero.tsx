@@ -77,13 +77,13 @@ export default function Hero() {
             duration: 0.07
         })
         .to(".parallax-gradient", {
-            y: `-${amount-1}dvh`, 
+            y: `-${amount-1}vh`, 
         }, "<")
         .to(".parallax-fill", {
             clipPath: `polygon(0% ${100-amount}%, 100% ${100-amount}%, 100% 100%, 0% 100%)`
         }, "<")
         .to(".parallax-text", {
-            y: `-${amount/3}dvh`, 
+            y: `-${amount/3}vh`, 
         }, "<")
     }, { scope: container })
     
@@ -131,7 +131,7 @@ export default function Hero() {
     })
     
     return (
-        <section id="hero" ref={container} className="relative h-dvh w-full">
+        <section id="hero" ref={container} className="relative h-vh w-full">
 
             {/* Vidéo */}
             <div className="absolute inset-0">
@@ -140,7 +140,7 @@ export default function Hero() {
 
             {/* Dégradé */}
             <div>
-            <div className="absolute inset-x-0 top-[60dvh] bottom-0 bg-gradient-to-t from-background-base to-transparent z-10 parallax-gradient"/>
+            <div className="absolute inset-x-0 top-[60vh] bottom-0 bg-gradient-to-t from-background-base to-transparent z-10 parallax-gradient"/>
             <div className="absolute size-full bg-background-base parallax-fill z-10">
                 {/* Texte dessous */}
                 <div className="absolute bottom-0 inset-x-0 flex flex-col items-center space-y-5 pb-4">
