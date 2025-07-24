@@ -51,9 +51,9 @@ export default function Concept() {
     return (
         <section ref={container} id="#concept" className="relative bg-background-base w-full h-[200vh] overflow-x-hidden">
             <div className="scroll-section flex flex-col items-center space-y-5">
-                <p className="concept-title text-foreground-base text-center w-full title-small z-20">
+                <h2 className="concept-title text-foreground-base text-center w-full title-small z-20">
                     Notre concept
-                </p>
+                </h2>
                 <p className="first-text text-foreground-subdued text-left px-content w-full readable">
                     <span className="text-accent">2400m2</span> d'infrastructure sportive flambant neuve.
                     Nombreuses activités, musculation cours collectifs et smallgroups avec coach diplômé, squash, danse, Pôle Aqua et pôle santé avec notre ostéopathe.

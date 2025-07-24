@@ -6,10 +6,10 @@ import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import Link from "next/link";
 import { Menu as MenuIcon, X, Instagram, Facebook, ChevronRight } from 'lucide-react';
-import LinkedButton from "@/components/ui/linked-buttons";
 import ScrollTrigger from "gsap/ScrollTrigger";
+
+import Clickable from "./ui/clickable";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,20 +27,21 @@ type MenuLink = {
 
 type MenuItemProps = {
   linkInfo: MenuLink;
-  onClick?: () => void;
+  onClick: () => void;
 };
 
 function MenuItem({ linkInfo, onClick }: MenuItemProps) {
     return (
         <div className="menu-link-item">
-            <div
-                className="menu-link-item-holder flex flex-row items-center"
-                onClick={onClick}
-            >
+            <div className="menu-link-item-holder flex flex-row items-center">
                 <ChevronRight size={24} className="text-accent" />
-                <Link href={linkInfo.path} className="text-foreground-base menu">
-                {linkInfo.label}
-                </Link>
+
+                <Clickable
+                    clickableType={{type: "link", onClick: onClick, path: linkInfo.path}}
+                    style={{variant: "menuMainButton"}}
+                >
+                    {linkInfo.label}
+                </Clickable>
             </div>
         </div>
     );
@@ -90,8 +91,18 @@ export default function Menu() {
             {/* Barre de navigation */}
             <div className="py-5 fixed top-0 left-0 w-screen flex justify-around items-center z-50 px-4 lg:px-8 py-1 nav-bar space-x-2">
                 
-                <LinkedButton mode={{id: "FreeTrial"}} text="Essai offert" color="transparent"/>
-                <LinkedButton mode={{id: "Subscribe"}} text="Je m'inscris" onClick={() => setIsMenuOpen(false)} color="accent"/>
+                <Clickable
+                    clickableType={{type: "link", onClick: () => 0, path: ""}}
+                    style={{variant: "navigationBar", color: "primary"}}
+                >
+                    Essai Offert
+                </Clickable>
+                <Clickable
+                    clickableType={{type: "link", onClick: () => 0, path: "/tarifs"}}
+                    style={{variant: "navigationBar", color: "accent"}}
+                >
+                    Je m'inscris
+                </Clickable>
                 <div onClick={toggleMenu}>
                     {isMenuOpen ? <X size={24} className="text-foreground-base"/> : 
                         <MenuIcon size={24} className="text-foreground-base"/>}
@@ -123,15 +134,23 @@ export default function Menu() {
                     />
                 </div> 
 
-                <div className="mr-auto flex flex-col text-foreground-subdued readable">
-                    <Link href="" className="flex flex-row space-x-5">
+                <div className="mr-auto flex flex-col text-foreground-subdued">
+                    <Clickable
+                        clickableType={{type: "link", onClick: () => 0, interfaceId: "Instagram"}}
+                        style={{variant: "menuSideButton"}}
+                        className="flex flex-row space-x-5"
+                    >
                         <Instagram/>
-                        <p>Instagram &#8599;</p>
-                    </Link>
-                    <Link href="" className="flex flex-row space-x-5">
+                        <p>Instagram</p>
+                    </Clickable>
+                    <Clickable
+                        clickableType={{type: "link", onClick: () => 0, interfaceId: "Instagram"}}
+                        style={{variant: "menuSideButton"}}
+                        className="flex flex-row space-x-5"
+                    >
                         <Facebook/>
-                        <p>Facebook &#8599;</p>
-                    </Link>
+                        <p>Facebook</p>
+                    </Clickable>
                 </div>
             </div>
         </section>

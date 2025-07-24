@@ -1,18 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
-@font-face {
-  font-family: FutureTense;
-  src: url("/fonts/FutureTense-Regular.woff2") format("woff2");
-}
-
 @import "tailwindcss";
 
-@theme inline {
-  --font-futuretense: FutureTense, sans-serif;
-  --font-montserrat: "Montserrat", sans-serif; 
-  --font-inter: "Inter", sans-serif;
+@import './typography.css';
 
+@theme inline {
   --color-background-base: #121212;
   --color-background-highlight: #242424;
   --color-background-subdued: #000000;
@@ -23,40 +13,4 @@
   --color-no: #EF4444; 
 
   --spacing-content: 1rem; 
-}
-
-.title {
-  @apply text-4xl uppercase font-futuretense;
-}
-
-.title-small {
-  @apply text-3xl uppercase font-futuretense;
-}
-
-.title-long {
-  @apply text-2xl font-montserrat leading-[1.5rem]
-}
-
-.menu {
-  @apply text-sm font-futuretense uppercase
-}
-
-.subtitle {
-  @apply text-xs uppercase font-futuretense;
-}
-
-.readable {
-  @apply text-base font-montserrat;
-}
-
-.readable-big {
-  @apply text-lg font-montserrat;
-}
-
-.explanation {
-  @apply text-xs font-montserrat;
-}
-
-.hour {
-  @apply text-xl font-futuretense;
 }

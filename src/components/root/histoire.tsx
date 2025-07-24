@@ -87,7 +87,7 @@ function TextReveal({ text }: { text: React.ReactNode }) {
 
 export default function Histoire() {
     return (
-        <section className="bg-background-base relative h-auto top-[-600px] bottom-0 text-white w-full text-center title-small flex flex-col space-y-18 items-center overflow-hidden">
+        <section className="bg-background-base relative h-auto top-[-600px] bottom-0 text-white w-full text-center flex flex-col space-y-18 items-center overflow-hidden">
             <h2 className="mb-10">Notre histoire</h2>
             <TextReveal
                 text={<>Fiers enfants de la <span className="text-accent">Vaunage</span>, nous voulions offrir à la région un espace sportif indépendant, chaleureux et exigeant.</>}

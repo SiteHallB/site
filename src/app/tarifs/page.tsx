@@ -6,7 +6,6 @@ import { useRef, useCallback, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import LinkedButton from "@/components/ui/linked-buttons";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +24,7 @@ function Check({ text }: { text: string }) {
     return (
         <div className="flex flex-row space-x-3">
             <CheckCheck size={24} className="text-accent shrink-0 check"/>
-            <p className="text-foreground-base readable">
+            <p className="text-foreground-base">
                 {text}
             </p>
         </div>
@@ -181,7 +180,7 @@ function Check({ text }: { text: string }) {
 
 
 
-
+import Clickable from "@/components/ui/clickable";
 
 
 type From = { previous: number, current: number}
@@ -277,18 +276,18 @@ function Formule({ aboveFold, title, subtitle, prix, description, images, checkD
     return (
         <div ref={container} className="relative flex flex-col bg-background-highlight w-full h-[80vh] rounded-xl px-3 py-5 items-center justify-around space-y-5">
             {/* Prix */}
-            <div className="px-2 font-futuretense flex items-center justify-center absolute left-[-0.5rem] top-[-0.9rem] rounded-xs bg-accent">
-                <p className="text-base">{prix}€<span className="text-[0.7rem]">/mois</span></p>
+            <div className="px-2 flex items-center justify-center absolute left-[-0.5rem] top-[-0.9rem] rounded-xs bg-accent">
+                <p className="textLead">{prix}€<span className="textSmall">/mois</span></p>
             </div>
 
             {/* Titre */}
-            <div className="mb-auto flex flex-col items-center">
-                <h2 className="title text-foreground-base">{title}</h2>
-                <p className="text-foreground-subdued mb-4 subtitle">{subtitle}</p>
+            <div className="mb-auto flex flex-col items-center w-full text-center">
+                <h2 className="text-foreground-base">{title}</h2>
+                <p className="textSubH2 text-foreground-subdued mb-4">{subtitle}</p>
             </div>
 
             {/* Description */}
-            <p className="text-foreground-base mb-4 readable mr-auto">{description}</p>
+            <p className="text-foreground-base mb-4 mr-auto">{description}</p>
 
             {/* Images */}
             <div ref={imageFrame} className="relative size-full rounded-xl overflow-hidden outline-foreground-subdued outline-1">
@@ -327,7 +326,12 @@ function Formule({ aboveFold, title, subtitle, prix, description, images, checkD
             </div>
 
             {/* Bouton */}
-            <LinkedButton mode={{src: actionLink}} text={`S'abonner pour ${prix}€ par mois`} className="text-xl font-futuretense" color="accent" variant="adaptable"/>
+            <Clickable
+                clickableType={{type:"link", onClick: () => 0, path: actionLink}}
+                style={{variant: "action", color: "accent"}}
+            >
+                {`S'abonner pour ${prix}€ par mois`}
+            </Clickable>
         </div>
     );
 }
@@ -340,8 +344,8 @@ export default function Page() {
         <div className="pt-20 pb-10 flex flex-col w-full space-y-10 items-center">
             {/* Titre */}
             <div className="flex flex-col items-center space-y-2">
-                <h1 className="text-foreground-base title">Tarifs</h1>
-                <p className="text-foreground-subdued readable">
+                <h1 className="text-foreground-base">Tarifs</h1>
+                <p className="text-foreground-subdued">
                     Choisissez la formule adaptée à vos besoins
                 </p>
             </div>
@@ -383,7 +387,7 @@ export default function Page() {
                 actionLink=""
             />
 
-            <p className="explanation text-foreground-subdued text-center">
+            <p className="textSmall text-foreground-subdued text-center">
                 Explication possiblement détaillée sur comment les abonnements marchent
             </p>
         </div>

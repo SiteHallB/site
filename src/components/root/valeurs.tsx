@@ -37,9 +37,9 @@ function Cadre({ image }: { image: Image }) {
 function ScrollText({ text }: { text: string }) {
     return (
         <div className="py-2 flex items-center justify-center overflow-hidden">
-        <p className="text-4xl uppercase text-foreground-base">
+        <h3 className="text-foreground-base">
             {text}
-        </p>
+        </h3>
         </div>
     );
 }
@@ -114,7 +114,7 @@ export default function Valeurs() {
             <div className="relative inset-x-0 top-[-1px]">
                 <div className="sticky top-0 w-full z-20 flex flex-col space-y-[-1px]">
                     <div className="bg-background-base w-full h-[70px]"/>
-                    <h2 id="title-valeurs" className="text-center text-foreground-base title-small w-full bg-background-base pb-10">
+                    <h2 id="title-valeurs" className="text-center text-foreground-base w-full bg-background-base pb-10">
                         Nos Valeurs
                     </h2>
                     <div className="bg-gradient-to-b from-background-base to-transparent w-full h-[50px]"/> 

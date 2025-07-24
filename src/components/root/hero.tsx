@@ -15,8 +15,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { ArrowDown } from "lucide-react";
 
-import LinkedButton from "@/components/ui/linked-buttons";
 import VideoBackground from "@/components/ui/video-background";
+import Clickable from "../ui/clickable";
 
 gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, SplitText);
 
@@ -46,7 +46,7 @@ function FlashingBand({ objects }: { objects: BandObject[] }) {
   })
 
   return (
-    <div className="uppercase font-futuretense text-lg text-foreground-subdued opacity-80 flex flex-wrap justify-center gap-x-4">
+    <div className="textLead text-foreground-subdued opacity-80 flex flex-wrap justify-center gap-x-4">
       {objects.map((el, i) => (
         <div ref={(e) => addToRefs(e, i)} key={i}>
           <Link href={el.link}>
@@ -180,8 +180,18 @@ export default function Hero() {
                 />
 
                 <div className="flex flex-col items-center space-y-2">
-                    <LinkedButton mode={{id: "FreeTrial"}} text="Séance d'essai offerte" className="text-center w-full text-foreground-base outline-foreground-base outline-1 py-2"/>
-                    <LinkedButton mode={{id: "Subscribe"}} text="Je m'inscris" className="text-center w-full text-foreground-base outline-foreground-base outline-1 py-2"/>
+                    <Clickable
+                        clickableType={{type:"link", onClick: () => 0, path: ""}}
+                        style={{variant: "page", color: "primary"}}
+                    >
+                        Séance d'essai offerte
+                    </Clickable>
+                    <Clickable
+                        clickableType={{type:"link", onClick: () => 0, interfaceId: "Subscribe"}}
+                        style={{variant: "page", color: "accent"}}
+                    >
+                        Je m'inscris
+                    </Clickable>
                 </div>
 
                 <ArrowDown size={24} className="absolute bottom-20 text-foreground-subdued arrow" onClick={onArrowClick}/>

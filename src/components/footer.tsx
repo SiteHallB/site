@@ -1,4 +1,6 @@
-import LinkedButton from "./ui/linked-buttons"
+"use client"
+
+import Clickable from "@/components/ui/clickable";
 
 export default function Footer() {
     return (
@@ -12,21 +14,24 @@ export default function Footer() {
 
             {/* Loi */}
             <div className="px-content text-foreground-subdued flex flex-col w-full py-5 space-y-4">
-                <LinkedButton
-                    variant="legal"
-                    mode={{src: ""}}
-                    text="Mentions légales"
-                />
-                <LinkedButton
-                    variant="legal"
-                    mode={{src: ""}}
-                    text="Politique de confidentialité"
-                />
-                <LinkedButton
-                    variant="legal"
-                    mode={{src: ""}}
-                    text="Politique cookies"
-                />
+                <Clickable
+                    clickableType={{type: "link", onClick: () => 0, path: ""}}
+                    style={{variant: "legal"}}
+                >
+                    Mentions Légales
+                </Clickable>
+                <Clickable
+                    clickableType={{type: "link", onClick: () => 0, path: ""}}
+                    style={{variant: "legal"}}
+                >
+                    Politique de confidentialité
+                </Clickable>
+                <Clickable
+                    clickableType={{type: "link", onClick: () => 0, path: ""}}
+                    style={{variant: "legal"}}
+                >
+                    Gérer vos cookies
+                </Clickable>
             </div>
         </footer>
     );
