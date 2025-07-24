@@ -1,6 +1,7 @@
 import Hero from "@/components/root/hero";
 import Valeurs from "@/components/root/valeurs";
 import Concept from "@/components/root/concept";
+import Histoire from "@/components/root/histoire";
 
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Hero/>
       <Valeurs/>
       <Concept/>
+      <Histoire/>
     </main>
   );
 }
