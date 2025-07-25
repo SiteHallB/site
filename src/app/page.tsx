@@ -16,7 +16,7 @@ import { ScrollTrigger } from "gsap/all";
 import Hero from "@/components/root/otherHero";
 import Concept from "@/components/root/otherConcept"
 
-// gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger)
 
 // export default function Home() {
 //   return (

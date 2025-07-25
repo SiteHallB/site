@@ -75,41 +75,41 @@ function Arrow({ }) {
 export default function Hero() {
     const container = useRef<HTMLDivElement>(null);
 
-    // // Parallax
-    // useGSAP(() => {
-    //     const amount = 60;
-    //     gsap.timeline({
-    //         scrollTrigger: {
-    //             trigger: ".parallaxFill", 
-    //             start: () => "bottom bottom", 
-    //             end: () => "bottom top", 
-    //             scrub: true, 
-    //         }, 
-    //     })
-    //     .to(".parallaxArrow", {
-    //         clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)", 
-    //         duration: 0.07
-    //     })
-    //     .to(".parallaxGradient", {
-    //         y: `-${amount-1}vh`, 
-    //     }, "<")
-    //     .to(".parallaxFill", {
-    //         clipPath: `polygon(0% ${100-amount}%, 100% ${100-amount}%, 100% 100%, 0% 100%)`
-    //     }, "<")
-    //     .to(".parallaxText", {
-    //         y: `-${amount/3}vh`, 
-    //     }, "<")
-    // }, { scope: container })
+    // Parallax
+    useGSAP(() => {
+        const amount = 60;
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".parallaxFill", 
+                start: () => "bottom bottom", 
+                end: () => "bottom top", 
+                scrub: true, 
+            }, 
+        })
+        .to(".parallaxArrow", {
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)", 
+            duration: 0.07
+        })
+        .to(".parallaxGradient", {
+            y: `-${amount-1}vh`, 
+        }, "<")
+        .to(".parallaxFill", {
+            clipPath: `polygon(0% ${100-amount}%, 100% ${100-amount}%, 100% 100%, 0% 100%)`
+        }, "<")
+        .to(".parallaxText", {
+            y: `-${amount/3}vh`, 
+        }, "<")
+    }, { scope: container })
     
     return (
-        <section id="hero" ref={container} className="relative w-full h-[100vh]">
+        <section id="hero" ref={container} className="relative w-full min-h-screen">
             {/* Vidéo */}
             <div className="absolute inset-0">
             <VideoBackground id="Presentation"/>
             </div>
 
             {/* Texte */}
-            <div className="parallaxText absolute inset-0 px-content z-20 flex flex-col items-center justify-around pt-20 pb-20">
+            <div className="relative z-10 w-full min-h-screen parallaxText px-content flex flex-col items-center justify-around pt-20 pb-20">
                 {/* Titre */}
                 <div className="flexCenter flex-col space-y-2">
                     <Image
@@ -156,8 +156,10 @@ export default function Hero() {
                 <Arrow/>
             </div>
             {/* Dégradé */}
-            <div className="parallaxGradient inset-x-0 top-[60vh] absolute z-10 w-full h-[40vh] bg-gradient-to-t from-background-base to-transparent"/>
-            <div className="parallaxFill absolute inset-0 bg-background-base" style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);" }}/>
+            <div className="parallaxGradient z-0 inset-x-0 top-[60vh] absolute w-full h-[40vh] bg-gradient-to-t from-background-base to-transparent"/>
+            <div className="parallaxFill z-0 absolute inset-x-0 top-0 h-screen bg-background-base" style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);" }}/>
+            {/* Fond en plus au cas ou les boutons dépassent de l'écran */}
+            <div className="absolute inset-x-0 top-[100vh] bottom-0 bg-background-base"/>
         </section>
     );
 }

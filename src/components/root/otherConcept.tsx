@@ -36,22 +36,22 @@ function ParallaxCommentedImages({ sections }: ParallaxCommentedImagesProps) {
 export default function Concept() {
     const container = useRef<HTMLDivElement>(null);
 
-    // // Pin notre concept
-    // useGSAP(() => {
-    //     ScrollTrigger.create({
-    //         trigger: ".scrollSection", 
-    //         pin: ".notreConcept", 
-    //         pinSpacing: false, 
-    //         start: () => "top top+=75", 
-    //         end: () => "+=500", 
-    //         anticipatePin: 1, 
-    //         markers: true, 
-    //     })
-    // }, { scope: container })
+    // Pin notre concept
+    useGSAP(() => {
+        ScrollTrigger.create({
+            trigger: ".scrollSection", 
+            pin: ".notreConcept", 
+            pinSpacing: false, 
+            start: () => "top top+=75", 
+            end: () => "bottom bottom", 
+            anticipatePin: 1, 
+            markers: true, 
+        })
+    }, { scope: container })
     
     return (
         <section ref={container} id="concept" className="w-full bg-background-base">
-            <div className="scrollSection w-full h-[100vh]">
+            <div className="scrollSection w-full h-200">
                 <h2 className="notreConcept text-foreground-base text-center">
                     Notre Concept
                 </h2>
