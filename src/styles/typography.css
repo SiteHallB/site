@@ -18,12 +18,12 @@ h2 { @apply text-3xl uppercase font-futuretense; }
 
 h3 { @apply text-4xl uppercase font-montserrat; }
 
-.textSubH2 { @apply text-sm uppercase font-futuretense }
+.textSubH2 { @apply text-sm uppercase font-futuretense; }
 
 p { @apply text-base normal-case font-montserrat; }
 
-.textLead { @apply text-lg uppercase font-futuretense }
+.textLead { @apply text-lg uppercase font-futuretense; }
 
-.textLeadSmall { @apply text-xs uppercase font-futuretense }
+.textLeadSmall { @apply text-xs uppercase font-futuretense; }
 
 .textSmall { @apply text-xs normal-case font-montserrat; }

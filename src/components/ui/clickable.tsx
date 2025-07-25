@@ -17,6 +17,7 @@ const clickableVariants = cva(
                 accent: "text-background-subdued bg-accent", 
             }, 
             variant: {
+                default: "", 
                 page: "w-full px-2 py-2 rounded-full textLead", 
                 navigationBar: "px-2 py-1 rounded-full textLeadSmall", 
                 menuMainButton: "textSubH2 text-foreground-base", 
@@ -27,7 +28,7 @@ const clickableVariants = cva(
         },
         defaultVariants: {
             color: "default", 
-            variant: "page", 
+            variant: "default", 
         }
     }
 );
@@ -35,11 +36,11 @@ const clickableVariants = cva(
 type ClickableType = 
     | {
         type: "button"; 
-        onClick: () => void; 
+        onClick?: () => void; 
     }
     | {
         type: "link"; 
-        onClick: () => void; 
+        onClick?: () => void; 
         path?: string; 
         interfaceId?: string;
     }
@@ -66,12 +67,12 @@ export default function Clickable({ clickableType, trackingLabel, className, chi
 
     function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
         handleTracking();
-        clickableType.onClick();
+        if (clickableType.onClick) clickableType.onClick();
     }
 
     function handleLinkClick(e: React.MouseEvent<HTMLAnchorElement>) {
         handleTracking();
-        clickableType.onClick();
+        if (clickableType.onClick) clickableType.onClick();
     }
 
     const cn = clsx(clickableVariants(style), className)

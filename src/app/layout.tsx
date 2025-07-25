@@ -25,16 +25,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="fr">
-      <body className="antialiased">
-        <Menu/>
-        <Transition/>
-        <div className="relative flex flex-col">
-          {children}
-          <Footer/>
-        </div>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="fr">
+            <body className="antialiased">
+                <Menu/>
+                <Transition/>
+                <div className="relative">
+                    {children}
+                    <Footer/>
+                </div>
+            </body>
+        </html>
+    );
 }

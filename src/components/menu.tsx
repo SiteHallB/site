@@ -98,7 +98,7 @@ export default function Menu() {
                     Essai Offert
                 </Clickable>
                 <Clickable
-                    clickableType={{type: "link", onClick: () => 0, path: "/tarifs"}}
+                    clickableType={{type: "link", onClick: () => setIsMenuOpen(false), path: "/tarifs"}}
                     style={{variant: "navigationBar", color: "accent"}}
                 >
                     Je m'inscris
