@@ -15,8 +15,26 @@ const images = [
 ]
 
 function Im({ num, className }: { num: number, className: string }) {
+    const container = useRef<HTMLDivElement>(null);
+
+    // Fait disparaitre les images en haut
+    useGSAP(() => {
+        gsap.to(".image", {
+            scrollTrigger: {
+                trigger: ".image", 
+                start: "top 55%", 
+                end: "top 40%", 
+                scrub: true, 
+                anticipatePin: 1, 
+                pinSpacing: false
+            }, 
+            autoAlpha: 0
+        })
+    }, {scope: container })
+
     return (
-        <div className={clsx("bottom-0 rounded-xl overflow-hidden", className)}>
+        <div ref={container}>
+        <div className={clsx("image bottom-0 rounded-xl overflow-hidden", className)}>
             <Image 
                 src={images[num].src}
                 width={images[num].width}
@@ -24,6 +42,7 @@ function Im({ num, className }: { num: number, className: string }) {
                 className="object-cover object-center size-full"
                 alt={images[num].alt}
             />
+        </div>
         </div>
     );
 }
@@ -37,9 +56,8 @@ function Section({ type, text, children }: { type: "left" | "right"; text: React
             trigger: ".firstImage", 
             endTrigger: ".lastImage", 
             pin: ".pinText", 
-            pinSpacing: false, 
-            start: () => "center center", 
-            end: () => "center center", 
+            start: () => "center 35%", 
+            end: () => "center 35%", 
             anticipatePin: 1, 
         })
     }, { scope: container })
@@ -47,7 +65,7 @@ function Section({ type, text, children }: { type: "left" | "right"; text: React
     const t = <p className="text-foreground-subdued">{text}</p>
 
     return (
-        <span ref={container} className="relative w-full h-[130vh] flexCenter flex-col">
+        <span ref={container} className="relative w-full h-[130vh] pt-30">
             {/* Texte */}
             <div className="pinText z-10 bg-background-highlight w-full p-contentClose rounded-xl flex flex-row gap-x-contentClose">
                 {type === "right" && t}
@@ -76,7 +94,7 @@ function Section({ type, text, children }: { type: "left" | "right"; text: React
             </div>
 
             {/* Images en grille */}
-            <div className="absolute inset-0 p-contentClose outline-red-400 outline-2 grid grid-cols-2 grid-rows-4 gap-contentClose">
+            <div className="absolute inset-x-0 bottom-0 top-[50vh]">
                 {children}
             </div>
         </span>
@@ -93,10 +111,9 @@ export default function Concept() {
             trigger: ".scrollSection", 
             pin: ".notreConcept", 
             pinSpacing: false, 
-            start: () => "top top+=75", 
+            start: () => "top top+=55", 
             end: () => "bottom center", 
             anticipatePin: 1, 
-            markers: true, 
         })
     }, { scope: container })
     
@@ -110,28 +127,37 @@ export default function Concept() {
                     type="right"
                     text={<>Nombreuses activités, musculation cours collectifs et smallgroups avec coach diplômé, squash, danse, Pôle Aqua et pôle santé avec notre ostéopathe.</>}
                 >
-                    <Im num={0} className="col-start-1 row-start-1"/>
-                    <Im num={0} className="col-start-2 row-start-2"/>
-                    <Im num={2} className="col-start-1 row-start-2"/>
+                    <Im num={0} className="absolute left-[34vw] top-0 w-[40vw] h-[32vh]"/>
+                    <Im num={1} className="absolute left-[2vw] top-[10vh] w-[40vw] h-[32vh]"/>
+                    <Im num={2} className="absolute left-[50vw] top-[26vh] w-[40vw] h-[32vh]"/>
+                    <Im num={0} className="absolute left-[6vw] top-[35vh] w-[40vw] h-[32vh]"/>
+                    
                 </Section>
                 <Section
                     type="left"
                     text={<>Cours collectifs, smallgroups, et cours aquatiques en illimité toute la semaine pour les formules associées.<br/>
                     Nous tenons à ce que chaque adhérent qui visite la salle ne veuille plus en partir.</>}
                 >
-                    <Im num={0} className="absolute top-2 left-2 w-20 h-45"/>
+                    <Im num={0} className="absolute left-[34vw] top-0 w-[40vw] h-[32vh]"/>
+                    <Im num={1} className="absolute left-[2vw] top-[10vh] w-[40vw] h-[32vh]"/>
+                    <Im num={2} className="absolute left-[50vw] top-[26vh] w-[40vw] h-[32vh]"/>
                 </Section>
                 <Section
                     type="right"
                     text={<>Tout le monde doit se sentir considéré et accompagné. Matériel sélectionné sur le volet pour satisfaire tout type de pratiquant.</>}
                 >
-                    <Im num={0} className="absolute top-2 left-2 w-20 h-45"/>
+                    <Im num={0} className="absolute left-[34vw] top-0 w-[40vw] h-[32vh]"/>
+                    <Im num={1} className="absolute left-[2vw] top-[10vh] w-[40vw] h-[32vh]"/>
+                    <Im num={2} className="absolute left-[50vw] top-[26vh] w-[40vw] h-[32vh]"/>
+                    <Im num={0} className="absolute left-[6vw] top-[35vh] w-[40vw] h-[32vh]"/>
                 </Section>
                 <Section
                     type="left"
                     text={<>Poids calibrés pour la compétition, plateau d'haltérophilie, sacs de frappe pour les boxeurs, machines de musculation qualité italienne signée panatta, cardio connecté par technogym.</>}
                 >
-                    <Im num={0} className="absolute top-2 left-2 w-20 h-45"/>
+                    <Im num={0} className="absolute left-[34vw] top-0 w-[40vw] h-[32vh]"/>
+                    <Im num={1} className="absolute left-[2vw] top-[10vh] w-[40vw] h-[32vh]"/>
+                    <Im num={2} className="absolute left-[50vw] top-[26vh] w-[40vw] h-[32vh]"/>
                 </Section>
             </div>
             {/* Marge pour les ScrollTriggers */}
