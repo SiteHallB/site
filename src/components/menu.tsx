@@ -110,7 +110,7 @@ export default function Menu() {
             </div>
 
             {/* Overlay menu */}
-            <div className="menu-overlay fixed z-40 inset-0 bg-background-subdued flex flex-col justify-around space-y-10 pt-30 pb-8 px-content items-center">
+            <div className="menu-overlay fixed z-40 inset-0 bg-background-highlight flex flex-col pt-10 justify-around px-content items-center">
                 <nav className="flex flex-col w-full">
                     {navLinks.map((el, index) => (
                         <MenuItem linkInfo={el} onClick={toggleMenu} key={index}/>
@@ -122,9 +122,9 @@ export default function Menu() {
                     <MenuItem linkInfo={{ path: "", label: "Réservation Squash" }} onClick={toggleMenu}/>
                 </div>
                 
-                <div className="relative flex overflow-hidden w-full h-full ">
-                    <div className="absolute inset-y-0 left-0 w-[7rem] bg-gradient-to-r from-background-subdued to-transparent z-10"/>
-                    <div className="absolute inset-y-0 right-0 w-[7rem] bg-gradient-to-l from-background-subdued to-transparent z-10"/>
+                <div className="relative flex overflow-hidden w-full h-50 rounded-xl">
+                    <div className="absolute inset-y-0 left-0 w-[7rem] bg-gradient-to-r from-background-base to-transparent z-10"/>
+                    <div className="absolute inset-y-0 right-0 w-[7rem] bg-gradient-to-l from-background-base to-transparent z-10"/>
                     <Image 
                         src="/images/concept.jpg"
                         width={3024}

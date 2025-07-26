@@ -157,7 +157,7 @@ export default function Hero() {
             </div>
             {/* Dégradé */}
             <div className="parallaxGradient z-0 inset-x-0 top-[60vh] absolute w-full h-[40vh] bg-gradient-to-t from-background-base to-transparent"/>
-            <div className="parallaxFill z-0 absolute inset-x-0 top-0 h-screen bg-background-base" style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);" }}/>
+            <div className="parallaxFill z-0 absolute inset-x-0 top-0 h-screen bg-background-base" style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" }}/>
             {/* Fond en plus au cas ou les boutons dépassent de l'écran */}
             <div className="absolute inset-x-0 top-[100vh] bottom-0 bg-background-base"/>
         </section>
