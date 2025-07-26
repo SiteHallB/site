@@ -1,19 +1,8 @@
 "use client"
 
-// import Hero from "@/components/root/hero";
-// import Valeurs from "@/components/root/valeurs";
-// import Concept from "@/components/root/concept";
-// import Histoire from "@/components/root/histoire";
-
-import { createContext, useContext } from "react";
-
-import { useEffect } from "react";
-
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-
 import Hero from "@/components/root/otherHero";
 import Concept from "@/components/root/otherConcept2";
+import SeanceGratuite from "@/components/root/seance-gratuite";
 import Histoire from "@/components/root/otherHistoire";
 
 // export default function Home() {
@@ -32,6 +21,7 @@ export default function Home() {
         <main className="relative">
             <Hero/>
             <Concept/>
+            <SeanceGratuite/>
             <Histoire/>
         </main>
     );

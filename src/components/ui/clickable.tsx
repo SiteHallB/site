@@ -14,6 +14,7 @@ const clickableVariants = cva(
             color: {
                 default: "", 
                 primary: "text-foreground-base outline-foreground-base outline-[2px] outline-offset-[-2px]", 
+                background: "text-accent bg-background-base", 
                 accent: "text-background-subdued bg-accent", 
             }, 
             variant: {
@@ -22,7 +23,7 @@ const clickableVariants = cva(
                 navigationBar: "px-2 py-1 rounded-full textLeadSmall", 
                 menuMainButton: "textSubH2 text-foreground-base", 
                 menuSideButton: "textSmall text-foreground-subdued", 
-                action: "py-1 rounded-sm textLead shadow-xl", 
+                action: "p-1 rounded-sm textLead", 
                 legal: "textSmall text-foreground-subdued", 
             }, 
         },
