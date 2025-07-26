@@ -6,6 +6,8 @@ import { useGSAP } from "@gsap/react";
 
 import { ScrollTrigger } from "gsap/all";
 
+import Clickable from "@/components/ui/clickable";
+
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -15,7 +17,7 @@ const images = [
     { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
 ]
 
-function Section({ last, title, text }: { last: boolean; title: string; text: React.ReactNode }) {
+function Section({ last, title, text, children }: { last: boolean; title: string; text: React.ReactNode; children?: React.ReactNode }) {
     const container = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
@@ -49,7 +51,8 @@ function Section({ last, title, text }: { last: boolean; title: string; text: Re
             {/* Texte */}
             <span className={`${last ? "" : "fadeText"}`}>
             <p className="text-foreground-base textSubH2 mb-1">{title}</p>
-            <p className="text-foreground-subdued">{text}</p>
+            <p className="text-foreground-subdued mb-content">{text}</p>
+            {children}
             </span>
         </span>
     );
@@ -73,7 +76,7 @@ export default function Concept() {
     }, { scope: container })
     
     return (
-        <section ref={container} id="concept" className="w-full bg-background-base px-content pb-subSection">
+        <section ref={container} id="concept" className="w-full bg-background-base pb-subSection px-content">
             <div className="scrollSection w-full flex flex-col space-y-10">
                 <h2 className="z-30 notreConcept text-foreground-base text-center mb-subTitle">
                     Notre Concept
@@ -88,7 +91,22 @@ export default function Concept() {
                     title="Programmes"
                     text={<>Cours collectifs, smallgroups, et cours aquatiques en illimité toute la semaine pour les formules associées.<br/>
                     Nous tenons à ce que chaque adhérent qui visite la salle ne veuille plus en partir.</>}
-                />
+                >
+                    <div className="flex-inline space-x-contentClose">
+                        <Clickable
+                            clickableType={{type:"link", path: "/plannings"}}
+                            style={{variant: "secondary", color: "primarySubdued"}}
+                        >
+                            Voir le planning
+                        </Clickable>
+                        <Clickable
+                            clickableType={{type:"link", path: ""}}
+                            style={{variant: "secondary", color: "primarySubdued"}}
+                        >
+                            Réservation Squash
+                        </Clickable>
+                    </div>
+                </Section>
                 <Section
                     last={false}
                     title="Accompagnement"

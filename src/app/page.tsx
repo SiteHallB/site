@@ -4,6 +4,7 @@ import Hero from "@/components/root/otherHero";
 import Concept from "@/components/root/otherConcept2";
 import SeanceGratuite from "@/components/root/seance-gratuite";
 import Histoire from "@/components/root/otherHistoire";
+import Valeurs from "@/components/root/valeurs";
 
 // export default function Home() {
 //   return (
@@ -23,6 +24,7 @@ export default function Home() {
             <Concept/>
             <SeanceGratuite/>
             <Histoire/>
+            {/* <Valeurs/> */}
         </main>
     );
 }

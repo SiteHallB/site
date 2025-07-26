@@ -110,7 +110,7 @@ export default function Menu() {
             </div>
 
             {/* Overlay menu */}
-            <div className="menu-overlay fixed z-40 inset-0 bg-background-highlight flex flex-col pt-10 justify-around px-content items-center">
+            <div className="menu-overlay fixed z-40 inset-0 bg-background-highlight flex flex-col pt-10 justify-around px-contentClose items-center">
                 <nav className="flex flex-col w-full">
                     {navLinks.map((el, index) => (
                         <MenuItem linkInfo={el} onClick={toggleMenu} key={index}/>
@@ -136,7 +136,7 @@ export default function Menu() {
 
                 <div className="mr-auto flex flex-col text-foreground-subdued">
                     <Clickable
-                        clickableType={{type: "link", onClick: () => 0, interfaceId: "Instagram"}}
+                        clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
                         style={{variant: "menuSideButton"}}
                         className="flex flex-row space-x-5"
                     >
@@ -144,7 +144,7 @@ export default function Menu() {
                         <p>Instagram</p>
                     </Clickable>
                     <Clickable
-                        clickableType={{type: "link", onClick: () => 0, interfaceId: "Instagram"}}
+                        clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
                         style={{variant: "menuSideButton"}}
                         className="flex flex-row space-x-5"
                     >

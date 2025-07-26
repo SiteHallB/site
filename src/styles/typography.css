@@ -21,6 +21,7 @@ h3 { @apply text-4xl uppercase font-montserrat; }
 .textSubH2 { @apply text-sm uppercase font-futuretense; }
 
 p { @apply text-base normal-case font-montserrat; }
+.textNormal { @apply text-base normal-case font-montserrat; }
 
 .textLead { @apply text-lg uppercase font-futuretense; }
 

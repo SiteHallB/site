@@ -29,6 +29,7 @@ export default function SeanceGratuite() {
         })
         .from(".logo", {
             scale: 2.5, 
+            yPercent: 50, 
             ease: "back"
         })
         .from(".text", {
@@ -54,7 +55,7 @@ export default function SeanceGratuite() {
                     <span className="text">gratuitement et sans engagement</span>
                 </h2>
                 <Clickable
-                    clickableType={{type: "link"}}
+                    clickableType={{type: "link", path: ""}}
                     style={{"variant": "action", "color": "background"}}
                     className="bouton"
                 >

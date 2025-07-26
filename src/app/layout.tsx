@@ -29,7 +29,7 @@ export default function RootLayout({
         <html lang="fr">
             <body className="antialiased">
                 <Menu/>
-                <Transition/>
+                {/* <Transition/> */}
                 <div className="relative">
                     {children}
                     <Footer/>

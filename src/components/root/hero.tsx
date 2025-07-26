@@ -181,13 +181,13 @@ export default function Hero() {
 
                 <div className="flex flex-col items-center space-y-2">
                     <Clickable
-                        clickableType={{type:"link", onClick: () => 0, path: ""}}
+                        clickableType={{type:"link", path: ""}}
                         style={{variant: "page", color: "primary"}}
                     >
                         Séance d'essai offerte
                     </Clickable>
                     <Clickable
-                        clickableType={{type:"link", onClick: () => 0, interfaceId: "Subscribe"}}
+                        clickableType={{type:"link", path: ""}}
                         style={{variant: "page", color: "accent"}}
                     >
                         Je m'inscris

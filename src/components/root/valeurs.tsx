@@ -117,7 +117,7 @@ export default function Valeurs() {
                     <h2 id="title-valeurs" className="text-center text-foreground-base w-full bg-background-base pb-10">
                         Nos Valeurs
                     </h2>
-                    <div className="bg-gradient-to-b from-background-base to-transparent w-full h-[50px]"/> 
+                    <div className="bg-gradient-to-b from-background-base to-background-subdued w-full h-[50px]"/> 
                 </div>
                 <div className="scroll-section w-full flex flex-col space-y-3 items-center bg-background-subdued pt-20">
                     {[...Array(9)].map((_, i) => (

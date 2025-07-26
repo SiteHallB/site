@@ -14,6 +14,11 @@ import { ArrowDown } from "lucide-react";
 import VideoBackground from "@/components/ui/video-background";
 import Clickable from "@/components/ui/clickable";
 
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(ScrollToPlugin, SplitText);
+
 type BandElement = { text: string, path: string }
 
 function FlashingBand({ items }: { items: BandElement[] }) {
@@ -65,9 +70,23 @@ function Arrow({ }) {
         })
     }, { scope: container })
 
+    // Clique sur la fleche
+    const { contextSafe } = useGSAP( {scope: container} )
+    const onArrowClick = contextSafe(() => {
+        console.log("qdqz")
+        gsap.to(window, {
+            scrollTo: {
+                y: "#concept",
+                offsetY: 55, 
+            }, 
+            ease: "power2.inOut", 
+            duration: 1.4
+        })
+    })
+
     return (
         <div ref={container} className="absolute bottom-20">
-            <ArrowDown size={24} className="parallaxArrow arrow text-foreground-subdued"/>
+            <ArrowDown onClick={onArrowClick} size={24} className="parallaxArrow arrow text-foreground-subdued"/>
         </div>
     );
 }
@@ -100,6 +119,26 @@ export default function Hero() {
             y: `-${amount/3}vh`, 
         }, "<")
     }, { scope: container })
+
+    // Texte qui apparait sous le premier parallax
+    useGSAP(() => {
+        const split = new SplitText(".splitText", {
+        type: "words",
+        });
+    
+        gsap.from(split.words, {
+            scrollTrigger: {
+                start: "top 75%", 
+                end: "top 20%", 
+                trigger: ".splitText", 
+                toggleActions: "play reverse play reverse"
+            }, 
+            yPercent: 130,
+            stagger: 0.05,
+            ease: "power2.out",
+            duration: 0.4
+        });
+    }, { scope: container });
     
     return (
         <section id="hero" ref={container} className="relative w-full min-h-screen">
@@ -139,13 +178,13 @@ export default function Hero() {
                 {/* Boutons */}
                 <div className="flexCenter flex-col space-y-2">
                     <Clickable
-                        clickableType={{type:"link", onClick: () => 0, path: ""}}
+                        clickableType={{type:"link", path: ""}}
                         style={{variant: "page", color: "primary"}}
                     >
                         Séance d'essai offerte
                     </Clickable>
                     <Clickable
-                        clickableType={{type:"link", onClick: () => 0, interfaceId: "Subscribe"}}
+                        clickableType={{type:"link", path: "/tarifs"}}
                         style={{variant: "page", color: "accent"}}
                     >
                         Je m'inscris
@@ -157,7 +196,11 @@ export default function Hero() {
             </div>
             {/* Dégradé */}
             <div className="parallaxGradient z-0 inset-x-0 top-[60vh] absolute w-full h-[40vh] bg-gradient-to-t from-background-base to-transparent"/>
-            <div className="parallaxFill z-0 absolute inset-x-0 top-0 h-screen bg-background-base" style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" }}/>
+            <div className="parallaxFill z-0 absolute inset-x-0 top-0 h-screen bg-background-base flex flex-row justify-center" style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" }}>
+                <p className="splitText text-foreground-subdued absolute bottom-0">
+                    Venez Découvrir ...
+                </p>
+            </div>
             {/* Fond en plus au cas ou les boutons dépassent de l'écran */}
             <div className="absolute inset-x-0 top-[100vh] bottom-0 bg-background-base"/>
         </section>

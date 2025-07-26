@@ -14,6 +14,7 @@ const clickableVariants = cva(
             color: {
                 default: "", 
                 primary: "text-foreground-base outline-foreground-base outline-[2px] outline-offset-[-2px]", 
+                primarySubdued: "text-foreground-subdued outline-foreground-subdued outline-[2px] outline-offset-[-2px]", 
                 background: "text-accent bg-background-base", 
                 accent: "text-background-subdued bg-accent", 
             }, 
@@ -25,6 +26,7 @@ const clickableVariants = cva(
                 menuSideButton: "textSmall text-foreground-subdued", 
                 action: "p-1 rounded-sm textLead", 
                 legal: "textSmall text-foreground-subdued", 
+                secondary: "textNormal rounded p-2"
             }, 
         },
         defaultVariants: {
@@ -42,8 +44,7 @@ type ClickableType =
     | {
         type: "link"; 
         onClick?: () => void; 
-        path?: string; 
-        interfaceId?: string;
+        path: string; 
     }
 
 export default function Clickable({ clickableType, trackingLabel, className, children, style }: 
@@ -88,14 +89,9 @@ export default function Clickable({ clickableType, trackingLabel, className, chi
             </button>
         );
     } else {
-        let path = clickableType.path ? clickableType.path : ""
-        if (clickableType.interfaceId) {
-            const linkObject = links.find(item => item.id === clickableType.interfaceId);
-            if (linkObject) path = linkObject["path"]
-        }
         return (
             <Link
-                href={path}
+                href={clickableType.path}
                 onClick={handleLinkClick}
                 className={cn}
             >

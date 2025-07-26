@@ -18,10 +18,11 @@ export default function Histoire() {
         // Pin titre
         ScrollTrigger.create({
             trigger: ".scrollSection", 
+            endTrigger: ".descriptionText", 
             pin: ".notreHistoire", 
             pinSpacing: false, 
             start: () => "top top+=55", 
-            end: () => "bottom center", 
+            end: () => "top top+=150", 
             anticipatePin: 1, 
         })
 
@@ -31,7 +32,6 @@ export default function Histoire() {
                 trigger: ".image", 
                 start: () => "center 50%", 
                 end: () => "top-=50% top", 
-                markers: true, 
                 scrub: true
             } })
         .to(".image", {
@@ -57,7 +57,7 @@ export default function Histoire() {
 
     return (
         <section ref={container} id="histoire" className="bg-background-base pb-subSection">
-            <div className="scrollSection w-full flex flex-col items-center h-[100vh]">
+            <div className="scrollSection w-full flex flex-col items-center">
                 <h2 className="z-10 notreHistoire text-foreground-base text-center mb-subTitle">
                     Notre Histoire
                 </h2>
