@@ -11,12 +11,10 @@ import { useEffect } from "react";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/all";
 
 import Hero from "@/components/root/otherHero";
-import Concept from "@/components/root/otherConcept"
-
-gsap.registerPlugin(ScrollTrigger)
+import Concept from "@/components/root/otherConcept2";
+import Histoire from "@/components/root/otherHistoire";
 
 // export default function Home() {
 //   return (
@@ -34,6 +32,7 @@ export default function Home() {
         <main className="relative">
             <Hero/>
             <Concept/>
+            <Histoire/>
         </main>
     );
 }
