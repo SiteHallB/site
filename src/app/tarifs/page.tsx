@@ -120,7 +120,9 @@ function Formule({ aboveFold, title, subtitle, prix, description, images, checkD
             }, 
             scrollTrigger: {
                 trigger: ".check-holder", 
-                start: "center 70%", 
+                start: "top 70%", 
+                end: "bottom 50%", 
+                toggleActions: "play reset play reset"
             }
         })
     }, { scope: container })
@@ -128,8 +130,8 @@ function Formule({ aboveFold, title, subtitle, prix, description, images, checkD
     return (
         <div ref={container} className="relative flex flex-col bg-background-highlight w-full h-[80vh] rounded-xl px-contentClose py-5 items-center justify-around space-y-5">
             {/* Prix */}
-            <div className="px-2 flex items-center justify-center absolute left-[-0.5rem] top-[-0.9rem] rounded-xs bg-accent">
-                <p className="textLead">{prix}€<span className="textSmall">/mois</span></p>
+            <div className="px-2 flex items-center justify-center absolute left-[-0.5rem] top-[-1.5rem] rounded-xs bg-accent">
+                <p className="textLeadBig">{prix}€<span className="textSmall">/mois</span></p>
             </div>
 
             {/* Titre */}
@@ -182,7 +184,7 @@ function Formule({ aboveFold, title, subtitle, prix, description, images, checkD
                 clickableType={{type:"link", onClick: () => 0, path: actionLink}}
                 style={{variant: "action", color: "accent"}}
             >
-                {`S'abonner pour ${prix}€ par mois`}
+                Je m'abonne
             </Clickable>
         </div>
     );

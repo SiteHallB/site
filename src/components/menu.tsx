@@ -110,7 +110,7 @@ export default function Menu() {
             </div>
 
             {/* Overlay menu */}
-            <div className="menu-overlay fixed z-40 inset-0 bg-background-highlight flex flex-col pt-10 justify-around px-contentClose items-center">
+            <div className="menu-overlay fixed z-40 inset-0 bg-background-subdued flex flex-col pt-10 justify-around px-contentClose items-center">
                 <nav className="flex flex-col w-full">
                     {navLinks.map((el, index) => (
                         <MenuItem linkInfo={el} onClick={toggleMenu} key={index}/>
