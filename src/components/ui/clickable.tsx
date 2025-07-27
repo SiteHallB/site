@@ -39,11 +39,12 @@ const clickableVariants = cva(
 type ClickableType = 
     | {
         type: "button"; 
-        onClick?: () => void; 
+        onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void; 
+        htmlType?: "button" | "submit" | "reset";
     }
     | {
         type: "link"; 
-        onClick?: () => void; 
+        onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void; 
         path: string; 
     }
 
@@ -68,13 +69,15 @@ export default function Clickable({ clickableType, trackingLabel, className, chi
     }
 
     function handleButtonClick(e: React.MouseEvent<HTMLButtonElement>) {
+        if (clickableType.type !== "button") return;
         handleTracking();
-        if (clickableType.onClick) clickableType.onClick();
+        if (clickableType.onClick) clickableType.onClick(e);
     }
 
     function handleLinkClick(e: React.MouseEvent<HTMLAnchorElement>) {
+        if (clickableType.type !== "link") return;
         handleTracking();
-        if (clickableType.onClick) clickableType.onClick();
+        if (clickableType.onClick) clickableType.onClick(e);
     }
 
     const cn = clsx(clickableVariants(style), className)
@@ -82,6 +85,7 @@ export default function Clickable({ clickableType, trackingLabel, className, chi
     if (clickableType.type === "button") {
         return (
             <button
+                type={clickableType.htmlType || "button"}
                 onClick={handleButtonClick}
                 className={cn}
             >

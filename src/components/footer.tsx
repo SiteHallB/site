@@ -18,7 +18,7 @@ function Star() {
 
 function Avis({ text, autheur }: { text: string; autheur: string }) {
     return (
-        <div className="w-full flex flex-col p-contentClose rounded outline-background-highlight outline-1">
+        <div className="w-full flex flex-col p-contentClose rounded outline-background-highlight outline-3">
             {/* Note */}
             <div className="flex flex-row mb-contentClose">
                 <Star/>
@@ -111,7 +111,7 @@ export default function Footer() {
             <hr className="border-t border-foreground-base my-content mx-content"/>
 
             {/* Legal */}
-            <div className="text-foreground-subdued flex flex-col w-full py-content space-y-content">
+            <div className="text-foreground-subdued flex flex-col w-full pb-content space-y-content">
                 <Clickable
                     clickableType={{type: "link", onClick: () => 0, path: ""}}
                     style={{variant: "legal"}}
