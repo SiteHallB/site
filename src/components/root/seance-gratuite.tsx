@@ -29,8 +29,8 @@ export default function SeanceGratuite() {
             toggleActions: "play reverse play reverse", 
         }})
         .from(".logo", {
-            scale: 2.5, 
-            yPercent: 50, 
+            scale: 2.3, 
+            yPercent: 60, 
             ease: "back"
         })
         .from(".text", {
@@ -43,7 +43,7 @@ export default function SeanceGratuite() {
         <section ref={container} id="seance-gratuite" className="w-full bg-background-base pb-subSection">
             <span className="trigger">
             <div className="w-full h-[5vh] bg-gradient-to-b from-background-base to-accent"/>
-            <div className="w-full bg-accent p-content flex flex-col items-center space-y-content">
+            <div className="w-full bg-accent p-content lg:px-contentLg flex flex-col items-center space-y-content">
                 <h2 className="text-foreground-base text-center flex flex-col items-center space-y-10">
                     <span className="text">Viens essayer</span>
                     <Image

@@ -148,7 +148,7 @@ export default function Hero() {
             </div>
 
             {/* Texte */}
-            <div className="relative z-10 w-full min-h-screen parallaxText px-content flex flex-col items-center justify-around pt-20 pb-20">
+            <div className="relative z-10 w-full min-h-screen parallaxText px-content lg:px-contentLg flex flex-col items-center justify-around pt-20 pb-20">
                 {/* Titre */}
                 <div className="flexCenter flex-col space-y-2">
                     <Image

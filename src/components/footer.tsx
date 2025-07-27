@@ -40,7 +40,7 @@ export default function Footer() {
     return (
         <footer className="w-full bg-background-subdued pt-content">
             {/* Avis */}
-            <div className="w-full px-content flex flex-col space-y-content">
+            <div className="w-full px-content flex flex-col items-center space-y-content">
                 <h2 className="text-foreground-base text-center">Aide nous : Donne ton avis</h2>
                 <Avis
                     autheur="Eliot Collombet"
@@ -51,6 +51,7 @@ export default function Footer() {
                 <Clickable
                     clickableType={{type: "link", path: "https://www.google.com/search?rlz=1C1UEAD_frFR970FR970&hl=fr-FR&biw=1707&bih=825&q=HALL%20B%20Avis&ludocid=7212151405417539940&ibp=gwp%3B0%2C7&sa=X&ved=0CB4Q9fQKKABqFwoTCKDhpeH72o4DFQAAAAAdAAAAABAF#lkt=LocalPoiReviews&lpg=cid:CgIgAQ%3D%3D"}}
                     style={{"variant": "action", "color": "accent"}}
+                    className="lg:w-fit w-full"
                 >
                     Je donne mon avis
                 </Clickable>
@@ -60,28 +61,31 @@ export default function Footer() {
 
             {/* Marques */}
             <div className="flex w-full py-content px-content space-x-content items-center justify-around">
-                <a href="https://www.panattasport.com/fr/" className="min-w-0 flex-1">
+                <a href="https://www.panattasport.com/fr/" className="min-w-0 max-w-[250px] flex-1">
                 <Image
                     src="/images/pannata.png"
                     alt=""
                     width={272}
                     height={109}
+                    className="w-full h-auto object-contain"
                 />
                 </a>
-                <a href="https://www.technogym.com/fr-FR/" className="min-w-0 flex-1">
+                <a href="https://www.technogym.com/fr-FR/" className="min-w-0 max-w-[250px] flex-1">
                 <Image
                     src="/images/technogym.png"
                     alt=""
                     width={820}
                     height={231}
+                    className="w-full h-auto object-contain"
                 />
                 </a>
-                <a href="https://www.pallini-sport.fr/" className="min-w-0 flex-1">
+                <a href="https://www.pallini-sport.fr/" className="min-w-0 max-w-[250px] flex-1">
                 <Image
                     src="/images/pallini.png"
                     alt=""
                     width={1633}
                     height={396}
+                    className="w-full h-auto object-contain"
                 />
                 </a>
             </div>

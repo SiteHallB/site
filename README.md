@@ -8,3 +8,4 @@
 # Bugs
 
 + Resize sur la width (corrigé au refresh)
++ Autofill devient noir quand adresse on valide

@@ -30,7 +30,7 @@ export default function RootLayout({
             <body className="antialiased">
                 <Menu/>
                 {/* <Transition/> */}
-                <div className="relative">
+                <div className="relative w-full">
                     {children}
                     <Footer/>
                 </div>

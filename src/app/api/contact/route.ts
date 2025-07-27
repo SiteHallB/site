@@ -1,22 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import SMTPTransport from "nodemailer/lib/smtp-transport";
+
+const isDev = process.env.NODE_ENV !== "production";
 
 // Configuration du transporteur SMTP via les vars d'env
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  }
-});
-
-transporter.verify((err, success) => {
-  if (err) {
-    console.error("SMTP connection error:", err);
-  } else {
-    console.log("✔ SMTP server is ready to take our messages");
-  }
-});
+    host: process.env.SMTP_HOST, 
+    port: Number(process.env.SMTP_PORT), 
+    secure: process.env.SMTP_SECURE === "true",
+    auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS, 
+    }, 
+    tls: isDev ? { rejectUnauthorized: false } : undefined,
+} as SMTPTransport.Options);
 
 export async function POST(request: NextRequest) {
     try {
@@ -25,7 +23,7 @@ export async function POST(request: NextRequest) {
         await transporter.sendMail({
             from: `"Site Web" <${process.env.SMTP_USER}>`,
             to: process.env.SMTP_USER, // changer la destination ici
-            subject: `Nouveau message de ${name}`,
+            subject: `Nouveau message de ${name} via le site web`,
             text: `
                     Nom : ${name}
                     Email : ${email}
@@ -39,7 +37,7 @@ export async function POST(request: NextRequest) {
                 `,
         });
 
-        return NextResponse.json({ message: "Email envoyé !" }, { status: 200 });
+        return NextResponse.json({ message: "Message envoyé." }, { status: 200 });
 
     } catch (err) {
         console.error("API contact error:", err);

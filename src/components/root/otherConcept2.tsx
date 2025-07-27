@@ -21,24 +21,27 @@ function Section({ last, title, text, children }: { last: boolean; title: string
     const container = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
-        // Fait disparaitre le texte haut
-        if (last) return;
-        gsap.to(".fadeText", {
-            scrollTrigger: {
-                trigger: ".fadeText", 
-                start: "top 20%", 
-                end: "top 10%", 
-                scrub: true, 
-            }, 
-            autoAlpha: 0, 
-            ease: "power3.out"
+        // Fait disparaitre le texte haut sauf si au dessus de lg
+        const mm = gsap.matchMedia();
+        mm.add('(max-width: 1024px)', () => {
+            if (last) return;
+            gsap.to(".fadeText", {
+                scrollTrigger: {
+                    trigger: ".fadeText", 
+                    start: () => "top 20%", 
+                    end: () => "top 10%", 
+                    scrub: true, 
+                }, 
+                autoAlpha: 0, 
+                ease: "power3.out", 
+            })
         })
     }, {scope: container })
 
     return (
-        <span ref={container} className="w-full flex flex-col items-center">
+        <div ref={container} className="w-full flex flex-col basis-0 grow">
             {/* Image */}
-            <div className="w-full aspect-square rounded-xl overflow-hidden mb-content">
+            <div className="w-full aspect-square rounded-xl overflow-hidden mb-content mx-auto">
                 <Image 
                     src={images[0].src}
                     width={images[0].width}
@@ -49,12 +52,12 @@ function Section({ last, title, text, children }: { last: boolean; title: string
             </div>
 
             {/* Texte */}
-            <span className={`${last ? "" : "fadeText"}`}>
+            <div className={`${last ? "" : "fadeText"}`}>
             <p className="text-foreground-base textSubH2 mb-1">{title}</p>
             <p className="text-foreground-subdued mb-content">{text}</p>
             {children}
-            </span>
-        </span>
+            </div>
+        </div>
     );
 }
 
@@ -63,25 +66,29 @@ export default function Concept() {
 
     // Pin notre concept
     useGSAP(() => {
-        // Pin titre
-        ScrollTrigger.create({
-            trigger: ".scrollSection", 
-            endTrigger: ".lastSection", 
-            pin: ".notreConcept", 
-            pinSpacing: false, 
-            start: () => "top top+=55", 
-            end: () => "top top+=150", 
-            anticipatePin: 1, 
+        // Pin titre sauf si on est au dessus de lg
+        const mm = gsap.matchMedia();
+        mm.add('(max-width: 1024px)', () => {
+            ScrollTrigger.create({
+                trigger: ".scrollSection", 
+                endTrigger: ".lastSection", 
+                pin: ".notreConcept", 
+                pinSpacing: false, 
+                start: () => "top top+=55", 
+                end: () => "top top+=150", 
+                anticipatePin: 1, 
+            })
         })
     }, { scope: container })
     
     return (
-        <section ref={container} id="concept" className="w-full bg-background-base pb-subSection px-content">
-            <div className="scrollSection w-full flex flex-col space-y-10">
+        <section ref={container} id="concept" className="w-full bg-background-base pb-subSection px-content lg:px-contentLg">
+            <div className="scrollSection w-full flex flex-col items-center">
                 <h2 className="z-30 notreConcept text-foreground-base text-center mb-subTitle">
                     Notre Concept
                 </h2>
-                <Section
+                <div className="w-full flex flex-col lg:flex-row gap-y-10 gap-x-content">
+                    <Section
                     last={false}
                     title="Possibilités"
                     text={<>Nombreuses activités, musculation cours collectifs et smallgroups avec coach diplômé, squash, danse, Pôle Aqua et pôle santé avec notre ostéopathe.</>}
@@ -92,7 +99,7 @@ export default function Concept() {
                     text={<>Cours collectifs, smallgroups, et cours aquatiques en illimité toute la semaine pour les formules associées.<br/>
                     Nous tenons à ce que chaque adhérent qui visite la salle ne veuille plus en partir.</>}
                 >
-                    <div className="flex-inline space-x-contentClose">
+                    <div className="w-full flex flex-wrap gap-contentClose">
                         <Clickable
                             clickableType={{type:"link", path: "/plannings"}}
                             style={{variant: "secondary", color: "primarySubdued"}}
@@ -112,13 +119,14 @@ export default function Concept() {
                     title="Accompagnement"
                     text={<>Tout le monde doit se sentir considéré et accompagné. Matériel sélectionné sur le volet pour satisfaire tout type de pratiquant.</>}
                 />
-                <span className="lastSection">
+                <span className="lastSection basis-0 grow">
                 <Section
                     last={true}
                     title="Haut de gamme"
                     text={<>Poids calibrés pour la compétition, plateau d'haltérophilie, sacs de frappe pour les boxeurs, machines de musculation qualité italienne signée panatta, cardio connecté par technogym.</>}
                 />
                 </span>
+                </div>
             </div>
         </section>
     );

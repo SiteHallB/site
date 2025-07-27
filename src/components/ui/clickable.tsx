@@ -20,11 +20,11 @@ const clickableVariants = cva(
             }, 
             variant: {
                 default: "", 
-                page: "w-full px-2 py-2 rounded-full textLead", 
-                navigationBar: "px-2 py-1 rounded-full textLeadSmall", 
+                page: "w-full px-4 py-2 rounded-full textLead", 
+                navigationBar: "px-3 py-1 rounded-full textLeadSmall", 
                 menuMainButton: "textSubH2 text-foreground-base", 
                 menuSideButton: "textSmall text-foreground-subdued", 
-                action: "p-1 rounded-sm textLead", 
+                action: "py-1 px-2 rounded-sm textLead", 
                 legal: "textSmall text-foreground-subdued", 
                 secondary: "textNormal rounded p-2"
             }, 
