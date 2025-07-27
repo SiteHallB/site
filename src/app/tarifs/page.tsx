@@ -2,10 +2,19 @@
 
 import { CheckCheck } from "lucide-react";
 import Image from "next/image";
-import { useRef, useCallback, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import Clickable from "@/components/ui/clickable";
+
+import 'swiper/css';
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+import clsx from "clsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,7 +27,8 @@ type FormuleProps =
     { prix: number } &
     { images: Image[] } &
     { checkDescription: string[] } &
-    { actionLink: string };
+    { actionLink: string } &
+    { className?: string };
 
 function Check({ text }: { text: string }) {
     return (
@@ -31,83 +41,10 @@ function Check({ text }: { text: string }) {
     );
 }
 
-
-import Clickable from "@/components/ui/clickable";
-
-
-type From = { previous: number, current: number}
-
-import { useState } from "react";
-
-function Formule({ aboveFold, title, subtitle, prix, description, images, checkDescription, actionLink }: FormuleProps ) {
+function Formule({ aboveFold, title, subtitle, prix, description, images, checkDescription, actionLink, className }: FormuleProps ) {
     const container = useRef<HTMLDivElement>(null);
-    const imageFrame = useRef<HTMLDivElement>(null);
-    const imageRefs = useRef<HTMLDivElement[]>([]);
-    const addToRefs = useCallback((el: HTMLDivElement | null, index: number) => {
-        if (!el || imageRefs.current.includes(el)) return;
-        imageRefs.current.splice(index, 0, el);
-    }, []);
-
-    const nbImages = images.length;
-    const [fromImage, setFromImage] = useState<From>({ previous: -1, current: 0});
-
-    // POSSIBLEMENT PAS CLEAN
-    const screenPart = (i: number): string => {
-        const scrollHeight = window.innerHeight - (imageFrame.current?.offsetHeight ?? 0);
-        return `${Math.round( scrollHeight / window.innerHeight * 100 * (nbImages - i - 0.5) / (nbImages - 1))}%`;
-    }
     
-    useGSAP(() => {
-        images.forEach((_, index) => {
-            ScrollTrigger.create({
-                trigger: imageFrame.current, 
-                start: () => `top ${screenPart(index)}`, 
-                end: () => `top ${screenPart(index + 1)}`, 
-                onEnter: () => {
-                    setFromImage({ previous: index - 1, current: index })
-                }, 
-                onEnterBack: () => {
-                    setFromImage({ previous: index + 1, current: index })
-                }, 
-            })
-        })
-    }, { scope: container })
-
-    useGSAP(() => {
-        const current = imageRefs.current[fromImage.current]
-        if (fromImage.previous === -1 || fromImage.previous == nbImages) {
-            gsap.set(current, {
-                autoAlpha: 1, 
-                zIndex: 10, 
-            })
-            return;
-        }
-        const previous = imageRefs.current[fromImage.previous]
-
-        gsap.timeline()
-        .set(previous, {
-            zIndex: 0, 
-            autoAlpha: 1, 
-            filter: "grayscale(50%)",
-        })
-        .set(current, {
-            autoAlpha: 1, 
-            scale: 0.5, 
-            zIndex: 10, 
-            rotate: 6
-        }, ">")
-        .to(current, {
-            scale: 1, 
-            rotate: 0, 
-            ease: "power2.out"
-        }, ">")
-        .set(previous, {
-            autoAlpha: 1, 
-            filter: "grayscale(0%)"
-        }, ">")
-    }, { dependencies: [fromImage], scope: container })
-
-    // Check animation
+     // Check animation
     useGSAP(() => {
         gsap.to(".check", {
             scale: 1.6, 
@@ -128,47 +65,51 @@ function Formule({ aboveFold, title, subtitle, prix, description, images, checkD
     }, { scope: container })
 
     return (
-        <div ref={container} className="relative flex flex-col bg-background-highlight w-full h-[80vh] rounded-xl px-contentClose py-5 items-center justify-around space-y-5">
+        <div ref={container} className={clsx(className, "relative max-w-100 w-full flex flex-col bg-background-highlight rounded-xl px-contentClose lg:px-content py-content items-center justify-around space-y-content")}>
             {/* Prix */}
-            <div className="px-2 flex items-center justify-center absolute left-[-0.5rem] top-[-1.5rem] rounded-xs bg-accent">
+            <div className="px-contentClose flex items-center justify-center absolute left-[-0.5rem] lg:left-[-1rem] top-[-1.5rem] lg:top-[-3rem] rounded-xs bg-accent">
                 <p className="textLeadBig">{prix}€<span className="textSmall">/mois</span></p>
             </div>
 
             {/* Titre */}
-            <div className="mb-auto flex flex-col items-center w-full text-center">
+            <div className="flex flex-col items-center w-full text-center">
                 <h2 className="text-foreground-base">{title}</h2>
-                <p className="textSubH2 text-foreground-subdued mb-4">{subtitle}</p>
+                <p className="textSubH2 text-foreground-subdued">{subtitle}</p>
             </div>
 
             {/* Description */}
             <p className="text-foreground-base mb-4 mr-auto">{description}</p>
 
             {/* Images */}
-            <div ref={imageFrame} className="relative size-full rounded-xl overflow-hidden outline-foreground-subdued outline-1">
-                <div className="absolute size-full rounded-xl overflow-hidden">
-                    <Image 
-                        src={images[0].src}
-                        width={images[0].width}
-                        height={images[0].height}
-                        className="object-cover object-center size-full"
-                        alt={images[0].alt}
-                        priority={aboveFold}
-                    />
-                </div>
-                {images.map((el, index) => (
-                    <div key={index} className="invisible absolute size-full rounded-xl overflow-hidden" ref={el => { addToRefs(el, index); }}>
-                        <Image 
-                            src={el.src}
-                            width={el.width}
-                            height={el.height}
-                            className="object-cover object-center size-full"
-                            alt={el.alt}
-                            priority={aboveFold}
-                        />
-                    </div>
-                ))}    
-            </div>
-
+            <Swiper
+                className="
+                    w-full h-[30vh]
+                    [&_.swiper-button-prev]:text-accent 
+                    [&_.swiper-button-next]:text-accent
+                    [&_.swiper-pagination-bullet]:bg-black
+                    [&_.swiper-pagination-bullet-active]:bg-accent 
+                "
+                modules={[Navigation, Pagination, A11y]}
+                spaceBetween={-50}
+                slidesPerView={1.3}
+                centeredSlides
+                navigation
+                pagination={{ clickable: true }}
+            >
+                    {images.map((el, index) => (
+            <SwiperSlide
+                key={index}
+                className="select-none overflow-hidden rounded-xl transition-all duration-300 ease-in-out swiper-slide-custom"
+            >
+                <img
+                    src={el.src}
+                    className="w-full h-full object-cover object-center"
+                    alt=""
+                />
+                </SwiperSlide>
+            ))}
+            </Swiper>
+            
             {/* Check description */}
             <div className="flex flex-col space-y-2 check-holder">
                 {checkDescription.map((el, i) => (
@@ -194,16 +135,17 @@ function Formule({ aboveFold, title, subtitle, prix, description, images, checkD
 
 export default function Page() {
     return (
-        <main className="bg-background-base w-full px-content">
-        <div className="pt-20 pb-10 flex flex-col w-full space-y-10 items-center">
+        <main className="bg-background-base w-full px-content pt-subMenu pb-content lg:pb-contentLg">
             {/* Titre */}
-            <div className="flex flex-col items-center space-y-2">
+            <div className="flex flex-col items-center space-y-2 mb-subTitle lg:mb-subTitleLg">
                 <h1 className="text-foreground-base">Tarifs</h1>
                 <p className="text-foreground-subdued">
                     Choisissez la formule adaptée à vos besoins
                 </p>
             </div>
             
+            {/* Formules */}
+            <div className="flex flex-wrap justify-center gap-12 lg:gap-contentLg mb-content lg:mb-contentLg">
             <Formule 
                 aboveFold={true}
                 title="Classic"
@@ -241,10 +183,67 @@ export default function Page() {
                 actionLink=""
             />
 
+            <Formule 
+                aboveFold={false}
+                title="Aqua"
+                subtitle="Classic + Aqua"
+                prix={75}
+                description="Blabla"
+                images={[
+                    { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
+                    { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
+                    { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
+                ]}
+                checkDescription={[
+                    "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
+                    "Autre truc à dire", 
+                ]}
+                actionLink=""
+            />
+
+            <Formule 
+                aboveFold={false}
+                title="Aqua"
+                subtitle="Classic + Aqua"
+                prix={75}
+                description="Blabla"
+                images={[
+                    { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
+                    { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
+                    { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
+                ]}
+                checkDescription={[
+                    "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
+                    "Autre truc à dire", 
+                    "Encore un"
+                ]}
+                actionLink=""
+            />
+
+            <Formule 
+                aboveFold={false}
+                title="Aqua"
+                subtitle="Classic + Aqua"
+                prix={75}
+                description="Blabla"
+                images={[
+                    { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
+                    { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
+                    { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
+                ]}
+                checkDescription={[
+                    "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
+                    "Autre truc à dire", 
+                    "Encore un"
+                ]}
+                actionLink=""
+                className=""
+            />
+            </div>
+
             <p className="textSmall text-foreground-subdued text-center">
                 Explication possiblement détaillée sur comment les abonnements marchent
             </p>
-        </div>
         </main>
     );
 }

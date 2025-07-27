@@ -73,7 +73,6 @@ function Arrow({ }) {
     // Clique sur la fleche
     const { contextSafe } = useGSAP( {scope: container} )
     const onArrowClick = contextSafe(() => {
-        console.log("qdqz")
         gsap.to(window, {
             scrollTo: {
                 y: "#concept",

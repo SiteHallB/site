@@ -5,6 +5,7 @@
 @import './typography.css';
 @import './utilities.css';
 @import './contact.css';
+@import './tarifs.css';
 
 @theme inline {
   --color-background-base: #121212;
@@ -20,6 +21,7 @@
   --spacing-content: 1.25rem;
   --spacing-contentClose: 0.75rem; 
   --spacing-subTitle: 2rem;
+  --spacing-subTitleLg: 8rem;
   --spacing-subSection: 4rem;
   --spacing-subMenu: 5rem;
 }

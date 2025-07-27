@@ -40,7 +40,7 @@ export default function Footer() {
     return (
         <footer className="w-full bg-background-subdued pt-content">
             {/* Avis */}
-            <div className="w-full px-content flex flex-col items-center space-y-content">
+            <div className="w-full px-content lg:px-contentLg flex flex-col items-center space-y-content">
                 <h2 className="text-foreground-base text-center">Aide nous : Donne ton avis</h2>
                 <Avis
                     autheur="Eliot Collombet"
@@ -49,7 +49,7 @@ export default function Footer() {
                     autheur="Gauthier Bonhomme"
                     text="J'ai visité la salle en juillet, la surface est juste dingue et le matériel est d'excellente qualité"/>
                 <Clickable
-                    clickableType={{type: "link", path: "https://www.google.com/search?rlz=1C1UEAD_frFR970FR970&hl=fr-FR&biw=1707&bih=825&q=HALL%20B%20Avis&ludocid=7212151405417539940&ibp=gwp%3B0%2C7&sa=X&ved=0CB4Q9fQKKABqFwoTCKDhpeH72o4DFQAAAAAdAAAAABAF#lkt=LocalPoiReviews&lpg=cid:CgIgAQ%3D%3D"}}
+                    clickableType={{type: "link", path: "https://maps.app.goo.gl/L9UnaRBpBe8vECyD9"}}
                     style={{"variant": "action", "color": "accent"}}
                     className="lg:w-fit w-full"
                 >
@@ -57,10 +57,10 @@ export default function Footer() {
                 </Clickable>
             </div>
 
-            <hr className="border-t border-foreground-base my-content mx-content"/>
+            <hr className="border-t border-foreground-base my-content mx-content lg:mx-contentLg"/>
 
             {/* Marques */}
-            <div className="flex w-full py-content px-content space-x-content items-center justify-around">
+            <div className="flex w-full py-content px-content lg:px-contentLg space-x-content items-center justify-around">
                 <a href="https://www.panattasport.com/fr/" className="min-w-0 max-w-[250px] flex-1">
                 <Image
                     src="/images/pannata.png"
@@ -90,7 +90,7 @@ export default function Footer() {
                 </a>
             </div>
 
-            <hr className="border-t border-foreground-base my-content mx-content"/>
+            <hr className="border-t border-foreground-base my-content mx-content lg:mx-contentLg"/>
 
             {/* Réseaux */}
             <div className="w-full justify-center flex flex-row space-x-content">
@@ -112,7 +112,7 @@ export default function Footer() {
                 </Clickable>
             </div>
 
-            <hr className="border-t border-foreground-base my-content mx-content"/>
+            <hr className="border-t border-foreground-base my-content mx-content lg:mx-contentLg"/>
 
             {/* Legal */}
             <div className="text-foreground-subdued flex flex-col w-full pb-content space-y-content">

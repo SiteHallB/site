@@ -1,0 +1,10 @@
+.swiper-slide {
+  transform: scale(0.8) !important;
+  transition: transform 0.3s ease !important;
+  z-index: 1;
+}
+
+.swiper-slide.swiper-slide-active {
+  transform: scale(1) !important;
+  z-index: 10;
+}
