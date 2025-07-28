@@ -15,7 +15,7 @@ export default function SportigoFormule() {
                 name: 'Audiowide',
                 family: 'serif'
             },
-            cssFile: 'http://monsite.fr/style.css',
+            cssFile: '',
         }
     };
 
@@ -24,7 +24,7 @@ export default function SportigoFormule() {
             window.initComponent(
                 'BuyFromList', 
                 'ID_SECTION', 
-                'API_KEY', 
+                '4c334b6f-305e-413a-8541-355479dc0286', 
                 data
             );
         }
@@ -37,12 +37,12 @@ export default function SportigoFormule() {
 
     return (
         <>
-        <section id="ID_SECTION" className="w-full"></section>
-        <Script
-            src="https://standalone.api.sportigo.fr/component-standalone.js"
-            strategy="afterInteractive"
-            onLoad={init} 
-        />
+            <section id="ID_SECTION" className="w-full"></section>
+            <Script
+                src="https://standalone.api.sportigo.fr/component-standalone.js"
+                strategy="afterInteractive"
+                onLoad={init} 
+            />
         </>
     );
 }

@@ -3,7 +3,9 @@ import SportigoFormule from "@/components/tarifs/sportigo-formule";
 export default function Page() {
     return (
         <>
-            <SportigoFormule/>
+            <div className="w-full pt-subMenu p-content bg-background-base">
+                <SportigoFormule/>
+            </div>
         </>
     );
 }

@@ -39,7 +39,7 @@ function Section({ last, title, text, children }: { last: boolean; title: string
     }, {scope: container })
 
     return (
-        <div ref={container} className="w-full flex flex-col basis-0 grow">
+        <div ref={container} className="w-full flex flex-col basis-0 grow min-w-0">
             {/* Image */}
             <div className="w-full aspect-square rounded-xl overflow-hidden mb-content mx-auto">
                 <Image 
@@ -53,7 +53,7 @@ function Section({ last, title, text, children }: { last: boolean; title: string
 
             {/* Texte */}
             <div className={`${last ? "" : "fadeText"}`}>
-            <p className="text-foreground-base textSubH2 mb-1">{title}</p>
+            <p className="text-foreground-base textSubH2 mb-1 break-words">{title}</p>
             <p className="text-foreground-subdued mb-content">{text}</p>
             {children}
             </div>
@@ -88,7 +88,7 @@ export default function Concept() {
                     Notre Concept
                 </h2>
                 <div className="w-full flex flex-col lg:flex-row gap-y-10 gap-x-content">
-                    <Section
+                <Section
                     last={false}
                     title="Possibilités"
                     text={<>Nombreuses activités, musculation cours collectifs et smallgroups avec coach diplômé, squash, danse, Pôle Aqua et pôle santé avec notre ostéopathe.</>}

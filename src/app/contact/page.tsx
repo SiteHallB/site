@@ -116,7 +116,13 @@ function ContactForm() {
 export default function Page() {
     return (
         <div className="bg-background-base w-full h-500 pt-subMenu px-content lg:px-contentLg flex flex-col space-y-10">
-            <h1 className="text-foreground-base text-center">Contacts</h1>
+            {/* Titre */}
+            <div className="flex flex-col items-center space-y-2 mb-subTitle lg:mb-subTitleLg">
+                <h1 className="text-foreground-base">Contacts</h1>
+                <p className="text-foreground-subdued text-center">
+                    Sous titrex
+                </p>
+            </div>
             <ContactForm/>
 
             {/* <div className="absolute">

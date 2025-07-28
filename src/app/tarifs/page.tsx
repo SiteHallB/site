@@ -2,13 +2,15 @@
 
 import { CheckCheck } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation, Pagination, A11y } from "swiper/modules";
 import Clickable from "@/components/ui/clickable";
+
+import type { Swiper as SwiperInstance } from "swiper";
 
 import 'swiper/css';
 import "swiper/css/navigation";
@@ -43,6 +45,34 @@ function Check({ text }: { text: string }) {
 
 function Formule({ aboveFold, title, subtitle, prix, description, images, checkDescription, actionLink, className }: FormuleProps ) {
     const container = useRef<HTMLDivElement>(null);
+    const swiperRef = useRef<SwiperInstance>(null);
+    const intervalRef = useRef<number>(0);
+
+    const tick = () => {
+        console.log("Tick @", new Date().toLocaleTimeString());
+        // … votre logique ici …
+    };
+
+    //🔄 Lance (ou relance) le timer
+    const startTimer = () => {
+        // si un ancien timer existe, on l'arrête
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+        // on démarre un nouvel intervalle à 5 000 ms
+        intervalRef.current = window.setInterval(tick, 3000);
+    };
+
+    //🚪 Au montage du composant, on démarre le timer
+    useEffect(() => {
+        startTimer();
+        // au démontage, on nettoie
+        return () => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+        };
+    }, []);
     
      // Check animation
     useGSAP(() => {
@@ -64,8 +94,10 @@ function Formule({ aboveFold, title, subtitle, prix, description, images, checkD
         })
     }, { scope: container })
 
+
+
     return (
-        <div ref={container} className={clsx(className, "relative max-w-100 w-full flex flex-col bg-background-highlight rounded-xl px-contentClose lg:px-content py-content items-center justify-around space-y-content")}>
+        <div ref={container} className={clsx(className, "relative max-w-120 w-full flex flex-col bg-background-highlight rounded-xl px-contentClose lg:px-content py-content items-center justify-around space-y-content")}>
             {/* Prix */}
             <div className="px-contentClose flex items-center justify-center absolute left-[-0.5rem] lg:left-[-1rem] top-[-1.5rem] lg:top-[-3rem] rounded-xs bg-accent">
                 <p className="textLeadBig">{prix}€<span className="textSmall">/mois</span></p>
@@ -82,6 +114,10 @@ function Formule({ aboveFold, title, subtitle, prix, description, images, checkD
 
             {/* Images */}
             <Swiper
+                onSwiper={(swiper) => {
+                    swiperRef.current = swiper;
+                }}
+                onSlideChange={startTimer}
                 className="
                     w-full h-[30vh]
                     [&_.swiper-button-prev]:text-accent 
@@ -96,18 +132,18 @@ function Formule({ aboveFold, title, subtitle, prix, description, images, checkD
                 navigation
                 pagination={{ clickable: true }}
             >
-                    {images.map((el, index) => (
-            <SwiperSlide
-                key={index}
-                className="select-none overflow-hidden rounded-xl transition-all duration-300 ease-in-out swiper-slide-custom"
-            >
-                <img
-                    src={el.src}
-                    className="w-full h-full object-cover object-center"
-                    alt=""
-                />
-                </SwiperSlide>
-            ))}
+                {images.map((el, index) => (
+                    <SwiperSlide
+                        key={index}
+                        className="select-none overflow-hidden rounded-xl transition-all duration-300 ease-in-out swiper-slide-custom"
+                    >
+                        <img
+                            src={el.src}
+                            className="w-full h-full object-cover object-center"
+                            alt=""
+                        />
+                    </SwiperSlide>
+                ))}
             </Swiper>
             
             {/* Check description */}
