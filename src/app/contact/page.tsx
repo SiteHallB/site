@@ -51,7 +51,7 @@ function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-background-highlight rounded-xl p-content flex flex-col items-center space-y-contentClose">
+    <form onSubmit={handleSubmit} className="bg-background-highlight rounded-xl p-content lg:p-contentLg flex flex-col items-center space-y-contentClose">
         <div className="flex flex-col items-center">
             <h2 className="text-foreground-base">Message</h2>
             <p className="text-foreground-subdued textSubH2 text-center">N'hesitez pas à nous solliciter</p>
@@ -115,7 +115,7 @@ function ContactForm() {
 
 export default function Page() {
     return (
-        <div className="bg-background-base w-full h-500 pt-subMenu px-content flex flex-col space-y-10">
+        <div className="bg-background-base w-full h-500 pt-subMenu px-content lg:px-contentLg flex flex-col space-y-10">
             <h1 className="text-foreground-base text-center">Contacts</h1>
             <ContactForm/>
 

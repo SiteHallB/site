@@ -28,10 +28,10 @@ function Avis({ text, autheur }: { text: string; autheur: string }) {
                 <Star/>
             </div>
             {/* Citation */}
-            <blockquote className="text-foreground-base">
+            <blockquote className="text-foreground-base textNormal">
                 {text}
             </blockquote>
-            <cite className="text-foreground-subdued">{autheur}, <em>avis Google</em></cite>
+            <cite className="text-foreground-subdued textSmall">{autheur}, <em>avis Google</em></cite>
         </div>
     );
 }

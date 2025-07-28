@@ -101,7 +101,7 @@ export default function Hero() {
                 trigger: ".parallaxFill", 
                 start: () => "bottom bottom", 
                 end: () => "bottom top", 
-                scrub: true, 
+                scrub: 0.5, 
             }, 
         })
         .to(".parallaxArrow", {
