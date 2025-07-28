@@ -40,10 +40,10 @@ export default function SeanceGratuite() {
     }, { scope: container })
 
     return (
-        <section ref={container} id="seance-gratuite" className="w-full bg-background-base pb-subSection">
-            <span className="trigger">
+        <section ref={container} id="seance-gratuite" className="w-full bg-background-base mb-subSection">
+            <div className="z-10 trigger">
             <div className="w-full h-[5vh] bg-gradient-to-b from-background-base to-accent"/>
-            <div className="w-full bg-accent p-content lg:px-contentLg flex flex-col items-center space-y-content">
+            <div className="relative w-full bg-accent p-content lg:px-contentLg flex flex-col items-center space-y-content">
                 <h2 className="text-foreground-base text-center flex flex-col items-center space-y-10">
                     <span className="text">Viens essayer</span>
                     <Image
@@ -63,9 +63,20 @@ export default function SeanceGratuite() {
                     Essai Offert
                 </Clickable>
                 <p className="text-foreground-subdued">Conditions de l'offre</p>
+
+                {/* Fond hall b */}
+                <div className="absolute inset-0 overflow-hidden flexCenter">
+                    <Image
+                        src="/images/logo-hallb.png"
+                        alt="Logo Hall B"
+                        width={1240}
+                        height={1328}
+                        className="max-h-full w-auto opacity-15"
+                    />
+                </div>
             </div>
             <div className="w-full h-[5vh] bg-gradient-to-t from-background-base to-accent"/>
-            </span>
+            </div>
         </section>
     );
 }

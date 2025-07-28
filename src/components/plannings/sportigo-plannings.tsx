@@ -6,7 +6,7 @@ export default function SportigoPlannings() {
     const init = () => {
         if (typeof window.initComponent === "function") {
             window.initComponent(
-                "AppointmentFull",
+                "Appointment",
                 "sportigo-container",
                 "4c334b6f-305e-413a-8541-355479dc0286",
                 { colored: true, readonly: true }

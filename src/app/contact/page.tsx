@@ -124,22 +124,6 @@ export default function Page() {
                 </p>
             </div>
             <ContactForm/>
-
-            {/* <div className="absolute">
-                <div className="inset-0 absolute z-10 bg-background-base/80">
-
-                </div>
-                <Image
-                    src="/images/logo-hallb.png"
-                    alt="Logo Hall B"
-                    width={1240}
-                    height={1328}
-                    className="object-cover"
-                />
-            </div> */}
-
-
-
         </div>
     );
 }

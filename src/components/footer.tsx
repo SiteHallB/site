@@ -5,6 +5,12 @@ import Image from "next/image";
 import Clickable from "@/components/ui/clickable";
 import { Facebook, Instagram, Star as St } from "lucide-react";
 
+function Separator() {
+    return (
+        <hr className="z-10 border-t border-foreground-base my-content lg:my-contentLg w-full max-w-200"/>
+    );
+}
+
 function Star() {
     return (
         <St
@@ -38,9 +44,9 @@ function Avis({ text, autheur }: { text: string; autheur: string }) {
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-background-subdued pt-content">
+        <footer className="relative w-full bg-background-subdued pt-content flex flex-col items-center p-content lg:p-contentLg">
             {/* Avis */}
-            <div className="w-full px-content lg:px-contentLg flex flex-col items-center space-y-content">
+            <div className="z-10 w-full flex flex-col items-center space-y-content">
                 <h2 className="text-foreground-base text-center">Aide nous : Donne ton avis</h2>
                 <Avis
                     autheur="Eliot Collombet"
@@ -57,10 +63,10 @@ export default function Footer() {
                 </Clickable>
             </div>
 
-            <hr className="border-t border-foreground-base my-content mx-content lg:mx-contentLg"/>
+            <Separator/>
 
             {/* Marques */}
-            <div className="flex w-full py-content px-content lg:px-contentLg space-x-content items-center justify-around">
+            <div className="z-10 flex w-full py-content space-x-content items-center justify-around">
                 <a href="https://www.panattasport.com/fr/" className="min-w-0 max-w-[250px] flex-1">
                 <Image
                     src="/images/pannata.png"
@@ -90,32 +96,59 @@ export default function Footer() {
                 </a>
             </div>
 
-            <hr className="border-t border-foreground-base my-content mx-content lg:mx-contentLg"/>
+            <Separator/>
 
-            {/* Réseaux */}
-            <div className="w-full justify-center flex flex-row space-x-content">
-                <Clickable
-                    clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
-                    style={{variant: "menuSideButton"}}
-                    className="flex flex-row space-x-1"
-                >
-                    <Instagram/>
-                    <p>Instagram</p>
-                </Clickable>
-                <Clickable
-                    clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
-                    style={{variant: "menuSideButton"}}
-                    className="flex flex-row space-x-1"
-                >
-                    <Facebook/>
-                    <p>Facebook</p>
-                </Clickable>
+            {/* Infos importantes */}
+            <div className="z-10 w-full flex flex-col lg:flex-row justify-between pb-content lg:pb-contentLg gap-y-content">
+                {/* Réseaux */}
+                <div className="lg:items-center w-full flex flex-col">
+                    <div>
+                    <p className="text-foreground-base textSubH2 lg:mb-contentClose">Nos actus</p>
+                    <Clickable
+                        clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
+                        style={{variant: "menuSideButton"}}
+                        className="flex flex-row space-x-1"
+                    >
+                        <Instagram/>
+                        <p>Instagram</p>
+                    </Clickable>
+                    <Clickable
+                        clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
+                        style={{variant: "menuSideButton"}}
+                        className="flex flex-row space-x-1"
+                    >
+                        <Facebook/>
+                        <p>Facebook</p>
+                    </Clickable>
+                    </div>
+                </div>
+
+                {/* Horraire */}
+                <div className="lg:items-center w-full flex flex-col">
+                    <div>
+                    <p className="text-foreground-base textSubH2 lg:mb-contentClose">Horraires</p>
+                    <p className="text-foreground-subdued">
+                        Tous les jours de 6h à 23h<br/>
+                        Y compris le Dimanche et jours fériés
+                    </p>
+                    </div>
+                </div>
+
+                {/* Ou nous trouver ? */}
+                <div className="lg:items-center w-full flex flex-col">
+                    <div>
+                    <p className="text-foreground-base textSubH2 lg:mb-contentClose">Ou nous trouver ?</p>
+                    <p className="text-foreground-subdued">
+                        1 Chem. d'Azord, 30980 Saint-Dionisy<br/>
+                        hallb@contact.fr<br/>
+                        0600000000
+                    </p>
+                    </div>
+                </div>
             </div>
 
-            <hr className="border-t border-foreground-base my-content mx-content lg:mx-contentLg"/>
-
             {/* Legal */}
-            <div className="text-foreground-subdued flex flex-col w-full pb-content space-y-content">
+            <div className="z-10 bg-background-base text-foreground-subdued flex flex-col gap-y-contentClose py-contentClose lg:flex-row w-full justify-around">
                 <Clickable
                     clickableType={{type: "link", onClick: () => 0, path: ""}}
                     style={{variant: "legal"}}
@@ -134,6 +167,18 @@ export default function Footer() {
                 >
                     Gérer vos cookies
                 </Clickable>
+            </div>
+
+            {/* Hall b en fond */}
+            <div className="absolute inset-0 overflow-hidden flexCenter">
+                <div className="absolute inset-0 bg-background-subdued/90"/>
+                <Image
+                    src="/images/logo-hallb.png"
+                    alt="Logo Hall B"
+                    width={1240}
+                    height={1328}
+                    className="max-h-full max-w-full"
+                />
             </div>
         </footer>
     );
