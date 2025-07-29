@@ -42,62 +42,75 @@
     transition: 0.3s cubic-bezier(0.6, 0, 0.4, 1);
 }
 
+.hoverRotate {
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+}
+
 /* Desktop : on anime au hover */
 @media (hover: hover) and (pointer: fine) {
-  .hoverUnderline:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
+    .hoverUnderline:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
 
-  .hoverPrimary:hover {
-  background-color: var(--color-accent);
-  color: var(--color-background-base);
-  outline: 1px solid var(--color-background-base);
-  outline-offset: -1px;
-}
+    .hoverPrimary:hover {
+        background-color: var(--color-accent);
+        color: var(--color-background-base);
+        outline: 1px solid var(--color-background-base);
+        outline-offset: -1px;
+    }
 
-.hoverAccent:hover {
-  background-color: transparent;
-  color: var(--color-foreground-base);
-  outline: 2px solid var(--color-foreground-base);
-  outline-offset: -2px;
-}
+    .hoverAccent:hover {
+        background-color: transparent;
+        color: var(--color-foreground-base);
+        outline: 2px solid var(--color-foreground-base);
+        outline-offset: -2px;
+    }
 
-.hoverPrimarySubdued:hover {
-  background-color: var(--color-accent);
-  color: var(--color-background-base);
-  outline: 1px solid var(--color-background-base);
-  outline-offset: -1px;
-}
+    .hoverPrimarySubdued:hover {
+        background-color: var(--color-accent);
+        color: var(--color-background-base);
+        outline: 1px solid var(--color-background-base);
+        outline-offset: -1px;
+    }
+
+    .hoverRotate:hover {
+        transform: rotate(90deg);
+    }
 }
 
 /* Mobile : on anime au tap (active), et ça s'enlève quand le doigt se relève */
 @media (hover: none) and (pointer: coarse) {
-  .hoverUnderline:active::after {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
+    .hoverUnderline:active::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
 
-  .hoverPrimary:active {
-  background-color: var(--color-accent);
-  color: var(--color-background-base);
-  outline: 1px solid var(--color-background-base);
-  outline-offset: -1px;
-}
+    .hoverPrimary:active {
+        background-color: var(--color-accent);
+        color: var(--color-background-base);
+        outline: 1px solid var(--color-background-base);
+        outline-offset: -1px;
+    }
 
-.hoverAccent:active {
-  background-color: transparent;
-  color: var(--color-foreground-base);
-  outline: 2px solid var(--color-foreground-base);
-  outline-offset: -2px;
-}
+    .hoverAccent:active {
+        background-color: transparent;
+        color: var(--color-foreground-base);
+        outline: 2px solid var(--color-foreground-base);
+        outline-offset: -2px;
+    }
 
-.hoverPrimarySubdued:active {
-  background-color: var(--color-accent);
-  color: var(--color-background-base);
-  outline: 1px solid var(--color-background-base);
-  outline-offset: -1px;
-}
+    .hoverPrimarySubdued:active {
+        background-color: var(--color-accent);
+        color: var(--color-background-base);
+        outline: 1px solid var(--color-background-base);
+        outline-offset: -1px;
+    }
+
+    .hoverRotate:active {
+        transform: rotate(90deg);
+    }
 }
 
 .hoverPrimary, 

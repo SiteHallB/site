@@ -8,7 +8,7 @@ import { trackEvent } from "@/components/analytics/ga";
 import clsx from "clsx";
 
 const clickableVariants = cva(
-    "text-center hover:cursor-pointer", 
+    "text-center hover:cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500", 
     {
         variants: {
             color: {

@@ -1,28 +1,17 @@
 "use client"
 
-import Hero from "@/components/root/otherHero";
-import Concept from "@/components/root/otherConcept2";
-import SeanceGratuite from "@/components/root/seance-gratuite";
-import Histoire from "@/components/root/otherHistoire";
-import Valeurs from "@/components/root/otherValeurs";
-
-// export default function Home() {
-//   return (
-//     <main className="flex flex-col bg-background-subdued space-y-[-1px]">
-//       <Hero/>
-//       <Valeurs/>
-//       <Concept/>
-//       <Histoire/>
-//     </main>
-//   );
-// }
+import Hero from "@/components/root/hero";
+import Concept from "@/components/root/concept";
+import EssaiOffert from "@/components/root/essai-offert";
+import Histoire from "@/components/root/histoire";
+import Valeurs from "@/components/root/valeurs";
 
 export default function Home() {
     return (
         <main className="relative bg-background-base">
             <Hero/>
             <Concept/>
-            <SeanceGratuite/>
+            <EssaiOffert/>
             <Histoire/>
             <Valeurs/>
         </main>

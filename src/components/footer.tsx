@@ -68,33 +68,45 @@ export default function Footer() {
 
             {/* Marques */}
             <div className="z-10 flex w-full py-content space-x-content items-center justify-around">
-                <a href="https://www.panattasport.com/fr/" className="min-w-0 max-w-[250px] flex-1">
-                <Image
-                    src="/images/pannata.png"
-                    alt=""
-                    width={272}
-                    height={109}
-                    className="w-full h-auto object-contain"
-                />
-                </a>
-                <a href="https://www.technogym.com/fr-FR/" className="min-w-0 max-w-[250px] flex-1">
-                <Image
-                    src="/images/technogym.png"
-                    alt=""
-                    width={820}
-                    height={231}
-                    className="w-full h-auto object-contain"
-                />
-                </a>
-                <a href="https://www.pallini-sport.fr/" className="min-w-0 max-w-[250px] flex-1">
-                <Image
-                    src="/images/pallini.png"
-                    alt=""
-                    width={1633}
-                    height={396}
-                    className="w-full h-auto object-contain"
-                />
-                </a>
+                <Clickable
+                    clickableType={{type: "link", path: "https://www.panattasport.com/fr/", outside: true}}
+                    style={{}}
+                    className="min-w-0 max-w-[250px] flex-1"
+                >
+                    <Image
+                        src="/images/pannata.png"
+                        alt=""
+                        width={272}
+                        height={109}
+                        className="w-full h-auto object-contain"
+                    />
+                </Clickable>
+                <Clickable
+                    clickableType={{type: "link", path: "https://www.technogym.com/fr-FR/", outside: true}}
+                    style={{}}
+                    className="min-w-0 max-w-[250px] flex-1"
+                >
+                    <Image
+                        src="/images/technogym.png"
+                        alt=""
+                        width={820}
+                        height={231}
+                        className="w-full h-auto object-contain"
+                    />
+                </Clickable>
+                <Clickable
+                    clickableType={{type: "link", path: "https://www.pallini-sport.fr/", outside: true}}
+                    style={{}}
+                    className="min-w-0 max-w-[250px] flex-1"
+                >
+                    <Image
+                        src="/images/pallini.png"
+                        alt=""
+                        width={1633}
+                        height={396}
+                        className="w-full h-auto object-contain"
+                    />
+                </Clickable>
             </div>
 
             <Separator/>

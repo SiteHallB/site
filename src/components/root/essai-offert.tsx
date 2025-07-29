@@ -4,9 +4,7 @@ import gsap from "gsap";
 import Image from "next/image";
 import { useRef } from "react";
 
-import { ScrollTrigger } from "gsap/all";
-
-export default function SeanceGratuite() {
+export default function EssaiOffert() {
     const container = useRef<HTMLDivElement>(null)
 
     // Bouton qui clignote

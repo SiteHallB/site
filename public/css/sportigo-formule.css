@@ -100,3 +100,16 @@ div[role="dialog"][data-state="open"] *::after {
   color: inherit !important;
   background-color: inherit !important;
 }
+
+:focus {
+  outline: none !important;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px #3b82f6 !important;
+}

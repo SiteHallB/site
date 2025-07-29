@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "@/styles/globals.css";
 
 import Menu from "@/components/menu";
-import Transition from "@/components/transition";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
@@ -24,7 +23,6 @@ export default function RootLayout({
         <html lang="fr">
             <body className="antialiased">
                 <Menu/>
-                {/* <Transition/> */}
                 <div className="relative w-full">
                     {children}
                     <Footer/>

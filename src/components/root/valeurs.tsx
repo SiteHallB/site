@@ -1,16 +1,9 @@
-"use client"
-
-import "@/styles/valeurs.css"
-
-import { useRef } from "react";
-
 import Image from "next/image";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 import { ScrollTrigger } from "gsap/all";
-
-gsap.registerPlugin(ScrollTrigger)
 
 type Image = { src: string, width: number, height: number, alt: string };
 
@@ -22,24 +15,14 @@ const images = [
 
 function Cadre({ image }: { image: Image }) {
     return (
-        <div className="image-frame overflow-hidden size-25">
+        <div className="image overflow-hidden size-[25vw] shrink-0">
             <Image 
                 src={image.src}
                 width={image.width}
                 height={image.height}
-                className="image object-cover object-center size-full"
+                className="object-cover object-center size-full"
                 alt={image.alt}
             />
-        </div>
-    );
-}
-
-function ScrollText({ text }: { text: string }) {
-    return (
-        <div className="py-2 flex items-center justify-center overflow-hidden">
-        <h3 className="text-foreground-base">
-            {text}
-        </h3>
         </div>
     );
 }
@@ -47,103 +30,85 @@ function ScrollText({ text }: { text: string }) {
 export default function Valeurs() {
     const container = useRef<HTMLDivElement>(null);
 
+    // Pin haut
     useGSAP(() => {
-        const scrollTriggerConfig = {
-            trigger: ".scroll-section", 
-            start: "top center", 
-            end: "bottom 60%", 
-            scrub: 0.1, 
-        }
-
-        gsap.utils.toArray<HTMLElement>('.image-frame').forEach((el, index) => {
-            gsap.to(el, {
-                scrollTrigger: {
-                    trigger: el, 
-                    start: "center center+=150", 
-                    end: "center center-=150", 
-                    scrub: true
-                }, 
-                scale: 1.1, 
-                yoyo: true, 
-                repeat: 1, 
-                ease: "power1.out"
-            })
+        ScrollTrigger.create({
+            trigger: ".pinTitle", 
+            endTrigger: ".lowTransition", 
+            pin: ".pinTitle", 
+            pinSpacing: false, 
+            start: () => "top top", 
+            end: () => "bottom bottom", 
+            anticipatePin: 1
         })
+    }, { scope: container })
 
-        gsap.set(".scroll-text", {
-            y: 125, 
+    // Grossit images
+    useGSAP(() => {
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".imagesContainer", 
+                start: () => "top center", 
+                end: () => "bottom center",  
+                scrub: true
+            }
+        })
+        .set(".textContainer", {
+            autoAlpha: 0
+        })
+        .set(".textContainer", {
             autoAlpha: 1
-        })
+        }, "+=0.1")
 
-        gsap.timeline({
-            scrollTrigger: { ...scrollTriggerConfig }
-        })
-        .to(".scroll-text", {
-            y: 70, 
-            duration: 0.5
-        })
-        .to(".scroll-text", {
-            y: 50, 
-            duration: 1
-        })
-        .to(".scroll-text", {
-            y: 10, 
-            duration: 0.5
-        })
-        .to(".scroll-text", {
-            y: -10, 
-            duration: 1
-        })
-        .to(".scroll-text", {
-            y: -50, 
-            duration: 0.5
-        })
-        .to(".scroll-text", {
-            y: -70, 
-            duration: 1
-        })
-        .to(".scroll-text", {
-            y: -125, 
-            duration: 0.5
-        })
-        
+        tl.set(".scrollText", {
+            yPercent: -150, 
+        }, "<")
+        tl.to(".scrollText", {
+            stagger: { 
+                amount: 1, 
+                ease: "slow(0.9,1,false)"
+            }, 
+            duration: 1, 
+            yPercent: 150, 
+        }, "<")
+        tl.set(".textContainer", {
+            autoAlpha: 0
+        }, ">")
     }, { scope: container })
 
     return (
-        <section ref={container} id="valeurs" className="relative z-10 w-full">
-            <div className="relative inset-x-0 top-[-1px]">
-                <div className="sticky top-0 w-full z-20 flex flex-col space-y-[-1px]">
-                    <div className="bg-background-base w-full h-[70px]"/>
-                    <h2 id="title-valeurs" className="text-center text-foreground-base w-full bg-background-base pb-10">
-                        Nos Valeurs
-                    </h2>
-                    <div className="bg-gradient-to-b from-background-base to-background-subdued w-full h-[50px]"/> 
-                </div>
-                <div className="scroll-section w-full flex flex-col space-y-3 items-center bg-background-subdued pt-20">
-                    {[...Array(9)].map((_, i) => (
-                        <Cadre key={i} image={images[i % 3]} />
-                    ))}
-                </div>
+        <section ref={container} id="valeurs" className="w-full bg-background-subdued flex flex-col items-center">
+            <div className="z-10 pinTitle bg-background-base relative w-full pt-subMenu">
+                <h2 className="text-foreground-base text-center pb-subTitle">
+                    Nos valeurs
+                </h2>
+                <div className="absolute bottom-[-50px] bg-gradient-to-b from-background-base to-transparent w-full h-[50px]"/> 
+            </div>
+
+            {/* Images */}
+            <div className="imagesContainer flex flex-col gap-y-[2vw]">
+                {[...Array(9)].map((_, i) => (
+                    <Cadre key={i} image={images[i % 3]} />
+                ))}
             </div>
 
             {/* Transition basse */}
-            <div className="relative top-[-52px] flex flex-col space-y-[-1px]">
-                <div className="bg-gradient-to-t from-background-base to-transparent w-full h-[50px]"/> 
-                <div className="bg-background-base w-full h-[100px]"/>
+            <div className="lowTransition relative w-full">
+                <div className="absolute top-[-50px] bg-gradient-to-t from-background-base to-transparent w-full h-[50px]"/> 
+                <div className="bg-background-base w-full h-[50px]"/>
             </div>
-            <div className="absolute bg-background-base h-[53px] bottom-0 w-full"/>
-
-            <div className="fixed inset-0 flex items-center justify-center">
-                <div className="relative w-full h-[65px] flex items-center justify-center overflow-hidden">
-                <div className="scroll-text invisible flex flex-col space-y-2">
-                    <ScrollText text="Convivialité"/>
-                    <ScrollText text="Entraide"/>
-                    <ScrollText text="Accompagnement"/>
-                </div>
-                </div>
+            <div className="w-full bg-background-base">
+                <p className="text-foreground-subdued pb-subSection text-center">Du texte pour la transition</p>
             </div>
 
-
+            {/* Texte */}
+            <div className="textContainer invisible fixed inset-0 z-20 flexCenter">
+                <div className="relative w-full flexCenter overflow-hidden py-content">
+                    <h3 className="scrollText text-foreground-base">Convivialité</h3>
+                    <h3 className="absolute scrollText text-foreground-base">Entraide</h3>
+                    <h3 className="absolute scrollText text-foreground-base">Accompagnement</h3>
+                </div>
+            </div>
         </section>
     );
 }

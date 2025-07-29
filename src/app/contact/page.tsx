@@ -9,6 +9,7 @@ import Clickable from "@/components/ui/clickable";
 
 import { useState, FormEvent } from "react";
 import Reseaux from "@/components/reseaux";
+import PageStructure from "@/components/ui/page-structure";
 
 type StatusType = "typing" | "sending" | "success" | "error"
 function ContactForm() {
@@ -118,15 +119,7 @@ function ContactForm() {
 
 export default function Page() {
     return (
-        <div className="bg-background-base w-full pb-subSection pt-subMenu px-content lg:px-contentLg flex flex-col space-y-10">
-            {/* Titre */}
-            <div className="flex flex-col items-center space-y-2 mb-subTitle lg:mb-subTitleLg">
-                <h1 className="text-foreground-base">Contacts</h1>
-                <p className="text-foreground-subdued text-center">
-                    Sous titrex
-                </p>
-            </div>
-            
+        <PageStructure title="Contact" subtitle="Besoin d'aide ?">
             {/* Coordonnées */}
             <div className="z-10 w-full flex flex-wrap pb-content justify-between lg:pb-contentLg gap-content px-content lg:px-contentLg">
                 {/* Email */}
@@ -155,6 +148,6 @@ export default function Page() {
 
             {/* Message formulaire */}
             <ContactForm/>
-        </div>
+        </PageStructure>
     );
 }

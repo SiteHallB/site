@@ -23,7 +23,7 @@ export default function SportigoFormule({ id }: { id?: number }) {
         if (typeof window.initComponent === "function") {
             window.initComponent(
                 'BuyFromList', 
-                'ID_SECTION', 
+                'sportigoFormule', 
                 '4c334b6f-305e-413a-8541-355479dc0286', 
                 data
             );
@@ -37,7 +37,7 @@ export default function SportigoFormule({ id }: { id?: number }) {
 
     return (
         <>
-            <section id="ID_SECTION" className="w-full"></section>
+            <section id="sportigoFormule" className="w-full"></section>
             <Script
                 src="https://standalone.api.sportigo.fr/component-standalone.js"
                 strategy="afterInteractive"

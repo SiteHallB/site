@@ -2,112 +2,60 @@
 
 import "@/styles/accueil-degrade.css"
 
-import { useRef, useCallback } from "react";
+import { useRef } from "react";
 
-import Link from "next/link";
 import Image from "next/image";
 
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { SplitText } from "gsap/SplitText";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { ArrowDown } from "lucide-react";
 
 import VideoBackground from "@/components/ui/video-background";
-import Clickable from "../ui/clickable";
+import Clickable from "@/components/ui/clickable";
 
-gsap.registerPlugin(ScrollToPlugin, ScrollTrigger, SplitText);
+type BandElement = { text: string, path: string }
 
-type BandObject = {
-  text: string, 
-  link: string, 
-}
+function FlashingBand({ items }: { items: BandElement[] }) {
+    const container = useRef<HTMLDivElement>(null);
 
-function FlashingBand({ objects }: { objects: BandObject[] }) {
-  const toAnimate = useRef<HTMLDivElement[]>([]);
-  const addToRefs = useCallback((el: HTMLDivElement | null, index: number) => {
-    if (!el || toAnimate.current.includes(el)) return;
-    toAnimate.current.splice(index, 0, el);
-  }, []);
+    useGSAP(() => {
+        if (!container.current) return;
+        const bandElements = container.current.querySelectorAll(".bandElement");
 
-  useGSAP(() => {
-    const tl = gsap.timeline({ repeat: -1 })
-    toAnimate.current.forEach((el, index) => {
-      tl.to(el, {
-        color: "#E1C340", 
-        yoyo: true, 
-        repeat: 1, 
-        ease: "power1.out"
-      })
-    })
-    tl.duration(5)
-  })
+        const tl = gsap.timeline({ repeat: -1 })
+        bandElements.forEach((el, index) => {
+            tl.to(el, {
+                color: "#E1C340", 
+                yoyo: true, 
+                repeat: 1, 
+                ease: "power1.out"
+            })
+        })
+        tl.duration(5)
+    }, { scope: container })
 
-  return (
-    <div className="textLead text-foreground-subdued opacity-80 flex flex-wrap justify-center gap-x-4">
-      {objects.map((el, i) => (
-        <div ref={(e) => addToRefs(e, i)} key={i}>
-          <Link href={el.link}>
-            {el.text}
-          </Link>
+    return (
+        <div ref={container} className="flex flex-wrap gap-x-4 justify-center">
+            {items.map((el, index) => (
+                <div key={index} className="">
+                    <Clickable
+                        clickableType={{type: "link", path: el.path}}
+                        style={{}}
+                        className="bandElement textLead text-foreground-subdued opacity-80"
+                    >
+                        {el.text}
+                    </Clickable>
+                </div>
+            ))}
         </div>
-      ))}
-    </div>
   );
 }
 
-export default function Hero() {
+function Arrow({ }) {
     const container = useRef<HTMLDivElement>(null);
-    
-    // Parallax sur vidéo
-    useGSAP(() => {
-        const amount = 60;
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: ".parallax-gradient", 
-                start: "top 60%", 
-                end: "top top", 
-                scrub: true, 
-            }, 
-        })
-        .to(".arrow", {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)", 
-            duration: 0.07
-        })
-        .to(".parallax-gradient", {
-            y: `-${amount-1}vh`, 
-        }, "<")
-        .to(".parallax-fill", {
-            clipPath: `polygon(0% ${100-amount}%, 100% ${100-amount}%, 100% 100%, 0% 100%)`
-        }, "<")
-        .to(".parallax-text", {
-            y: `-${amount/3}vh`, 
-        }, "<")
-    }, { scope: container })
-    
-    // Texte qui apparait sous le premier parallax
-    useGSAP(() => {
-        const split = new SplitText(".split", {
-        type: "words",
-        });
-    
-        gsap.from(split.words, {
-            scrollTrigger: {
-                start: "top 75%", 
-                end: "top 20%", 
-                trigger: ".split", 
-                toggleActions: "play reverse play reverse"
-            }, 
-            yPercent: 130,
-            stagger: 0.05,
-            ease: "power2.out",
-            duration: 0.4
-        });
-    }, { scope: container });
-    
-    // Fleche scroll down qui clignote
+
+    // Rebonds
     useGSAP(() => {
         gsap.to(".arrow", {
             y: 10, 
@@ -116,87 +64,124 @@ export default function Hero() {
             repeat: -1
         })
     }, { scope: container })
-    
-    // Clique sur la fleche
-    const { contextSafe } = useGSAP( {scope: container} )
-    const onArrowClick = contextSafe(() => {
-        gsap.to(window, {
-            scrollTo: {
-                y: "#title-valeurs",
-                offsetY: 55, 
+
+    return (
+        <div ref={container} className="absolute bottom-20">
+            <ArrowDown onClick={() => {const vh = window.innerHeight; window.scrollTo({top: 4*vh/5, behavior: "smooth"})}} size={24} className="parallaxArrow arrow text-foreground-subdued"/>
+        </div>
+    );
+}
+
+export default function Hero() {
+    const container = useRef<HTMLDivElement>(null);
+
+    // Parallax
+    useGSAP(() => {
+        const amount = 60;
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: ".parallaxFill", 
+                start: () => "bottom bottom", 
+                end: () => "bottom top", 
+                scrub: 0.5, 
             }, 
-            ease: "power2.inOut", 
-            duration: 1.4
         })
-    })
+        .to(".parallaxArrow", {
+            autoAlpha: 0, 
+            duration: 0.07
+        })
+        .to(".parallaxGradient", {
+            y: `-${amount-1}vh`, 
+        }, "<")
+        .to(".parallaxFill", {
+            clipPath: `polygon(0% ${100-amount}%, 100% ${100-amount}%, 100% 100%, 0% 100%)`
+        }, "<")
+        .to(".parallaxText", {
+            y: `-${amount/3}vh`, 
+        }, "<")
+    }, { scope: container })
+
+    // Texte qui apparait sous le premier parallax
+    useGSAP(() => {
+        gsap.from(".splitText", {
+            scrollTrigger: {
+                start: "top 75%", 
+                end: "top 20%", 
+                trigger: ".splitText", 
+                toggleActions: "play reverse play reverse"
+            }, 
+            yPercent: 130,
+            ease: "power2.out",
+            duration: 0.4
+        });
+    }, { scope: container });
     
     return (
-        <section id="hero" ref={container} className="relative h-[100vh] w-full">
-
+        <section id="hero" ref={container} className="relative w-full min-h-screen">
             {/* Vidéo */}
             <div className="absolute inset-0">
-            <VideoBackground id="Presentation"/>
+            <VideoBackground videoId="Tdrz5LPy-Vk"/>
             </div>
 
-            {/* Dégradé */}
-            <div>
-            <div className="absolute inset-x-0 top-[60vh] bottom-0 bg-gradient-to-t from-background-base to-transparent z-10 parallax-gradient"/>
-            <div className="absolute size-full bg-background-base parallax-fill z-10">
-                {/* Texte dessous */}
-                <div className="absolute bottom-0 inset-x-0 flex flex-col items-center space-y-5 pb-4">
-                <div className="pt-20 inline-flex overflow-hidden">
-                    <p className="readable-big text-center text-2xl text-foreground-subdued split">
-                        Venez découvrir ...
-                    </p>
-                </div>
-                </div>
-            </div>
-            </div>
-            
-            {/* Texte écran d'accueil */}
-            <div className="absolute inset-0 px-content z-20 flex flex-col items-center justify-around pt-20 pb-20 parallax-text">
-                <div className="flex flex-col items-center space-y-2">
+            {/* Texte */}
+            <div className="relative z-10 w-full min-h-screen parallaxText px-content lg:px-contentLg flex flex-col items-center justify-around pt-20 pb-20">
+                {/* Titre */}
+                <div className="flexCenter flex-col space-y-2">
                     <Image
                         src="/images/logo-hallb.png"
                         alt="Logo Hall B"
                         width={1240}
                         height={1328}
                         className="h-[6rem] w-auto"
+                        priority
                     />
-                    <p className={"text-2xl text-foreground-subdued font-montserrat"}>
+                    <p className={"text-foreground-subdued"}>
                         Un bon sous-titre
                     </p>
                 </div>
                 
+                {/* Bandeau clignotant */}
                 <FlashingBand
-                    objects={[
-                    { link: "", text: "Musculation" }, 
-                    { link: "", text: "Fitness" }, 
-                    { link: "", text: "Aqua" }, 
-                    { link: "", text: "Squash" }, 
-                    { link: "", text: "Osteo" }, 
-                    { link: "", text: "Danse" }, 
+                    items={[
+                    { path: "", text: "Musculation" }, 
+                    { path: "", text: "Fitness" }, 
+                    { path: "", text: "Aqua" }, 
+                    { path: "/squash", text: "Squash" }, 
+                    { path: "", text: "Osteo" }, 
+                    { path: "", text: "Danse" }, 
                     ]}
                 />
 
-                <div className="flex flex-col items-center space-y-2">
+                {/* Boutons */}
+                <div className="flexCenter flex-col space-y-2">
                     <Clickable
-                        clickableType={{type:"link", path: ""}}
+                        clickableType={{type:"link", path: "/offert"}}
                         style={{variant: "page", color: "primary"}}
                     >
                         Séance d'essai offerte
                     </Clickable>
                     <Clickable
-                        clickableType={{type:"link", path: ""}}
+                        clickableType={{type:"link", path: "/tarifs"}}
                         style={{variant: "page", color: "accent"}}
                     >
                         Je m'inscris
                     </Clickable>
                 </div>
 
-                <ArrowDown size={24} className="absolute bottom-20 text-foreground-subdued arrow" onClick={onArrowClick}/>
+                {/* Flèche */}
+                <Arrow/>
             </div>
-
+            {/* Dégradé */}
+            <div className="parallaxGradient z-0 inset-x-0 top-[60vh] absolute w-full h-[40vh] bg-gradient-to-t from-background-base to-transparent"/>
+            <div
+                className="parallaxFill z-0 absolute inset-x-0 top-0 h-screen bg-background-base flex flex-row justify-center transform-gpu [will-change:clip-path]"
+                style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" }}>
+                <p className="splitText text-foreground-subdued absolute bottom-0">
+                    Venez Découvrir ...
+                </p>
+            </div>
+            {/* Fond en plus au cas ou les boutons dépassent de l'écran */}
+            <div className="absolute inset-x-0 top-[100vh] bottom-0 bg-background-base"/>
         </section>
     );
 }
