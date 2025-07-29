@@ -3,7 +3,7 @@ import SportigoPlannings from "@/components/plannings/sportigo-plannings";
 
 export default function ReservationPage() {
     return (
-        <main className="bg-background-base p-content lg:p-contentLg pt-subMenu flex flex-col items-center">
+        <main className="bg-background-base w-full pt-subMenu px-content lg:px-contentLg pb-content lg:pb-contentLg flex flex-col space-y-10">
             {/* Titre */}
             <div className="flex flex-col items-center space-y-2 mb-subTitle lg:mb-subTitleLg">
                 <h1 className="text-foreground-base">Plannings</h1>

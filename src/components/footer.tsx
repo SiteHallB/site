@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import Clickable from "@/components/ui/clickable";
 import { Facebook, Instagram, Star as St } from "lucide-react";
+import Reseaux from "@/components/reseaux";
 
 function Separator() {
     return (
@@ -101,27 +102,7 @@ export default function Footer() {
             {/* Infos importantes */}
             <div className="z-10 w-full flex flex-col lg:flex-row justify-between pb-content lg:pb-contentLg gap-y-content">
                 {/* Réseaux */}
-                <div className="lg:items-center w-full flex flex-col">
-                    <div>
-                    <p className="text-foreground-base textSubH2 lg:mb-contentClose">Nos actus</p>
-                    <Clickable
-                        clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
-                        style={{variant: "menuSideButton"}}
-                        className="flex flex-row space-x-1"
-                    >
-                        <Instagram/>
-                        <p>Instagram</p>
-                    </Clickable>
-                    <Clickable
-                        clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
-                        style={{variant: "menuSideButton"}}
-                        className="flex flex-row space-x-1"
-                    >
-                        <Facebook/>
-                        <p>Facebook</p>
-                    </Clickable>
-                    </div>
-                </div>
+                <Reseaux/>
 
                 {/* Horraire */}
                 <div className="lg:items-center w-full flex flex-col">
@@ -170,14 +151,13 @@ export default function Footer() {
             </div>
 
             {/* Hall b en fond */}
-            <div className="absolute inset-0 overflow-hidden flexCenter">
-                <div className="absolute inset-0 bg-background-subdued/90"/>
+            <div className="absolute inset-0 overflow-hidden flexCenter p-contentClose lg:p-content">
                 <Image
                     src="/images/logo-hallb.png"
                     alt="Logo Hall B"
                     width={1240}
                     height={1328}
-                    className="max-h-full max-w-full"
+                    className="max-h-full max-w-full opacity-10"
                 />
             </div>
         </footer>

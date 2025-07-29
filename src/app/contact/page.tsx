@@ -56,8 +56,8 @@ function ContactForm() {
             <h2 className="text-foreground-base">Message</h2>
             <p className="text-foreground-subdued textSubH2 text-center">N'hesitez pas à nous solliciter</p>
         </div>
-        <div className="w-full flex flex-col">
-            <label htmlFor="name" className="text-foreground-base text-center">Nom</label>
+        <div className="w-full flex flex-col space-y-2">
+            <label htmlFor="name" className="text-foreground-base textNormal">Nom</label>
             <input
                 type="text"
                 name="name"
@@ -67,11 +67,11 @@ function ContactForm() {
                 value={form.name}
                 required
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="inputColor resize-none w-full textNormal p-contentClose outline-1 outline-foreground-subdued rounded-xs"
+                className="inputColor p-2 resize-none w-full textNormal outline-1 outline-foreground-subdued/10 rounded"
             />
         </div>
-        <div className="w-full flex flex-col">
-            <label htmlFor="email" className="text-foreground-base text-center">Email</label>
+        <div className="w-full flex flex-col space-y-2">
+            <label htmlFor="email" className="text-foreground-base textNormal">Email</label>
             <input
                 type="email"
                 name="email"
@@ -81,20 +81,20 @@ function ContactForm() {
                 value={form.email}
                 required
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="inputColor resize-none w-full textNormal p-contentClose outline-1 outline-foreground-subdued rounded-xs"
+                className="inputColor p-2 resize-none w-full textNormal outline-1 outline-foreground-subdued/10 rounded"
                 
             />
         </div>
-        <div className="w-full flex flex-col">
-            <label htmlFor="message" className="text-foreground-base text-center">Message</label>
+        <div className="w-full flex flex-col space-y-2">
+            <label htmlFor="message" className="text-foreground-base textNormal">Message</label>
             <TextareaAutosize
                 name="message"
                 id="message"
-                placeholder="..."
+                placeholder="Votre message"
                 value={form.message}
                 required
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="resize-none w-full text-foreground-base textNormal p-contentClose outline-1 outline-foreground-subdued rounded-xs"
+                className="resize-none p-2 w-full text-foreground-base textNormal outline-1 outline-foreground-subdued/10 rounded"
                 minRows={4}
             />
         </div>

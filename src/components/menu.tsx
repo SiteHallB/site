@@ -9,7 +9,8 @@ import Image from "next/image";
 import { Menu as MenuIcon, X, Instagram, Facebook, ChevronRight } from 'lucide-react';
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-import Clickable from "./ui/clickable";
+import Clickable from "@/components/ui/clickable";
+import Reseaux from "@/components/reseaux";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,7 +93,7 @@ export default function Menu() {
             <div className="py-5 fixed top-0 left-0 w-screen flex justify-around items-center z-50 px-4 lg:px-8 py-1 nav-bar space-x-2">
                 
                 <Clickable
-                    clickableType={{type: "link", onClick: () => 0, path: ""}}
+                    clickableType={{type: "link", path: "/offert"}}
                     style={{variant: "navigationBar", color: "primary"}}
                 >
                     Essai Offert
@@ -110,7 +111,7 @@ export default function Menu() {
             </div>
 
             {/* Overlay menu */}
-            <div className="menu-overlay fixed z-40 inset-0 bg-background-subdued flex flex-col pt-10 justify-around px-contentClose items-center">
+            <div className="menu-overlay fixed z-40 inset-0 bg-background-subdued flex flex-col pt-10 justify-around px-contentClose items-center transform-gpu [will-change:clip-path]">
                 <nav className="flex flex-col w-full">
                     {navLinks.map((el, index) => (
                         <MenuItem linkInfo={el} onClick={toggleMenu} key={index}/>
@@ -134,24 +135,7 @@ export default function Menu() {
                     />
                 </div> 
 
-                <div className="mr-auto flex flex-col text-foreground-subdued">
-                    <Clickable
-                        clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
-                        style={{variant: "menuSideButton"}}
-                        className="flex flex-row space-x-5"
-                    >
-                        <Instagram/>
-                        <p>Instagram</p>
-                    </Clickable>
-                    <Clickable
-                        clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
-                        style={{variant: "menuSideButton"}}
-                        className="flex flex-row space-x-5"
-                    >
-                        <Facebook/>
-                        <p>Facebook</p>
-                    </Clickable>
-                </div>
+                <Reseaux/>
             </div>
         </section>
     );

@@ -41,7 +41,7 @@ export default function SeanceGratuite() {
 
     return (
         <section ref={container} id="seance-gratuite" className="w-full bg-background-base mb-subSection">
-            <div className="z-10 trigger">
+            <div className="trigger">
             <div className="w-full h-[5vh] bg-gradient-to-b from-background-base to-accent"/>
             <div className="relative w-full bg-accent p-content lg:px-contentLg flex flex-col items-center space-y-content">
                 <h2 className="text-foreground-base text-center flex flex-col items-center space-y-10">
@@ -56,9 +56,9 @@ export default function SeanceGratuite() {
                     <span className="text">gratuitement et sans engagement</span>
                 </h2>
                 <Clickable
-                    clickableType={{type: "link", path: ""}}
+                    clickableType={{type: "link", path: "/offert"}}
                     style={{"variant": "action", "color": "background"}}
-                    className="bouton"
+                    className="bouton z-10"
                 >
                     Essai Offert
                 </Clickable>

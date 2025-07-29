@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'futuretense';
+  src: local('Future Tense'), url('/fonts/FutureTense-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme inline {
+  --color-background-base: #121212;
+  --color-background-highlight: #242424;
+  --color-background-subdued: #000000;
+  --color-foreground-base: #FFFFFF;
+  --color-foreground-subdued: #FFFFFF99;
+  --color-accent: #E1C340;
+}
+
+/* Pour ne pas qu'abonnement sorte de la carte */
+.border.bg-card .flex.items-start.justify-between {
+    flex-wrap: wrap;
+    min-width: 0;
+}
+.border.bg-card .flex.items-start.justify-between h4 {
+    flex: 1 1 0%;
+    min-width: 0;
+    white-space: normal;
+}
+.border.bg-card .flex.items-start.justify-between .inline-flex {
+    flex: 0 0 auto;
+    margin-top: 0.5rem;
+}
+
+/* Pour que le bouton d'achat en bas a droite ne sorte pas */
+.border.bg-card .flex.items-center.justify-end {
+    flex-wrap: wrap;
+    min-width: 0;
+}
+.border.bg-card .offer-payment-card-button {
+    flex: 0 0 auto;
+    margin-top: 0.5rem;
+}
+
+.PhoneInputInput {
+  background-color: var(--color-background-highlight) !important;
+}
+
+h4 {
+    font-family: "futuretense";
+}
+
+[data-radix-aspect-ratio-wrapper] img {
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+
+.bg-card {
+    background-color: var(--color-background-highlight);
+}
+
+.text-muted-foreground {
+    color: var(--color-foreground-subdued);
+}
+.text-muted-foreground * {
+  color: var(--color-foreground-base);
+}
+
+.bg-primary {
+    background-color: var(--color-accent);
+}
+
+.bg-background {
+    background-color: var(--color-background-subdued);
+}
+
+.bg-muted {
+    background-color: var(--color-background-base);
+}
+
+button {
+  color: var(--color-foreground-base);
+}
+
+button[role="checkbox"][data-state="checked"] {
+  background-color: var(--color-accent);
+  color: var(--color-background-base);
+}
+
+/* Container conditions */
+div[role="dialog"][data-state="open"] {
+  color: var(--color-foreground-base);
+  background-color: var(--color-background-base);
+}
+
+div[role="dialog"][data-state="open"] *,
+div[role="dialog"][data-state="open"] *::before,
+div[role="dialog"][data-state="open"] *::after {
+  color: inherit !important;
+  background-color: inherit !important;
+}

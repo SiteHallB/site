@@ -12,20 +12,20 @@
   --font-montserrat: "Montserrat", sans-serif; 
 }
 
-h1 { @apply text-4xl lg:text-6xl uppercase font-futuretense; }
+h1 { @apply text-4xl lg:text-5xl uppercase font-futuretense; }
 
-h2 { @apply text-3xl lg:text-5xl uppercase font-futuretense; }
-.textLeadBig  { @apply text-2xl lg:text-6xl uppercase font-futuretense; }
+h2 { @apply text-3xl lg:text-4xl uppercase font-futuretense; }
+.textLeadBig  { @apply text-2xl lg:text-5xl uppercase font-futuretense; }
 
-h3 { @apply text-4xl lg:text-6xl uppercase font-montserrat; }
+h3 { @apply text-4xl lg:text-5xl uppercase font-montserrat; }
 
 .textSubH2 { @apply text-sm lg:text-base uppercase font-futuretense; }
 
-p { @apply text-base lg:text-xl normal-case font-montserrat; }
-.textNormal { @apply text-base lg:text-xl normal-case font-montserrat; }
+p { @apply text-base lg:text-lg normal-case font-montserrat; }
+.textNormal { @apply text-base lg:text-lg normal-case font-montserrat; }
 
-.textLead { @apply text-lg lg:text-2xl uppercase font-futuretense; }
+.textLead { @apply text-lg lg:text-xl uppercase font-futuretense; }
 
-.textLeadSmall { @apply text-xs lg:text-base uppercase font-futuretense; }
+.textLeadSmall { @apply text-xs lg:text-sm uppercase font-futuretense; }
 
-.textSmall { @apply text-xs lg:text-base normal-case font-montserrat; }
+.textSmall { @apply text-xs lg:text-sm normal-case font-montserrat; }

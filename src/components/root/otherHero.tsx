@@ -2,7 +2,7 @@
 
 import "@/styles/accueil-degrade.css"
 
-import { useRef, useCallback } from "react";
+import { useRef } from "react";
 
 import Image from "next/image";
 
@@ -15,9 +15,8 @@ import VideoBackground from "@/components/ui/video-background";
 import Clickable from "@/components/ui/clickable";
 
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollToPlugin, SplitText);
+gsap.registerPlugin(ScrollToPlugin);
 
 type BandElement = { text: string, path: string }
 
@@ -76,7 +75,7 @@ function Arrow({ }) {
         gsap.to(window, {
             scrollTo: {
                 y: "#concept",
-                offsetY: 55, 
+                offsetY: 100, 
             }, 
             ease: "power2.inOut", 
             duration: 1.4
@@ -105,7 +104,7 @@ export default function Hero() {
             }, 
         })
         .to(".parallaxArrow", {
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)", 
+            autoAlpha: 0, 
             duration: 0.07
         })
         .to(".parallaxGradient", {
@@ -121,11 +120,7 @@ export default function Hero() {
 
     // Texte qui apparait sous le premier parallax
     useGSAP(() => {
-        const split = new SplitText(".splitText", {
-        type: "words",
-        });
-    
-        gsap.from(split.words, {
+        gsap.from(".splitText", {
             scrollTrigger: {
                 start: "top 75%", 
                 end: "top 20%", 
@@ -133,7 +128,6 @@ export default function Hero() {
                 toggleActions: "play reverse play reverse"
             }, 
             yPercent: 130,
-            stagger: 0.05,
             ease: "power2.out",
             duration: 0.4
         });
@@ -143,7 +137,7 @@ export default function Hero() {
         <section id="hero" ref={container} className="relative w-full min-h-screen">
             {/* Vidéo */}
             <div className="absolute inset-0">
-            <VideoBackground id="Presentation"/>
+            <VideoBackground videoId="Tdrz5LPy-Vk"/>
             </div>
 
             {/* Texte */}
@@ -177,7 +171,7 @@ export default function Hero() {
                 {/* Boutons */}
                 <div className="flexCenter flex-col space-y-2">
                     <Clickable
-                        clickableType={{type:"link", path: ""}}
+                        clickableType={{type:"link", path: "/offert"}}
                         style={{variant: "page", color: "primary"}}
                     >
                         Séance d'essai offerte
@@ -195,7 +189,9 @@ export default function Hero() {
             </div>
             {/* Dégradé */}
             <div className="parallaxGradient z-0 inset-x-0 top-[60vh] absolute w-full h-[40vh] bg-gradient-to-t from-background-base to-transparent"/>
-            <div className="parallaxFill z-0 absolute inset-x-0 top-0 h-screen bg-background-base flex flex-row justify-center" style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" }}>
+            <div
+                className="parallaxFill z-0 absolute inset-x-0 top-0 h-screen bg-background-base flex flex-row justify-center transform-gpu [will-change:clip-path]"
+                style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" }}>
                 <p className="splitText text-foreground-subdued absolute bottom-0">
                     Venez Découvrir ...
                 </p>

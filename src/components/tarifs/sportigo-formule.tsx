@@ -2,20 +2,20 @@
 import { useEffect } from "react";
 import Script from "next/script";
 
-export default function SportigoFormule() {
+export default function SportigoFormule({ id }: { id?: number }) {
     const data = {
         initOfferPayment: {
-            id: 0,
+            id: id ? id : 0,
             cancelable: false
         },
         redirectUrl: 'https://www.sportigo.io/thank-you',
         theme: {
-            dark: false,
+            dark: true,
             googleFont: {
-                name: 'Audiowide',
-                family: 'serif'
+                name: 'Montserrat',
+                family: 'sans-serif'
             },
-            cssFile: '',
+            cssFile: '/css/sportigo-formule.css',
         }
     };
 
