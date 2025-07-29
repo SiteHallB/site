@@ -44,7 +44,8 @@ type ClickableType =
     | {
         type: "link"; 
         onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void; 
-        path: string; 
+        path: string;
+        outside?: boolean
     }
 
 export default function Clickable({ clickableType, trackingLabel, className, children, style }: 
@@ -92,8 +93,11 @@ export default function Clickable({ clickableType, trackingLabel, className, chi
             </button>
         );
     } else {
+        const outsideProps = clickableType.outside
+            ? { target: '_blank', rel: 'noopener noreferrer' } : {}
         return (
             <Link
+                { ...outsideProps }
                 href={clickableType.path}
                 onClick={handleLinkClick}
                 className={cn}

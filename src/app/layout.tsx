@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: "Hall B",
     icons: {
         icon: '/favicon/favicon.ico',
-        shortcut: '/favicon/favicon-32x32.png',
+        shortcut: '/favicon/favicon.ico',
         apple: '/favicon/apple-touch-icon.png',
     },
 };

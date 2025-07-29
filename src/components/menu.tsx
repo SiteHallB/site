@@ -52,13 +52,16 @@ function MenuItem({ linkInfo, onClick }: MenuItemProps) {
             </div>
         </div>
     );
-    
+}
+
+function MenuOverlay() {
+
 }
 
 export default function Menu() {
     const container = useRef<HTMLDivElement>(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const toggleMenu = () => { setIsMenuOpen(!isMenuOpen) };
+    const toggleMenu = () => { setIsMenuOpen(!isMenuOpen); };
 
     const tl = useRef<gsap.core.Timeline | null>(null);
     useGSAP(() => {
@@ -87,9 +90,9 @@ export default function Menu() {
     }, [isMenuOpen]);
 
     return (
-        <section id="menu" ref={container} className="pointer-events-auto overflow-y-auto touch-none fixed inset-y-0 right-0 w-full max-w-150 z-40">
+        <section id="menu" ref={container}>
             {/* Barre de navigation */}
-            <nav className="absolute top-0 inset-x-0 z-50 py-5 flex justify-around items-center px-4 lg:px-8 py-1 nav-bar space-x-2">
+            <nav className="fixed right-0 w-full max-w-150 z-50 py-5 flex justify-around items-center px-4 lg:px-8 py-1 nav-bar space-x-2">
                 <Clickable
                     clickableType={{type: "link", onClick: () => setIsMenuOpen(false), path: "/offert"}}
                     style={{variant: "navigationBar", color: "primary"}}
@@ -109,31 +112,37 @@ export default function Menu() {
             </nav>
 
             {/* Overlay menu */}
-            <div className="border-l-1 border-l-foreground-subdued menu-overlay size-full bg-background-base flex flex-col pt-10 justify-around px-contentClose items-center transform-gpu [will-change:clip-path]">
-                <nav className="flex flex-col w-full">
-                    {navLinks.map((el, index) => (
-                        <MenuItem linkInfo={el} onClick={toggleMenu} key={index}/>
-                    ))}
-                </nav>
-                
-                <div className="flex flex-col w-full">
-                    <MenuItem linkInfo={{ path: "", label: "Consultation Ostéopathe" }} onClick={toggleMenu}/>
-                    <MenuItem linkInfo={{ path: "/squash", label: "Réservation Squash" }} onClick={toggleMenu}/>
-                </div>
-                
-                <div className="relative flex overflow-hidden w-full max-w-100 h-50">
-                    <div className="absolute inset-y-0 left-0 w-[7rem] bg-gradient-to-r from-background-base to-transparent z-10"/>
-                    <div className="absolute inset-y-0 right-0 w-[7rem] bg-gradient-to-l from-background-base to-transparent z-10"/>
-                    <Image 
-                        src="/images/concept.jpg"
-                        width={3024}
-                        height={4032}
-                        className="object-cover"
-                        alt=""
-                    />
-                </div> 
+            <div className="fixed inset-0 z-40 pointer-events-auto touch-none menu-overlay">
+                {/* Exterieur de l'overlay */}
+                <div className="h-full w-auto" onClick={() => setIsMenuOpen(false)}></div>
 
-                <Reseaux/>
+                {/* Vrai overlay */}
+                <div className="absolute inset-y-0 right-0 w-full max-w-150 border-l-1 border-l-foreground-subdued bg-background-base flex flex-col pt-10 justify-around px-contentClose items-center transform-gpu [will-change:clip-path]">
+                    <nav className="flex flex-col w-full">
+                        {navLinks.map((el, index) => (
+                            <MenuItem linkInfo={el} onClick={toggleMenu} key={index}/>
+                        ))}
+                    </nav>
+                    
+                    <div className="flex flex-col w-full">
+                        <MenuItem linkInfo={{ path: "", label: "Consultation Ostéopathe" }} onClick={toggleMenu}/>
+                        <MenuItem linkInfo={{ path: "/squash", label: "Réservation Squash" }} onClick={toggleMenu}/>
+                    </div>
+                    
+                    <div className="relative flex overflow-hidden w-full max-w-100 h-50">
+                        <div className="absolute inset-y-0 left-0 w-[7rem] bg-gradient-to-r from-background-base to-transparent z-10"/>
+                        <div className="absolute inset-y-0 right-0 w-[7rem] bg-gradient-to-l from-background-base to-transparent z-10"/>
+                        <Image 
+                            src="/images/concept.jpg"
+                            width={3024}
+                            height={4032}
+                            className="object-cover"
+                            alt=""
+                        />
+                    </div> 
+
+                    <Reseaux/>
+                </div>
             </div>
         </section>
     );

@@ -8,7 +8,7 @@ export default function Reseaux({ className, title }: { className?: string, titl
             <div>
             <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">{title ? title : "Nos actus"}</p>
             <Clickable
-                clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/"}}
+                clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/", outside: true}}
                 style={{variant: "menuSideButton"}}
                 className="flex flex-row space-x-1 w-fit"
             >
@@ -16,7 +16,7 @@ export default function Reseaux({ className, title }: { className?: string, titl
                 <p>Instagram</p>
             </Clickable>
             <Clickable
-                clickableType={{type: "link", path: "https://www.facebook.com/p/HALL-B-61576081445951/"}}
+                clickableType={{type: "link", path: "https://www.facebook.com/p/HALL-B-61576081445951/", outside: true}}
                 style={{variant: "menuSideButton"}}
                 className="flex flex-row space-x-1 w-fit"
             >

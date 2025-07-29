@@ -56,7 +56,7 @@ export default function Footer() {
                     autheur="Gauthier Bonhomme"
                     text="J'ai visité la salle en juillet, la surface est juste dingue et le matériel est d'excellente qualité"/>
                 <Clickable
-                    clickableType={{type: "link", path: "https://maps.app.goo.gl/q6AxEJa8WjfwpBVw8"}}
+                    clickableType={{type: "link", path: "https://maps.app.goo.gl/q6AxEJa8WjfwpBVw8", outside: true}}
                     style={{"variant": "action", "color": "accent"}}
                     className="lg:w-fit w-full"
                 >
@@ -121,7 +121,7 @@ export default function Footer() {
                     <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Ou nous trouver ?</p>
                     <div className="text-foreground-subdued">
                         <Clickable 
-                            clickableType={{type: "link", path: "https://maps.app.goo.gl/8NkxFXwWUCSQMxDLA"}}
+                            clickableType={{type: "link", path: "https://maps.app.goo.gl/8NkxFXwWUCSQMxDLA", outside: true}}
                             style={{}}
                             className="hoverUnderline textNormal text-foreground-subdued"
                         >

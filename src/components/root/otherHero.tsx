@@ -14,10 +14,6 @@ import { ArrowDown } from "lucide-react";
 import VideoBackground from "@/components/ui/video-background";
 import Clickable from "@/components/ui/clickable";
 
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
-gsap.registerPlugin(ScrollToPlugin);
-
 type BandElement = { text: string, path: string }
 
 function FlashingBand({ items }: { items: BandElement[] }) {
@@ -69,22 +65,9 @@ function Arrow({ }) {
         })
     }, { scope: container })
 
-    // Clique sur la fleche
-    const { contextSafe } = useGSAP( {scope: container} )
-    const onArrowClick = contextSafe(() => {
-        gsap.to(window, {
-            scrollTo: {
-                y: "#concept",
-                offsetY: 100, 
-            }, 
-            ease: "power2.inOut", 
-            duration: 1.4
-        })
-    })
-
     return (
         <div ref={container} className="absolute bottom-20">
-            <ArrowDown onClick={onArrowClick} size={24} className="parallaxArrow arrow text-foreground-subdued"/>
+            <ArrowDown onClick={() => {const vh = window.innerHeight; window.scrollTo({top: vh, behavior: "smooth"})}} size={24} className="parallaxArrow arrow text-foreground-subdued"/>
         </div>
     );
 }
