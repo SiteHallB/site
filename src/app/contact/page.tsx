@@ -8,6 +8,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Clickable from "@/components/ui/clickable";
 
 import { useState, FormEvent } from "react";
+import Reseaux from "@/components/reseaux";
 
 type StatusType = "typing" | "sending" | "success" | "error"
 function ContactForm() {
@@ -52,6 +53,7 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-background-highlight rounded-xl p-content lg:p-contentLg flex flex-col items-center space-y-contentClose">
+        <div className="w-full max-w-200">
         <div className="flex flex-col items-center">
             <h2 className="text-foreground-base">Message</h2>
             <p className="text-foreground-subdued textSubH2 text-center">N'hesitez pas à nous solliciter</p>
@@ -109,13 +111,14 @@ function ContactForm() {
             Envoyer
         </Clickable>
         {status !== "typing" && <p className="mt-2 text-center">{statusMessage(status)}</p>}
+        </div>
     </form>
   );
 }
 
 export default function Page() {
     return (
-        <div className="bg-background-base w-full h-500 pt-subMenu px-content lg:px-contentLg flex flex-col space-y-10">
+        <div className="bg-background-base w-full pb-subSection pt-subMenu px-content lg:px-contentLg flex flex-col space-y-10">
             {/* Titre */}
             <div className="flex flex-col items-center space-y-2 mb-subTitle lg:mb-subTitleLg">
                 <h1 className="text-foreground-base">Contacts</h1>
@@ -123,6 +126,34 @@ export default function Page() {
                     Sous titrex
                 </p>
             </div>
+            
+            {/* Coordonnées */}
+            <div className="z-10 w-full flex flex-wrap pb-content justify-between lg:pb-contentLg gap-content px-content lg:px-contentLg">
+                {/* Email */}
+                <div className="lg:items-center flex flex-col">
+                    <div>
+                    <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Email</p>
+                    <p className="text-foreground-subdued">
+                        email
+                    </p>
+                    </div>
+                </div>
+
+                {/* Téléphone ? */}
+                <div className="lg:items-center flex flex-col">
+                    <div>
+                    <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Téléphone</p>
+                    <p className="text-foreground-subdued">
+                        06000000
+                    </p>
+                    </div>
+                </div>
+
+                {/* Réseaux */}
+                <Reseaux/>
+            </div>
+
+            {/* Message formulaire */}
             <ContactForm/>
         </div>
     );

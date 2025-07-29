@@ -56,7 +56,7 @@ export default function Footer() {
                     autheur="Gauthier Bonhomme"
                     text="J'ai visité la salle en juillet, la surface est juste dingue et le matériel est d'excellente qualité"/>
                 <Clickable
-                    clickableType={{type: "link", path: "https://maps.app.goo.gl/L9UnaRBpBe8vECyD9"}}
+                    clickableType={{type: "link", path: "https://maps.app.goo.gl/q6AxEJa8WjfwpBVw8"}}
                     style={{"variant": "action", "color": "accent"}}
                     className="lg:w-fit w-full"
                 >
@@ -102,12 +102,12 @@ export default function Footer() {
             {/* Infos importantes */}
             <div className="z-10 w-full flex flex-col lg:flex-row justify-between pb-content lg:pb-contentLg gap-y-content">
                 {/* Réseaux */}
-                <Reseaux/>
+                <Reseaux className="w-full"/>
 
                 {/* Horraire */}
                 <div className="lg:items-center w-full flex flex-col">
                     <div>
-                    <p className="text-foreground-base textSubH2 lg:mb-contentClose">Horraires</p>
+                    <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Horraires</p>
                     <p className="text-foreground-subdued">
                         Tous les jours de 6h à 23h<br/>
                         Y compris le Dimanche et jours fériés
@@ -118,33 +118,42 @@ export default function Footer() {
                 {/* Ou nous trouver ? */}
                 <div className="lg:items-center w-full flex flex-col">
                     <div>
-                    <p className="text-foreground-base textSubH2 lg:mb-contentClose">Ou nous trouver ?</p>
-                    <p className="text-foreground-subdued">
-                        1 Chem. d'Azord, 30980 Saint-Dionisy<br/>
-                        hallb@contact.fr<br/>
-                        0600000000
-                    </p>
+                    <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Ou nous trouver ?</p>
+                    <div className="text-foreground-subdued">
+                        <Clickable 
+                            clickableType={{type: "link", path: "https://maps.app.goo.gl/8NkxFXwWUCSQMxDLA"}}
+                            style={{}}
+                            className="hoverUnderline textNormal text-foreground-subdued"
+                        >
+                            1 Chem. d'Azord, 30980 Saint-Dionisy
+                        </Clickable>
+                        <p>hallb@contact.fr</p>
+                        <p>0600000000</p>
+                    </div>
                     </div>
                 </div>
             </div>
 
             {/* Legal */}
-            <div className="z-10 bg-background-base text-foreground-subdued flex flex-col gap-y-contentClose py-contentClose lg:flex-row w-full justify-around">
+            <div className="z-10 bg-background-base text-foreground-subdued flex flex-col gap-y-contentClose py-contentClose lg:flex-row w-full items-center justify-around">
                 <Clickable
                     clickableType={{type: "link", onClick: () => 0, path: ""}}
                     style={{variant: "legal"}}
+                    className="w-fit"
                 >
                     Mentions Légales
                 </Clickable>
                 <Clickable
                     clickableType={{type: "link", onClick: () => 0, path: ""}}
                     style={{variant: "legal"}}
+                    className="w-fit"
                 >
                     Politique de confidentialité
                 </Clickable>
                 <Clickable
                     clickableType={{type: "link", onClick: () => 0, path: ""}}
                     style={{variant: "legal"}}
+                    className="w-fit"
                 >
                     Gérer vos cookies
                 </Clickable>

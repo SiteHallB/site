@@ -2,6 +2,8 @@
 
 import "@/styles/menu.css"
 
+import { usePathname } from 'next/navigation';
+
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -11,12 +13,14 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 import Clickable from "@/components/ui/clickable";
 import Reseaux from "@/components/reseaux";
+import clsx from "clsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const navLinks = [
     { label: "Accueil", path: "/"}, 
     { label: "Tarifs", path: "/tarifs"}, 
+    { label: "Essai offert", path: "/offert"}, 
     { label: "Plannings", path: "/plannings"}, 
     { label: "Nous contacter", path: "/contact"}, 
 ];
@@ -32,10 +36,12 @@ type MenuItemProps = {
 };
 
 function MenuItem({ linkInfo, onClick }: MenuItemProps) {
+    const pathname = usePathname();
+
     return (
         <div className="menu-link-item">
             <div className="menu-link-item-holder flex flex-row items-center">
-                <ChevronRight size={24} className="text-accent" />
+                <ChevronRight size={24} className={clsx({ "text-accent": pathname === linkInfo.path, "text-foreground-subdued": pathname !== linkInfo.path})}/>
 
                 <Clickable
                     clickableType={{type: "link", onClick: onClick, path: linkInfo.path}}
@@ -80,20 +86,12 @@ export default function Menu() {
         isMenuOpen ? tl.current.play() : tl.current.reverse();
     }, [isMenuOpen]);
 
-    // Désactive le scroll
-    useEffect(() => {
-        isMenuOpen ? document.body.classList.add("overflow-hidden") : document.body.classList.remove("overflow-hidden");
-        
-        return () => { document.body.classList.remove("overflow-hidden"); };
-    }, [isMenuOpen]);
-
     return (
-        <section id="menu" ref={container}>
+        <section id="menu" ref={container} className="pointer-events-auto overflow-y-auto touch-none fixed inset-y-0 right-0 w-full max-w-150 z-40">
             {/* Barre de navigation */}
-            <div className="py-5 fixed top-0 left-0 w-screen flex justify-around items-center z-50 px-4 lg:px-8 py-1 nav-bar space-x-2">
-                
+            <nav className="absolute top-0 inset-x-0 z-50 py-5 flex justify-around items-center px-4 lg:px-8 py-1 nav-bar space-x-2">
                 <Clickable
-                    clickableType={{type: "link", path: "/offert"}}
+                    clickableType={{type: "link", onClick: () => setIsMenuOpen(false), path: "/offert"}}
                     style={{variant: "navigationBar", color: "primary"}}
                 >
                     Essai Offert
@@ -108,10 +106,10 @@ export default function Menu() {
                     {isMenuOpen ? <X size={24} className="text-foreground-base"/> : 
                         <MenuIcon size={24} className="text-foreground-base"/>}
                 </div>
-            </div>
+            </nav>
 
             {/* Overlay menu */}
-            <div className="menu-overlay fixed z-40 inset-0 bg-background-subdued flex flex-col pt-10 justify-around px-contentClose items-center transform-gpu [will-change:clip-path]">
+            <div className="border-l-1 border-l-foreground-subdued menu-overlay size-full bg-background-base flex flex-col pt-10 justify-around px-contentClose items-center transform-gpu [will-change:clip-path]">
                 <nav className="flex flex-col w-full">
                     {navLinks.map((el, index) => (
                         <MenuItem linkInfo={el} onClick={toggleMenu} key={index}/>
@@ -120,10 +118,10 @@ export default function Menu() {
                 
                 <div className="flex flex-col w-full">
                     <MenuItem linkInfo={{ path: "", label: "Consultation Ostéopathe" }} onClick={toggleMenu}/>
-                    <MenuItem linkInfo={{ path: "", label: "Réservation Squash" }} onClick={toggleMenu}/>
+                    <MenuItem linkInfo={{ path: "/squash", label: "Réservation Squash" }} onClick={toggleMenu}/>
                 </div>
                 
-                <div className="relative flex overflow-hidden w-full h-50 rounded-xl">
+                <div className="relative flex overflow-hidden w-full max-w-100 h-50">
                     <div className="absolute inset-y-0 left-0 w-[7rem] bg-gradient-to-r from-background-base to-transparent z-10"/>
                     <div className="absolute inset-y-0 right-0 w-[7rem] bg-gradient-to-l from-background-base to-transparent z-10"/>
                     <Image 

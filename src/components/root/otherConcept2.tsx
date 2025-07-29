@@ -107,7 +107,7 @@ export default function Concept() {
                             Voir le planning
                         </Clickable>
                         <Clickable
-                            clickableType={{type:"link", path: ""}}
+                            clickableType={{type:"link", path: "/squash"}}
                             style={{variant: "secondary", color: "primarySubdued"}}
                         >
                             Réservation Squash

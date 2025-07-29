@@ -12,12 +12,20 @@
   --font-montserrat: "Montserrat", sans-serif; 
 }
 
+html {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  min-width: 320px;
+}
+
 h1 { @apply text-4xl lg:text-5xl uppercase font-futuretense; }
 
 h2 { @apply text-3xl lg:text-4xl uppercase font-futuretense; }
 .textLeadBig  { @apply text-2xl lg:text-5xl uppercase font-futuretense; }
 
-h3 { @apply text-4xl lg:text-5xl uppercase font-montserrat; }
+h3 { @apply text-3xl lg:text-4xl uppercase font-montserrat; }
 
 .textSubH2 { @apply text-sm lg:text-base uppercase font-futuretense; }
 

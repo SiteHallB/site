@@ -8,25 +8,24 @@ import { trackEvent } from "@/components/analytics/ga";
 import clsx from "clsx";
 
 const clickableVariants = cva(
-    "text-center", 
+    "text-center hover:cursor-pointer", 
     {
         variants: {
             color: {
                 default: "", 
-                primary: "text-foreground-base outline-foreground-base outline-[2px] outline-offset-[-2px]", 
-                primarySubdued: "text-foreground-subdued outline-foreground-subdued outline-[2px] outline-offset-[-2px]", 
-                background: "text-accent bg-background-base", 
-                accent: "text-background-subdued bg-accent", 
+                primary: "hoverPrimary text-foreground-base outline-foreground-base outline-[2px] outline-offset-[-2px]", 
+                primarySubdued: "hoverPrimarySubdued text-foreground-subdued outline-foreground-subdued outline-[2px] outline-offset-[-2px]", 
+                accent: "hoverAccent text-background-subdued bg-accent outline-background-subdued outline-[1px]", 
             }, 
             variant: {
                 default: "", 
                 page: "w-full px-4 py-2 rounded-full textLead", 
                 navigationBar: "px-3 py-1 rounded-full textLeadSmall", 
-                menuMainButton: "textSubH2 text-foreground-base", 
-                menuSideButton: "textSmall text-foreground-subdued", 
+                menuMainButton: "hoverUnderline textSubH2 text-foreground-base", 
+                menuSideButton: "hoverUnderline textSmall text-foreground-subdued", 
                 action: "py-1 px-2 rounded-sm textLead", 
-                legal: "textSmall text-foreground-subdued", 
-                secondary: "textNormal rounded p-2"
+                legal: "hoverUnderline textSmall text-foreground-subdued", 
+                secondary: "textNormal rounded p-2", 
             }, 
         },
         defaultVariants: {

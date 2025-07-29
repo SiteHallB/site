@@ -162,7 +162,7 @@ export default function Hero() {
                     { path: "", text: "Musculation" }, 
                     { path: "", text: "Fitness" }, 
                     { path: "", text: "Aqua" }, 
-                    { path: "", text: "Squash" }, 
+                    { path: "/squash", text: "Squash" }, 
                     { path: "", text: "Osteo" }, 
                     { path: "", text: "Danse" }, 
                     ]}
