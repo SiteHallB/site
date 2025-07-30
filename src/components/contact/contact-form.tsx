@@ -64,14 +64,7 @@ export default function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-200 bg-background-highlight rounded-xl p-content lg:p-contentLg flex flex-col items-center space-y-contentClose">
-        <HCaptcha
-            sitekey="your-sitekey"
-            onLoad={onLoad}
-            onVerify={setToken}
-            ref={captchaRef}
-        />
-        
+    <form onSubmit={handleSubmit} className="w-full max-w-200 bg-background-highlight rounded-xl p-content lg:p-contentLg flex flex-col items-center space-y-contentClose">      
         <div className="flex flex-col items-center">
             <h2 className="text-foreground-base">Message</h2>
             <p className="text-foreground-subdued textSubH2 text-center">N'hesitez pas à nous solliciter</p>
@@ -118,6 +111,15 @@ export default function ContactForm() {
                 minRows={4}
             />
         </div>
+
+        <HCaptcha
+            size="normal"
+            sitekey="your-sitekey"
+            onLoad={onLoad}
+            onVerify={setToken}
+            ref={captchaRef}
+        />
+
         <Clickable
             clickableType={{
                 type: "button",
