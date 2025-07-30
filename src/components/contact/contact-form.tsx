@@ -114,7 +114,7 @@ export default function ContactForm() {
 
         <HCaptcha
             size="normal"
-            sitekey="your-sitekey"
+            sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY!}
             onLoad={onLoad}
             onVerify={setToken}
             ref={captchaRef}
