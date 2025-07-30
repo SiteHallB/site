@@ -150,8 +150,8 @@ export default function Menu() {
                     clickableType={{type: "button", onClick: toggleMenu}}
                     style={{}}
                 >
-                    {isMenuOpen ? <X size={24} className="hoverRotate text-foreground-base"/> : 
-                        <MenuIcon size={24} className="hoverRotate text-foreground-base"/>}
+                    {isMenuOpen ? <X className="size-6 lg:size-8 hoverRotate text-foreground-base"/> : 
+                        <MenuIcon size={24} className="size-6 lg:size-8 hoverRotate text-foreground-base"/>}
                 </Clickable>
             </nav>
 

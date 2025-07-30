@@ -8,7 +8,7 @@ export default function SportigoFormule({ id }: { id?: number }) {
             id: id ? id : 0,
             cancelable: false
         },
-        redirectUrl: 'https://www.sportigo.io/thank-you',
+        redirectUrl: '/merci',
         theme: {
             dark: true,
             googleFont: {

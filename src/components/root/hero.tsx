@@ -67,7 +67,12 @@ function Arrow({ }) {
 
     return (
         <div ref={container} className="absolute bottom-20">
-            <ArrowDown onClick={() => {const vh = window.innerHeight; window.scrollTo({top: 4*vh/5, behavior: "smooth"})}} size={24} className="parallaxArrow arrow text-foreground-subdued"/>
+            <Clickable 
+                clickableType={{type: "button", onClick: () => {const vh = window.innerHeight; window.scrollTo({top: 4*vh/5, behavior: "smooth"})}}}
+                style={{}}
+            >
+                <ArrowDown className="parallaxArrow arrow text-foreground-subdued"/>
+            </Clickable>
         </div>
     );
 }

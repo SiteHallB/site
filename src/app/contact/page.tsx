@@ -53,8 +53,7 @@ function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-background-highlight rounded-xl p-content lg:p-contentLg flex flex-col items-center space-y-contentClose">
-        <div className="w-full max-w-200">
+    <form onSubmit={handleSubmit} className="w-full max-w-200 bg-background-highlight rounded-xl p-content lg:p-contentLg flex flex-col items-center space-y-contentClose">
         <div className="flex flex-col items-center">
             <h2 className="text-foreground-base">Message</h2>
             <p className="text-foreground-subdued textSubH2 text-center">N'hesitez pas à nous solliciter</p>
@@ -112,7 +111,6 @@ function ContactForm() {
             Envoyer
         </Clickable>
         {status !== "typing" && <p className="mt-2 text-center">{statusMessage(status)}</p>}
-        </div>
     </form>
   );
 }
@@ -121,9 +119,9 @@ export default function Page() {
     return (
         <PageStructure title="Contact" subtitle="Besoin d'aide ?">
             {/* Coordonnées */}
-            <div className="z-10 w-full flex flex-wrap pb-content justify-between lg:pb-contentLg gap-content px-content lg:px-contentLg">
+            <div className="w-full max-w-200 flex flex-wrap justify-between gap-content bg-background-highlight p-content lg:p-contentLg rounded-xl">
                 {/* Email */}
-                <div className="lg:items-center flex flex-col">
+                <div className="w-fit lg:items-center flex flex-col">
                     <div>
                     <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Email</p>
                     <p className="text-foreground-subdued">
@@ -133,7 +131,7 @@ export default function Page() {
                 </div>
 
                 {/* Téléphone ? */}
-                <div className="lg:items-center flex flex-col">
+                <div className="w-fit lg:items-center flex flex-col">
                     <div>
                     <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Téléphone</p>
                     <p className="text-foreground-subdued">
@@ -143,7 +141,7 @@ export default function Page() {
                 </div>
 
                 {/* Réseaux */}
-                <Reseaux/>
+                <Reseaux className="w-fit"/>
             </div>
 
             {/* Message formulaire */}

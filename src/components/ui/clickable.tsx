@@ -1,6 +1,6 @@
+"use client"
 
 import Link from "next/link";
-import links from "@/interface/links.json"
 
 import { cva, type VariantProps } from "class-variance-authority";
 
