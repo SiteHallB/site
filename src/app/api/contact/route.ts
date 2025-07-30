@@ -18,8 +18,38 @@ const transporter = nodemailer.createTransport({
 
 export async function POST(request: NextRequest) {
     try {
-        const { name, email, message } = await request.json();
+        const { name, email, message, captchaToken } = await request.json();
 
+        // Captcha
+        if (!captchaToken) {
+            return NextResponse.json(
+                { error: "hCaptcha token manquant" },
+                { status: 400 }
+            );
+        }
+
+        const secret = process.env.HCAPTCHA_SECRET!;
+        const verifyRes = await fetch("https://hcaptcha.com/siteverify", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({
+                secret,
+                response: captchaToken,
+            }),
+        });
+        const verifyJson = await verifyRes.json();
+
+        if (!verifyJson.success) {
+            return NextResponse.json(
+                {
+                    error: "Échec de la vérification hCaptcha",
+                    details: verifyJson["error-codes"] || [],
+                },
+                { status: 400 }
+            );
+        }
+
+        // Envoie du mail
         await transporter.sendMail({
             from: `"Site Web" <${process.env.SMTP_USER}>`,
             to: process.env.SMTP_USER, // changer la destination ici

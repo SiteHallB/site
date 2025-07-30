@@ -3,27 +3,10 @@ import Clickable from "@/components/ui/clickable";
 import { useState, FormEvent, useEffect, useRef } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 
-type StatusType = "typing" | "sending" | "success" | "error"
+type StatusType = "typing" | "sending" | "success" | "error" | "captchaExpired"
 export default function ContactForm() {
     const [token, setToken] = useState<string | null>(null);
     const captchaRef = useRef<HCaptcha>(null);
-
-    const onLoad = () => {
-        if (!captchaRef.current) return;
-        console.log("hCaptcha sitekey:", process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY);
-        // this reaches out to the hCaptcha JS API and runs the
-        // execute function on it. you can use other functions as
-        // documented here:
-        // https://docs.hcaptcha.com/configuration#jsapi
-        captchaRef.current.execute();
-    };
-
-    useEffect(() => {
-
-        if (token)
-        console.log(`hCaptcha Token: ${token}`);
-
-    }, [token]);
     
     const mailInCaseOfError = "hallb@contact.fr"
 
@@ -35,18 +18,33 @@ export default function ContactForm() {
             case "sending": return <span className="text-accent">Envoi en cours...</span>
             case "success": return <span className="text-yes">Message envoyé.</span>
             case "error": return <span className="text-no">{`Erreur, veuillez nous excuser, ci cela persiste vous pouvez nous envoyer un mail traditionnel à ${mailInCaseOfError}`}</span>
+            case "captchaExpired": return <span className="text-no">Le délai de validation a expiré, merci de cliquer de nouveau sur Envoyer pour renouveler la vérification.</span>
         }
     }
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        if (!captchaRef.current) return;
+        captchaRef.current.execute();
+    };
+
+    useEffect(() => {
+        if (token) submit(token);
+    }, [token])
+
+    async function submit(captchaToken: string) {
         setStatus("sending");
+
+        const payload = {
+            ...form,
+            captchaToken,
+        };
 
         try {
             const res = await fetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(form),
+                body: JSON.stringify(payload),
             });
 
             const data = await res.json();
@@ -62,7 +60,7 @@ export default function ContactForm() {
         } catch (err: any) {
             setStatus("error");
         }
-  };
+    }
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-200 bg-background-highlight rounded-xl p-content lg:p-contentLg flex flex-col items-center space-y-contentClose">      
@@ -114,11 +112,15 @@ export default function ContactForm() {
         </div>
 
         <HCaptcha
-            size="normal"
+            size="invisible"
             sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY!}
-            onLoad={onLoad}
             onVerify={setToken}
             ref={captchaRef}
+            onError={(err) => {setStatus("error");}}
+            onExpire={() => {
+                setStatus("captchaExpired")
+                setToken(null);
+            }}
         />
 
         <Clickable
