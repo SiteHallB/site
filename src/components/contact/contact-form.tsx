@@ -29,7 +29,7 @@ export default function ContactForm() {
     };
 
     useEffect(() => {
-        if (token) submit(token);
+        if (token) submit("fake");
     }, [token])
 
     async function submit(captchaToken: string) {
