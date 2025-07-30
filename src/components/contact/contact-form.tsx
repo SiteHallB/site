@@ -2,6 +2,24 @@ import TextareaAutosize from 'react-textarea-autosize';
 import Clickable from "@/components/ui/clickable";
 import { useState, FormEvent, useEffect, useRef } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
+import sanitizeHtml from "sanitize-html";
+
+function cleanString(message: string) {
+    return sanitizeHtml(message, {
+        allowedTags: ["b","i","em","strong","a","br"],
+        allowedAttributes: { a: ["href","target"] },
+        transformTags: {
+            a: (tagName, attribs) => ({
+                tagName: "a",
+                attribs: {
+                    href: attribs.href,
+                    target: "_blank",
+                    rel: "noopener noreferrer"
+                }
+            })
+        }
+    });
+}
 
 type StatusType = "typing" | "sending" | "success" | "error" | "captchaExpired"
 export default function ContactForm() {
@@ -36,8 +54,10 @@ export default function ContactForm() {
         setStatus("sending");
 
         const payload = {
-            ...form,
-            captchaToken,
+            name: cleanString(form.name), 
+            email:cleanString(form.email), 
+            message: cleanString(form.message), 
+            captchaToken, 
         };
 
         try {
@@ -59,6 +79,9 @@ export default function ContactForm() {
 
         } catch (err: any) {
             setStatus("error");
+        } finally {
+            setToken(null);
+            captchaRef.current?.resetCaptcha();
         }
     }
 
@@ -123,7 +146,7 @@ export default function ContactForm() {
             }}
         />
 
-        <Clickable
+        {status !== "sending" && <Clickable
             clickableType={{
                 type: "button",
                 htmlType: "submit", 
@@ -132,7 +155,7 @@ export default function ContactForm() {
             className="mt-content w-full"
         >
             Envoyer
-        </Clickable>
+        </Clickable>}
         {status !== "typing" && <p className="mt-2 text-center">{statusMessage(status)}</p>}
     </form>
   );
