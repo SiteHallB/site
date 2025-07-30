@@ -10,6 +10,7 @@ export default function ContactForm() {
 
     const onLoad = () => {
         if (!captchaRef.current) return;
+        console.log("hCaptcha sitekey:", process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY);
         // this reaches out to the hCaptcha JS API and runs the
         // execute function on it. you can use other functions as
         // documented here:
