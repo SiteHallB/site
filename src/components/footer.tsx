@@ -6,11 +6,8 @@ import Clickable from "@/components/ui/clickable";
 import { Facebook, Instagram, Star as St } from "lucide-react";
 import Reseaux from "@/components/reseaux";
 
-function Separator() {
-    return (
-        <hr className="z-10 border-t border-foreground-base my-content lg:my-contentLg w-full max-w-200"/>
-    );
-}
+import Separator from "@/components/ui/separator";
+import { useLinks } from "@/context/link-context";
 
 function Star() {
     return (
@@ -44,6 +41,8 @@ function Avis({ text, autheur }: { text: string; autheur: string }) {
 }
 
 export default function Footer() {
+    const { avis, pannata, technogym, pallini, adresse } = useLinks();
+
     return (
         <footer className="relative w-full bg-background-subdued pt-content flex flex-col items-center p-content lg:p-contentLg">
             {/* Avis */}
@@ -56,7 +55,7 @@ export default function Footer() {
                     autheur="Gauthier Bonhomme"
                     text="J'ai visité la salle en juillet, la surface est juste dingue et le matériel est d'excellente qualité"/>
                 <Clickable
-                    clickableType={{type: "link", path: "https://maps.app.goo.gl/q6AxEJa8WjfwpBVw8", outside: true}}
+                    clickableType={{type: "link", path: avis, outside: true}}
                     style={{"variant": "action", "color": "accent"}}
                     className="lg:w-fit w-full"
                 >
@@ -69,7 +68,7 @@ export default function Footer() {
             {/* Marques */}
             <div className="z-10 flex w-full py-content space-x-content items-center justify-around">
                 <Clickable
-                    clickableType={{type: "link", path: "https://www.panattasport.com/fr/", outside: true}}
+                    clickableType={{type: "link", path: pannata, outside: true}}
                     style={{}}
                     className="min-w-0 max-w-[250px] flex-1"
                 >
@@ -82,7 +81,7 @@ export default function Footer() {
                     />
                 </Clickable>
                 <Clickable
-                    clickableType={{type: "link", path: "https://www.technogym.com/fr-FR/", outside: true}}
+                    clickableType={{type: "link", path: technogym, outside: true}}
                     style={{}}
                     className="min-w-0 max-w-[250px] flex-1"
                 >
@@ -95,7 +94,7 @@ export default function Footer() {
                     />
                 </Clickable>
                 <Clickable
-                    clickableType={{type: "link", path: "https://www.pallini-sport.fr/", outside: true}}
+                    clickableType={{type: "link", path: pallini, outside: true}}
                     style={{}}
                     className="min-w-0 max-w-[250px] flex-1"
                 >
@@ -133,7 +132,7 @@ export default function Footer() {
                     <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Ou nous trouver ?</p>
                     <div className="text-foreground-subdued">
                         <Clickable 
-                            clickableType={{type: "link", path: "https://maps.app.goo.gl/8NkxFXwWUCSQMxDLA", outside: true}}
+                            clickableType={{type: "link", path: adresse, outside: true}}
                             style={{}}
                             className="hoverUnderline textNormal text-foreground-subdued"
                         >
@@ -149,21 +148,21 @@ export default function Footer() {
             {/* Legal */}
             <div className="z-10 bg-background-base text-foreground-subdued flex flex-col gap-y-contentClose py-contentClose lg:flex-row w-full items-center justify-around">
                 <Clickable
-                    clickableType={{type: "link", onClick: () => 0, path: ""}}
+                    clickableType={{type: "link", path: ""}}
                     style={{variant: "legal"}}
                     className="w-fit"
                 >
                     Mentions Légales
                 </Clickable>
                 <Clickable
-                    clickableType={{type: "link", onClick: () => 0, path: ""}}
+                    clickableType={{type: "link", path: ""}}
                     style={{variant: "legal"}}
                     className="w-fit"
                 >
                     Politique de confidentialité
                 </Clickable>
                 <Clickable
-                    clickableType={{type: "link", onClick: () => 0, path: ""}}
+                    clickableType={{type: "link", path: ""}}
                     style={{variant: "legal"}}
                     className="w-fit"
                 >

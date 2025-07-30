@@ -2,12 +2,9 @@
 import { useEffect } from "react";
 import Script from "next/script";
 
-export default function SportigoFormule({ id }: { id?: number }) {
+export default function SportigoFormule({ ids }: { ids: number[] }) {
     const data = {
-        initOfferPayment: {
-            id: id ? id : 0,
-            cancelable: false
-        },
+        onlyOffers: ids,
         redirectUrl: '/merci',
         theme: {
             dark: true,

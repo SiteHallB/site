@@ -14,16 +14,9 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Clickable from "@/components/ui/clickable";
 import Reseaux from "@/components/reseaux";
 import clsx from "clsx";
+import { useLinks } from "@/context/link-context";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const navLinks = [
-    { label: "Accueil", path: "/"}, 
-    { label: "Tarifs", path: "/tarifs"}, 
-    { label: "Essai offert", path: "/offert"}, 
-    { label: "Plannings", path: "/plannings"}, 
-    { label: "Nous contacter", path: "/contact"}, 
-];
 
 type MenuLink = {
   path: string;
@@ -57,6 +50,16 @@ function MenuItem({ linkInfo, onClick }: MenuItemProps) {
 function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuShown: (value: boolean) => void; isMenuOpen: boolean; setIsMenuOpen: (value: boolean) => void }) {
     const close = () => { setIsMenuOpen(false); };
     const container = useRef<HTMLDivElement>(null);
+
+    const { osteo } = useLinks();
+
+    const navLinks = [
+        { label: "Accueil", path: "/"}, 
+        { label: "Tarifs", path: "/tarifs"}, 
+        { label: "Essai offert", path: "/offert"}, 
+        { label: "Plannings", path: "/plannings"}, 
+        { label: "Nous contacter", path: "/contact"}, 
+    ];
     
     const tl = useRef<gsap.core.Timeline | null>(null);
     useGSAP(() => {
@@ -99,7 +102,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
                 </nav>
                 
                 <div className="flex flex-col w-full">
-                    <MenuItem linkInfo={{ path: "", label: "Consultation Ostéopathe" }} onClick={close}/>
+                    <MenuItem linkInfo={{ path: osteo, label: "Consultation Ostéopathe" }} onClick={close}/>
                     <MenuItem linkInfo={{ path: "/squash", label: "Réservation Squash" }} onClick={close}/>
                 </div>
                 

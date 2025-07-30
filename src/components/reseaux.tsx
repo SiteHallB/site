@@ -1,14 +1,17 @@
 import Clickable from "@/components/ui/clickable";
+import { useLinks } from "@/context/link-context";
 import clsx from "clsx";
 import { Facebook, Instagram } from "lucide-react";
 
 export default function Reseaux({ className, title }: { className?: string, title?: string }) {
+    const { instagram: instagramPath, facebook: facebookPath } = useLinks();
+
     return (
         <div className={clsx(className, "lg:items-center flex flex-col")}>
             <div>
             <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">{title ? title : "Nos actus"}</p>
             <Clickable
-                clickableType={{type: "link", path: "https://www.instagram.com/hallb.fr/", outside: true}}
+                clickableType={{type: "link", path: instagramPath, outside: true}}
                 style={{variant: "menuSideButton"}}
                 className="flex flex-row space-x-1 w-fit"
             >
@@ -16,7 +19,7 @@ export default function Reseaux({ className, title }: { className?: string, titl
                 <p>Instagram</p>
             </Clickable>
             <Clickable
-                clickableType={{type: "link", path: "https://www.facebook.com/p/HALL-B-61576081445951/", outside: true}}
+                clickableType={{type: "link", path: facebookPath, outside: true}}
                 style={{variant: "menuSideButton"}}
                 className="flex flex-row space-x-1 w-fit"
             >

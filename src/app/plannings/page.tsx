@@ -5,7 +5,7 @@ export default function ReservationPage() {
     return (
         <PageStructure title="Plannings" subtitle="Réservez une séance d'essai (ou séance unitaire)">
             {/* Plannings Sportigo */}
-            <div className="bg-white rounded-xl w-full">
+            <div className="bg-white rounded-xl w-full overflow-x-hidden pt-1 flexCenter">
                 <SportigoPlannings />
             </div>
         </PageStructure>
