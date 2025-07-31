@@ -7,4 +7,5 @@ interface KlaroAPI {
 interface Window {
     klaro?: KlaroAPI;
     klaroConfig?: any;
+    _klaroConsentListeners?: Array<(service: string, consent: boolean) => void>;
 }

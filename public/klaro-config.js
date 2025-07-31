@@ -1,4 +1,8 @@
-// public/klaro-config.js
+window._klaroConsentListeners = window._klaroConsentListeners || [];
+
+function notifyConsentChange(service, consent) {
+    window._klaroConsentListeners.forEach(cb => cb(service, consent));
+}
 
 var klaroConfig = {
   elementID: 'klaro',
@@ -8,6 +12,7 @@ var klaroConfig = {
   privacyPolicy: '/politique-confidentialite', // À personnaliser
   default: false, // aucun service activé par défaut
   mustConsent: true, // pas de navigation sans consentement
+  acceptAll: true,
 
   translations: {
     fr: {
@@ -41,9 +46,8 @@ var klaroConfig = {
       default: false,
       onlyOnce: true,
       callback: function(consent, app) {
-          console.log("callback");
-          // Appelé automatiquement par Klaro quand consentement changé
-          // Peut-être utile pour debug/log
+        notifyConsentChange(app.name, consent);
+        // ... (autres log éventuels)
       }
     }
     // tu peux ajouter ici d'autres apps (Analytics, etc)
