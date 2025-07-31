@@ -41,8 +41,9 @@ var klaroConfig = {
       default: false,
       onlyOnce: true,
       callback: function(consent, app) {
-        // Appelé automatiquement par Klaro quand consentement changé
-        // Peut-être utile pour debug/log
+          console.log("callback");
+          // Appelé automatiquement par Klaro quand consentement changé
+          // Peut-être utile pour debug/log
       }
     }
     // tu peux ajouter ici d'autres apps (Analytics, etc)

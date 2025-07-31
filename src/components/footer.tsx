@@ -166,7 +166,7 @@ export default function Footer() {
 
                 {/* Cookies */}
                 <Clickable
-                    clickableType={{type: "button", onClick: () => window.tarteaucitron.userInterface.openPanel()}}
+                    clickableType={{type: "button", onClick: () => window.klaro?.show()}}
                     style={{variant: "legal"}}
                     className="w-fit"
                 >

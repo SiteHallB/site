@@ -173,7 +173,7 @@ export default function CookieContactForm() {
         <>
             <p className="text-accent">Veuillez accepter les cookies relatifs à HCaptcha pour nous envoyer un message via formulaire.</p>
             <Clickable
-                clickableType={{ type: "button", onClick: () => window.tarteaucitron.userInterface.openPanel()}}
+                clickableType={{ type: "button", onClick: () => window.klaro?.show()}}
                 style={{ color: "primarySubdued", variant: "secondary" }}
             >
                 Gérer mes cookies
