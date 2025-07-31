@@ -21,9 +21,10 @@ function cleanString(message: string) {
     });
 }
 
-type StatusType = "typing" | "sending" | "success" | "error" | "captchaExpired" | "cookieDenied";
+type StatusType = "typing" | "sending" | "success" | "error" | "captchaExpired";
 export default function ContactForm() {
     const [token, setToken] = useState<string | null>(null);
+    const [hasConsent, setHasConsent] = useState<boolean>(false);
     const captchaRef = useRef<HCaptcha>(null);
     
     const mailInCaseOfError = "hallb@contact.fr"
@@ -31,26 +32,36 @@ export default function ContactForm() {
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [status, setStatus] = useState<StatusType>("typing");
 
+    useEffect(() => {
+        // Handler qui passe à true quand hcaptcha est autorisé
+        const onAllowed = () => setHasConsent(true);
+        const onDisallowed = () => setHasConsent(false);
+
+        // Consentement initial (si la page est rechargée)
+        if (window.tarteaucitron?.state?.consents?.hcaptcha === true) {
+            setHasConsent(true);
+        }
+
+        document.addEventListener('hcaptcha_allowed', onAllowed);
+        document.addEventListener('hcaptcha_disallowed', onDisallowed);
+
+        return () => {
+            document.removeEventListener('hcaptcha_allowed', onAllowed);
+            document.removeEventListener('hcaptcha_disallowed', onDisallowed);
+        };
+    }, []);
+
     function statusMessage(s: StatusType) {
         switch (s) {
             case "sending": return <span className="text-accent">Envoi en cours...</span>
             case "success": return <span className="text-yes">Message envoyé.</span>
             case "error": return <span className="text-no">{`Erreur, veuillez nous excuser, ci cela persiste vous pouvez nous envoyer un mail traditionnel à ${mailInCaseOfError}`}</span>
             case "captchaExpired": return <span className="text-no">Le délai de validation a expiré, merci de cliquer de nouveau sur Envoyer pour renouveler la vérification.</span>
-            case "cookieDenied": return (
-                <span className="text-no">
-                    Veuillez accepter les cookies relatifs a HCaptcha pour envoyer un message.
-                </span>
-            );
         }
     }
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        if (window.tarteaucitron?.state?.hcaptcha !== true) {
-            setStatus("cookieDenied");
-            return;
-        }
         if (!captchaRef.current) return;
         captchaRef.current.execute();
     };
@@ -155,23 +166,26 @@ export default function ContactForm() {
             }}
         />
 
-        {status !== "sending" && <Clickable
-            clickableType={{
-                type: "button",
-                htmlType: "submit", 
-            }}
-            style={{ color: "accent", variant: "secondary"}}
-            className="mt-content w-full"
-        >
-            Envoyer
-        </Clickable>}
-        {status !== "typing" && <p className="mt-2 text-center">{statusMessage(status)}</p>}
-        {status === "cookieDenied" && <Clickable
-            clickableType={{ type: "button", onClick: () => window.tarteaucitron.userInterface.openPanel()}}
-            style={{ color: "primarySubdued", variant: "secondary" }}
-        >
-            Gérer mes cookies
-        </Clickable>}
+        {hasConsent ? (<>
+            {status !== "sending" &&
+                <Clickable
+                    clickableType={{ type: "button", htmlType: "submit" }}
+                    style={{ color: "accent", variant: "secondary" }}
+                    className="mt-content w-full"
+                >
+                    Envoyer
+                </Clickable>
+            }
+            {status !== "typing" && <p className="mt-2 text-center">{statusMessage(status)}</p>}
+        </>) : (<>
+            <p className="text-accent">Veuillez accepter les cookies relatifs à HCaptcha pour envoyer un message.</p>
+            <Clickable
+                clickableType={{ type: "button", onClick: () => window.tarteaucitron.userInterface.openPanel()}}
+                style={{ color: "primarySubdued", variant: "secondary" }}
+            >
+                Gérer mes cookies
+            </Clickable>
+        </>)}
     </form>
   );
 }
