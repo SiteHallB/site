@@ -3,6 +3,7 @@ import Clickable from "@/components/ui/clickable";
 import { useState, FormEvent, useEffect, useRef } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import sanitizeHtml from "sanitize-html";
+import useKlaroConsent from '../cookies/use-klaro-consent';
 
 function cleanString(message: string) {
     return sanitizeHtml(message, {
@@ -162,26 +163,9 @@ function ContactForm() {
 
 
 export default function CookieContactForm() {
-    const [hasConsent, setHasConsent] = useState<boolean | undefined>(undefined);
+    const hasConsent = useKlaroConsent("hcaptcha");
 
-    // Ecoute le consentement dès le mount + events
-    useEffect(() => {
-        function updateConsent() {
-            // Toujours vérifier la présence de la clé dans le state CMP
-            setHasConsent(window.tarteaucitron?.state?.hcaptcha === true);
-        }
-
-        updateConsent(); // premier check
-
-        // Ajout d'écouteurs sur les events tarteaucitron
-        document.addEventListener("hcaptcha_allowed", updateConsent);
-        document.addEventListener("hcaptcha_disallowed", updateConsent);
-
-        return () => {
-            document.removeEventListener("hcaptcha_allowed", updateConsent);
-            document.removeEventListener("hcaptcha_disallowed", updateConsent);
-        };
-    }, []);
+    useEffect(() => console.log(hasConsent), [hasConsent]);
 
     if (hasConsent === undefined) return <p className="text-foreground-base">Chargement…</p>;
     if (hasConsent) return <ContactForm/>;

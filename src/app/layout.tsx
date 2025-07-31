@@ -7,7 +7,7 @@ import PopUp from "@/components/pop-up";
 
 import { LinkProvider } from "@/context/link-context";
 
-import { CookieConsent } from "@/components/cookies/cookie-consent";
+import KlaroConsent from "@/components/cookies/klaro-consent";
 
 export const metadata: Metadata = {
     title: "Hall B",
@@ -27,7 +27,7 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <body className="antialiased">
-                <CookieConsent/>
+                <KlaroConsent/>
                 <LinkProvider
                     links={{
                         osteo: "", 
