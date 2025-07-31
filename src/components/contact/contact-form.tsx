@@ -167,8 +167,9 @@ export default function CookieContactForm() {
     // Premier check au mount, une fois tarteaucitron chargé
     useEffect(() => {
     const interval = setInterval(() => {
-        if (window.tarteaucitron?.state?.consents?.hcaptcha !== undefined) {
-        setHasConsent(window.tarteaucitron.state.consents.hcaptcha === true);
+        console.log(window.tarteaucitron?.state);
+        if (window.tarteaucitron?.state?.hcaptcha !== undefined) {
+        setHasConsent(window.tarteaucitron.state.hcaptcha === true);
         clearInterval(interval);
         }
     }, 100); // toutes les 100ms
