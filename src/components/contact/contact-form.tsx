@@ -24,13 +24,17 @@ function cleanString(message: string) {
 type StatusType = "typing" | "sending" | "success" | "error" | "captchaExpired";
 export default function ContactForm() {
     const [token, setToken] = useState<string | null>(null);
-    const [hasConsent, setHasConsent] = useState<boolean>(false);
+    const [hasConsent, setHasConsent] = useState<boolean | undefined>(undefined);
     const captchaRef = useRef<HCaptcha>(null);
     
     const mailInCaseOfError = "hallb@contact.fr"
 
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [status, setStatus] = useState<StatusType>("typing");
+
+    useEffect(() => {
+        setHasConsent(window.tarteaucitron?.state?.hcaptcha === true)
+    }, [])
 
     useEffect(() => {
         // Handler qui passe à true quand hcaptcha est autorisé
