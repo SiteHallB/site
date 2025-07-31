@@ -33,6 +33,8 @@ export default function ContactForm() {
     const [status, setStatus] = useState<StatusType>("typing");
 
     useEffect(() => {
+        window.tarteaucitron?.state?.hcaptcha === true ? setHasConsent(true) : setHasConsent(false);
+
         // Handler qui passe à true quand hcaptcha est autorisé
         const onAllowed = () => setHasConsent(true);
         const onDisallowed = () => setHasConsent(false);
@@ -155,20 +157,19 @@ export default function ContactForm() {
             />
         </div>
 
-        <HCaptcha
-            size="invisible"
-            sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY!}
-            onVerify={setToken}
-            ref={captchaRef}
-            onError={(err) => {setStatus("error");}}
-            onExpire={() => {
-                setStatus("captchaExpired")
-                setToken(null);
-            }}
-        />
-
         {hasConsent ? (<>
-            {status !== "sending" &&
+            {status !== "sending" && <>
+                <HCaptcha
+                    size="invisible"
+                    sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY!}
+                    onVerify={setToken}
+                    ref={captchaRef}
+                    onError={(err) => {setStatus("error");}}
+                    onExpire={() => {
+                        setStatus("captchaExpired")
+                        setToken(null);
+                    }}
+                />
                 <Clickable
                     clickableType={{ type: "button", htmlType: "submit" }}
                     style={{ color: "accent", variant: "secondary" }}
@@ -176,9 +177,9 @@ export default function ContactForm() {
                 >
                     Envoyer
                 </Clickable>
-            }
+            </>}
             {status !== "typing" && <p className="mt-2 text-center">{statusMessage(status)}</p>}
-        </>) : (<>
+        </>) : (<>            
             <p className="text-accent">Veuillez accepter les cookies relatifs à HCaptcha pour envoyer un message.</p>
             <Clickable
                 clickableType={{ type: "button", onClick: () => window.tarteaucitron.userInterface.openPanel()}}
