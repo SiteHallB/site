@@ -161,18 +161,18 @@ export default function ContactForm() {
         </div>
 
         {hasConsent ? (<>
+            <HCaptcha
+                size="invisible"
+                sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY!}
+                onVerify={setToken}
+                ref={captchaRef}
+                onError={(err) => {setStatus("error");}}
+                onExpire={() => {
+                    setStatus("captchaExpired")
+                    setToken(null);
+                }}
+            />
             {status !== "sending" && <>
-                <HCaptcha
-                    size="invisible"
-                    sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY!}
-                    onVerify={setToken}
-                    ref={captchaRef}
-                    onError={(err) => {setStatus("error");}}
-                    onExpire={() => {
-                        setStatus("captchaExpired")
-                        setToken(null);
-                    }}
-                />
                 <Clickable
                     clickableType={{ type: "button", htmlType: "submit" }}
                     style={{ color: "accent", variant: "secondary" }}
