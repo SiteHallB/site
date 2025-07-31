@@ -35,7 +35,9 @@ export default function ContactForm() {
     useEffect(() => {
         console.log(window.tarteaucitron?.state?.hcaptcha)
         window.tarteaucitron?.state?.hcaptcha === true ? setHasConsent(true) : setHasConsent(false);
+    })
 
+    useEffect(() => {
         // Handler qui passe à true quand hcaptcha est autorisé
         const onAllowed = () => setHasConsent(true);
         const onDisallowed = () => setHasConsent(false);
