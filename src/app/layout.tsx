@@ -5,9 +5,9 @@ import Menu from "@/components/menu";
 import Footer from "@/components/footer";
 import PopUp from "@/components/pop-up";
 
-import { LinkProvider } from "@/context/link-context";
+import Script from "next/script";
 
-import KlaroConsent from "@/components/cookies/klaro-consent";
+import { LinkProvider } from "@/context/link-context";
 
 export const metadata: Metadata = {
     title: "Hall B",
@@ -27,7 +27,16 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <body className="antialiased">
-                <KlaroConsent/>
+                {/* 1. Charge la config d'abord */}
+                <Script
+                src="/klaro-config.js"
+                strategy="beforeInteractive"
+                />
+                {/* 2. Charge Klaro juste après */}
+                <Script
+                src="https://cdn.kiprotect.com/klaro/latest/klaro.js"
+                strategy="beforeInteractive"
+                />
                 <LinkProvider
                     links={{
                         osteo: "", 
