@@ -154,19 +154,23 @@ export default function Footer() {
                 >
                     Mentions Légales
                 </Clickable>
+
+                {/* Politique de confidentialité */}
                 <Clickable
-                    clickableType={{type: "link", path: ""}}
+                    clickableType={{type: "link", path: "/politique-confidentialite"}}
                     style={{variant: "legal"}}
                     className="w-fit"
                 >
                     Politique de confidentialité
                 </Clickable>
+
+                {/* Cookies */}
                 <Clickable
-                    clickableType={{type: "link", path: ""}}
+                    clickableType={{type: "button", onClick: () => window.tarteaucitron.userInterface.openPanel()}}
                     style={{variant: "legal"}}
                     className="w-fit"
                 >
-                    Gérer vos cookies
+                    Gérer mes cookies
                 </Clickable>
             </div>
 

@@ -3,9 +3,11 @@ import "@/styles/globals.css";
 
 import Menu from "@/components/menu";
 import Footer from "@/components/footer";
-import PopUp from "@/components/ui/pop-up";
+import PopUp from "@/components/pop-up";
 
 import { LinkProvider } from "@/context/link-context";
+
+import { CookieConsent } from "@/components/cookies/cookie-consent";
 
 export const metadata: Metadata = {
     title: "Hall B",
@@ -25,6 +27,7 @@ export default function RootLayout({
     return (
         <html lang="fr">
             <body className="antialiased">
+                <CookieConsent/>
                 <LinkProvider
                     links={{
                         osteo: "", 

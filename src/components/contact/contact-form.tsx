@@ -21,7 +21,7 @@ function cleanString(message: string) {
     });
 }
 
-type StatusType = "typing" | "sending" | "success" | "error" | "captchaExpired"
+type StatusType = "typing" | "sending" | "success" | "error" | "captchaExpired" | "cookieDenied";
 export default function ContactForm() {
     const [token, setToken] = useState<string | null>(null);
     const captchaRef = useRef<HCaptcha>(null);
@@ -37,11 +37,20 @@ export default function ContactForm() {
             case "success": return <span className="text-yes">Message envoyé.</span>
             case "error": return <span className="text-no">{`Erreur, veuillez nous excuser, ci cela persiste vous pouvez nous envoyer un mail traditionnel à ${mailInCaseOfError}`}</span>
             case "captchaExpired": return <span className="text-no">Le délai de validation a expiré, merci de cliquer de nouveau sur Envoyer pour renouveler la vérification.</span>
+            case "cookieDenied": return (
+                <span className="text-no">
+                    Veuillez accepter les cookies relatifs a HCaptcha pour envoyer un message.
+                </span>
+            );
         }
     }
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        if (window.tarteaucitron?.state?.hcaptcha !== true) {
+            setStatus("cookieDenied");
+            return;
+        }
         if (!captchaRef.current) return;
         captchaRef.current.execute();
     };
@@ -157,6 +166,12 @@ export default function ContactForm() {
             Envoyer
         </Clickable>}
         {status !== "typing" && <p className="mt-2 text-center">{statusMessage(status)}</p>}
+        {status === "cookieDenied" && <Clickable
+            clickableType={{ type: "button", onClick: () => window.tarteaucitron.userInterface.openPanel()}}
+            style={{ color: "primarySubdued", variant: "secondary" }}
+        >
+            Gérer mes cookies
+        </Clickable>}
     </form>
   );
 }
