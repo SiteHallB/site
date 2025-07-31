@@ -164,10 +164,16 @@ function ContactForm() {
 export default function CookieContactForm() {
     const [hasConsent, setHasConsent] = useState<boolean | undefined>(undefined);
 
+    // Premier check au mount, une fois tarteaucitron chargé
     useEffect(() => {
-        console.log(document.cookie.includes("hcaptcha"))
-        setHasConsent(document.cookie.includes("hcaptcha") === true)
-    }, [])
+    const interval = setInterval(() => {
+        if (window.tarteaucitron?.state?.consents?.hcaptcha !== undefined) {
+        setHasConsent(window.tarteaucitron.state.consents.hcaptcha === true);
+        clearInterval(interval);
+        }
+    }, 100); // toutes les 100ms
+    return () => clearInterval(interval);
+    }, []);
 
     useEffect(() => {
         // Handler qui passe à true quand hcaptcha est autorisé
@@ -188,7 +194,7 @@ export default function CookieContactForm() {
         };
     }, []);
 
-
+    if (hasConsent === undefined) return <p className="text-foreground-base">Chargement…</p>;
     if (hasConsent) return <ContactForm/>;
     else return (
         <>
