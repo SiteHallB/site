@@ -33,6 +33,7 @@ export default function ContactForm() {
     const [status, setStatus] = useState<StatusType>("typing");
 
     useEffect(() => {
+        console.log(window.tarteaucitron?.state?.hcaptcha)
         window.tarteaucitron?.state?.hcaptcha === true ? setHasConsent(true) : setHasConsent(false);
 
         // Handler qui passe à true quand hcaptcha est autorisé
