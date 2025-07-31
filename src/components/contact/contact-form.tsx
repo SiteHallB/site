@@ -164,34 +164,22 @@ function ContactForm() {
 export default function CookieContactForm() {
     const [hasConsent, setHasConsent] = useState<boolean | undefined>(undefined);
 
-    // Premier check au mount, une fois tarteaucitron chargé
+    // Ecoute le consentement dès le mount + events
     useEffect(() => {
-    const interval = setInterval(() => {
-        console.log(window.tarteaucitron?.state);
-        if (window.tarteaucitron?.state?.hcaptcha !== undefined) {
-        setHasConsent(window.tarteaucitron.state.hcaptcha === true);
-        clearInterval(interval);
-        }
-    }, 100); // toutes les 100ms
-    return () => clearInterval(interval);
-    }, []);
-
-    useEffect(() => {
-        // Handler qui passe à true quand hcaptcha est autorisé
-        const onAllowed = () => setHasConsent(true);
-        const onDisallowed = () => setHasConsent(false);
-
-        // Consentement initial (si la page est rechargée)
-        if (window.tarteaucitron?.state?.consents?.hcaptcha === true) {
-            setHasConsent(true);
+        function updateConsent() {
+            // Toujours vérifier la présence de la clé dans le state CMP
+            setHasConsent(window.tarteaucitron?.state?.hcaptcha === true);
         }
 
-        document.addEventListener('hcaptcha_allowed', onAllowed);
-        document.addEventListener('hcaptcha_disallowed', onDisallowed);
+        updateConsent(); // premier check
+
+        // Ajout d'écouteurs sur les events tarteaucitron
+        document.addEventListener("hcaptcha_allowed", updateConsent);
+        document.addEventListener("hcaptcha_disallowed", updateConsent);
 
         return () => {
-            document.removeEventListener('hcaptcha_allowed', onAllowed);
-            document.removeEventListener('hcaptcha_disallowed', onDisallowed);
+            document.removeEventListener("hcaptcha_allowed", updateConsent);
+            document.removeEventListener("hcaptcha_disallowed", updateConsent);
         };
     }, []);
 
