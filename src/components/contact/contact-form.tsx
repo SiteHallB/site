@@ -48,7 +48,19 @@ function ContactForm() {
     };
 
     useEffect(() => {
-        console.log("Token:", token);
+        // On vérifie à chaque soumission que le consentement hcaptcha est toujours OK
+        if (
+            typeof window !== "undefined" &&
+            window.klaro &&
+            typeof window.klaro.getConsent === "function"
+        ) {
+            const consent = window.klaro.getConsent("hcaptcha");
+            if (!consent) {
+                window.klaro.show();
+                alert("Veuillez accepter les cookies hCaptcha pour envoyer le formulaire.");
+                return;
+            }
+        }
         if (token) submit(token);
     }, [token])
 
@@ -88,7 +100,7 @@ function ContactForm() {
     }
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-200 bg-background-highlight rounded-xl p-content lg:p-contentLg flex flex-col items-center space-y-contentClose">      
+    <form onSubmit={handleSubmit} className="w-full flex flex-col items-center space-y-contentClose">      
         <div className="flex flex-col items-center">
             <h2 className="text-foreground-base">Message</h2>
             <p className="text-foreground-subdued textSubH2 text-center">N'hesitez pas à nous solliciter</p>
@@ -165,19 +177,19 @@ function ContactForm() {
 export default function CookieContactForm() {
     const hasConsent = useKlaroConsent("hcaptcha");
 
-    useEffect(() => console.log(hasConsent), [hasConsent]);
-
-    if (hasConsent === undefined) return <p className="text-foreground-base">Chargement…</p>;
-    if (hasConsent) return <ContactForm/>;
-    else return (
-        <>
-            <p className="text-accent">Veuillez accepter les cookies relatifs à HCaptcha pour nous envoyer un message via formulaire.</p>
-            <Clickable
-                clickableType={{ type: "button", onClick: () => window.klaro?.show()}}
-                style={{ color: "primarySubdued", variant: "secondary" }}
-            >
-                Gérer mes cookies
-            </Clickable>
-        </>
+    return (
+        <div className="w-full max-w-200 bg-background-highlight rounded-xl p-content lg:p-contentLg">
+            {hasConsent ? (
+                <ContactForm/>
+            ) : (<>
+                <p className="text-accent">Veuillez accepter les cookies hCaptcha pour envoyer un message via formulaire.</p>
+                <Clickable
+                    clickableType={{ type: "button", onClick: () => window.klaro?.show()}}
+                    style={{ color: "primarySubdued", variant: "secondary" }}
+                >
+                    Gérer mes cookies
+                </Clickable>
+            </>)}
+        </div>
     );
 }
