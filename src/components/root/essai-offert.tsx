@@ -28,7 +28,7 @@ export default function EssaiOffert() {
         }})
         .from(".logo", {
             scale: 2, 
-            yPercent: 60, 
+            yPercent: 10, 
             ease: "back"
         })
         .from(".text", {
@@ -49,7 +49,7 @@ export default function EssaiOffert() {
                         alt="Logo Hall B"
                         width={1240}
                         height={1328}
-                        className="logo outline-foreground-base outline-[0.25rem] outline-offset-[2rem] w-20 object-cover" 
+                        className="logo outline-[0.25rem] outline-offset-[2rem] w-30 object-cover" 
                     />
                     <span className="text">gratuitement et sans engagement</span>
                 </h3>
@@ -60,7 +60,6 @@ export default function EssaiOffert() {
                 >
                     Essai Offert
                 </Clickable>
-                <p className="text-foreground-subdued">Conditions de l'offre</p>
 
                 {/* Fond hall b */}
                 <div className="absolute inset-0 overflow-hidden flexCenter p-content">

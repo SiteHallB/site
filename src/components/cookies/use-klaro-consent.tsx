@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
+import getConsent from "@/components/cookies/get-consent";
 
 export default function useKlaroConsent(serviceName: string): boolean | undefined {
     const [consent, setConsent] = useState<boolean | undefined>(undefined);
 
     useEffect(() => {
-        // Fonction pour s'abonner
         function subscribe(cb: (service: string, consent: boolean) => void) {
             window._klaroConsentListeners = window._klaroConsentListeners || [];
             window._klaroConsentListeners.push(cb);
@@ -15,15 +15,7 @@ export default function useKlaroConsent(serviceName: string): boolean | undefine
         }
 
         function checkConsent() {
-            if (
-                typeof window !== "undefined" &&
-                window.klaro &&
-                typeof window.klaro.getConsent === "function"
-            ) {
-                setConsent(window.klaro.getConsent(serviceName));
-            } else {
-                setConsent(undefined);
-            }
+            getConsent(serviceName) ? setConsent(true) : setConsent(undefined);
         }
 
         checkConsent();

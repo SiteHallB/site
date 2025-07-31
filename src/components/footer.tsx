@@ -47,7 +47,7 @@ export default function Footer() {
         <footer className="relative w-full bg-background-subdued pt-content flex flex-col items-center p-content lg:p-contentLg">
             {/* Avis */}
             <div className="z-10 w-full flex flex-col items-center space-y-content">
-                <h2 className="text-foreground-base text-center">Aide nous : Donne ton avis</h2>
+                <h2 className="text-foreground-base text-center">Votre avis nous intéresse</h2>
                 <Avis
                     autheur="Eliot Collombet"
                     text="Tout simplement la meilleure salle de sport que j'aie jamais vu. Encadrement, matériel, surface, ambiance, tout y est."/>
@@ -115,10 +115,10 @@ export default function Footer() {
                 {/* Réseaux */}
                 <Reseaux className="w-full"/>
 
-                {/* Horraire */}
+                {/* Horaire */}
                 <div className="lg:items-center w-full flex flex-col">
                     <div>
-                    <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Horraires</p>
+                    <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Horaires</p>
                     <p className="text-foreground-subdued">
                         Tous les jours de 6h à 23h<br/>
                         Y compris le Dimanche et jours fériés
@@ -129,7 +129,7 @@ export default function Footer() {
                 {/* Ou nous trouver ? */}
                 <div className="lg:items-center w-full flex flex-col">
                     <div>
-                    <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Ou nous trouver ?</p>
+                    <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Où nous trouver ?</p>
                     <div className="text-foreground-subdued">
                         <Clickable 
                             clickableType={{type: "link", path: adresse, outside: true}}
@@ -138,8 +138,8 @@ export default function Footer() {
                         >
                             1 Chem. d'Azord, 30980 Saint-Dionisy
                         </Clickable>
-                        <p>hallb@contact.fr</p>
-                        <p>0600000000</p>
+                        <p>contact@hallb.fr</p>
+                        <p>04 66 19 16 76</p>
                     </div>
                     </div>
                 </div>

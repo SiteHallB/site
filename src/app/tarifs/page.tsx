@@ -7,7 +7,7 @@ import Separator from "@/components/ui/separator";
 
 export default function Page() {
     return (
-        <PageStructure title="Tarifs" subtitle="Sélectionnez l'offre qui vous convient">
+        <PageStructure title="Tarifs" subtitle="Choisissez la formule adaptée à vos besoins">
             <div className="w-full pt-1 flexCenter flex-col">
 
                 {/* Formules principales */}
@@ -16,18 +16,16 @@ export default function Page() {
                     <FormuleOverview
                         aboveFold={true}
                         title="Classic"
-                        subtitle="Sous titre"
+                        subtitle="Musculation & cardio"
                         prix={75}
-                        description="Blabla"
+                        description=""
                         images={[
                             { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
                             { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
                             { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
                         ]}
                         checkDescription={[
-                            "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
-                            <><span className="text-accent">Small groups</span> pour 5 euros supplémentaires</>, 
-                            "Encore un"
+                            "Accès libre au plateau 7/7j de 6h à 23h", 
                         ]}
                         actionLink="/tarifs/classic"
                         className=""
@@ -37,18 +35,18 @@ export default function Page() {
                     <FormuleOverview
                         aboveFold={true}
                         title="Boost"
-                        subtitle="Classic + "
+                        subtitle="Classic + Cours collectifs"
                         prix={75}
-                        description="Blabla"
+                        description=""
                         images={[
                             { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
                             { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
                             { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
                         ]}
                         checkDescription={[
-                            "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
-                            <><span className="text-accent">Small groups</span> pour 5 euros supplémentaires</>, 
-                            "Encore un"
+                            "Accès libre au plateau 7/7j de 6h à 23h", 
+                            "Accès illimité au planning de cours collectifs", 
+                            <>5euros pour les <span className="text-accent uppercase">SmallGroups</span></>
                         ]}
                         actionLink="/tarifs/boost"
                         className=""
@@ -60,16 +58,15 @@ export default function Page() {
                         title="Aqua"
                         subtitle="Classic + Aqua"
                         prix={75}
-                        description="Blabla"
+                        description=""
                         images={[
                             { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
                             { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
                             { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
                         ]}
                         checkDescription={[
-                            "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
-                            <><span className="text-accent">Small groups</span> pour 5 euros supplémentaires</>, 
-                            "Encore un"
+                            "Accès libre au plateau 7/7j de 6h à 23h", 
+                            <>Accès illimité au planning d'<span className="text-accent">AQUA</span></>
                         ]}
                         actionLink="/tarifs/aqua"
                         className=""

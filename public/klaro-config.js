@@ -43,6 +43,18 @@ var klaroConfig = {
             default: false,
             onlyOnce: true,
             callback: function(consent, app) { notifyConsentChange(app.name, consent); }
-        }
+        }, 
+        {
+            name: "google-analytics",
+            title: "Google Analytics",
+            purposes: ["analytics"],
+            cookies: [
+                /^_ga/, /^_gid/, /^_gat/, "AMP_TOKEN", "_gac_*"
+            ],
+            required: false,
+            default: false,
+            onlyOnce: true,
+            // callback optionnel
+        },
     ],
 }

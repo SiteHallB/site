@@ -4,6 +4,7 @@ import { useState, FormEvent, useEffect, useRef } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import sanitizeHtml from "sanitize-html";
 import useKlaroConsent from '../cookies/use-klaro-consent';
+import getConsent from '../cookies/get-consent';
 
 function cleanString(message: string) {
     return sanitizeHtml(message, {
@@ -49,17 +50,10 @@ function ContactForm() {
 
     useEffect(() => {
         // On vérifie à chaque soumission que le consentement hcaptcha est toujours OK
-        if (
-            typeof window !== "undefined" &&
-            window.klaro &&
-            typeof window.klaro.getConsent === "function"
-        ) {
-            const consent = window.klaro.getConsent("hcaptcha");
-            if (!consent) {
-                window.klaro.show();
-                alert("Veuillez accepter les cookies hCaptcha pour envoyer le formulaire.");
-                return;
-            }
+        if (!getConsent("hcaptcha")) {
+            window.klaro?.show();
+            alert("Veuillez accepter les cookies hCaptcha pour envoyer le formulaire.");
+            return;
         }
         if (token) submit(token);
     }, [token])
@@ -173,7 +167,6 @@ function ContactForm() {
   );
 }
 
-
 export default function CookieContactForm() {
     const hasConsent = useKlaroConsent("hcaptcha");
 
@@ -181,15 +174,16 @@ export default function CookieContactForm() {
         <div className="w-full max-w-200 bg-background-highlight rounded-xl p-content lg:p-contentLg">
             {hasConsent ? (
                 <ContactForm/>
-            ) : (<>
+            ) : (<div className="flex flex-col gap-y-content items-center">
                 <p className="text-accent">Veuillez accepter les cookies hCaptcha pour envoyer un message via formulaire.</p>
                 <Clickable
                     clickableType={{ type: "button", onClick: () => window.klaro?.show()}}
                     style={{ color: "primarySubdued", variant: "secondary" }}
+                    className="max-w-100 w-full"
                 >
                     Gérer mes cookies
                 </Clickable>
-            </>)}
+            </div>)}
         </div>
     );
 }

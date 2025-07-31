@@ -26,7 +26,7 @@ export default function RootLayout({
     }>) {
     return (
         <html lang="fr">
-            <body className="antialiased">
+            <head>
                 {/* 1. Charge la config d'abord */}
                 <Script
                 src="/klaro-config.js"
@@ -37,6 +37,8 @@ export default function RootLayout({
                 src="https://cdn.kiprotect.com/klaro/latest/klaro.js"
                 strategy="beforeInteractive"
                 />
+            </head>
+            <body className="antialiased">
                 <LinkProvider
                     links={{
                         osteo: "", 

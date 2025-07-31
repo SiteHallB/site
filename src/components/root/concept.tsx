@@ -87,45 +87,58 @@ export default function Concept() {
                 <h2 className="z-30 notreConcept text-foreground-base text-center mb-subTitle">
                     Notre Concept
                 </h2>
+                <p className="text-foreground-subdued mb-content">
+                    Bienvenue dans 2 400 m² de bien-être et de dépassement de soi flambant neuf - Un écrin pensé pour vous faire aimer chaque minute passée à bouger.
+                </p>
                 <div className="w-full flex flex-col lg:flex-row gap-y-10 gap-x-content">
                 <Section
                     last={false}
-                    title="Possibilités"
-                    text={<>Nombreuses activités, musculation cours collectifs et smallgroups avec coach diplômé, squash, danse, Pôle Aqua et pôle santé avec notre ostéopathe.</>}
-                />
-                <Section
-                    last={false}
-                    title="Programmes"
-                    text={<>Cours collectifs, smallgroups, et cours aquatiques en illimité toute la semaine pour les formules associées.<br/>
-                    Nous tenons à ce que chaque adhérent qui visite la salle ne veuille plus en partir.</>}
+                    title="Espace"
+                    text={<>Un terrain de jeu XXL - Plateau musculation dernier cri, cours collectifs vitaminés, 
+                    smallGroups training ultra-ciblés, terrains de squash, école de danse, bassin d'AQUA, pôle santé avec ostéopathe.<br/><br/>
+                    Choisissez votre aventure, on s'occupe du reste.</>}
                 >
-                    <div className="w-full flex flex-wrap gap-contentClose">
+                    {/* <div className="w-full justify-center flex flex-wrap gap-contentClose">
                         <Clickable
-                            clickableType={{type:"link", path: "/plannings"}}
-                            style={{variant: "secondary", color: "primarySubdued"}}
+                            clickableType={{type:"link", path: "/tarifs"}}
+                            style={{variant: "action", color: "accent"}}
                         >
-                            Voir le planning
+                            Je m'inscris
                         </Clickable>
-                        <Clickable
-                            clickableType={{type:"link", path: "/squash"}}
-                            style={{variant: "secondary", color: "primarySubdued"}}
-                        >
-                            Réservation Squash
-                        </Clickable>
-                    </div>
+                    </div> */}
                 </Section>
                 <Section
                     last={false}
-                    title="Accompagnement"
-                    text={<>Tout le monde doit se sentir considéré et accompagné. Matériel sélectionné sur le volet pour satisfaire tout type de pratiquant.</>}
+                    title="Encadrement"
+                    text={<> Encadrement premium -
+Tous nos cours sont animés par des coaches diplômés, passionnés et toujours à vos côtés pour booster vos résultats.</>}
+                />
+                <Section
+                    last={false}
+                    title="Qualité"
+                    text={<>Technologie & matériel de compétition - 
+                        Poids calibrés et certifiés pour la compétition, sacs de frappe, machines Panatta « made in Italy », cardio connecté Technogym : 
+                        l'élite de l'équipement pour tous les niveaux — du néophyte au compétiteur.</>}
                 />
                 <span className="lastSection basis-0 grow">
                 <Section
                     last={true}
-                    title="Haut de gamme"
-                    text={<>Poids calibrés pour la compétition, plateau d'haltérophilie, sacs de frappe pour les boxeurs, machines de musculation qualité italienne signée panatta, cardio connecté par technogym.</>}
+                    title="Notre ADN"
+                    text={<>Bien-être garanti - Lumière naturelle, hygiène irréprochable, ambiance respectueuse : 
+                    ici, chaque adhérent est considéré, accompagné et motivé.</>}
                 />
                 </span>
+                </div>
+                <div className="flexCenter flex-col gap-contentClose mt-content">
+                    <p className="text-foreground-base text-center">Formules illimitées - 
+                        Accédez sans contrainte à tous nos cours collectifs, small groups et séances aquatiques, sept jours sur sept.</p>
+                    <Clickable
+                        clickableType={{type:"link", path: "/tarifs"}}
+                        style={{variant: "action", color: "accent"}}
+                        className="w-fit"
+                    >
+                        Je m'inscris
+                    </Clickable>
                 </div>
             </div>
         </section>

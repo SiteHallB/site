@@ -1,5 +1,5 @@
 interface KlaroAPI {
-    getConsent: (service: string) => boolean;
+    getManager: any;
     show: () => void;
     // Ajoute d'autres méthodes si besoin
 }

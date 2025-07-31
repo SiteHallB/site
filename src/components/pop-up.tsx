@@ -24,17 +24,17 @@ export default function PopUp() {
     return (
         <>
             {isOpen && (
-                <div className="z-60 fixed inset-0 bg-background-base/50 flexCenter">
+                <div className="z-60 fixed inset-0 bg-background-base/50 backdrop-blur flexCenter">
                     <div
-                        className="outline-1 outline-foreground-subdued rounded-xl relative max-h-full max-w-[98vw] p-content lg:p-contentLg bg-background-base flexCenter flex-col text-foreground-base"
+                        className="z-10 outline-1 outline-foreground-subdued rounded-xl relative max-w-100 w-[98vw] p-content lg:p-contentLg bg-background-base flexCenter flex-col text-foreground-base"
                         role="dialog"
                         aria-modal="true"
                         aria-labelledby="modal-title"
                         aria-describedby="modal-desc"
                     >
                         <h2 id="modal-title" className="text-center">Essai Offert</h2>
-                        <p id="modal-desc" className="text-center textSubH2 text-foreground-subdued mb-content">Un sous titre</p>
-                        <p className="text-center text-foreground-subdued mb-content">Un texte pouvant etre plus long qui explique des trucs</p>
+                        <p id="modal-desc" className="text-center textSubH2 text-foreground-subdued mb-content">Vous hésitez encore à franchir le pas ?</p>
+                        <p className="text-center text-foreground-subdued mb-content">Profitez d'une séance découverte 100% gratuite pour tester notre salle et vivre l'expérience par vous-même.</p>
                         <Clickable
                             className="absolute top-1 right-1 lg:top-2 lg:right-2 hoverRotate"
                             clickableType={{type: "button", onClick: () => setIsOpen(false)}}

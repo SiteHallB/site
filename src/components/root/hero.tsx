@@ -105,21 +105,6 @@ export default function Hero() {
             y: `-${amount/3}vh`, 
         }, "<")
     }, { scope: container })
-
-    // Texte qui apparait sous le premier parallax
-    useGSAP(() => {
-        gsap.from(".splitText", {
-            scrollTrigger: {
-                start: "top 75%", 
-                end: "top 20%", 
-                trigger: ".splitText", 
-                toggleActions: "play reverse play reverse"
-            }, 
-            yPercent: 130,
-            ease: "power2.out",
-            duration: 0.4
-        });
-    }, { scope: container });
     
     return (
         <section id="hero" ref={container} className="relative w-full min-h-screen">
@@ -140,9 +125,9 @@ export default function Hero() {
                         className="h-[6rem] w-auto"
                         priority
                     />
-                    <p className={"text-foreground-subdued"}>
-                        Un bon sous-titre
-                    </p>
+                    <h1 className={"text-foreground-subdued textNormal"}>
+                        La plus grande salle de sport du Gard
+                    </h1>
                 </div>
                 
                 {/* Bandeau clignotant */}
@@ -181,9 +166,6 @@ export default function Hero() {
             <div
                 className="parallaxFill z-0 absolute inset-x-0 top-0 h-screen bg-background-base flex flex-row justify-center transform-gpu [will-change:clip-path]"
                 style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" }}>
-                <p className="splitText text-foreground-subdued absolute bottom-0">
-                    Venez Découvrir ...
-                </p>
             </div>
             {/* Fond en plus au cas ou les boutons dépassent de l'écran */}
             <div className="absolute inset-x-0 top-[100vh] bottom-0 bg-background-base"/>
