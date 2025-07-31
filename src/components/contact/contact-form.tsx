@@ -22,39 +22,14 @@ function cleanString(message: string) {
 }
 
 type StatusType = "typing" | "sending" | "success" | "error" | "captchaExpired";
-export default function ContactForm() {
+function ContactForm() {
     const [token, setToken] = useState<string | null>(null);
-    const [hasConsent, setHasConsent] = useState<boolean | undefined>(undefined);
     const captchaRef = useRef<HCaptcha>(null);
     
     const mailInCaseOfError = "hallb@contact.fr"
 
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [status, setStatus] = useState<StatusType>("typing");
-
-    useEffect(() => {
-        console.log(window.tarteaucitron?.state?.hcaptcha)
-        setHasConsent(window.tarteaucitron?.state?.hcaptcha === true)
-    }, [])
-
-    useEffect(() => {
-        // Handler qui passe à true quand hcaptcha est autorisé
-        const onAllowed = () => setHasConsent(true);
-        const onDisallowed = () => setHasConsent(false);
-
-        // Consentement initial (si la page est rechargée)
-        if (window.tarteaucitron?.state?.consents?.hcaptcha === true) {
-            setHasConsent(true);
-        }
-
-        document.addEventListener('hcaptcha_allowed', onAllowed);
-        document.addEventListener('hcaptcha_disallowed', onDisallowed);
-
-        return () => {
-            document.removeEventListener('hcaptcha_allowed', onAllowed);
-            document.removeEventListener('hcaptcha_disallowed', onDisallowed);
-        };
-    }, []);
 
     function statusMessage(s: StatusType) {
         switch (s) {
@@ -160,37 +135,70 @@ export default function ContactForm() {
             />
         </div>
 
-        {hasConsent ? (<>
-            <HCaptcha
-                size="invisible"
-                sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY!}
-                onVerify={setToken}
-                ref={captchaRef}
-                onError={(err) => {setStatus("error");}}
-                onExpire={() => {
-                    setStatus("captchaExpired")
-                    setToken(null);
-                }}
-            />
-            {status !== "sending" && <>
-                <Clickable
-                    clickableType={{ type: "button", htmlType: "submit" }}
-                    style={{ color: "accent", variant: "secondary" }}
-                    className="mt-content w-full"
-                >
-                    Envoyer
-                </Clickable>
-            </>}
-            {status !== "typing" && <p className="mt-2 text-center">{statusMessage(status)}</p>}
-        </>) : (<>            
-            <p className="text-accent">Veuillez accepter les cookies relatifs à HCaptcha pour envoyer un message.</p>
+        <HCaptcha
+            size="invisible"
+            sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY!}
+            onVerify={setToken}
+            ref={captchaRef}
+            onError={(err) => {setStatus("error");}}
+            onExpire={() => {
+                setStatus("captchaExpired")
+                setToken(null);
+            }}
+        />
+
+        {status !== "sending" &&
+            <Clickable
+                clickableType={{ type: "button", htmlType: "submit" }}
+                style={{ color: "accent", variant: "secondary" }}
+                className="mt-content w-full"
+            >
+                Envoyer
+            </Clickable>}
+        {status !== "typing" && <p className="mt-2 text-center">{statusMessage(status)}</p>}
+    </form>
+  );
+}
+
+
+export default function CookieContactForm() {
+    const [hasConsent, setHasConsent] = useState<boolean | undefined>(undefined);
+
+    useEffect(() => {
+        console.log(window.tarteaucitron?.state?.hcaptcha)
+        setHasConsent(window.tarteaucitron?.state?.hcaptcha === true)
+    }, [])
+
+    useEffect(() => {
+        // Handler qui passe à true quand hcaptcha est autorisé
+        const onAllowed = () => setHasConsent(true);
+        const onDisallowed = () => setHasConsent(false);
+
+        // Consentement initial (si la page est rechargée)
+        if (window.tarteaucitron?.state?.consents?.hcaptcha === true) {
+            setHasConsent(true);
+        }
+
+        document.addEventListener('hcaptcha_allowed', onAllowed);
+        document.addEventListener('hcaptcha_disallowed', onDisallowed);
+
+        return () => {
+            document.removeEventListener('hcaptcha_allowed', onAllowed);
+            document.removeEventListener('hcaptcha_disallowed', onDisallowed);
+        };
+    }, []);
+
+
+    if (hasConsent) return <ContactForm/>;
+    else return (
+        <>
+            <p className="text-accent">Veuillez accepter les cookies relatifs à HCaptcha pour nous envoyer un message via formulaire.</p>
             <Clickable
                 clickableType={{ type: "button", onClick: () => window.tarteaucitron.userInterface.openPanel()}}
                 style={{ color: "primarySubdued", variant: "secondary" }}
             >
                 Gérer mes cookies
             </Clickable>
-        </>)}
-    </form>
-  );
+        </>
+    );
 }
