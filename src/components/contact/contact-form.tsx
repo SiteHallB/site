@@ -67,6 +67,7 @@ export default function ContactForm() {
     };
 
     useEffect(() => {
+        console.log("Token:", token);
         if (token) submit(token);
     }, [token])
 
