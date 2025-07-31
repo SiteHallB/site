@@ -165,8 +165,8 @@ export default function CookieContactForm() {
     const [hasConsent, setHasConsent] = useState<boolean | undefined>(undefined);
 
     useEffect(() => {
-        console.log(window.tarteaucitron?.state?.hcaptcha)
-        setHasConsent(window.tarteaucitron?.state?.hcaptcha === true)
+        console.log(document.cookie.includes("hcaptcha"))
+        setHasConsent(document.cookie.includes("hcaptcha") === true)
     }, [])
 
     useEffect(() => {
