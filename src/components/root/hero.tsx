@@ -1,31 +1,33 @@
 "use client";
 
-import "@/styles/accueil-degrade.css"
+import styles from "@/styles/components/Hero.module.css"
 
 import { useRef } from "react";
 
 import Image from "next/image";
 
+import { ArrowDown } from "lucide-react";
+
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-import { ArrowDown } from "lucide-react";
-
 import VideoBackground from "@/components/ui/video-background";
 import Clickable from "@/components/ui/clickable";
+
 import { useImage } from "@/context/image-context";
+import { useLinks } from "@/context/link-context";
 
 type BandElement = { text: string, path: string }
 
 function FlashingBand({ items }: { items: BandElement[] }) {
-    const container = useRef<HTMLDivElement>(null);
+    const container = useRef<HTMLUListElement>(null);
 
     useGSAP(() => {
         if (!container.current) return;
         const bandElements = container.current.querySelectorAll(".bandElement");
 
         const tl = gsap.timeline({ repeat: -1 })
-        bandElements.forEach((el, index) => {
+        bandElements.forEach((el, _) => {
             tl.to(el, {
                 color: "#E1C340", 
                 yoyo: true, 
@@ -37,44 +39,34 @@ function FlashingBand({ items }: { items: BandElement[] }) {
     }, { scope: container })
 
     return (
-        <div ref={container} className="flex flex-wrap gap-x-4 justify-center">
+        <ul ref={container} className="flex flex-wrap gap-x-4 justify-center">
             {items.map((el, index) => (
-                <div key={index} className="">
+                <li key={index}>
                     <Clickable
                         clickableType={{type: "link", path: el.path}}
                         style={{}}
-                        className="bandElement textLead text-foreground-subdued opacity-80"
+                        className="bandElement textLead text-foreground-subdued"
                     >
                         {el.text}
                     </Clickable>
-                </div>
+                </li>
             ))}
-        </div>
+        </ul>
   );
 }
 
 function Arrow({ }) {
-    const container = useRef<HTML>(null);
-
-    // Rebonds
-    useGSAP(() => {
-        gsap.to(".arrow", {
-            y: 10, 
-            ease: "power2.in", 
-            yoyo: true, 
-            repeat: -1
-        })
-    }, { scope: container })
-
     return (
-        <ul ref={container} className="absolute bottom-20">
-            <Clickable 
-                clickableType={{type: "button", onClick: () => {const vh = window.innerHeight; window.scrollTo({top: 4*vh/5, behavior: "smooth"})}}}
-                style={{}}
-            >
-                <ArrowDown className="parallaxArrow arrow text-foreground-subdued"/>
-            </Clickable>
-        </ul>
+        <Clickable 
+            clickableType={{type: "button", onClick: () => {const vh = window.innerHeight; window.scrollTo({top: 4*vh/5, behavior: "smooth"})}}}
+            style={{}}
+            aria-label="Aller au contenu"
+            className="absolute bottom-20"
+        >
+            <ArrowDown
+                className={["parallaxArrow text-foreground-subdued", styles.arrowBounce].join(" ")}
+            />
+        </Clickable>
     );
 }
 
@@ -82,6 +74,8 @@ export default function Hero() {
     const container = useRef<HTMLDivElement>(null);
 
     const { logo } = useImage();
+
+    const { osteo } = useLinks();
 
     // Parallax
     useGSAP(() => {
@@ -125,7 +119,7 @@ export default function Hero() {
                         className="h-[6rem] w-auto"
                         priority
                     />
-                    <h1 className={"text-foreground-subdued textNormal"}>
+                    <h1 className={"text-foreground-base textNormal"}>
                         La plus grande salle de sport du Gard
                     </h1>
                 </div>
@@ -135,10 +129,10 @@ export default function Hero() {
                     items={[
                     { path: "", text: "Musculation" }, 
                     { path: "", text: "Fitness" }, 
-                    { path: "", text: "Aqua" }, 
+                    { path: "/tarifs/aqua", text: "Aqua" }, 
                     { path: "/squash", text: "Squash" }, 
-                    { path: "", text: "Osteo" }, 
-                    { path: "", text: "Danse" }, 
+                    { path: osteo, text: "Osteo" }, 
+                    { path: "/tarifs/danses", text: "Danse" }, 
                     ]}
                 />
 

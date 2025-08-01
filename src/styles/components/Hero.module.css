@@ -1,0 +1,9 @@
+@keyframes arrowBounce {
+    0% { transform: translateY(10px); }
+    100% { transform: translateY(0); }
+}
+
+.arrowBounce {
+  animation: arrowBounce 0.7s infinite alternate;
+  animation-timing-function: cubic-bezier(0.22,1,0.36,1), cubic-bezier(0.65,0,0.76,0);
+}

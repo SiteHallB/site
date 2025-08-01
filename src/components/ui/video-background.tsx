@@ -30,6 +30,7 @@ export default function VideoBackground({ videoId }: { videoId: string }) {
         allow="autoplay; encrypted-media; picture-in-picture"
         allowFullScreen
         title="Background video"
+        aria-hidden="true"
         onLoad={() => setLoaded(true)}
       />
     </div>
