@@ -79,8 +79,8 @@ h4 {
     background-color: var(--color-background-base);
 }
 
-button {
-  color: var(--color-foreground-base);
+button:has(> svg.lucide-calendar) {
+  display: none !important;
 }
 
 button[role="checkbox"][data-state="checked"] {

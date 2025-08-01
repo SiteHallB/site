@@ -13,7 +13,9 @@ import Clickable from "@/components/ui/clickable";
 
 import type { Swiper as SwiperInstance } from "swiper";
 
-import 'swiper/css';
+import { ImageType } from "@/context/image-context";
+
+import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
@@ -21,12 +23,11 @@ import clsx from "clsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type Image = { src: string, width: number, height: number, alt: string };
 type FormuleProps = 
     { title: string } &
     { subtitle: string } &
     { prix?: number } &
-    { images: Image[] } &
+    { images: ImageType[] } &
     { checkDescription: React.ReactNode[] } &
     { plusDescription: React.ReactNode[] } &
     { actionLink: string } &
@@ -62,6 +63,7 @@ export default function FormuleOverview({ title, subtitle, prix, images, checkDe
     }
 
     useEffect(() => {
+        if (images.length === 1) return;
         startTimer();
         return () => {
             if (intervalRef.current) clearInterval(intervalRef.current)
@@ -123,15 +125,14 @@ export default function FormuleOverview({ title, subtitle, prix, images, checkDe
                 navigation
                 pagination={{ clickable: true }}
             >
-                {images.map((el, index) => (
+                {images.map((image, index) => (
                     <SwiperSlide
                         key={index}
                         className="select-none overflow-hidden rounded transition-all duration-300 ease-in-out swiper-slide-custom"
                     >
-                        <img
-                            src={el.src}
+                        <Image
+                            {...image}
                             className="w-full h-full object-cover object-center"
-                            alt=""
                         />
                     </SwiperSlide>
                 ))}

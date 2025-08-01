@@ -1,11 +1,13 @@
 "use client"
 
-import SportigoFormule from "@/components/ui/sportigo-formule";
 import PageStructure from "@/components/ui/page-structure";
 import FormuleOverview from "@/components/tarifs/formule-overview"
 import Separator from "@/components/ui/separator";
+import { useImage } from "@/context/image-context";
 
 export default function Page() {
+    const { tarifs_classic_1, tarifs_classic_2, tarifs_boost_1, tarifs_aqua_1, tarifs_carnet_1, tarifs_danses_1 } = useImage();
+
     return (
         <PageStructure title="Tarifs" subtitle="Choisissez la formule adaptée à vos besoins">
             <div className="w-full pt-1 flexCenter flex-col">
@@ -16,12 +18,8 @@ export default function Page() {
                     <FormuleOverview
                         title="Classic"
                         subtitle="Musculation & cardio"
-                        prix={75}
-                        images={[
-                            { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
-                            { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
-                            { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
-                        ]}
+                        prix={40}
+                        images={[ tarifs_classic_1, tarifs_classic_2 ]}
                         checkDescription={[
                             "Accès libre au plateau 7/7j de 6h à 23h", 
                         ]}
@@ -34,12 +32,8 @@ export default function Page() {
                     <FormuleOverview
                         title="Boost"
                         subtitle="Classic + Cours collectifs"
-                        prix={75}
-                        images={[
-                            { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
-                            { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
-                            { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
-                        ]}
+                        prix={50}
+                        images={[ tarifs_boost_1, ]}
                         checkDescription={[
                             "Accès libre au plateau 7/7j de 6h à 23h", 
                             "Accès illimité au planning de cours collectifs", 
@@ -56,16 +50,18 @@ export default function Page() {
                         title="Aqua"
                         subtitle="Classic + Aqua"
                         prix={75}
-                        images={[
-                            { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
-                            { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
-                            { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
-                        ]}
+                        images={[ tarifs_aqua_1, ]}
                         checkDescription={[
                             "Accès libre au plateau 7/7j de 6h à 23h", 
                             <>Accès illimité au planning d'<span className="text-accent">AQUA</span></>
                         ]}
-                        plusDescription={[]}
+                        plusDescription={[
+                            <><span className="text-accent">5€</span> pour les <span className="text-accent uppercase">Cours Co</span></>, 
+                            <><span className="text-accent">10€</span> pour
+                                <span className="text-accent uppercase"> Cours Co</span> et 
+                                <span className="text-accent uppercase"> SmallGroups</span>
+                            </>
+                        ]}
                         actionLink="/tarifs/aqua"
                         className=""
                     />
@@ -79,18 +75,14 @@ export default function Page() {
                     <FormuleOverview
                         title="Carnet de séances"
                         subtitle="Sous titre"
-                        images={[
-                            { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
-                            { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
-                            { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
-                        ]}
+                        images={[ tarifs_carnet_1, ]}
                         checkDescription={[
                             "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
                             <><span className="text-accent">Small groups</span> pour 5 euros supplémentaires</>, 
                             "Encore un"
                         ]}
                         plusDescription={[]}
-                        actionLink="/tarifs/classic"
+                        actionLink="/tarifs/carnet_seances"
                         className=""
                     />
 
@@ -98,18 +90,14 @@ export default function Page() {
                     <FormuleOverview
                         title="Danses"
                         subtitle="Sous titre"
-                        images={[
-                            { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
-                            { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
-                            { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
-                        ]}
+                        images={[ tarifs_danses_1, ]}
                         checkDescription={[
                             "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
                             <><span className="text-accent">Small groups</span> pour 5 euros supplémentaires</>, 
                             "Encore un"
                         ]}
                         plusDescription={[]}
-                        actionLink="/tarifs/classic"
+                        actionLink="/tarifs/danses"
                         className=""
                     />
                 </div>

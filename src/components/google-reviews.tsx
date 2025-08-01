@@ -3,7 +3,7 @@
 import Clickable from "@/components/ui/clickable";
 import { useLinks } from "@/context/link-context";
 import {  Star as St, StarHalf as StH } from "lucide-react";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 type Review = {
     author_name: string;
@@ -80,10 +80,6 @@ export default function GoogleReviews() {
                 setCount(data.user_ratings_total || null);
             });
     }, []);
-
-    useEffect(() => {
-        console.log(reviews, rating, count);
-    }, [reviews, rating, count]);
 
     return (
         <div className="z-10 w-full flex flex-col items-center space-y-content">

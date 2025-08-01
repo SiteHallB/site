@@ -19,14 +19,14 @@ export default function SportigoPlannings() {
         init();
     }, []);
 
-  return (
-    <>
-      <div id="sportigo-container" className="w-full"/>
-      <Script
-        src="https://standalone.api.sportigo.fr/component-standalone.js"
-        strategy="afterInteractive"
-        onLoad={init} 
-      />
-    </>
-  );
+    return (
+        <>
+            <div id="sportigo-container" className="w-full"/>
+            <Script
+                src="https://standalone.api.sportigo.fr/component-standalone.js"
+                strategy="afterInteractive"
+                onLoad={init} 
+            />
+        </>
+    );
 }

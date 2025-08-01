@@ -1,18 +1,14 @@
+import { useImage } from "@/context/image-context";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import Image from "next/image";
 import { useRef } from "react";
 
-
-const images = [
-    { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
-    { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
-    { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
-]
-
 export default function Histoire() {
     const container = useRef<HTMLDivElement>(null);
+
+    const { root_histoire } = useImage();
 
     useGSAP(() => {
         // Entre dans l'image et fait apparaitre le texte dessous
@@ -55,11 +51,8 @@ export default function Histoire() {
                         style={{clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)"}}
                     >
                         <Image 
-                            src={images[0].src}
-                            width={images[0].width}
-                            height={images[0].height}
+                            {...root_histoire}
                             className="absolute left-0 top-0 size-full object-cover"
-                            alt={images[0].alt}
                         />
                     </div>
                 </div>

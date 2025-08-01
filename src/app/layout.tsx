@@ -9,6 +9,8 @@ import Script from "next/script";
 
 import { LinkProvider } from "@/context/link-context";
 import GoogleAnalyticsProvider from "@/components/analytics/google-analytics-provider";
+import { ImageProvider } from "@/context/image-context";
+import { FormuleProvider } from "@/context/formule-context";
 
 export const metadata: Metadata = {
     title: "Hall B",
@@ -41,24 +43,17 @@ export default function RootLayout({
             </head>
             <body className="antialiased">
                 <GoogleAnalyticsProvider/>
-                <LinkProvider
-                    links={{
-                        osteo: "", 
-                        adresse: "https://maps.app.goo.gl/8NkxFXwWUCSQMxDLA", 
-                        instagram: "https://www.instagram.com/hallb.fr/", 
-                        facebook: "https://www.facebook.com/p/HALL-B-61576081445951/", 
-                        avis: "https://maps.app.goo.gl/q6AxEJa8WjfwpBVw8", 
-                        pannata: "https://www.panattasport.com/fr/", 
-                        technogym: "https://www.technogym.com/fr-FR/", 
-                        pallini: "https://www.pallini-sport.fr/", 
-                    }}
-                >
+                <LinkProvider>
+                <ImageProvider>
+                <FormuleProvider>
                 <PopUp/>
                 <Menu/>
                 <div className="relative w-full">
                     {children}
                     <Footer/>
                 </div>
+                </FormuleProvider>
+                </ImageProvider>
                 </LinkProvider>
             </body>
         </html>

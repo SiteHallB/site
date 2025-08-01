@@ -13,6 +13,7 @@ import { ArrowDown } from "lucide-react";
 
 import VideoBackground from "@/components/ui/video-background";
 import Clickable from "@/components/ui/clickable";
+import { useImage } from "@/context/image-context";
 
 type BandElement = { text: string, path: string }
 
@@ -80,6 +81,8 @@ function Arrow({ }) {
 export default function Hero() {
     const container = useRef<HTMLDivElement>(null);
 
+    const { logo } = useImage();
+
     // Parallax
     useGSAP(() => {
         const amount = 60;
@@ -118,10 +121,7 @@ export default function Hero() {
                 {/* Titre */}
                 <div className="flexCenter flex-col space-y-2">
                     <Image
-                        src="/images/logo-hallb.png"
-                        alt="Logo Hall B"
-                        width={1240}
-                        height={1328}
+                        {...logo}
                         className="h-[6rem] w-auto"
                         priority
                     />

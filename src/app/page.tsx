@@ -4,7 +4,7 @@ import Hero from "@/components/root/hero";
 import Concept from "@/components/root/concept";
 import EssaiOffert from "@/components/root/essai-offert";
 import Histoire from "@/components/root/histoire";
-import Valeurs from "@/components/root/testValeurs";
+import Valeurs from "@/components/root/valeurs";
 
 export default function Home() {
     return (

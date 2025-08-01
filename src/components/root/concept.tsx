@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ImageType } from "@/context/image-context";
 
 import { useRef } from "react";
 import gsap from "gsap";
@@ -7,17 +8,11 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 
 import Clickable from "@/components/ui/clickable";
+import { useImage } from "@/context/image-context";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
-const images = [
-    { src: "/images/concept.jpg", width: 3024, height: 4032, alt:"" }, 
-    { src: "/images/histoire.jpg", width: 3024, height: 4032, alt:"" }, 
-    { src: "/images/valeurs.jpg", width: 3024, height: 4032, alt:"" }, 
-]
-
-function Section({ last, title, text, children }: { last: boolean; title: string; text: React.ReactNode; children?: React.ReactNode }) {
+function Section({ image, last, title, text, children }: { image: ImageType, last: boolean; title: string; text: React.ReactNode; children?: React.ReactNode }) {
     const container = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
@@ -43,11 +38,8 @@ function Section({ last, title, text, children }: { last: boolean; title: string
             {/* Image */}
             <div className="w-full aspect-square rounded-xl overflow-hidden mb-content mx-auto">
                 <Image 
-                    src={images[0].src}
-                    width={images[0].width}
-                    height={images[0].height}
+                    {...image}
                     className="object-cover object-center size-full"
-                    alt={images[0].alt}
                 />
             </div>
 
@@ -63,6 +55,8 @@ function Section({ last, title, text, children }: { last: boolean; title: string
 
 export default function Concept() {
     const container = useRef<HTMLDivElement>(null)
+
+    const { root_concept_espace, root_concept_encadrement, root_concept_qualite, root_concept_adn } = useImage();
 
     // Pin notre concept
     useGSAP(() => {
@@ -92,6 +86,7 @@ export default function Concept() {
                 </p>
                 <div className="w-full flex flex-col lg:flex-row gap-y-10 gap-x-content">
                 <Section
+                    image={root_concept_espace}
                     last={false}
                     title="Espace"
                     text={<>Un terrain de jeu XXL - Plateau musculation dernier cri, cours collectifs vitaminés, 
@@ -108,12 +103,14 @@ export default function Concept() {
                     </div> */}
                 </Section>
                 <Section
+                    image={root_concept_encadrement}
                     last={false}
                     title="Encadrement"
                     text={<> Encadrement premium -
-Tous nos cours sont animés par des coaches diplômés, passionnés et toujours à vos côtés pour booster vos résultats.</>}
+                    Tous nos cours sont animés par des coaches diplômés, passionnés et toujours à vos côtés pour booster vos résultats.</>}
                 />
                 <Section
+                    image={root_concept_qualite}
                     last={false}
                     title="Qualité"
                     text={<>Technologie & matériel de compétition - 
@@ -122,6 +119,7 @@ Tous nos cours sont animés par des coaches diplômés, passionnés et toujours 
                 />
                 <span className="lastSection basis-0 grow">
                 <Section
+                    image={root_concept_adn}
                     last={true}
                     title="Notre ADN"
                     text={<>Bien-être garanti - Lumière naturelle, hygiène irréprochable, ambiance respectueuse : 
