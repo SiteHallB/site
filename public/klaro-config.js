@@ -22,7 +22,7 @@ var klaroConfig = {
                 "Nous utilisons des cookies pour assurer le bon fonctionnement du site, améliorer votre expérience et protéger les formulaires contre le spam et les bots.",
             },
             hcaptcha: {
-                description: "Service hCaptcha pour sécuriser le formulaire de contact contre les robots.",
+                description: "hCaptcha protège ce site des robots. Ce service est essentiel au fonctionnement du formulaire.",
             },
             purposes: {
                 security: "Sécurité et protection anti-spam"
@@ -54,7 +54,6 @@ var klaroConfig = {
             required: false,
             default: false,
             onlyOnce: true,
-            // callback optionnel
         },
     ],
 }

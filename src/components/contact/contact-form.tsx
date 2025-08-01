@@ -49,12 +49,6 @@ function ContactForm() {
     };
 
     useEffect(() => {
-        // On vérifie à chaque soumission que le consentement hcaptcha est toujours OK
-        if (!getConsent("hcaptcha")) {
-            window.klaro?.show();
-            alert("Veuillez accepter les cookies hCaptcha pour envoyer le formulaire.");
-            return;
-        }
         if (token) submit(token);
     }, [token])
 

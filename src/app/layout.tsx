@@ -8,6 +8,7 @@ import PopUp from "@/components/pop-up";
 import Script from "next/script";
 
 import { LinkProvider } from "@/context/link-context";
+import GoogleAnalyticsProvider from "@/components/analytics/google-analytics-provider";
 
 export const metadata: Metadata = {
     title: "Hall B",
@@ -39,6 +40,7 @@ export default function RootLayout({
                 />
             </head>
             <body className="antialiased">
+                <GoogleAnalyticsProvider/>
                 <LinkProvider
                     links={{
                         osteo: "", 

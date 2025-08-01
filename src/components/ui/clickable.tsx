@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { trackEvent } from "@/components/analytics/ga";
+import trackEvent from "@/components/analytics/google-analytics-track-event";
 import clsx from "clsx";
 
 const clickableVariants = cva(
