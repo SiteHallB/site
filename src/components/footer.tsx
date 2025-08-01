@@ -3,65 +3,20 @@
 import Image from "next/image";
 
 import Clickable from "@/components/ui/clickable";
-import { Facebook, Instagram, Star as St } from "lucide-react";
 import Reseaux from "@/components/reseaux";
 
 import Separator from "@/components/ui/separator";
 import { useLinks } from "@/context/link-context";
 
-function Star() {
-    return (
-        <St
-            size={24}
-            strokeWidth={2}
-            className="text-background-highlight"
-            fill="#E1C340"
-        />
-    );
-}
-
-function Avis({ text, autheur }: { text: string; autheur: string }) {
-    return (
-        <div className="w-full flex flex-col p-contentClose rounded outline-background-highlight outline-3">
-            {/* Note */}
-            <div className="flex flex-row mb-contentClose">
-                <Star/>
-                <Star/>
-                <Star/>
-                <Star/>
-                <Star/>
-            </div>
-            {/* Citation */}
-            <blockquote className="text-foreground-base textNormal">
-                {text}
-            </blockquote>
-            <cite className="text-foreground-subdued textSmall">{autheur}, <em>avis Google</em></cite>
-        </div>
-    );
-}
+import GoogleReviews from "@/components/google-reviews";
 
 export default function Footer() {
-    const { avis, pannata, technogym, pallini, adresse } = useLinks();
+    const { pannata, technogym, pallini, adresse } = useLinks();
 
     return (
         <footer className="relative w-full bg-background-subdued pt-content flex flex-col items-center p-content lg:p-contentLg">
             {/* Avis */}
-            <div className="z-10 w-full flex flex-col items-center space-y-content">
-                <h2 className="text-foreground-base text-center">Votre avis nous intéresse</h2>
-                <Avis
-                    autheur="Eliot Collombet"
-                    text="Tout simplement la meilleure salle de sport que j'aie jamais vu. Encadrement, matériel, surface, ambiance, tout y est."/>
-                <Avis
-                    autheur="Gauthier Bonhomme"
-                    text="J'ai visité la salle en juillet, la surface est juste dingue et le matériel est d'excellente qualité"/>
-                <Clickable
-                    clickableType={{type: "link", path: avis, outside: true}}
-                    style={{"variant": "action", "color": "accent"}}
-                    className="lg:w-fit w-full"
-                >
-                    Je donne mon avis
-                </Clickable>
-            </div>
+            <GoogleReviews/>
 
             <Separator/>
 

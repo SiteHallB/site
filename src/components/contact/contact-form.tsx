@@ -127,6 +127,7 @@ function ContactForm() {
             <TextareaAutosize
                 name="message"
                 id="message"
+                autoComplete="off"
                 placeholder="Votre message"
                 value={form.message}
                 required
@@ -156,7 +157,7 @@ function ContactForm() {
             >
                 Envoyer
             </Clickable>}
-        {status !== "typing" && <p className="mt-2 text-center">{statusMessage(status)}</p>}
+        {status !== "typing" && <p aria-live="polite" className="mt-2 text-center">{statusMessage(status)}</p>}
     </form>
   );
 }

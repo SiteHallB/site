@@ -125,3 +125,7 @@
 #tarteaucitronRoot #tarteaucitronIcon {
   display: none !important;
 }
+
+.clickableBase {
+    @apply hover:cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500;
+}

@@ -41,7 +41,7 @@ var klaroConfig = {
             title: "hCaptcha",
             purposes: ["security"],
             cookies: [
-                /^__cf_/, "hmt_id"
+                "hmt_id"
             ],
             required: false,
             default: false,
