@@ -4,6 +4,8 @@ function notifyConsentChange(service, consent) {
     window._klaroConsentListeners.forEach(cb => cb(service, consent));
 }
 
+let lastGaConsent = null;
+
 var klaroConfig = {
     elementID: 'klaro',
     storageMethod: 'cookie',
@@ -56,7 +58,14 @@ var klaroConfig = {
             required: false,
             default: false,
             onlyOnce: true,
-            callback: function(consent, app) { notifyConsentChange(app.name, consent); }
+            callback: function(consent, app) {
+                if (app && app.name === "google-analytics") {
+                    if (lastGaConsent !== null && lastGaConsent !== consent) {
+                        setTimeout(() => window.location.reload(), 100);
+                    }
+                    lastGaConsent = consent;
+                }
+            },
         },
     ],
 }
