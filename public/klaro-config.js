@@ -34,7 +34,7 @@ var klaroConfig = {
         }
     },
     callback: function(consent, app, opts) { // Refresh si google-analytics a changé
-        console.log(consents, app, opts);
+        console.log(consent, app, opts);
         if (app && app.name === "google-analytics" && opts && opts.changed) {
             setTimeout(() => window.location.reload(), 100);
         }
