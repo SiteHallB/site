@@ -54,6 +54,7 @@ var klaroConfig = {
             required: false,
             default: false,
             onlyOnce: true,
+            callback: function(consent, app) { notifyConsentChange(app.name, consent); }
         },
     ],
 }
