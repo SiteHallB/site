@@ -146,6 +146,11 @@ export default function Menu() {
                 <Clickable
                     clickableType={{type: "link", onClick: () => setIsMenuOpen(false), path: "/tarifs"}}
                     style={{variant: "navigationBar", color: "accent"}}
+                    trackingConfig={{
+                        action: "bouton_click", 
+                        category: "interaction", 
+                        label: "je m'inscris - barre de navigation"
+                    }}
                 >
                     Je m'inscris
                 </Clickable>

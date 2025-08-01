@@ -48,10 +48,14 @@ type ClickableType =
         outside?: boolean
     }
 
-export default function Clickable({ clickableType, trackingLabel, className, children, style }: 
+export default function Clickable({ clickableType, trackingConfig, className, children, style }: 
     {
         clickableType: ClickableType; 
-        trackingLabel?: string; 
+        trackingConfig?: {
+            action: string; 
+            category: string; 
+            label: string; 
+        }; 
         className?: string; 
         children: React.ReactNode;
 
@@ -59,12 +63,8 @@ export default function Clickable({ clickableType, trackingLabel, className, chi
     })
 {
     function handleTracking() {
-        if (trackingLabel) {
-            trackEvent({
-                action: clickableType.type === "button" ? "click_button" : "click_link", 
-                category: "interaction",
-                label: trackingLabel,
-            })
+        if (trackingConfig) {
+            trackEvent({...trackingConfig})
         }
     }
 
