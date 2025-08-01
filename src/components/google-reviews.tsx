@@ -2,7 +2,7 @@
 
 import Clickable from "@/components/ui/clickable";
 import { useLinks } from "@/context/link-context";
-import {  Star as St } from "lucide-react";
+import {  Star as St, StarHalf as StH } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Review = {
@@ -13,33 +13,53 @@ type Review = {
     time: string;
 };
 
-function Star() {
-    return (
-        <St
-            size={24}
-            strokeWidth={2}
-            className="text-background-highlight"
-            fill="#E1C340"
-        />
-    );
+function Star({ half }: { half: boolean }) {
+    if (half) {
+        return (
+            <StH
+                size={24}
+                strokeWidth={2}
+                className="text-background-highlight"
+                fill="#E1C340"
+            />
+        );
+    } else {
+        return (
+            <St
+                size={24}
+                strokeWidth={2}
+                className="text-background-highlight"
+                fill="#E1C340"
+            />
+        );
+    }
 }
 
-function Avis({ text, autheur }: { text: string; autheur: string }) {
+function StarRating({ rating }: { rating: number }) {
+    return (
+        <div className="flex flex-row space-x-1 items-center">
+            <p className="text-foreground-subdued textSmall">{rating} / 5</p>
+            <div className="flex flex-row">
+                {Array.from({ length: 5 }, (_, index) => {
+                    if (rating - index <= 0) return null;
+                    return <Star key={index} half={rating - index <= 0.5}/>
+                })}
+            </div>
+        </div>
+    )
+}
+
+function Avis(review: Review) {
     return (
         <div className="w-full flex flex-col p-contentClose rounded outline-background-highlight outline-3">
             {/* Note */}
-            <div className="flex flex-row mb-contentClose">
-                <Star/>
-                <Star/>
-                <Star/>
-                <Star/>
-                <Star/>
-            </div>
+            <StarRating rating={review.rating}/>
+
             {/* Citation */}
-            <blockquote className="text-foreground-base textNormal">
-                {text}
+            <blockquote className="mt-contentClose text-foreground-base textNormal mb-1">
+                {review.text}
             </blockquote>
-            <cite className="text-foreground-subdued textSmall">{autheur}, <em>avis Google</em></cite>
+            <cite className="text-foreground-subdued textSmall">{review.author_name}, {review.time}</cite>
         </div>
     );
 }
@@ -61,22 +81,33 @@ export default function GoogleReviews() {
             });
     }, []);
 
+    useEffect(() => {
+        console.log(reviews, rating, count);
+    }, [reviews, rating, count]);
+
     return (
         <div className="z-10 w-full flex flex-col items-center space-y-content">
             <h2 className="text-foreground-base text-center">Votre avis nous intéresse</h2>
             {rating && count && (
-                <div className="mb-2">{rating} / 5 ({count} avis)</div>
+                <div className="flex flex-row items-center mb-contentClose space-x-contentClose">
+                    <p className="text-foreground-base"> {count} avis : </p>
+                    <StarRating rating={rating}/>
+                </div>
             )}
-            <Avis
-                autheur="Eliot Collombet"
-                text="Tout simplement la meilleure salle de sport que j'aie jamais vu. Encadrement, matériel, surface, ambiance, tout y est."/>
-            <Avis
-                autheur="Gauthier Bonhomme"
-                text="J'ai visité la salle en juillet, la surface est juste dingue et le matériel est d'excellente qualité"/>
+            {reviews.map((review, index) => (
+                <Avis key={index} {...review} />
+            ))}
             <p className="text-foreground-subdued textSmall text-center">
-                Les avis affichés proviennent de Google. 
-                Seuls les plus récents ayant reçu une note de 4 étoiles ou plus sont présentés ici. 
-                Tous les avis sont consultables sur Google.
+                {"Les avis affichés proviennent de Google et leur sélection est effectuée automatiquement par l'API Google. "}
+                <span>
+                    <Clickable
+                        clickableType={{type: "link", path: avis, outside: true}}
+                        style={{}}
+                        className="hoverUnderline"
+                    >
+                        <>Tous les avis sont consultables sur <u>Google.</u></>
+                    </Clickable>
+                </span>
             </p>
             {/* Bouton pour donner son avis */}
             <Clickable

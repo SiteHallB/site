@@ -6,16 +6,12 @@ export async function GET() {
         const placeId = process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID;
 
         if (!apiKey || !placeId) {
-            console.log('Missing env', { apiKey, placeId });
             return NextResponse.json({ error: "Missing API key or Place ID" }, { status: 500 });
         }
 
-        const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=rating,reviews,user_ratings_total&key=${apiKey}`;
+        const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=rating,reviews,user_ratings_total&language=fr&key=${apiKey}`;
         const res = await fetch(url);
         const data = await res.json();
-
-        // ➡️ Ajoute ceci pour debugger :
-        console.log("data reçu de Google :", data);
 
         if (!data.result) {
             return NextResponse.json({
@@ -38,7 +34,6 @@ export async function GET() {
             })),
         });
     } catch (e) {
-        console.log('API Error', e);
         return NextResponse.json({ error: "Internal error" }, { status: 500 });
     }
 }
