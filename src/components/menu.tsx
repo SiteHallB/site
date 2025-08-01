@@ -66,7 +66,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
         gsap.set(".menu-link-item-holder", { y: 60 });
 
         tl.current = gsap.timeline({ paused: true })
-        .to(".menu-overlay", {
+        .to(".menuOverlay", {
             duration: 1.25, 
             clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", 
             ease: "power4.inOut",
@@ -89,7 +89,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
 
     return (
         <div ref={container} >
-        <div className="fixed inset-0 z-40 pointer-events-auto touch-none menu-overlay">
+        <div className="fixed inset-0 z-40 pointer-events-auto touch-none menuOverlay">
             {/* Exterieur de l'overlay */}
             <div className="h-full w-auto" onClick={close}></div>
 
@@ -154,8 +154,13 @@ export default function Menu() {
                 >
                     Je m'inscris
                 </Clickable>
+                
+                {/* Bouton menu */}
                 <Clickable 
-                    clickableType={{type: "button", onClick: toggleMenu}}
+                    aria-controls="menuOverlay"
+                    aria-expanded={isMenuOpen}
+                    aria-label="Ouvrir le menu"
+                    clickableType={{type: "button", onClick: toggleMenu, htmlType: "button"}}
                     style={{}}
                 >
                     {isMenuOpen ? <X className="size-6 lg:size-8 hoverRotate text-foreground-base"/> : 

@@ -11,6 +11,9 @@ import { LinkProvider } from "@/context/link-context";
 import GoogleAnalyticsProvider from "@/components/analytics/google-analytics-provider";
 import { ImageProvider } from "@/context/image-context";
 import { FormuleProvider } from "@/context/formule-context";
+import { ContactProvider } from "@/context/contact-context";
+
+import { Toast } from "@/components/ui/toast";
 
 export const metadata: Metadata = {
     title: "Hall B",
@@ -46,12 +49,22 @@ export default function RootLayout({
                 <LinkProvider>
                 <ImageProvider>
                 <FormuleProvider>
-                <PopUp/>
-                <Menu/>
-                <div className="relative w-full">
-                    {children}
-                    <Footer/>
-                </div>
+                <ContactProvider>
+
+                    <header>
+                        <Menu/>
+                    </header>
+
+                    <PopUp/>
+                    <Toast/>
+
+                    {/* Contenu principal */}
+                    <div className="relative w-full">
+                        {children}
+                        <Footer/>
+                    </div>
+                    
+                </ContactProvider>
                 </FormuleProvider>
                 </ImageProvider>
                 </LinkProvider>

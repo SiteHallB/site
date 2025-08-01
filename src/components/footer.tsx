@@ -9,9 +9,12 @@ import Separator from "@/components/ui/separator";
 import { useLinks } from "@/context/link-context";
 
 import GoogleReviews from "@/components/google-reviews";
+import { useImage } from "@/context/image-context";
+import { Email, PhoneNumber } from "./ui/contact-widget";
 
 export default function Footer() {
     const { pannata, technogym, pallini, adresse } = useLinks();
+    const { logo } = useImage();
 
     return (
         <footer className="relative w-full bg-background-subdued pt-content flex flex-col items-center p-content lg:p-contentLg">
@@ -85,16 +88,16 @@ export default function Footer() {
                 <div className="lg:items-center w-full flex flex-col">
                     <div>
                     <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Où nous trouver ?</p>
-                    <div className="text-foreground-subdued">
+                    <div className="text-foreground-subdued flex flex-col">
                         <Clickable 
                             clickableType={{type: "link", path: adresse, outside: true}}
                             style={{}}
-                            className="hoverUnderline textNormal text-foreground-subdued"
+                            className="hoverUnderline textNormal text-foreground-subdued w-fit"
                         >
                             1 Chem. d'Azord, 30980 Saint-Dionisy
                         </Clickable>
-                        <p>contact@hallb.fr</p>
-                        <p>04 66 19 16 76</p>
+                        <Email className="w-fit"/>
+                        <PhoneNumber className="w-fit"/>
                     </div>
                     </div>
                 </div>
@@ -132,10 +135,7 @@ export default function Footer() {
             {/* Hall b en fond */}
             <div className="absolute inset-0 overflow-hidden flexCenter p-contentClose lg:p-content">
                 <Image
-                    src="/images/logo-hallb.png"
-                    alt="Logo Hall B"
-                    width={1240}
-                    height={1328}
+                    {...logo}
                     className="max-h-full max-w-full opacity-10"
                 />
             </div>

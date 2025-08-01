@@ -1,12 +1,12 @@
-import SportigoFormule from "@/components/ui/sportigo-formule";
-import PageStructure from "@/components/ui/page-structure";
+"use client";
+
+import IdsGroupPage from "@/components/tarifs/ids-group-page";
+import { useFormule } from "@/context/formule-context";
 
 export default function Page() {
+    const { seance_decouverte } = useFormule();
+    
     return (
-        <PageStructure title="Séance d'essai offerte" subtitle="Venez découvrir nos espaces gratuitement et sans engagement, vous ne serez pas déçus">
-            <div className="w-full pt-1 flexCenter">
-                <SportigoFormule ids={[19758]}/>
-            </div>
-        </PageStructure>
+        <IdsGroupPage title="Essaie offert" subtitle="Venez tester la salle ..." ids={[seance_decouverte]}/>
     );
 }

@@ -4,8 +4,12 @@ import "@/styles/contact.css";
 import PageStructure from "@/components/ui/page-structure";
 import Reseaux from "@/components/reseaux";
 import ContactForm from "@/components/contact/contact-form"
+import { useContact } from "@/context/contact-context";
+import { Email, PhoneNumber } from "@/components/ui/contact-widget";
 
 export default function Page() {
+    const { email, numero } = useContact();
+
     return (
         <PageStructure title="Contact" subtitle="Besoin d'aide ?">
             {/* Coordonnées */}
@@ -14,9 +18,7 @@ export default function Page() {
                 <div className="w-fit lg:items-center flex flex-col">
                     <div>
                     <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Email</p>
-                    <p className="text-foreground-subdued">
-                        email
-                    </p>
+                    <Email/>
                     </div>
                 </div>
 
@@ -24,9 +26,7 @@ export default function Page() {
                 <div className="w-fit lg:items-center flex flex-col">
                     <div>
                     <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Téléphone</p>
-                    <p className="text-foreground-subdued">
-                        06000000
-                    </p>
+                    <PhoneNumber/>
                     </div>
                 </div>
 

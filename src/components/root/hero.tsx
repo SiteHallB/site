@@ -54,7 +54,7 @@ function FlashingBand({ items }: { items: BandElement[] }) {
 }
 
 function Arrow({ }) {
-    const container = useRef<HTMLDivElement>(null);
+    const container = useRef<HTML>(null);
 
     // Rebonds
     useGSAP(() => {
@@ -67,14 +67,14 @@ function Arrow({ }) {
     }, { scope: container })
 
     return (
-        <div ref={container} className="absolute bottom-20">
+        <ul ref={container} className="absolute bottom-20">
             <Clickable 
                 clickableType={{type: "button", onClick: () => {const vh = window.innerHeight; window.scrollTo({top: 4*vh/5, behavior: "smooth"})}}}
                 style={{}}
             >
                 <ArrowDown className="parallaxArrow arrow text-foreground-subdued"/>
             </Clickable>
-        </div>
+        </ul>
     );
 }
 
@@ -110,7 +110,7 @@ export default function Hero() {
     }, { scope: container })
     
     return (
-        <section id="hero" ref={container} className="relative w-full min-h-screen">
+        <section id="hero" ref={container} aria-label="Présentation" className="relative w-full min-h-screen">
             {/* Vidéo */}
             <div className="absolute inset-0">
             <VideoBackground videoId="Tdrz5LPy-Vk"/>

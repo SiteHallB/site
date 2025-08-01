@@ -5,6 +5,7 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 import sanitizeHtml from "sanitize-html";
 import useKlaroConsent from '../cookies/use-klaro-consent';
 import getConsent from '../cookies/get-consent';
+import { useContact } from '@/context/contact-context';
 
 function cleanString(message: string) {
     return sanitizeHtml(message, {
@@ -28,7 +29,7 @@ function ContactForm() {
     const [token, setToken] = useState<string | null>(null);
     const captchaRef = useRef<HCaptcha>(null);
     
-    const mailInCaseOfError = "hallb@contact.fr"
+    const { email } = useContact();
 
     const [form, setForm] = useState({ name: "", email: "", message: "" });
     const [status, setStatus] = useState<StatusType>("typing");
@@ -37,7 +38,7 @@ function ContactForm() {
         switch (s) {
             case "sending": return <span className="text-accent">Envoi en cours...</span>
             case "success": return <span className="text-yes">Message envoyé.</span>
-            case "error": return <span className="text-no">{`Erreur, veuillez nous excuser, ci cela persiste vous pouvez nous envoyer un mail traditionnel à ${mailInCaseOfError}`}</span>
+            case "error": return <span className="text-no">{`Erreur, si cela persiste vous pouvez nous envoyer un mail traditionnel à ${email}.`}</span>
             case "captchaExpired": return <span className="text-no">Le délai de validation a expiré, merci de cliquer de nouveau sur Envoyer pour renouveler la vérification.</span>
         }
     }
@@ -170,7 +171,7 @@ export default function CookieContactForm() {
             {hasConsent ? (
                 <ContactForm/>
             ) : (<div className="flex flex-col gap-y-content items-center">
-                <p className="text-accent">Veuillez accepter les cookies hCaptcha pour envoyer un message via formulaire.</p>
+                <p className="text-accent">Veuillez accepter les cookies anti-spam pour envoyer un message via formulaire.</p>
                 <Clickable
                     clickableType={{ type: "button", onClick: () => window.klaro?.show()}}
                     style={{ color: "primarySubdued", variant: "secondary" }}

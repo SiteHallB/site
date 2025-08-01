@@ -1,4 +1,5 @@
 import Clickable from "@/components/ui/clickable"
+import { useImage } from "@/context/image-context";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
@@ -6,6 +7,8 @@ import { useRef } from "react";
 
 export default function EssaiOffert() {
     const container = useRef<HTMLDivElement>(null)
+
+    const { logo } = useImage();
 
     // Bouton qui clignote
     useGSAP(() => {
@@ -45,10 +48,7 @@ export default function EssaiOffert() {
                 <h3 className="text-foreground-base text-center flex flex-col items-center space-y-10">
                     <span className="text">Viens essayer</span>
                     <Image
-                        src="/images/logo-hallb.png"
-                        alt="Logo Hall B"
-                        width={1240}
-                        height={1328}
+                        {...logo}
                         className="logo outline-[0.25rem] outline-offset-[2rem] w-30 object-cover" 
                     />
                     <span className="text">gratuitement et sans engagement</span>
