@@ -33,6 +33,11 @@ var klaroConfig = {
             decline: "Tout refuser",
         }
     },
+    callback: function(consent, app, opts) { // Refresh si google-analytics a changé
+        if (app && app.name === "google-analytics" && opts && opts.changed) {
+            setTimeout(() => window.location.reload(), 100);
+        }
+    },
     services: [
         {
             name: "hcaptcha",
@@ -56,11 +61,6 @@ var klaroConfig = {
             required: false,
             default: false,
             onlyOnce: true,
-            callback: function(consent, app){
-                if (opts && opts.changed) {
-                    setTimeout(() => window.location.reload(), 100);
-                }
-            }
         },
     ],
 }
