@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
     try {
-        const apiKey = process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY;
+        const apiKey = process.env.GOOGLE_PLACES_API_KEY;
         const placeId = process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID;
 
         if (!apiKey || !placeId) {
