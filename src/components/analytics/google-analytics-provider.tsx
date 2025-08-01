@@ -6,10 +6,6 @@ import { useEffect } from "react";
 export default function GoogleAnalyticsProvider() {
     const hasConsent = useKlaroConsent("google-analytics");
 
-    useEffect(() => {
-        console.log(hasConsent)
-    }, [hasConsent]);
-
     return hasConsent ? (
         <GoogleAnalytics/>
     ) : null;

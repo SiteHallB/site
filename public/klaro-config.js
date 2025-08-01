@@ -38,7 +38,9 @@ var klaroConfig = {
             name: "hcaptcha",
             title: "hCaptcha",
             purposes: ["security"],
-            cookies: [],
+            cookies: [
+                /^__cf_/, "hmt_id"
+            ],
             required: false,
             default: false,
             onlyOnce: true,
@@ -54,7 +56,7 @@ var klaroConfig = {
             required: false,
             default: false,
             onlyOnce: true,
-            callback: function(consent, app) { notifyConsentChange(app.name, consent); }
+            callback: function(consent, app) { window.location.reload(); }
         },
     ],
 }
