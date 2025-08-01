@@ -56,7 +56,11 @@ var klaroConfig = {
             required: false,
             default: false,
             onlyOnce: true,
-            callback: function(consent, app) { window.location.reload(); }
+            callback: function(consent, app){
+                if (opts && opts.changed) {
+                    setTimeout(() => window.location.reload(), 100);
+                }
+            }
         },
     ],
 }
