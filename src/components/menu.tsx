@@ -15,6 +15,8 @@ import Clickable from "@/components/ui/clickable";
 import Reseaux from "@/components/reseaux";
 import clsx from "clsx";
 import { useLinks } from "@/context/link-context";
+import { useImage } from "@/context/image-context";
+import Separator from "./ui/separator";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,8 +34,8 @@ function MenuItem({ linkInfo, onClick }: MenuItemProps) {
     const pathname = usePathname();
 
     return (
-        <div className="menu-link-item">
-            <div className="menu-link-item-holder flex flex-row items-center">
+        <div className="overflow-hidden">
+            <div className="menuItem flex flex-row items-center">
                 <ChevronRight size={24} className={clsx({ "text-accent": pathname === linkInfo.path, "text-foreground-subdued": pathname !== linkInfo.path})}/>
 
                 <Clickable
@@ -53,6 +55,8 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
 
     const { osteo } = useLinks();
 
+    const { menu } = useImage();
+
     const navLinks = [
         { label: "Accueil", path: "/"}, 
         { label: "Tarifs", path: "/tarifs"}, 
@@ -63,7 +67,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
     
     const tl = useRef<gsap.core.Timeline | null>(null);
     useGSAP(() => {
-        gsap.set(".menu-link-item-holder", { y: 60 });
+        gsap.set(".menuItem", { y: 40 });
 
         tl.current = gsap.timeline({ paused: true })
         .to(".menuOverlay", {
@@ -71,15 +75,21 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
             clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", 
             ease: "power4.inOut",
         })
-        .to(".menu-link-item-holder", {
+        .to(".menuItem", {
             y: 0, 
-            duration: 0.5, 
-            stagger: 0.1, 
+            duration: 1, 
+            stagger: 0.15, 
             ease: "power4.inOut", 
             delay: -1, 
         })
 
         tl.current.duration(1);
+
+        return () => {
+            // Nettoyage au cas ou
+            tl.current?.kill();
+            tl.current = null;
+        };
     }, { scope: container });
 
     useEffect(() => {
@@ -89,36 +99,39 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
 
     return (
         <div ref={container} >
-        <div className="fixed inset-0 z-40 pointer-events-auto touch-none menuOverlay">
+        <div className="fixed inset-0 z-40 pointer-events-auto touch-none menuOverlay transform-gpu [will-change:clip-path]" style={{clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"}}>
             {/* Exterieur de l'overlay */}
             <div className="h-full w-auto" onClick={close}></div>
 
             {/* Vrai overlay */}
-            <div className="absolute inset-y-0 right-0 w-full max-w-120 border-l-1 border-l-foreground-subdued bg-background-base flex flex-col pt-10 justify-around px-contentClose items-center transform-gpu [will-change:clip-path]">
-                <nav className="flex flex-col w-full">
+            <div className="absolute inset-y-0 right-0 w-full max-w-120 border-l-1 border-l-foreground-subdued bg-background-base px-contentClose pt-subMenu flex flex-col">
+                <div className="w-full flex flex-col">
+                <nav className="w-full flex flex-col">
                     {navLinks.map((el, index) => (
                         <MenuItem linkInfo={el} onClick={close} key={index}/>
                     ))}
-                </nav>
-                
-                <div className="flex flex-col w-full">
-                    <MenuItem linkInfo={{ path: osteo, label: "Consultation Ostéopathe" }} onClick={close}/>
+                    {/* Animer la barre avec le reste */}
+                    <div className="w-full overflow-hidden px-content">
+                        <Separator className="menuItem"/>
+                    </div>
                     <MenuItem linkInfo={{ path: "/squash", label: "Réservation Squash" }} onClick={close}/>
+                </nav>
+                <MenuItem linkInfo={{ path: osteo, label: "Consultation Ostéopathe" }} onClick={close}/>
                 </div>
-                
+
+                <div className="w-full h-full flex flex-col items-center justify-evenly">
+                {/* Image avec gradient */}
                 <div className="relative flex overflow-hidden w-full max-w-100 h-50">
                     <div className="absolute inset-y-0 left-0 w-[7rem] bg-gradient-to-r from-background-base to-transparent z-10"/>
                     <div className="absolute inset-y-0 right-0 w-[7rem] bg-gradient-to-l from-background-base to-transparent z-10"/>
                     <Image 
-                        src="/images/concept.jpg"
-                        width={3024}
-                        height={4032}
+                        {...menu}
                         className="object-cover"
-                        alt=""
                     />
                 </div> 
 
                 <Reseaux/>
+                </div>
             </div>
         </div>
         </div>
@@ -135,8 +148,8 @@ export default function Menu() {
 
     return (
         <section id="menu">
-            {/* Barre de navigation */}
-            <nav className="fixed right-0 w-full max-w-120 z-50 py-content px-contentClose flex justify-around items-center lg:px-8 py-1 nav-bar space-x-2">
+            {/* Barre fixée en haut */}
+            <div className="fixed right-0 w-full max-w-120 z-50 py-content px-contentClose flex justify-around items-center lg:px-8 py-1 nav-bar space-x-2">
                 <Clickable
                     clickableType={{type: "link", onClick: () => setIsMenuOpen(false), path: "/offert"}}
                     style={{variant: "navigationBar", color: "primary"}}
@@ -166,7 +179,7 @@ export default function Menu() {
                     {isMenuOpen ? <X className="size-6 lg:size-8 hoverRotate text-foreground-base"/> : 
                         <MenuIcon size={24} className="size-6 lg:size-8 hoverRotate text-foreground-base"/>}
                 </Clickable>
-            </nav>
+            </div>
 
             {/* Overlay menu */}
             {isMenuShown && <MenuOverlay setIsMenuShown={setIsMenuShown} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>}

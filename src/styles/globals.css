@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +8,7 @@
 @import './utilities.css';
 @import './contact.css';
 @import './tarifs.css';
+@import './layout.css';
 
 @theme inline {
   --color-background-base: #121212;
@@ -16,14 +19,6 @@
   --color-accent: #E1C340;
   --color-yes: #15803D; 
   --color-no: #EF4444; 
-
-  --spacing-contentLg: 2rem;
-  --spacing-content: 1.25rem;
-  --spacing-contentClose: 0.75rem; 
-  --spacing-subTitle: 2rem;
-  --spacing-subTitleLg: 3rem;
-  --spacing-subSection: 4rem;
-  --spacing-subMenu: 5rem;
 }
 .hoverUnderline {
     position: relative;

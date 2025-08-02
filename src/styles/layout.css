@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme inline {
+    --spacing-contentLg: 2rem;
+    --spacing-content: 1.25rem;
+    --spacing-contentClose: 0.75rem; 
+    --spacing-subTitle: 2rem;
+    --spacing-subTitleLg: 3rem;
+    --spacing-subSection: 4rem;
+    --spacing-subMenu: 4rem;
+}
