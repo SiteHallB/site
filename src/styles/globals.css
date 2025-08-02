@@ -139,3 +139,7 @@
   .phoneDesktop { display: none; }
   .phoneMobile  { display: inline-flex; }
 }
+
+strong {
+    @apply text-accent
+}

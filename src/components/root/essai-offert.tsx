@@ -64,10 +64,7 @@ export default function EssaiOffert() {
                 {/* Fond hall b */}
                 <div className="absolute inset-0 overflow-hidden flexCenter p-content">
                     <Image
-                        src="/images/logo-hallb.png"
-                        alt="Logo Hall B"
-                        width={1240}
-                        height={1328}
+                        {...logo}
                         className="max-h-full w-auto opacity-10"
                     />
                 </div>

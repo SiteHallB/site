@@ -34,7 +34,7 @@ function Section({ image, last, title, text, children }: { image: ImageType, las
     }, {scope: container })
 
     return (
-        <div ref={container} className="w-full flex flex-col basis-0 grow min-w-0">
+        <section id={title} ref={container} className={`${last ? "lastSection": ""} w-full flex flex-col basis-0 grow min-w-0`}>
             {/* Image */}
             <div className="w-full aspect-square rounded-xl overflow-hidden mb-content mx-auto">
                 <Image 
@@ -45,11 +45,11 @@ function Section({ image, last, title, text, children }: { image: ImageType, las
 
             {/* Texte */}
             <div className={`${last ? "" : "fadeText"}`}>
-            <p className="text-foreground-base textSubH2 mb-1 break-words">{title}</p>
+            <h3 className="text-foreground-base textSubH2 mb-1">{title}</h3>
             <p className="text-foreground-subdued mb-content">{text}</p>
             {children}
             </div>
-        </div>
+        </section>
     );
 }
 
@@ -82,53 +82,43 @@ export default function Concept() {
                     Notre Concept
                 </h2>
                 <p className="text-foreground-subdued mb-content">
-                    Bienvenue dans 2 400 m² de bien-être et de dépassement de soi flambant neuf - Un écrin pensé pour vous faire aimer chaque minute passée à bouger.
+                    Bienvenue dans <strong>2 400 m²</strong> de bien-être et de dépassement de soi flambant neuf - Un écrin pensé pour vous faire aimer chaque minute passée à bouger.
                 </p>
                 <div className="w-full flex flex-col lg:flex-row gap-y-10 gap-x-content">
-                <Section
-                    image={root_concept_espace}
-                    last={false}
-                    title="Espace"
-                    text={<>Un terrain de jeu XXL - Plateau musculation dernier cri, cours collectifs vitaminés, 
-                    smallGroups training ultra-ciblés, terrains de squash, école de danse, bassin d'AQUA, pôle santé avec ostéopathe.<br/><br/>
-                    Choisissez votre aventure, on s'occupe du reste.</>}
-                >
-                    {/* <div className="w-full justify-center flex flex-wrap gap-contentClose">
-                        <Clickable
-                            clickableType={{type:"link", path: "/tarifs"}}
-                            style={{variant: "action", color: "accent"}}
-                        >
-                            Je m'inscris
-                        </Clickable>
-                    </div> */}
-                </Section>
-                <Section
-                    image={root_concept_encadrement}
-                    last={false}
-                    title="Encadrement"
-                    text={<> Encadrement premium -
-                    Tous nos cours sont animés par des coaches diplômés, passionnés et toujours à vos côtés pour booster vos résultats.</>}
-                />
-                <Section
-                    image={root_concept_qualite}
-                    last={false}
-                    title="Qualité"
-                    text={<>Technologie & matériel de compétition - 
-                        Poids calibrés et certifiés pour la compétition, sacs de frappe, machines Panatta « made in Italy », cardio connecté Technogym : 
-                        l'élite de l'équipement pour tous les niveaux — du néophyte au compétiteur.</>}
-                />
-                <span className="lastSection basis-0 grow">
-                <Section
-                    image={root_concept_adn}
-                    last={true}
-                    title="Notre ADN"
-                    text={<>Bien-être garanti - Lumière naturelle, hygiène irréprochable, ambiance respectueuse : 
-                    ici, chaque adhérent est considéré, accompagné et motivé.</>}
-                />
-                </span>
+                    <Section
+                        image={root_concept_espace}
+                        last={false}
+                        title="Espace"
+                        text={<>Un terrain de jeu XXL - Plateau musculation dernier cri, cours collectifs vitaminés, 
+                        smallGroups training ultra-ciblés, terrains de squash, école de danse, bassin d'AQUA, pôle santé avec ostéopathe.<br/><br/>
+                        Choisissez votre aventure, on s'occupe du reste.</>}
+                    />
+                    <Section
+                        image={root_concept_encadrement}
+                        last={false}
+                        title="Encadrement"
+                        text={<> Encadrement premium -
+                        Tous nos cours sont animés par des coaches diplômés, passionnés et toujours à vos côtés pour booster vos résultats.</>}
+                    />
+                    <Section
+                        image={root_concept_qualite}
+                        last={false}
+                        title="Qualité"
+                        text={<>Technologie & matériel de compétition - 
+                            Poids calibrés et certifiés pour la compétition, sacs de frappe, machines Panatta « made in Italy », cardio connecté Technogym : 
+                            l'élite de l'équipement pour tous les niveaux — du néophyte au compétiteur.</>}
+                    />
+                    <Section
+                        image={root_concept_adn}
+                        last={true}
+                        title="Notre ADN"
+                        text={<>Bien-être garanti - Lumière naturelle, hygiène irréprochable, ambiance respectueuse : 
+                        ici, chaque adhérent est considéré, accompagné et motivé.</>}
+                    />
                 </div>
+
                 <div className="flexCenter flex-col gap-contentClose mt-content">
-                    <p className="text-foreground-base text-center">Formules illimitées - 
+                    <p className="text-foreground-base text-center"><strong>Formules illimitées</strong> - 
                         Accédez sans contrainte à tous nos cours collectifs, small groups et séances aquatiques, sept jours sur sept.</p>
                     <Clickable
                         clickableType={{type:"link", path: "/tarifs"}}

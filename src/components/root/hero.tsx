@@ -45,7 +45,7 @@ function FlashingBand({ items }: { items: BandElement[] }) {
                     <Clickable
                         clickableType={{type: "link", path: el.path}}
                         style={{}}
-                        className="bandElement textLead text-foreground-subdued"
+                        className="hoverUnderline bandElement textLead text-foreground-subdued"
                     >
                         {el.text}
                     </Clickable>
