@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Clickable from './ui/clickable';
 import { X } from 'lucide-react';
 
@@ -8,11 +8,27 @@ export default function PopUp() {
     const [isOpen, setIsOpen] = useState(false);
     const apparitionDelay = 1000;
 
-    // Timer
+    const timerRef = useRef<NodeJS.Timeout | null>(null);
+
     useEffect(() => {
-        const timer = setTimeout(() => setIsOpen(true), apparitionDelay)
-        return () => clearTimeout(timer);
-    }, [])
+        function onUserAction() {
+            timerRef.current = setTimeout(() => setIsOpen(true), apparitionDelay);
+            window.removeEventListener("click", onUserAction);
+            window.removeEventListener("scroll", onUserAction);
+            window.removeEventListener("keydown", onUserAction);
+        }
+
+        window.addEventListener("click", onUserAction);
+        window.addEventListener("scroll", onUserAction);
+        window.addEventListener("keydown", onUserAction);
+
+        return () => {
+            window.removeEventListener("click", onUserAction);
+            window.removeEventListener("scroll", onUserAction);
+            window.removeEventListener("keydown", onUserAction);
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, []);
 
     // Empeche le scroll
     useEffect(() => {
@@ -39,6 +55,7 @@ export default function PopUp() {
                             className="absolute top-1 right-1 lg:top-2 lg:right-2 hoverRotate"
                             clickableType={{type: "button", onClick: () => setIsOpen(false)}}
                             style={{}}
+                            aria-label="Fermer la pop-up"
                         >
                             <X className="size-6 lg:size-8"/>
                         </Clickable>
