@@ -19,7 +19,7 @@ export default function Valeurs() {
             scrollTrigger: {
                 trigger: ".textValeursHolder", 
                 start: () => "top 70%", 
-                end: () => "top 10%", 
+                end: () => "bottom 40%", 
                 toggleActions: "play reverse play reverse",
             }, 
             stagger: 0.1, 

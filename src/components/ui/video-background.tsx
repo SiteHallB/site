@@ -1,66 +1,44 @@
-import React, { useState } from 'react';
+"use client";
 
-export default function VideoBackground({ videoId }: { videoId: string }) {
-  const [loaded, setLoaded] = useState(false);
+import { useEffect, useRef } from "react";
+import Hls from "hls.js";
+import clsx from "clsx";
 
-  const params = new URLSearchParams({
-    autoplay:        '1',       // autoplay
-    mute:            '1',       // muet
-    loop:            '1',       // loop
-    playlist:        videoId,   // pour le loop
-    controls:        '0',       // pas de contrôles
-    modestbranding:  '1',       // pas de logo
-    rel:             '0',       // pas de suggestions
-    iv_load_policy:  '3',       // pas d’annotations
-    disablekb:       '1',       // désactive le clavier
-    start:           '1',       // saute la 1re seconde (overlay YouTube)
-    vq:              'hd1080',  // hint 1080p
-  }).toString();
+export default function VideoBackground({ className, videoUrl, poster }: { className?: string; videoUrl: string, poster: string }) {
+    const videoRef = useRef<HTMLVideoElement>(null);
 
-  const src = `https://www.youtube-nocookie.com/embed/${videoId}?${params}`;
+    useEffect(() => {
+        // Code exécuté côté client uniquement
+        if (!videoRef.current) return;
 
-  return (
-    <div className="relative w-full h-full overflow-hidden">
-      {/* overlay noir tant que l’iframe n’est pas ready */}
-      {!loaded && <div className="absolute inset-0 bg-black z-10" />}
-      <iframe
-        className="absolute top-0 left-0 w-full h-full object-cover object-center"
-        src={src}
-        frameBorder="0"
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowFullScreen
-        title="Background video"
-        aria-hidden="true"
-        onLoad={() => setLoaded(true)}
-      />
-    </div>
-  );
+        // Safari natif lit le HLS tout seul
+        if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+            videoRef.current.src = videoUrl;
+        }
+        // Sinon, Hls.js s'en charge
+        else if (Hls.isSupported()) {
+            const hls = new Hls();
+            hls.loadSource(videoUrl);
+            hls.attachMedia(videoRef.current);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                videoRef.current?.play();
+            });
+            return () => hls.destroy();
+        }
+    }, []);
+
+    return (
+        <div className="absolute inset-0 overflow-hidden flexCenter">
+        <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className={clsx(className, "absolute inset-0 w-full h-full object-cover pointer-events-none select-none")}
+            poster={poster}
+            aria-hidden="true"
+        />
+        </div>
+    );
 }
-
-// "use client"
-
-// import videoData from "@/interface/videos.json"
-// import { useEffect, useState, useRef } from "react";
-
-// export default function VideoBackground({ id }: { id: string }) {
-//     const [isLoaded, setIsLoaded] = useState(false);
-
-//     const video = videoData.find(v => v.id === id);
-//     if (video === undefined) {
-//         console.log("Aucune vidéo de présentation")
-//         return;
-//     }
-
-//     return (
-//         <div className="min-w-full h-full overflow-hidden">
-//             <video src={video.path}
-//                 poster="/images/concept.jpg"
-//                 playsInline
-//                 muted
-//                 autoPlay
-//                 loop
-//                 className="size-full object-cover object-center"
-//             />
-//         </div>
-//     );
-// }

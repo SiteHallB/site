@@ -26,6 +26,9 @@ importers:
       gsap:
         specifier: ^3.13.0
         version: 3.13.0
+      hls.js:
+        specifier: ^1.6.7
+        version: 1.6.7
       lucide-react:
         specifier: ^0.525.0
         version: 0.525.0(react@19.1.0)
@@ -41,6 +44,9 @@ importers:
       react-dom:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
+      react-hls-player:
+        specifier: ^3.0.7
+        version: 3.0.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-textarea-autosize:
         specifier: ^8.5.9
         version: 8.5.9(@types/react@19.1.8)(react@19.1.0)
@@ -479,6 +485,9 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
+  eventemitter3@4.0.7:
+    resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
+
   focus-trap-react@11.0.4:
     resolution: {integrity: sha512-tC7jC/yqeAqhe4irNIzdyDf9XCtGSeECHiBSYJBO/vIN0asizbKZCt8TarB6/XqIceu42ajQ/U4lQJ9pZlWjrg==}
     peerDependencies:
@@ -495,6 +504,12 @@ packages:
 
   gsap@3.13.0:
     resolution: {integrity: sha512-QL7MJ2WMjm1PHWsoFrAQH/J8wUeqZvMtHO58qdekHpCfhvhSL4gSiz6vJf5EeMP0LOn3ZCprL2ki/gjED8ghVw==}
+
+  hls.js@0.14.17:
+    resolution: {integrity: sha512-25A7+m6qqp6UVkuzUQ//VVh2EEOPYlOBg32ypr34bcPO7liBMOkKFvbjbCBfiPAOTA/7BSx1Dujft3Th57WyFg==}
+
+  hls.js@1.6.7:
+    resolution: {integrity: sha512-QW2fnwDGKGc9DwQUGLbmMOz8G48UZK7PVNJPcOUql1b8jubKx4/eMHNP5mGqr6tYlJNDG1g10Lx2U/qPzL6zwQ==}
 
   htmlparser2@8.0.2:
     resolution: {integrity: sha512-GYdjWKDkbRLkZ5geuHs5NY1puJ+PXwP7+fHPRz06Eirsb9ugf6d8kkXav6ADhcODhFFPMIXyxkxSuMf3D6NCFA==}
@@ -644,6 +659,12 @@ packages:
     peerDependencies:
       react: ^19.1.0
 
+  react-hls-player@3.0.7:
+    resolution: {integrity: sha512-i5QWNyLmaUhV/mgnpljRJT0CBfJnylClV/bne8aiXO3ZqU0+D3U/jtTDwdXM4i5qHhyFy9lemyZ179IgadKd0Q==}
+    peerDependencies:
+      react: ^16.13.1
+      react-dom: ^16.13.1
+
   react-textarea-autosize@8.5.9:
     resolution: {integrity: sha512-U1DGlIQN5AwgjTyOEnI1oCcMuEr1pv1qOtklB2l4nyMGbHzWrI0eFsYK0zos2YWqAolJyG0IWJaqWmWj5ETh0A==}
     engines: {node: '>=10'}
@@ -723,6 +744,9 @@ packages:
 
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
+
+  url-toolkit@2.2.5:
+    resolution: {integrity: sha512-mtN6xk+Nac+oyJ/PrI7tzfmomRVNFIWKUbG8jdYFt52hxbiReFAXIjYskvu64/dvuW71IcB7lV8l0HvZMac6Jg==}
 
   use-composed-ref@1.4.0:
     resolution: {integrity: sha512-djviaxuOOh7wkj0paeO1Q/4wMZ8Zrnag5H6yBvzN7AKKe8beOaED9SF5/ByLqsku8NP4zQqsvM2u3ew/tJK8/w==}
@@ -1076,6 +1100,8 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
+  eventemitter3@4.0.7: {}
+
   focus-trap-react@11.0.4(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
       '@types/react': 19.1.8
@@ -1092,6 +1118,13 @@ snapshots:
   graceful-fs@4.2.11: {}
 
   gsap@3.13.0: {}
+
+  hls.js@0.14.17:
+    dependencies:
+      eventemitter3: 4.0.7
+      url-toolkit: 2.2.5
+
+  hls.js@1.6.7: {}
 
   htmlparser2@8.0.2:
     dependencies:
@@ -1216,6 +1249,12 @@ snapshots:
       react: 19.1.0
       scheduler: 0.26.0
 
+  react-hls-player@3.0.7(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      hls.js: 0.14.17
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
   react-textarea-autosize@8.5.9(@types/react@19.1.8)(react@19.1.0):
     dependencies:
       '@babel/runtime': 7.28.2
@@ -1309,6 +1348,8 @@ snapshots:
   typescript@5.8.3: {}
 
   undici-types@6.21.0: {}
+
+  url-toolkit@2.2.5: {}
 
   use-composed-ref@1.4.0(@types/react@19.1.8)(react@19.1.0):
     dependencies:
