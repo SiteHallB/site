@@ -106,9 +106,9 @@ export default function Hero() {
     return (
         <section id="hero" ref={container} aria-label="Présentation" className="relative w-full min-h-screen">
             {/* Vidéo */}
-            <div className="absolute inset-0">
+            {/* <div className="absolute inset-0">
             <VideoBackground videoId="Tdrz5LPy-Vk"/>
-            </div>
+            </div> */}
 
             {/* Texte */}
             <div className="relative z-10 w-full min-h-screen parallaxText px-content lg:px-contentLg flex flex-col items-center justify-around pt-20 pb-20">
