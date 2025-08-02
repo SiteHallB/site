@@ -1,8 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@theme inline {
+@theme {
     --spacing-contentLg: 2rem;
     --spacing-content: 1.25rem;
     --spacing-contentClose: 0.75rem; 

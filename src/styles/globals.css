@@ -1,13 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import "tailwindcss";
 
 @import './typography.css';
-@import './utilities.css';
 @import './contact.css';
 @import './tarifs.css';
 @import './layout.css';

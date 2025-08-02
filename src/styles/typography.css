@@ -1,13 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @font-face {
   font-family: FutureTense;
   src: url("/fonts/FutureTense-Regular.woff2") format("woff2");
 }
 
-@theme inline {
+@theme {
   --font-futuretense: FutureTense, sans-serif;
   --font-montserrat: "Montserrat", sans-serif; 
 }
