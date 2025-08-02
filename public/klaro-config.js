@@ -41,7 +41,11 @@ var klaroConfig = {
             title: "hCaptcha",
             purposes: ["security"],
             cookies: [
-                "hmt_id"
+                "_cf_bm",
+                "hc_access",
+                "hmt_id",
+                "hmt_b",
+                "hc_token",
             ],
             required: false,
             default: false,
@@ -53,7 +57,15 @@ var klaroConfig = {
             title: "Google Analytics",
             purposes: ["analytics"],
             cookies: [
-                /^_ga/, /^_gid/, /^_gat/, "AMP_TOKEN", "_gac_*"
+                /^_ga/, 
+                /^_gid/, 
+                /^_gat/, 
+                "AMP_TOKEN", 
+                "_gac_*", 
+                "NID",
+                "__Secure-3PAPISID",
+                "__Secure-3PSID",
+                "__Secure-3PSIDCC",
             ],
             required: false,
             default: false,
