@@ -7,7 +7,7 @@ export default function IdsGroupPage({ revenir, title, subtitle, ids }: { reveni
     return (
         <PageStructure title={title} subtitle={subtitle}>
             <div className="w-full overflow-x-hidden pt-1 flexCenter flex-col gap-y-content">
-                {revenir && <Clickable
+                {revenir || revenir === undefined && <Clickable
                     clickableType={{type: "link", path: "/tarifs"}}
                     style={{variant: "menuMainButton"}}
                     className="mr-auto flexCenter flex-row"

@@ -6,7 +6,9 @@ import Separator from "@/components/ui/separator";
 import { useImage } from "@/context/image-context";
 
 export default function Page() {
-    const { tarifs_classic_1, tarifs_classic_2, tarifs_boost_1, tarifs_aqua_1, tarifs_carnet_1, tarifs_danses_1 } = useImage();
+    const { tarifs_classic_1, tarifs_classic_2, 
+            tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
+            tarifs_aqua_1, tarifs_danse_1 } = useImage();
 
     return (
         <PageStructure title="Tarifs" subtitle="Choisissez la formule adaptée à vos besoins">
@@ -33,7 +35,7 @@ export default function Page() {
                         title="Boost"
                         subtitle="Classic + Cours collectifs"
                         prix={50}
-                        images={[ tarifs_boost_1, ]}
+                        images={[ tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, ]}
                         checkDescription={[
                             "Accès libre au plateau 7/7j de 6h à 23h", 
                             "Accès illimité au planning de cours collectifs", 
@@ -74,12 +76,13 @@ export default function Page() {
                     {/* Carnet de séances */}
                     <FormuleOverview
                         title="Carnet de séances"
-                        subtitle="Sous titre"
-                        images={[ tarifs_carnet_1, ]}
+                        subtitle="Envie de flexibilité ?"
+                        images={[ tarifs_classic_1, tarifs_classic_2, 
+            tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
+            tarifs_aqua_1 ]}
                         checkDescription={[
-                            "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
-                            <><span className="text-accent">Small groups</span> pour 5 euros supplémentaires</>, 
-                            "Encore un"
+                            "Accéder à la salle pour X séances sans engagement", 
+                            "Toutes activités confondues (Squash non compris)", 
                         ]}
                         plusDescription={[]}
                         actionLink="/tarifs/carnet_seances"
@@ -88,15 +91,14 @@ export default function Page() {
 
                     {/* Danse */}
                     <FormuleOverview
-                        title="Danses"
-                        subtitle="Sous titre"
-                        images={[ tarifs_danses_1, ]}
+                        title="Danse"
+                        subtitle="1h/semaine"
+                        images={[ tarifs_danse_1, ]}
                         checkDescription={[
-                            "Accès 7jours/7 de 7h à 23h au plateau muscu/cardio", 
-                            <><span className="text-accent">Small groups</span> pour 5 euros supplémentaires</>, 
-                            "Encore un"
+                            "Toute l'année", 
+                            "Progression", 
                         ]}
-                        plusDescription={[]}
+                        plusDescription={[<><span className="text-accent">5€</span> pour 1 danse supplémentaire</>]}
                         actionLink="/tarifs/danses"
                         className=""
                     />

@@ -7,6 +7,6 @@ export default function Page() {
     const { classic_unmois, classic_mensuel, classic_annuel } = useFormule();
 
     return (
-        <IdsGroupPage title="Classic" subtitle="Offre déclinée en ..." ids={[classic_unmois, classic_mensuel, classic_annuel]}/>
+        <IdsGroupPage title="Classic" subtitle="Musculation & cardio" ids={[classic_unmois, classic_mensuel, classic_annuel]}/>
     );
 }

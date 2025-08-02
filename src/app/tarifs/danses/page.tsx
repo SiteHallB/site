@@ -7,6 +7,6 @@ export default function Page() {
     const { danse } = useFormule();
 
     return (
-        <IdsGroupPage title="Boost" subtitle="Offre déclinée en ..." ids={[danse]}/>
+        <IdsGroupPage title="Danse" subtitle="Offre déclinée en ..." ids={[danse]}/>
     );
 }

@@ -128,8 +128,8 @@ export default function Hero() {
                 {/* Bandeau clignotant */}
                 <FlashingBand
                     items={[
-                    { path: "", text: "Musculation" }, 
-                    { path: "", text: "Fitness" }, 
+                    { path: "/tarifs/classic", text: "Musculation" }, 
+                    { path: "/tarifs/boost", text: "Fitness" }, 
                     { path: "/tarifs/aqua", text: "Aqua" }, 
                     { path: "/squash", text: "Squash" }, 
                     { path: osteo, text: "Osteo" }, 

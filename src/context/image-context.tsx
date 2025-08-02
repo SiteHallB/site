@@ -14,79 +14,97 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
         <ImageContext.Provider
             value={{
                 root_concept_espace: {
-                    src: "/images/concept.jpg", 
+                    src: "/images/root_concept_espace.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
                 root_concept_encadrement: {
-                    src: "/images/concept.jpg", 
+                    src: "/images/root_concept_encadrement.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
                 root_concept_qualite: {
-                    src: "/images/concept.jpg", 
+                    src: "/images/root_concept_qualite.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
                 root_concept_adn: {
-                    src: "/images/concept.jpg", 
+                    src: "/images/root_concept_adn.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
                 root_histoire: {
-                    src: "/images/concept.jpg", 
+                    src: "/images/root_histoire.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
                 root_valeurs: {
-                    src: "/images/concept.jpg", 
+                    src: "/images/root_valeurs.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
                 tarifs_classic_1: {
-                    src: "/images/concept.jpg", 
+                    src: "/images/tarifs_classic_1.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
                 tarifs_classic_2: {
-                    src: "/images/histoire.jpg", 
+                    src: "/images/root_concept_adn.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
                 tarifs_boost_1: {
-                    src: "/images/concept.jpg", 
+                    src: "/images/tarifs_classic_1.jpg", 
+                    width: 3024, 
+                    height: 4032, 
+                    alt: ""
+                }, 
+                tarifs_boost_2: {
+                    src: "/images/root_concept_adn.jpg", 
+                    width: 3024, 
+                    height: 4032, 
+                    alt: ""
+                }, 
+                tarifs_boost_3: {
+                    src: "/images/tarifs_boost_3.jpg", 
+                    width: 3024, 
+                    height: 4032, 
+                    alt: ""
+                }, 
+                tarifs_boost_4: {
+                    src: "/images/tarifs_boost_4.jpg", 
+                    width: 3024, 
+                    height: 4032, 
+                    alt: ""
+                }, 
+                tarifs_boost_5: {
+                    src: "/images/tarifs_boost_5.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
                 tarifs_aqua_1: {
-                    src: "/images/concept.jpg", 
+                    src: "/images/tarifs_aqua_1.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
-                tarifs_carnet_1: {
-                    src: "/images/concept.jpg", 
-                    width: 3024, 
-                    height: 4032, 
-                    alt: ""
-                }, 
-                tarifs_danses_1: {
-                    src: "/images/concept.jpg", 
+                tarifs_danse_1: {
+                    src: "/images/tarifs_danse_1.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
                 }, 
                 menu:  {
-                    src: "/images/concept.jpg", 
+                    src: "/images/menu.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""

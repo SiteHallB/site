@@ -23,8 +23,8 @@ function Section({ image, last, title, text, children }: { image: ImageType, las
             gsap.to(".fadeText", {
                 scrollTrigger: {
                     trigger: ".fadeText", 
-                    start: () => "top 20%", 
-                    end: () => "top 10%", 
+                    start: () => "center 20%", 
+                    end: () => "center 10%", 
                     scrub: true, 
                 }, 
                 autoAlpha: 0, 

@@ -18,6 +18,13 @@
   --color-accent: #E1C340;
 }
 
+p {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
 /* Pour ne pas qu'abonnement sorte de la carte */
 .border.bg-card .flex.items-start.justify-between {
     flex-wrap: wrap;

@@ -1,4 +1,3 @@
-
 "use client"
 
 import { CheckCheck, PlusCircle } from "lucide-react";
@@ -111,13 +110,7 @@ export default function FormuleOverview({ title, subtitle, prix, images, checkDe
                     swiperRef.current = swiper;
                 }}
                 onSlideChange={startTimer}
-                className="
-                    w-full h-[30vh]
-                    [&_.swiper-button-prev]:text-accent 
-                    [&_.swiper-button-next]:text-accent
-                    [&_.swiper-pagination-bullet]:bg-black
-                    [&_.swiper-pagination-bullet-active]:bg-accent 
-                "
+                className="w-full h-[30vh]"
                 modules={[Navigation, Pagination, A11y]}
                 spaceBetween={-50}
                 slidesPerView={1.3}

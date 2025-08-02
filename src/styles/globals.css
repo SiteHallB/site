@@ -113,11 +113,6 @@
   transition-timing-function: ease-in-out;
 }
 
-/* Cache le logo tarteaucitron */
-#tarteaucitronRoot #tarteaucitronIcon {
-  display: none !important;
-}
-
 .clickableBase {
     @apply hover:cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500;
 }

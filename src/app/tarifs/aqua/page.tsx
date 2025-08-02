@@ -11,7 +11,7 @@ export default function Page() {
     } = useFormule();
     
     return (
-        <IdsGroupPage title="Aqua" subtitle="Offre déclinée en ..." ids={[aqua_unmois, aqua_mensuel, aqua_annuel, 
+        <IdsGroupPage title="Aqua" subtitle="Musculation & cardio + Aqua" ids={[aqua_unmois, aqua_mensuel, aqua_annuel, 
         aqua_coursco_unmois, aqua_coursco_mensuel, aqua_coursco_annuel, 
         aqua_coursco_smallgroups_unmois, aqua_coursco_smallgroups_mensuel, 
         aqua_coursco_smallgroups_annuel]}/>

@@ -9,10 +9,6 @@
 }
 
 html {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
-  hyphens: auto;
   min-width: 320px;
 }
 

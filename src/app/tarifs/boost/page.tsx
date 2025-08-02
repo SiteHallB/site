@@ -10,7 +10,7 @@ export default function Page() {
     } = useFormule();
 
     return (
-        <IdsGroupPage title="Boost" subtitle="Offre déclinée en ..." ids={[boost_unmois, boost_mensuel, boost_annuel, 
+        <IdsGroupPage title="Boost" subtitle="Musculation & cardio + Cours Collectifs" ids={[boost_unmois, boost_mensuel, boost_annuel, 
         boost_smallgroups_unmois, boost_smallgroups_mensuel, boost_smallgroups_annuel]}/>
     );
 }

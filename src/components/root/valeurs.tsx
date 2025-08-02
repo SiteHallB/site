@@ -27,6 +27,16 @@ export default function Valeurs() {
             autoAlpha: 0, 
             ease: "back",
         })
+
+        const handleResize = () => {
+            ScrollTrigger.refresh();
+        };
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            ScrollTrigger.getAll().forEach(t => t.kill());
+        }
     })
 
     return (
@@ -36,12 +46,12 @@ export default function Valeurs() {
                 Nos Valeurs
             </h2>
             {/* Contenu de la section */}
-            <div className="flex flex-col lg:flex-row lg:px-20">
+            <div className="flex flex-col lg:flex-row lg:px-20 space-x-content">
                 <div className="flexCenter w-full mb-content">
                 <div className="max-w-full aspect-square lg:max-w-150 overflow-hidden flexCenter">
                     <Image 
                         {...root_valeurs}
-                        className="w-full object-center object-cover"
+                        className="min-w-full min-h-full object-center object-cover"
                     />
                 </div>
                 </div>
