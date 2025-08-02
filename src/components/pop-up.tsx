@@ -48,7 +48,7 @@ export default function PopUp() {
                         aria-labelledby="modal-title"
                         aria-describedby="modal-desc"
                     >
-                        <h2 id="modal-title" className="text-center">Essai Offert</h2>
+                        <h2 id="modal-title" className="text-center" style={{wordBreak: "normal"}}>Essai Offert</h2>
                         <p id="modal-desc" className="text-center textSubH2 text-foreground-subdued mb-content">Vous hésitez encore à franchir le pas ?</p>
                         <p className="text-center text-foreground-subdued mb-content">Profitez d'une séance découverte 100% gratuite pour tester notre salle et vivre l'expérience par vous-même.</p>
                         <Clickable

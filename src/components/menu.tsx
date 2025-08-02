@@ -2,6 +2,8 @@
 
 import { usePathname } from 'next/navigation';
 
+import styles from "@/styles/components/Menu.module.css"
+
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -102,7 +104,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
             <div className="h-full w-auto" onClick={close}></div>
 
             {/* Vrai overlay */}
-            <div className="absolute inset-y-0 right-0 w-full max-w-120 border-l-1 border-l-foreground-subdued bg-background-base px-contentClose pt-subMenu flex flex-col">
+            <div className="absolute inset-y-0 right-0 w-full max-w-120 outline-offset-1 outline-1 outline-foreground-subdued bg-background-base px-contentClose pt-subMenu flex flex-col">
                 <div className="w-full flex flex-col">
                 <nav className="w-full flex flex-col">
                     {navLinks.map((el, index) => (
@@ -117,9 +119,9 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
                 <MenuItem linkInfo={{ path: osteo, label: "Consultation Ostéopathe" }} onClick={close}/>
                 </div>
 
-                <div className="w-full h-full flex flex-col items-center justify-evenly">
+                <div className="w-full h-full flex flex-col items-center justify-evenly py-contentClose space-y-contentClose">
                 {/* Image avec gradient */}
-                <div className="relative flex overflow-hidden w-full max-w-100 h-50">
+                <div className={`${styles.menuImage} relative flex overflow-hidden w-full max-w-100 h-50`}>
                     <div className="absolute inset-y-0 left-0 w-[7rem] bg-gradient-to-r from-background-base to-transparent z-10"/>
                     <div className="absolute inset-y-0 right-0 w-[7rem] bg-gradient-to-l from-background-base to-transparent z-10"/>
                     <Image 

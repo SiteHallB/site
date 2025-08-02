@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
         // Envoie du mail
         await transporter.sendMail({
             from: `"Site Web" <${process.env.SMTP_USER}>`,
-            to: process.env.SMTP_USER, // changer la destination ici
+            to: process.env.SMTP_DEST, 
             subject: `Nouveau message de ${name} via le site web`,
             text: `
                     Nom : ${name}
