@@ -11,3 +11,7 @@
     --spacing-subSection: 4rem;
     --spacing-subMenu: 4rem;
 }
+
+.flexCenter {
+    @apply flex items-center justify-center;
+}

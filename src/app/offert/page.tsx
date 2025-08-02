@@ -7,6 +7,6 @@ export default function Page() {
     const { seance_decouverte } = useFormule();
     
     return (
-        <IdsGroupPage title="Essaie offert" subtitle="Venez tester la salle ..." ids={[seance_decouverte]}/>
+        <IdsGroupPage revenir={false} title="Essaie offert" subtitle="Venez tester la salle ..." ids={[seance_decouverte]}/>
     );
 }

@@ -1,7 +1,5 @@
 "use client"
 
-import "@/styles/menu.css"
-
 import { usePathname } from 'next/navigation';
 
 import { useRef, useState, useEffect } from "react";

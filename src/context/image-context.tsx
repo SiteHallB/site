@@ -97,19 +97,19 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
                     height: 1328, 
                     alt: "Logo HALL B"
                 }, 
-                pannata: {
+                pannataLogo: {
                     src: "/images/pannata.png", 
                     width: 272, 
                     height: 109, 
                     alt: "Logo Pannata"
                 }, 
-                technogym: {
+                technogymLogo: {
                     src: "/images/technogym.png", 
                     width: 820, 
                     height: 231, 
                     alt: "Logo Technogym"
                 }, 
-                pallini: {
+                palliniLogo: {
                     src: "/images/pallini.png", 
                     width: 1633, 
                     height: 396, 

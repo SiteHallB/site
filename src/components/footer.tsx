@@ -14,7 +14,7 @@ import { Email, PhoneNumber } from "./ui/contact-widget";
 
 export default function Footer() {
     const { pannata, technogym, pallini, adresse } = useLinks();
-    const { logo } = useImage();
+    const { logo, pannataLogo, technogymLogo, palliniLogo } = useImage();
 
     return (
         <footer className="relative w-full bg-background-subdued pt-content flex flex-col items-center p-content lg:p-contentLg">
@@ -31,12 +31,10 @@ export default function Footer() {
                     className="min-w-0 max-w-[250px] flex-1"
                 >
                     <Image
-                        src="/images/pannata.png"
-                        alt=""
-                        width={272}
-                        height={109}
+                        {...pannataLogo}
                         className="w-full h-auto object-contain"
                     />
+                    <span className="sr-only">Découvrir Pannata</span>
                 </Clickable>
                 <Clickable
                     clickableType={{type: "link", path: technogym, outside: true}}
@@ -44,12 +42,10 @@ export default function Footer() {
                     className="min-w-0 max-w-[250px] flex-1"
                 >
                     <Image
-                        src="/images/technogym.png"
-                        alt=""
-                        width={820}
-                        height={231}
+                        {...technogymLogo}
                         className="w-full h-auto object-contain"
                     />
+                    <span className="sr-only">Découvrir Technogym</span>
                 </Clickable>
                 <Clickable
                     clickableType={{type: "link", path: pallini, outside: true}}
@@ -57,12 +53,10 @@ export default function Footer() {
                     className="min-w-0 max-w-[250px] flex-1"
                 >
                     <Image
-                        src="/images/pallini.png"
-                        alt=""
-                        width={1633}
-                        height={396}
+                        {...palliniLogo}
                         className="w-full h-auto object-contain"
                     />
+                    <span className="sr-only">Découvrir Pallini</span>
                 </Clickable>
             </div>
 

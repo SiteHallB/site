@@ -4,6 +4,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "tailwindcss";
+
 @import './typography.css';
 @import './utilities.css';
 @import './contact.css';
