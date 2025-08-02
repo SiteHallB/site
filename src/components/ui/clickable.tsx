@@ -48,7 +48,7 @@ type ClickableType =
         outside?: boolean
     }
 
-export default function Clickable({ clickableType, trackingConfig, className, children, style, ariaProps }: 
+export default function Clickable({ clickableType, trackingConfig, className, children, style, ...rest }: 
     {
         clickableType: ClickableType; 
         trackingConfig?: {
@@ -60,8 +60,6 @@ export default function Clickable({ clickableType, trackingConfig, className, ch
         children: React.ReactNode;
 
         style: VariantProps<typeof clickableVariants>;
-
-        ariaProps?: React.AriaAttributes;
     })
 {
     function handleTracking() {
@@ -90,7 +88,7 @@ export default function Clickable({ clickableType, trackingConfig, className, ch
                 type={clickableType.htmlType || "button"}
                 onClick={handleButtonClick}
                 className={cn}
-                {...ariaProps}
+                {...rest}
             >
                 <>{children}</>
             </button>
@@ -104,7 +102,7 @@ export default function Clickable({ clickableType, trackingConfig, className, ch
                 href={clickableType.path}
                 onClick={handleLinkClick}
                 className={cn}
-                {...ariaProps}
+                {...rest}
             >
                 <>{children}</>
             </Link>
