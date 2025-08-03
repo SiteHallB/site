@@ -72,7 +72,7 @@ export default function GoogleReviews() {
     const [count, setCount] = useState<number | null>(null);
 
     useEffect(() => {
-        fetch("/api/google-reviews")
+        fetch("/api/google-reviews", { next: { revalidate: 3600 } })
             .then(res => res.json())
             .then(data => {
                 setReviews(data.reviews || []);

@@ -96,7 +96,7 @@ export default function FormuleOverview({ title, subtitle, prix, images, checkDe
     return (
         <section aria-label={`Formule ${title}`} ref={container} className={clsx(className, "relative max-w-90 w-full h-full flex flex-col bg-background-highlight rounded-xl px-contentClose lg:px-content py-content items-center justify-around space-y-contentClose")}>
             {/* Prix */}
-            {prix && <div className="px-contentClose flex items-center justify-center absolute left-[-0.5rem] top-[-1.1rem] rounded-xs bg-accent">
+            {prix && <div className="text-background-base px-contentClose flex items-center justify-center absolute left-[-0.5rem] top-[-1.1rem] rounded-xs bg-accent">
                 {prix}
             </div>}
 

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@/styles/globals.css";
 
 import Menu from "@/components/menu";
@@ -15,8 +15,12 @@ import { ContactProvider } from "@/context/contact-context";
 
 import { Toast } from "@/components/ui/toast";
 
-export const viewport = {
+export const viewport: Viewport = {
     themeColor: "#242424",
+    width: "device-width", 
+    height: "device-height", 
+    initialScale: 1, 
+    colorScheme: 'dark',
 };
 
 export const metadata: Metadata = {

@@ -1,14 +1,12 @@
-"use client";
+import { Metadata } from "next";
 
-import IdsGroupPage from "@/components/tarifs/ids-group-page";
-import { useFormule } from "@/context/formule-context";
+import CarnetSeances from "@/components/tarifs/carnet-seances/carnet-seances";
+
+export const metadata: Metadata = {
+    title: "HALL B - Carnet de séances", 
+    description: "Besoin de flexibilité ? Découvrez HALL B pour 1, 10, 30, 50, ou 100 séance(s) toutes activités confondues.",
+};
 
 export default function Page() {
-    const {
-        seance_unite, carnet_10, carnet_30, carnet_50, carnet_100, 
-    } = useFormule();
-
-    return (
-        <IdsGroupPage title="Carnet de séances" subtitle={<p>Choisissez un carnet de 1, 10, 30, 50 ou 100 séance(s) toutes activités confondues (sauf Squash)</p>} ids={[seance_unite, carnet_10, carnet_30, carnet_50, carnet_100]}/>
-    );
+    return <CarnetSeances/>;
 }

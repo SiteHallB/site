@@ -1,4 +1,15 @@
+import { Metadata } from "next";
+
 import Clickable from "@/components/ui/clickable";
+
+export const metadata: Metadata = {
+    title: "HALL B - Merci", 
+    robots: {
+        index: false,
+        follow: false,
+        nocache: true,
+    }
+}
 
 export default function ThankYouPage() {
     return (

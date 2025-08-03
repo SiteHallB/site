@@ -1,24 +1,12 @@
-"use client";
+import { Metadata } from "next";
 
-import FilterIdsGroupPage from "@/components/tarifs/filter-ids-group-page";
+import Classic from "@/components/tarifs/classic/classic";
 
-import { useFormule } from "@/context/formule-context";
+export const metadata: Metadata = {
+    title: "HALL B - Classic", 
+    description: "Accès 7/7j aux plateaux muscu et cardio de HALL B. Découvrez toutes les options de paiement de cette offre à ne pas manquer.",
+};
 
 export default function Page() {
-    const { classic_unmois, classic_mensuel, classic_annuel } = useFormule();
-
-    return (
-        <FilterIdsGroupPage title="Classic" subtitle={<p>Musculation & cardio</p>}
-            filters={[
-                {
-                    noneFilterName: "Tout type de paiement", 
-                    filters: [
-                        { filterName: "1 mois sans engagement", ids: new Set([classic_unmois]) },
-                        { filterName: "Mensuel", ids: new Set([classic_mensuel]) },
-                        { filterName: "Annuel", ids: new Set([classic_annuel]) }
-                    ]
-                }, 
-            ]}
-        />
-    );
+    return <Classic/>;
 }

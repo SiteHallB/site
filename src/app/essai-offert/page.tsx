@@ -1,12 +1,12 @@
-"use client";
+import { Metadata } from "next";
 
-import IdsGroupPage from "@/components/tarifs/ids-group-page";
-import { useFormule } from "@/context/formule-context";
+import EssaiOffert from "@/components/essai-offert/essai-offert";
+
+export const metadata: Metadata = {
+    title: "HALL B - Essai Offert", 
+    description: "Vous hésitez encore à franchir le pas ? Profitez d'une séance découverte 100% gratuite pour tester HALL B à Saint Dionisy et vivre l'expérience par vous-même.",
+};
 
 export default function Page() {
-    const { seance_decouverte } = useFormule();
-    
-    return (
-        <IdsGroupPage revenir={false} title="Essai offert" subtitle={<p>Venez tester la salle gratuitement et sans engagement</p>} ids={[seance_decouverte]}/>
-    );
+    return <EssaiOffert/>;
 }

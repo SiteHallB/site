@@ -1,4 +1,11 @@
+import { Metadata } from "next";
+
 import ReactMarkdown from "react-markdown";
+
+export const metadata: Metadata = {
+    title: "HALL B - Politique de Confidentialité", 
+    description: "Politique de confidentialité de la salle de sport HALL B à Saint Dionisy.",
+};
 
 export default function PolitiqueConfidentialitePage() {
     return (

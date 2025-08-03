@@ -10,6 +10,7 @@ export async function GET() {
         }
 
         const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=rating,reviews,user_ratings_total&language=fr&key=${apiKey}`;
+        console.log("APPEL REEL A GOOGLE PLACES API !");
         const res = await fetch(url);
         const data = await res.json();
 
