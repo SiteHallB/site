@@ -67,7 +67,7 @@ export default function EssaiOffert() {
                 <div className="absolute inset-0 overflow-hidden flexCenter p-content">
                     <Image
                         {...logo}
-                        className="max-h-full w-auto opacity-10"
+                        className="max-h-full max-w-full aspect-square w-auto opacity-10"
                     />
                 </div>
             </div>

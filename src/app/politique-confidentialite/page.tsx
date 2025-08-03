@@ -4,21 +4,21 @@ export default function PolitiqueConfidentialitePage() {
     return (
         <main className="text-foreground-base bg-background-base py-subMenu px-content lg:px-contentLg">
 <ReactMarkdown>{`
-# Politique de confidentialité – Hall B
+# Politique de confidentialité - Hall B
 Dernière mise à jour : 03/08/2025
 
 ## 1. Responsable du traitement
 Le site Hall B est édité par :
-Société [Nom de la société ou structure]
-Adresse : [Adresse]
-E-mail de contact : [Email]
-SIRET : [Numéro SIRET]
+Société HALL B
+Adresse : 1 chemin d'Azord
+E-mail de contact : contact@hallb.fr
+SIRET : 944 092 568 00012
 
 ## 2. Hébergement
 Le site est hébergé par : Vercel Inc.
 340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis
 
-Les données sont hébergées sur des serveurs principalement situés dans l’Union Européenne. Toutefois, certains transferts hors UE peuvent être effectués dans le cadre de l’exploitation technique du service.
+Les données sont hébergées sur des serveurs principalement situés dans l'Union Européenne. Toutefois, certains transferts hors UE peuvent être effectués dans le cadre de l’exploitation technique du service.
 
 Politique de confidentialité de Vercel : https://vercel.com/legal/privacy-policy
 
