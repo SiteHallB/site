@@ -13,10 +13,8 @@ export function FormuleProvider({ children }: { children: ReactNode; }) {
         <FormuleContext.Provider
             value={{
                 seance_decouverte: 19758, 
+                
                 seance_unite: 19759, 
-
-
-
                 carnet_10: 21421, 
                 carnet_30: 21423, 
                 carnet_50: 21428, 
