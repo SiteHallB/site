@@ -29,7 +29,6 @@ export default function SportigoFormule({ ids }: { ids: number[] }) {
     };
 
     useEffect(() => {
-        console.log(ids)
         if (ids.length > 0) init();
     }, [ids]);
 

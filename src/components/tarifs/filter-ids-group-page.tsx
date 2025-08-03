@@ -1,52 +1,95 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Clickable from "../ui/clickable";
 import PageStructure from "../ui/page-structure";
 import SportigoFormule from "../ui/sportigo-formule";
+import { ChevronLeft } from "lucide-react";
 
-function intersection(...sets: Set<number>[]): number[] {
-    if (sets.length === 0) return [];
+function intersection<T>(...sets: Set<T>[]): Set<T> {
+    if (sets.length === 0) return new Set();
     // Commence par le set le plus petit pour optimiser
     sets.sort((a, b) => a.size - b.size);
     const [smallest, ...rest] = sets;
-    return Array.from(smallest).filter(x => rest.every(set => set.has(x)));
+    return new Set(Array.from(smallest).filter(x => rest.every(set => set.has(x))));
 }
 
-function union(...sets: Set<number>[]): number[] {
-    const result = new Set<number>();
+function union<T>(...sets: Set<T>[]): Set<T> {
+    const result = new Set<T>();
     for (const s of sets) {
         for (const val of s) {
             result.add(val);
         }
     }
-    return Array.from(result);
+    return result;
 }
 
-type FilterIds = {filter: string; ids: Set<number>}[];
-export default function FilterIdsGroupPage({ title, subtitle, filterIds }: { title: string, subtitle: string, filterIds: FilterIds}) {
-    const n = filterIds.length;
-    const noneFilter = union(...filterIds.map(f => f.ids));
+// A entourer de nav
+function FilterExclusive({ onChange, noneFilterName, filterNames }: { onChange: (newState: boolean[]) => void; noneFilterName: string; filterNames: string[] }) {
+    const n = filterNames.length;
     const [appliedFilters, setAppliedFilters] = useState<boolean[]>(Array(n).fill(false));
 
-    function applyFilters(applied: boolean[]) {
-        if (isNoneFilter()) return noneFilter;
-        const activeSets = filterIds
-            .filter((_, index) => applied[index])
-            .map(f => f.ids);
-        return intersection(...activeSets);
-    }
-
-    function isNoneFilter() {
-        return appliedFilters.every(x => x === false);
-    }
+    const isNoneFilter = () => appliedFilters.every(x => x === false);
 
     function handleFilterChange(change: number) {
-        if (change === n) { // Filter aucun filtres
-            setAppliedFilters(Array(n).fill(false));
-        } else {
-            setAppliedFilters(appliedFilters.map((el, index) => index === change ? !el : el))
+        if (change === n) setAppliedFilters(Array(n).fill(false));
+        else {
+            const prev = appliedFilters[change]
+            setAppliedFilters(Array(n).fill(false).map((el, index) => index === change ? !prev : el))
         }
+    }
+
+    useEffect(() => {
+        onChange(appliedFilters)
+    }, [appliedFilters])
+
+    return (
+        <ul className="bg-background-highlight px-content py-contentClose rounded-full flex flex-row list-none gap-x-content">
+        {/* Filter aucun filtre */}
+        <li>
+        <Clickable
+            clickableType={{type: "button", onClick: () => handleFilterChange(n)}}
+            style={{variant: isNoneFilter() ? "filterTrue" : "filterFalse"}}
+        >
+            {noneFilterName}
+        </Clickable>
+        </li>
+        {filterNames.map((el, index) =>
+            <li key={index}>
+            <Clickable
+                clickableType={{type: "button", onClick: () => handleFilterChange(index)}}
+                style={{variant: appliedFilters[index] ? "filterTrue" : "filterFalse"}}
+            >
+                {el}
+            </Clickable>
+            </li>
+        )}
+        </ul>
+    );
+}
+
+type FilterExclusiveType = { noneFilterName: string; filters: {filterName: string; ids: Set<number>}[]};
+type Filters = FilterExclusiveType[]
+export default function FilterIdsGroupPage({ title, subtitle, filters }: { title: string, subtitle: string, filters: Filters}) {
+    const n = filters.length;
+    const lengths = filters.map(filterExclusive => filterExclusive.filters.length);
+    const [filtersState, setFiltersState] = useState<boolean[][]>(() => lengths.map(len => Array(len).fill(false)));
+    const allIds = Array.from(union(...filters.map((filterExclusive, _) => union(...filterExclusive.filters.map((el, _) => el.ids)))));
+
+    function handleChange(numFilterExclusive: number, newState: boolean[]) {
+        setFiltersState(filtersState.map((el, index) => index === numFilterExclusive ? newState : el));
+    }
+
+    function applyFilters(toApply: boolean[][]) {
+        const activeSetsPerFilterExclusive = 
+            filters.map((el, index) => 
+                el.filters
+                    .filter((_, i) => toApply[index][i])
+                    .map(f => f.ids)
+            ).filter((el, _) => el.length > 0)
+        const result = Array.from(intersection(...activeSetsPerFilterExclusive.map((el, _) => intersection(...el))));
+        if (result.length === 0) return allIds;
+        else return result;
     }
 
     return (
@@ -57,37 +100,25 @@ export default function FilterIdsGroupPage({ title, subtitle, filterIds }: { tit
                     style={{variant: "menuMainButton"}}
                     className="mr-auto flexCenter flex-row"
                 >
+                    <ChevronLeft className="size-6"/>
                     Revenir aux formules
                 </Clickable>
 
                 {/* Boutons filters */}
-                <nav aria-label={`Filtres tarifs ${title}`} className="bg-background-highlight px-content py-contentClose rounded-full flex flex-row gap-x-content">
+                <nav aria-label={`Filtres tarifs ${title}`} className="flex flex-col gap-y-content p-content outline-background-highlight outline-3 rounded">
                     <p className="text-foreground-base">Filtrer :</p>
-                    <ul className="flex flex-row list-none gap-x-content">
-                    {/* Filter aucun filtre */}
-                    <li>
-                    <Clickable
-                        clickableType={{type: "button", onClick: () => handleFilterChange(n)}}
-                        style={{variant: isNoneFilter() ? "filterTrue" : "filterFalse"}}
-                    >
-                        Toutes les formules {title}
-                    </Clickable>
-                    </li>
-                    {filterIds.map((el, index) =>
-                        <li key={index}>
-                        <Clickable
-                            clickableType={{type: "button", onClick: () => handleFilterChange(index)}}
-                            style={{variant: appliedFilters[index] ? "filterTrue" : "filterFalse"}}
-                        >
-                            {filterIds[index].filter}
-                        </Clickable>
-                        </li>
-                    )}
-                    </ul>
+                    {filters.map((el, index) => (
+                        <FilterExclusive
+                            key={index}
+                            onChange={(newState) => handleChange(index, newState)}
+                            noneFilterName={filters[index].noneFilterName}
+                            filterNames={filters[index].filters.map((e => e.filterName))}
+                        />
+                    ))}
                 </nav>
 
                 {/* Formules */}
-                <SportigoFormule ids={applyFilters(appliedFilters)}/>
+                <SportigoFormule ids={applyFilters(filtersState)}/>
             </div>
         </PageStructure>
     );
