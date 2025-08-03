@@ -31,33 +31,33 @@ export const metadata: Metadata = {
     },
     manifest: "/favicon/site.webmanifest.json",
 
-    // openGraph: {
-    //     title: "HALL B",
-    //     description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage): musculation haut de gamme, cours collectifs, smallGroups, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
-    //     url: "https://hallb.fr",
-    //     type: "website",
-    //     siteName: "HALL B",
-    //     images: [
-    //         {
-    //             url: "/og-image.jpg",
-    //             width: 1200,
-    //             height: 630,
-    //             alt: "HALL B salle de sport Saint Dionisy"
-    //         }
-    //     ]
-    // },
+    openGraph: {
+        title: "HALL B",
+        description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage, proche de Nimes): musculation haut de gamme, cours collectifs, smallGroups, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
+        url: "https://hallb.fr",
+        type: "website",
+        siteName: "HALL B",
+        images: [
+            {
+                url: "/og-image.jpg",
+                width: 1200,
+                height: 630,
+                alt: "HALL B salle de sport Saint Dionisy"
+            }
+        ]
+    },
 
-    // twitter: {
-    //     card: "summary_large_image",
-    //     title: "HALL B",
-    //     description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage): musculation haut de gamme, cours collectifs, smallGroups, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
-    //     images: ["/og-image.jpg"],
-    // },
+    twitter: {
+        card: "summary_large_image",
+        title: "HALL B",
+        description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage, proche de Nimes): musculation haut de gamme, cours collectifs, smallGroups, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
+        images: ["/og-image.jpg"],
+    },
 
-    // other: {
-    //     "msapplication-TileColor": "#242424",
-    //     "msapplication-TileImage": "/mstile-150x150.png"
-    // }
+    other: {
+        "msapplication-TileColor": "#242424",
+        "msapplication-TileImage": "/mstile-150x150.png"
+    }
 };
 
 export default function RootLayout({

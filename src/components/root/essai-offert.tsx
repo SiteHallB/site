@@ -51,7 +51,7 @@ export default function EssaiOffert() {
                     <span className="text">Viens essayer</span>
                     <Image
                         {...logo}
-                        className="logo outline-[0.25rem] outline-offset-[2rem] w-30 object-cover" 
+                        className="logo h-auto outline-[0.25rem] outline-offset-[2rem] w-30 object-cover" 
                     />
                     <span className="text">gratuitement et sans engagement</span>
                 </h3>

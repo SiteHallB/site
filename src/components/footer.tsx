@@ -130,7 +130,7 @@ export default function Footer() {
             <div className="absolute inset-0 overflow-hidden flexCenter p-contentClose lg:p-content">
                 <Image
                     {...logo}
-                    className="max-h-full max-w-full aspect-square opacity-10"
+                    className="max-h-full max-w-full h-auto  opacity-10"
                 />
             </div>
         </footer>

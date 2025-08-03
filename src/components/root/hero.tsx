@@ -117,7 +117,7 @@ export default function Hero() {
                 <div className="flexCenter flex-col space-y-2">
                     <Image
                         {...logo}
-                        className="h-[6rem] w-auto"
+                        className="h-[9rem] lg:h-[15rem] w-auto"
                         priority
                     />
                     <h1 className={"text-foreground-base textNormal"}>
