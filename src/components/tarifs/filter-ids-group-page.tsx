@@ -87,7 +87,6 @@ export function FilterIdsGroupPageComponent({ title, subtitle, filters, queryFil
                 }
             ))
         )
-        console.log(filtersAfterQuery)
         setFiltersState(filtersAfterQuery);
     }, [searchParams]);
 

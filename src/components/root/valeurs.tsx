@@ -32,15 +32,15 @@ export default function Valeurs() {
             ease: "back",
         })
 
-        const handleResize = () => {
-            ScrollTrigger.refresh();
-        };
-        window.addEventListener("resize", handleResize);
+        // const handleResize = () => {
+        //     ScrollTrigger.refresh();
+        // };
+        // window.addEventListener("resize", handleResize);
 
-        return () => {
-            window.removeEventListener("resize", handleResize);
-            ScrollTrigger.getAll().forEach(t => t.kill());
-        }
+        // return () => {
+        //     window.removeEventListener("resize", handleResize);
+        //     ScrollTrigger.getAll().forEach(t => t.kill());
+        // }
     })
 
     return (
