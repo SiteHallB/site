@@ -11,10 +11,6 @@ export default function VideoBackground({ className, videoUrl, poster }: { class
         // Code exécuté côté client uniquement
         if (!videoRef.current) return;
 
-        // Safari natif lit le HLS tout seul
-        if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
-            videoRef.current.src = videoUrl;
-        }
         // Sinon, Hls.js s'en charge
         else if (Hls.isSupported()) {
             const hls = new Hls();

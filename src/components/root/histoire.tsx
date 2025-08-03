@@ -21,7 +21,7 @@ export default function Histoire() {
                 trigger: ".imageClip", 
                 start: () => "top 30%", 
                 end: () => "top top", 
-                scrub: 0.5, 
+                scrub: 0.8, 
             }
         })
         .to(".imageClip", {

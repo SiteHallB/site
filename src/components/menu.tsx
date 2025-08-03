@@ -28,9 +28,10 @@ type MenuLink = {
 type MenuItemProps = {
   linkInfo: MenuLink;
   onClick: () => void;
+  outside?: boolean;
 };
 
-function MenuItem({ linkInfo, onClick }: MenuItemProps) {
+function MenuItem({ linkInfo, onClick, outside }: MenuItemProps) {
     const pathname = usePathname();
 
     return (
@@ -39,7 +40,7 @@ function MenuItem({ linkInfo, onClick }: MenuItemProps) {
                 <ChevronRight size={24} className={clsx({ "text-accent": pathname === linkInfo.path, "text-foreground-subdued": pathname !== linkInfo.path})}/>
 
                 <Clickable
-                    clickableType={{type: "link", onClick: onClick, path: linkInfo.path}}
+                    clickableType={{type: "link", onClick: onClick, path: linkInfo.path, outside: outside === true}}
                     style={{variant: "menuMainButton"}}
                 >
                     {linkInfo.label}
@@ -116,7 +117,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
                     </div>
                     <MenuItem linkInfo={{ path: "/squash", label: "Réservation Squash" }} onClick={close}/>
                 </nav>
-                <MenuItem linkInfo={{ path: osteo, label: "Consultation Ostéopathe" }} onClick={close}/>
+                <MenuItem linkInfo={{ path: osteo, label: "Consultation Ostéopathe" }} onClick={close} outside={true}/>
                 </div>
 
                 <div className="w-full h-full flex flex-col items-center justify-evenly py-contentClose space-y-contentClose">

@@ -12,7 +12,7 @@ export function LinkProvider({ children }: { children: ReactNode; }) {
     return (
         <LinkContext.Provider
             value={{
-                osteo: "https://www.doctolib.fr/osteopathe/langlade/chloe-arcangioli", 
+                osteo: "https://www.doctolib.fr/osteopathe/langlade/chloe-arcangioli?pid=practice-702972", 
                 adresse: "https://maps.app.goo.gl/8NkxFXwWUCSQMxDLA", 
                 instagram: "https://www.instagram.com/hallb.fr/", 
                 facebook: "https://www.facebook.com/p/HALL-B-61576081445951/", 

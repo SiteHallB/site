@@ -111,7 +111,7 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
                 root_concept_qualite: images.poids_qualibres, 
                 root_concept_adn: images.salle_cardio, 
                 root_histoire: {
-                    src: "/images/root_histoire.jpg", 
+                    src: "/images/equipe.jpg", 
                     width: 3024, 
                     height: 4032, 
                     alt: ""
