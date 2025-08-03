@@ -8,7 +8,7 @@ import { useImage } from "@/context/image-context";
 export default function Page() {
     const { tarifs_classic_1, tarifs_classic_2, 
             tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
-            tarifs_aqua_1, tarifs_danse_1 } = useImage();
+            tarifs_aqua_1, tarifs_aqua_2, tarifs_aqua_3, tarifs_danse_1 } = useImage();
 
     return (
         <PageStructure title="Tarifs" subtitle="Choisissez la formule adaptée à vos besoins">
@@ -52,7 +52,7 @@ export default function Page() {
                         title="Aqua"
                         subtitle="Classic + Aqua"
                         prix={75}
-                        images={[ tarifs_aqua_1, ]}
+                        images={[ tarifs_aqua_1, tarifs_aqua_2, tarifs_aqua_3 ]}
                         checkDescription={[
                             "Accès libre au plateau 7/7j de 6h à 23h", 
                             <>Accès illimité au planning d'<span className="text-accent">AQUA</span></>

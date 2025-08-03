@@ -1,3 +1,5 @@
+"use client";
+
 import Clickable from "@/components/ui/clickable";
 import { useLinks } from "@/context/link-context";
 import clsx from "clsx";

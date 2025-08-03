@@ -1,10 +1,14 @@
+"use client"
+
 import Image from "next/image";
+
+import { useRef } from "react";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import { useRef } from "react";
-import Separator from "../ui/separator";
+
+import Separator from "@/components/ui/separator";
 import { useImage } from "@/context/image-context";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -40,7 +44,7 @@ export default function Valeurs() {
     })
 
     return (
-        <div ref={container} className="w-full bg-background-base lg:px-40 pb-subSection">
+        <section ref={container} id="valeurs" className="w-full bg-background-base lg:px-40 pb-subSection">
             <div className="w-full bg-background-subdued py-content flex flex-col">
             <h2 className="z-10 notreHistoire text-foreground-base text-center mb-subTitle">
                 Nos Valeurs
@@ -66,6 +70,6 @@ export default function Valeurs() {
                 </div>
             </div>
             </div>
-        </div>
+        </section>
     );
 }

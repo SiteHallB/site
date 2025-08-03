@@ -1,3 +1,5 @@
+"use client"
+
 import Clickable from "@/components/ui/clickable"
 import { useImage } from "@/context/image-context";
 import { useGSAP } from "@gsap/react";

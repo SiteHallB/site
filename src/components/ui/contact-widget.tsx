@@ -1,3 +1,5 @@
+"use client"
+
 import { useContact } from "@/context/contact-context";
 import Clickable from "@/components/ui/clickable";
 import copyToClipboard from "@/utils/copy-to-clipboard";

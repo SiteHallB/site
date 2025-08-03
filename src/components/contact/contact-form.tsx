@@ -1,10 +1,11 @@
+"use client";
+
 import TextareaAutosize from 'react-textarea-autosize';
 import Clickable from "@/components/ui/clickable";
 import { useState, FormEvent, useEffect, useRef } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
 import sanitizeHtml from "sanitize-html";
 import useKlaroConsent from '../cookies/use-klaro-consent';
-import getConsent from '../cookies/get-consent';
 import { useContact } from '@/context/contact-context';
 
 function cleanString(message: string) {

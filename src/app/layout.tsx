@@ -15,14 +15,49 @@ import { ContactProvider } from "@/context/contact-context";
 
 import { Toast } from "@/components/ui/toast";
 
+export const viewport = {
+    themeColor: "#242424",
+};
+
 export const metadata: Metadata = {
-    title: "Hall B",
-    description: "Hall B",
-    icons: {
-        icon: '/favicon/favicon.ico',
-        shortcut: '/favicon/favicon.ico',
-        apple: '/favicon/apple-touch-icon.png',
+  icons: {
+        icon: [
+            { url: "/favicon/favicon.ico" },
+            { url: "/favicon/favicon-16x16.png", sizes: "16x16" },
+            { url: "/favicon/favicon-32x32.png", sizes: "32x32" }
+        ],
+        apple: "/favicon/apple-touch-icon.png",
+        shortcut: "/favicon/favicon.ico",
     },
+    manifest: "/favicon/site.webmanifest.json",
+
+    // openGraph: {
+    //     title: "HALL B",
+    //     description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage): musculation haut de gamme, cours collectifs, smallGroups, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
+    //     url: "https://hallb.fr",
+    //     type: "website",
+    //     siteName: "HALL B",
+    //     images: [
+    //         {
+    //             url: "/og-image.jpg",
+    //             width: 1200,
+    //             height: 630,
+    //             alt: "HALL B salle de sport Saint Dionisy"
+    //         }
+    //     ]
+    // },
+
+    // twitter: {
+    //     card: "summary_large_image",
+    //     title: "HALL B",
+    //     description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage): musculation haut de gamme, cours collectifs, smallGroups, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
+    //     images: ["/og-image.jpg"],
+    // },
+
+    // other: {
+    //     "msapplication-TileColor": "#242424",
+    //     "msapplication-TileImage": "/mstile-150x150.png"
+    // }
 };
 
 export default function RootLayout({

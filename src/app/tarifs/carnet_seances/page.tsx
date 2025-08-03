@@ -9,6 +9,6 @@ export default function Page() {
     } = useFormule();
 
     return (
-        <IdsGroupPage title="Boost" subtitle="Offre déclinée en ..." ids={[carnet_10, carnet_30, carnet_50, carnet_100]}/>
+        <IdsGroupPage title="Boost" subtitle="Choisissez un carnet de 10, 30, 50 ou 100 séances toutes activités confondues (sauf Squash)" ids={[carnet_10, carnet_30, carnet_50, carnet_100]}/>
     );
 }

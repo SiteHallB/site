@@ -1,14 +1,10 @@
-"use client"
-
 import "@/styles/contact.css";
 import PageStructure from "@/components/ui/page-structure";
 import Reseaux from "@/components/reseaux";
 import ContactForm from "@/components/contact/contact-form"
-import { useContact } from "@/context/contact-context";
 import { Email, PhoneNumber } from "@/components/ui/contact-widget";
 
 export default function Page() {
-    const { email, numero } = useContact();
 
     return (
         <PageStructure title="Contact" subtitle="Besoin d'aide ?">

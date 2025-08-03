@@ -92,6 +92,9 @@ button:has(> svg.lucide-calendar) {
 button:has(> svg.lucide-clock) {
   display: none !important;
 }
+button:has(> svg.lucide-book-open) {
+  display: none !important;
+}
 
 button[role="checkbox"][data-state="checked"] {
   background-color: var(--color-accent);
