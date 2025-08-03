@@ -22,9 +22,9 @@ export default function Valeurs() {
         gsap.from(".textValeurs", {
             scrollTrigger: {
                 trigger: ".textValeursHolder", 
-                start: () => "top 70%", 
-                end: () => "bottom 40%", 
-                toggleActions: "play reverse play reverse",
+                start: () => "top 60%", 
+                end: () => "top 60%", 
+                toggleActions: "play none none reverse",
             }, 
             stagger: 0.1, 
             yPercent: 130,
@@ -32,23 +32,6 @@ export default function Valeurs() {
             ease: "back",
         })
     })
-
-    useEffect(() => {
-        let resizeTimeout: ReturnType<typeof setTimeout>;
-
-        const handleResize = () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                ScrollTrigger.refresh();
-            }, 1000);
-        };
-
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
 
     return (
         <section ref={container} id="valeurs" className="w-full bg-background-base lg:px-40 pb-subSection">

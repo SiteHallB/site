@@ -100,7 +100,7 @@ export default function Footer() {
             {/* Legal */}
             <div className="z-10 bg-background-base text-foreground-subdued flex flex-col gap-y-contentClose py-contentClose lg:flex-row w-full items-center justify-around">
                 <Clickable
-                    clickableType={{type: "link", path: ""}}
+                    clickableType={{type: "link", path: "/mentions-legales"}}
                     style={{variant: "legal"}}
                     className="w-fit"
                 >
