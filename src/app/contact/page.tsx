@@ -7,7 +7,7 @@ import { Email, PhoneNumber } from "@/components/ui/contact-widget";
 export default function Page() {
 
     return (
-        <PageStructure title="Contact" subtitle="Besoin d'aide ?">
+        <PageStructure title="Contact" subtitle={<p>Besoin d'aide ?</p>}>
             {/* Coordonnées */}
             <div className="w-full max-w-200 flex flex-wrap justify-between gap-content bg-background-highlight p-content lg:p-contentLg rounded-xl">
                 {/* Email */}

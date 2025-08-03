@@ -16,7 +16,7 @@ import Clickable from "@/components/ui/clickable";
 export default function ReservationPage() {
     const { plannings_desktop, plannings_lundi, plannings_mardi, plannings_mercredi, plannings_jeudi, plannings_vendredi, plannings_samedi, plannings_danse } = useImage();
     return (
-        <PageStructure title="Plannings" subtitle="Consultez nos nombreuses activités">
+        <PageStructure title="Plannings" subtitle={<p>Consultez nos nombreuses activités</p>}>
             {/* Plannings Sportigo */}
             {/* <div className="bg-white rounded-xl w-full overflow-x-hidden pt-1 flexCenter">
                 <SportigoPlannings />

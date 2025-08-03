@@ -69,7 +69,7 @@ function FilterExclusive({ onChange, appliedFilters, noneFilterName, filterNames
 type FilterExclusiveType = { noneFilterName: string; filters: {filterName: string; ids: Set<number>}[]};
 type Filters = FilterExclusiveType[]
 export type QueryFilter = Map<string, string>; // JSON.stringify la clé pour [filterExclusiveNumber, filterNumber]
-export function FilterIdsGroupPageComponent({ title, subtitle, filters, queryFilter }: { title: string, subtitle: string, filters: Filters, queryFilter?: QueryFilter}) {
+export function FilterIdsGroupPageComponent({ title, subtitle, filters, queryFilter }: { title: string, subtitle: React.ReactNode, filters: Filters, queryFilter?: QueryFilter}) {
     const n = filters.length;
     const lengths = filters.map(filterExclusive => filterExclusive.filters.length);
     const [filtersState, setFiltersState] = useState<boolean[][]>(() => lengths.map(len => Array(len).fill(false)));
@@ -133,7 +133,7 @@ export function FilterIdsGroupPageComponent({ title, subtitle, filters, queryFil
     );
 }
 
-export default function FilterIdsGroupPage(props: { title: string, subtitle: string, filters: Filters, queryFilter?: QueryFilter}) {
+export default function FilterIdsGroupPage(props: { title: string, subtitle: React.ReactNode, filters: Filters, queryFilter?: QueryFilter}) {
     return (
         <Suspense>
             <FilterIdsGroupPageComponent {...props}/>

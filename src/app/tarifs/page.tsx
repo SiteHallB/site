@@ -30,7 +30,7 @@ export default function Page() {
 
     return (
         <PageStructure title="Tarifs"
-            subtitle="Choisissez l'offre adaptée à vos besoins. Nos formules Classic, Boost, et Aqua sont disponibles en paiement un mois sans engagement, mensuel, ou annuel.">
+            subtitle={<p>Choisissez l'offre adaptée à vos besoins. Nos formules Classic, Boost, et Aqua sont disponibles en paiement un mois sans engagement, mensuel, ou annuel.</p>}>
             <div className="w-full pt-1 flexCenter flex-col">
                 {/* Liens squash */}
                 <Clickable

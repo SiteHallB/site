@@ -17,7 +17,7 @@ export default function Page() {
     ]);
     
     return (
-        <FilterIdsGroupPage title="Aqua" subtitle="Musculation & cardio + Aqua"
+        <FilterIdsGroupPage title="Aqua" subtitle={<p>Musculation & cardio + Aqua</p>}
             filters={[
                 {
                     noneFilterName: "Tout type de paiement", 
