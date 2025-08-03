@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -31,17 +31,24 @@ export default function Valeurs() {
             autoAlpha: 0, 
             ease: "back",
         })
-
-        // const handleResize = () => {
-        //     ScrollTrigger.refresh();
-        // };
-        // window.addEventListener("resize", handleResize);
-
-        // return () => {
-        //     window.removeEventListener("resize", handleResize);
-        //     ScrollTrigger.getAll().forEach(t => t.kill());
-        // }
     })
+
+    useEffect(() => {
+        let resizeTimeout: ReturnType<typeof setTimeout>;
+
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 150);
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     return (
         <section ref={container} id="valeurs" className="w-full bg-background-base lg:px-40 pb-subSection">
