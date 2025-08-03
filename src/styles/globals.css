@@ -130,3 +130,19 @@
 strong {
     @apply text-accent
 }
+
+video::-webkit-media-controls,
+video::-webkit-media-controls-start-playback-button,
+video::--webkit-media-controls-overlay-play-button,
+video::-webkit-media-controls-panel,
+video::-webkit-media-controls-play-button {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+video {
+  object-fit: cover;
+  pointer-events: none !important; /* ça aide aussi pour ne jamais interagir */
+  user-select: none !important;
+}
