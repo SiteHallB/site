@@ -15,15 +15,15 @@ export default function Reseaux({ className, title }: { className?: string, titl
             <Clickable
                 clickableType={{type: "link", path: instagramPath, outside: true}}
                 style={{variant: "menuSideButton"}}
-                className="flex flex-row space-x-1 w-fit"
+                className="w-fit flex flex-row gap-x-1 items-center"
             >
-                <Instagram/>
+                <Instagram className="text-foreground-subdued size-4 lg:size-6"/>
                 <p>Instagram</p>
             </Clickable>
             <Clickable
                 clickableType={{type: "link", path: facebookPath, outside: true}}
                 style={{variant: "menuSideButton"}}
-                className="flex flex-row space-x-1 w-fit"
+                className="w-fit flex flex-row gap-x-1 items-center"
             >
                 <Facebook/>
                 <p>Facebook</p>

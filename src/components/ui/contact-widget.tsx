@@ -5,6 +5,7 @@ import Clickable from "@/components/ui/clickable";
 import copyToClipboard from "@/utils/copy-to-clipboard";
 import clsx from "clsx";
 import { toast } from "./toast";
+import { Mail, Phone } from "lucide-react";
 
 export function PhoneNumber({ className }: { className?: string }) {
     const { numero } = useContact();
@@ -18,7 +19,10 @@ export function PhoneNumber({ className }: { className?: string }) {
                 className={clsx(className, "text-foreground-subdued hoverUnderline phoneMobile")}
                 aria-label={`Appeler le ${numero}`}
             >
-                {numero}
+                <div className="flex flex-row gap-x-1 items-center">
+                <Phone className="text-foreground-subdued size-4 lg:size-6"/>
+                <p>{numero}</p>
+                </div>
             </Clickable>
 
             {/* Le copy dans le presse papier sur desktop */}
@@ -36,7 +40,10 @@ export function PhoneNumber({ className }: { className?: string }) {
                 className={clsx(className, "text-foreground-subdued hoverUnderline phoneDesktop")}
                 aria-label={`Copier le numéro ${numero} dans le presse-papier`}
             >
+                <div className="flex flex-row gap-x-1 items-center">
+                <Phone className="text-foreground-subdued size-4 lg:size-6"/>
                 <p>{numero}</p>
+                </div>
             </Clickable>
         </>
     );
@@ -60,7 +67,10 @@ export function Email({ className }: { className?: string }) {
             className={clsx(className, "text-foreground-subdued hoverUnderline")}
             aria-label={`Copier l'email ${email} dans le presse papier`}
         >
-            <p>{email}</p>
+            <div className="flex flex-row gap-x-1 items-center">
+                <Mail className="text-foreground-subdued size-4 lg:size-6"/>
+                <p>{email}</p>
+            </div>
         </Clickable>
     );
 }

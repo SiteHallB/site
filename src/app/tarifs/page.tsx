@@ -13,12 +13,12 @@ export default function Page() {
     return (
         <PageStructure title="Tarifs"
             subtitle="Choisissez l'offre adaptée à vos besoins. Nos formules Classic, Boost, et Aqua sont disponibles en payement un mois sans engagement, mensuel, ou annuel.">
-            <div className="w-full pt-1 flexCenter flex-col px-content">
+            <div className="w-full pt-1 flexCenter flex-col">
 
                 {/* Formules principales */}
                 <ul className="list-none w-full flex flex-wrap justify-center gap-y-10 gap-x-content lg:gap-x-contentLg">
                     {/* Classic */}
-                    <li className="w-fit">
+                    <li className="w-full max-w-90">
                     <FormuleOverview
                         title="Classic"
                         subtitle="Musculation & cardio"
@@ -33,7 +33,7 @@ export default function Page() {
                     </li>
 
                     {/* Boost */}
-                    <li className="w-fit">
+                    <li className="w-full max-w-90">
                     <FormuleOverview
                         title="Boost"
                         subtitle="Classic + Cours collectifs"
@@ -51,7 +51,7 @@ export default function Page() {
                     </li>
 
                     {/* Aqua */}
-                    <li className="w-fit">
+                    <li className="w-full max-w-90">
                     <FormuleOverview
                         title="Aqua"
                         subtitle="Classic + Aqua"
@@ -78,7 +78,7 @@ export default function Page() {
                 {/* Autres formules */}
                 <ul className="w-full flex flex-wrap justify-center gap-y-10 gap-x-content lg:gap-x-contentLg">
                     {/* Carnet de séances */}
-                    <li className="w-fit">
+                    <li className="w-full max-w-90">
                     <FormuleOverview
                         title="Carnet de séances"
                         subtitle="Envie de flexibilité ?"
@@ -91,12 +91,11 @@ export default function Page() {
                         ]}
                         plusDescription={[]}
                         actionLink="/tarifs/carnet_seances"
-                        className=""
                     />
                     </li>
 
                     {/* Danse */}
-                    <li className="w-fit">
+                    <li className="w-full max-w-90">
                     <FormuleOverview
                         title="Danse"
                         subtitle="250€/an : 1h/semaine"
@@ -107,7 +106,6 @@ export default function Page() {
                         ]}
                         plusDescription={[<><span className="text-accent">150€</span>/an pour 1 danse supplémentaire</>]}
                         actionLink="/tarifs/danse"
-                        className=""
                     />
                     </li>
                 </ul>
