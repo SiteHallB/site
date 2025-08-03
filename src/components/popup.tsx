@@ -49,7 +49,7 @@ export default function PopUp() {
     return (
         <>
             {isOpen && (
-                <div className="z-60 fixed inset-0 bg-background-base/50 backdrop-blur flexCenter">
+                <div className="transition-opacity duration-500 z-60 fixed inset-0 bg-background-base/50 backdrop-blur flexCenter">
                     <div
                         className="z-10 outline-1 outline-foreground-subdued rounded-xl relative max-w-100 w-[98vw] p-content lg:p-contentLg bg-background-base flexCenter flex-col text-foreground-base"
                         role="dialog"

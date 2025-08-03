@@ -4,6 +4,8 @@ import PageStructure from "@/components/ui/page-structure";
 import FormuleOverview from "@/components/tarifs/formule-overview"
 import Separator from "@/components/ui/separator";
 import { useImage } from "@/context/image-context";
+import Clickable from "@/components/ui/clickable";
+import { ChevronRight } from "lucide-react";
 
 export default function Page() {
     const { tarifs_classic_1, tarifs_classic_2, 
@@ -14,6 +16,15 @@ export default function Page() {
         <PageStructure title="Tarifs"
             subtitle="Choisissez l'offre adaptée à vos besoins. Nos formules Classic, Boost, et Aqua sont disponibles en payement un mois sans engagement, mensuel, ou annuel.">
             <div className="w-full pt-1 flexCenter flex-col">
+                {/* Liens squash */}
+                <Clickable
+                    clickableType={{type: "link", path: "/squash"}}
+                    style={{variant: "menuMainButton"}}
+                    className="mb-subSection flexCenter flex-row"
+                >
+                    Voir tarifs Squash
+                    <ChevronRight className="size-4 lg:size-6"/>
+                </Clickable>
 
                 {/* Formules principales */}
                 <ul className="list-none w-full flex flex-wrap justify-center gap-y-10 gap-x-content lg:gap-x-contentLg">
@@ -22,7 +33,7 @@ export default function Page() {
                     <FormuleOverview
                         title="Classic"
                         subtitle="Musculation & cardio"
-                        prix={40}
+                        prix={<p className="textSmall">A partir de <span className="textSubH2">40€</span>/mois</p>}
                         images={[ tarifs_classic_1, tarifs_classic_2 ]}
                         checkDescription={[
                             "Accès libre au plateau 7/7j de 6h à 23h", 
@@ -37,7 +48,7 @@ export default function Page() {
                     <FormuleOverview
                         title="Boost"
                         subtitle="Classic + Cours collectifs"
-                        prix={50}
+                        prix={<p className="textSmall">A partir de <span className="textSubH2">50€</span>/mois</p>}
                         images={[ tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, ]}
                         checkDescription={[
                             "Accès libre au plateau 7/7j de 6h à 23h", 
@@ -55,7 +66,7 @@ export default function Page() {
                     <FormuleOverview
                         title="Aqua"
                         subtitle="Classic + Aqua"
-                        prix={75}
+                        prix={<p className="textSmall">A partir de <span className="textSubH2">75€</span>/mois</p>}
                         images={[ tarifs_aqua_1, tarifs_aqua_2, tarifs_aqua_3 ]}
                         checkDescription={[
                             "Accès libre au plateau 7/7j de 6h à 23h", 
@@ -76,12 +87,13 @@ export default function Page() {
                 <Separator/>
 
                 {/* Autres formules */}
-                <ul className="w-full flex flex-wrap justify-center gap-y-10 gap-x-content lg:gap-x-contentLg">
+                <ul className="mt-content w-full flex flex-wrap justify-center gap-y-10 gap-x-content lg:gap-x-contentLg">
                     {/* Carnet de séances */}
                     <li className="w-full max-w-90">
                     <FormuleOverview
                         title="Carnet de séances"
                         subtitle="Envie de flexibilité ?"
+                        prix={<p className="textSmall">A partir de <span className="textSubH2">15€</span></p>}
                         images={[ tarifs_classic_1, tarifs_classic_2, 
             tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
             tarifs_aqua_1 ]}
@@ -90,7 +102,7 @@ export default function Page() {
                             "Toutes activités confondues (Squash non compris)", 
                         ]}
                         plusDescription={[]}
-                        actionLink="/tarifs/carnet_seances"
+                        actionLink="/tarifs/carnet-seances"
                     />
                     </li>
 
@@ -98,11 +110,12 @@ export default function Page() {
                     <li className="w-full max-w-90">
                     <FormuleOverview
                         title="Danse"
-                        subtitle="250€/an : 1h/semaine"
+                        subtitle="1h/semaine"
+                        prix={<p className="textSmall"><span className="textSubH2">250€</span>/an</p>}
                         images={[ tarifs_danse_1, ]}
                         checkDescription={[
-                            "Toute l'année", 
-                            "Progression", 
+                            "Niveau débutant et avancé", 
+                            "Progression accompagnée sur l'année", 
                         ]}
                         plusDescription={[<><span className="text-accent">150€</span>/an pour 1 danse supplémentaire</>]}
                         actionLink="/tarifs/danse"

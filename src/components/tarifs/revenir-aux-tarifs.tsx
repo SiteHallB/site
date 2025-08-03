@@ -9,7 +9,7 @@ export default function() {
             style={{variant: "menuMainButton"}}
             className="mr-auto flexCenter flex-row"
         >
-            <ChevronLeft className="size-6"/>
+            <ChevronLeft className="size-4 lg:size-6"/>
             Revenir aux tarifs
         </Clickable>
     );

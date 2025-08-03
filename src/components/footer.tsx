@@ -73,7 +73,7 @@ export default function Footer() {
                     <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Horaires</p>
                     <p className="text-foreground-subdued">
                         Tous les jours de 6h à 23h<br/>
-                        Y compris le Dimanche et jours fériés
+                        Y compris le dimanche et les jours fériés
                     </p>
                     </div>
                 </div>

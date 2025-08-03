@@ -28,10 +28,6 @@ export default function ReservationPage() {
             </div>
 
             <div className="w-full block lg:hidden">
-            <Clickable
-                clickableType={{type: "button", onClick: () => window.dispatchEvent(new CustomEvent("open-popup"))}}
-                style={{}}
-            >
             <Swiper
                 className="w-full"
                 modules={[Navigation, Pagination, A11y]}
@@ -46,14 +42,18 @@ export default function ReservationPage() {
                         key={index}
                         className="select-none overflow-hidden rounded transition-all duration-300 ease-in-out swiper-slide-custom"
                     >
+                        <Clickable
+                            clickableType={{type: "button", onClick: () => window.dispatchEvent(new CustomEvent("open-popup"))}}
+                            style={{}}
+                        >
                         <Image
                             {...image}
                             className="w-full h-full object-cover object-center"
                         />
+                        </Clickable>
                     </SwiperSlide>
                 ))}
             </Swiper>
-            </Clickable>
             </div>
 
             <div className="bg-background-highlight rounded-xl w-full p-1 flexCenter max-w-120">

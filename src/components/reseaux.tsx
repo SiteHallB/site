@@ -18,15 +18,15 @@ export default function Reseaux({ className, title }: { className?: string, titl
                 className="w-fit flex flex-row gap-x-1 items-center"
             >
                 <Instagram className="text-foreground-subdued size-4 lg:size-6"/>
-                <p>Instagram</p>
+                <p>hallb.fr</p>
             </Clickable>
             <Clickable
                 clickableType={{type: "link", path: facebookPath, outside: true}}
                 style={{variant: "menuSideButton"}}
                 className="w-fit flex flex-row gap-x-1 items-center"
             >
-                <Facebook/>
-                <p>Facebook</p>
+                <Facebook className="text-foreground-subdued size-4 lg:size-6"/>
+                <p>HALL B</p>
             </Clickable>
             </div>
         </div>
