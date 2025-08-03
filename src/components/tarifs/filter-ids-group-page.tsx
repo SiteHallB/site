@@ -56,6 +56,7 @@ function FilterExclusive({ onChange, appliedFilters, noneFilterName, filterNames
             <Clickable
                 clickableType={{type: "button", onClick: () => handleFilterChange(index)}}
                 style={{variant: appliedFilters[index] ? "filterTrue" : "filterFalse"}}
+                className="text-left"
             >
                 {el}
             </Clickable>

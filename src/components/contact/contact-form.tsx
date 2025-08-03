@@ -93,7 +93,7 @@ function ContactForm() {
     <form onSubmit={handleSubmit} className="w-full flex flex-col items-center space-y-contentClose">      
         <div className="flex flex-col items-center">
             <h2 className="text-foreground-base">Message</h2>
-            <p className="text-foreground-subdued textSubH2 text-center">N'hesitez pas à nous solliciter</p>
+            <p className="text-foreground-subdued textSubH2 text-center">Nous sommes à votre écoute</p>
         </div>
         <div className="w-full flex flex-col space-y-2">
             <label htmlFor="name" className="text-foreground-base textNormal">Nom</label>

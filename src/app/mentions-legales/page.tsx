@@ -2,10 +2,10 @@ import ReactMarkdown from "react-markdown";
 
 export default function PolitiqueConfidentialitePage() {
     return (
-        <main className="text-foreground-base bg-background-base py-subMenu px-content lg:px-contentLg">
+        <main className="text-foreground-base bg-background-base py-subMenu px-content lg:px-contentLg w-full break-words">
 <ReactMarkdown>{`
-# Mentions légales – Hall B
-Conformément aux dispositions des articles 6-III et 19 de la loi n°2004-575 du 21 juin 2004 pour la confiance dans l’économie numérique (LCEN), nous vous informons des éléments suivants :
+# Mentions légales - Hall B
+Conformément aux dispositions des articles 6-III et 19 de la loi n°2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN), nous vous informons des éléments suivants :
 
 ## 1. Éditeur du site
 + Nom commercial : HALL B
@@ -20,7 +20,7 @@ Conformément aux dispositions des articles 6-III et 19 de la loi n°2004-575 du
 
 ## 2. Hébergeur
 Vercel Inc.
-340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis https://vercel.com
+340 S Lemon Ave #4133, Walnut, CA 91789, États-Unis : [lien](https://vercel.com)
 
 ## 3. Propriété intellectuelle
 L'ensemble du site (structure, design, contenu, textes, images, logos, vidéos…) est la propriété exclusive de Hall B, sauf mentions contraires.

@@ -30,7 +30,7 @@ export default function Page() {
 
     return (
         <PageStructure title="Tarifs"
-            subtitle="Choisissez l'offre adaptée à vos besoins. Nos formules Classic, Boost, et Aqua sont disponibles en payement un mois sans engagement, mensuel, ou annuel.">
+            subtitle="Choisissez l'offre adaptée à vos besoins. Nos formules Classic, Boost, et Aqua sont disponibles en paiement un mois sans engagement, mensuel, ou annuel.">
             <div className="w-full pt-1 flexCenter flex-col">
                 {/* Liens squash */}
                 <Clickable
@@ -153,7 +153,7 @@ export default function Page() {
                             <p>Niveau débutant et avancé</p>, 
                             <p>Progression accompagnée sur l'année</p>, 
                         ]}
-                        plusDescription={[<><span className="text-accent">150€</span>/an pour 1 danse supplémentaire</>]}
+                        plusDescription={[<p><span className="text-accent">150€</span>/an pour 1 danse supplémentaire</p>]}
                         actionLink="/tarifs/danse"
                     />
                     </li>

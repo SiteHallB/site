@@ -28,11 +28,11 @@ export default function Page() {
                     ]
                 }, 
                 {
-                    noneFilterName: "Toutes les options", 
+                    noneFilterName: "Toutes les formules AQUA", 
                     filters: [
-                        { filterName: "Basique", ids: new Set([aqua_unmois, aqua_mensuel, aqua_annuel]) }, 
-                        { filterName: "Cours co", ids: new Set([aqua_coursco_unmois, aqua_coursco_mensuel, aqua_coursco_annuel]) }, 
-                        { filterName: "Cours co + SmallGroups", ids: new Set([aqua_coursco_smallgroups_unmois, aqua_coursco_smallgroups_mensuel, aqua_coursco_smallgroups_annuel]) }
+                        { filterName: "AQUA seul", ids: new Set([aqua_unmois, aqua_mensuel, aqua_annuel]) }, 
+                        { filterName: "AQUA + Cours co", ids: new Set([aqua_coursco_unmois, aqua_coursco_mensuel, aqua_coursco_annuel]) }, 
+                        { filterName: "AQUA + Cours co + SmallGroups", ids: new Set([aqua_coursco_smallgroups_unmois, aqua_coursco_smallgroups_mensuel, aqua_coursco_smallgroups_annuel]) }
                     ]
                 }
             ]}
