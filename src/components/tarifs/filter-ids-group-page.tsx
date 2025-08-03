@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { Suspense } from "react";
 import Clickable from "../ui/clickable";
 import PageStructure from "../ui/page-structure";
 import SportigoFormule from "../ui/sportigo-formule";
@@ -67,7 +68,7 @@ function FilterExclusive({ onChange, appliedFilters, noneFilterName, filterNames
 type FilterExclusiveType = { noneFilterName: string; filters: {filterName: string; ids: Set<number>}[]};
 type Filters = FilterExclusiveType[]
 export type QueryFilter = Map<string, string>; // JSON.stringify la clé pour [filterExclusiveNumber, filterNumber]
-export default function FilterIdsGroupPage({ title, subtitle, filters, queryFilter }: { title: string, subtitle: string, filters: Filters, queryFilter?: QueryFilter}) {
+export function FilterIdsGroupPageComponent({ title, subtitle, filters, queryFilter }: { title: string, subtitle: string, filters: Filters, queryFilter?: QueryFilter}) {
     const n = filters.length;
     const lengths = filters.map(filterExclusive => filterExclusive.filters.length);
     const [filtersState, setFiltersState] = useState<boolean[][]>(() => lengths.map(len => Array(len).fill(false)));
@@ -129,5 +130,13 @@ export default function FilterIdsGroupPage({ title, subtitle, filters, queryFilt
                 <SportigoFormule ids={applyFilters(filtersState)}/>
             </div>
         </PageStructure>
+    );
+}
+
+export default function FilterIdsGroupPage(props: { title: string, subtitle: string, filters: Filters, queryFilter?: QueryFilter}) {
+    return (
+        <Suspense>
+            <FilterIdsGroupPageComponent {...props}/>
+        </Suspense>
     );
 }
