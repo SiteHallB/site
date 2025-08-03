@@ -49,9 +49,9 @@ export default function Histoire() {
                     Fiers enfants de la <span className="text-accent">Vaunage</span>, nous voulions offrir au bassin nîmois un espace sportif indépendant, chaleureux et exigeant.
                 </p>
                 {/* Image */}
-                <div className="relative w-full h-[80vh] flexCenter mb-content overflow-hidden">
+                <div className="relative w-full h-[80dvh] flexCenter mb-content overflow-hidden">
                     <div
-                        className="imageClip absolute top-0 overflow-hidden rounded-3xl size-[40vh]"
+                        className="imageClip absolute top-0 overflow-hidden rounded-3xl size-[40dvh]"
                         style={{clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)"}}
                     >
                         <Image 

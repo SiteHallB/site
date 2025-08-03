@@ -21,37 +21,31 @@ export default function VideoBackground({
 
     let hls: Hls | null = null;
 
-    // Obligatoire pour certains navigateurs (Chrome mobile, etc.)
-    video.muted = true;
-    video.autoplay = true;
-    video.playsInline = true;
-    video.loop = true;
+    // Ne pas forcer ici, déjà sur la balise HTML
 
     const playVideo = () => {
-      // Appel .play() mais on gère la promesse silencieusement
-      video
-        .play()
-        .catch(() => {
-          // Autoplay est bloqué : on masque les controls !
-          video.controls = false;
-        });
+      video.play().catch(() => {
+        video.controls = false;
+      });
     };
 
+    // Safari natif
     if (video.canPlayType("application/vnd.apple.mpegurl")) {
       video.src = videoUrl;
-      video.addEventListener("loadedmetadata", playVideo);
-    } else if (Hls.isSupported()) {
+      video.addEventListener("canplay", playVideo, { once: true });
+    }
+    // Hls.js
+    else if (Hls.isSupported()) {
       hls = new Hls();
       hls.loadSource(videoUrl);
       hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, playVideo);
+      video.addEventListener("canplay", playVideo, { once: true });
     }
 
-    // Toujours masquer les controls
     video.controls = false;
 
     return () => {
-      video.removeEventListener("loadedmetadata", playVideo);
+      video.removeEventListener("canplay", playVideo);
       if (hls) hls.destroy();
     };
   }, [videoUrl]);
@@ -66,7 +60,10 @@ export default function VideoBackground({
         )}
         poster={poster}
         aria-hidden="true"
-        // Ne PAS mettre autoPlay/muted/loop ici car on les force dans le useEffect
+        autoPlay
+        muted
+        loop
+        playsInline
       />
     </div>
   );
