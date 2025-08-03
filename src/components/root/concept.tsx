@@ -26,11 +26,12 @@ function Section({ image, last, title, text, children }: { image: ImageType, las
                 scrollTrigger: {
                     trigger: ".fadeText", 
                     start: () => "center 20%", 
-                    end: () => "center 10%", 
-                    scrub: true, 
+                    end: () => "center 20%", 
+                    toggleActions: "play none none reverse", 
                 }, 
                 autoAlpha: 0, 
                 ease: "power3.out", 
+                duration: 0.5
             })
         })
     }, {scope: container })
