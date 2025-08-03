@@ -127,11 +127,17 @@ export default function FormuleOverview({ title, subtitle, prix, images, checkDe
                         key={index}
                         className="select-none overflow-hidden rounded transition-all duration-300 ease-in-out swiper-slide-custom"
                     >
+                        <Clickable
+                            clickableType={{type: "link", path: actionLink}}
+                            style={{}}
+                        >
                         <Image
                             {...image}
                             className="w-full h-full object-cover object-center"
                         />
+                        </Clickable>
                     </SwiperSlide>
+                    
                 ))}
             </Swiper>
             
