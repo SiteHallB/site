@@ -5,6 +5,7 @@ import Clickable from "../ui/clickable";
 import PageStructure from "../ui/page-structure";
 import SportigoFormule from "../ui/sportigo-formule";
 import RevenirAuxTarifs from "./revenir-aux-tarifs";
+import { useSearchParams } from "next/navigation";
 
 function intersection<T>(...sets: Set<T>[]): Set<T> {
     if (sets.length === 0) return new Set();
@@ -25,23 +26,18 @@ function union<T>(...sets: Set<T>[]): Set<T> {
 }
 
 // A entourer de nav
-function FilterExclusive({ onChange, noneFilterName, filterNames }: { onChange: (newState: boolean[]) => void; noneFilterName: string; filterNames: string[] }) {
+function FilterExclusive({ onChange, appliedFilters, noneFilterName, filterNames }: { onChange: (newState: boolean[]) => void; appliedFilters: boolean[]; noneFilterName: string; filterNames: string[] }) {
     const n = filterNames.length;
-    const [appliedFilters, setAppliedFilters] = useState<boolean[]>(Array(n).fill(false));
 
     const isNoneFilter = () => appliedFilters.every(x => x === false);
 
     function handleFilterChange(change: number) {
-        if (change === n) setAppliedFilters(Array(n).fill(false));
+        if (change === n) onChange(Array(n).fill(false));
         else {
             const prev = appliedFilters[change]
-            setAppliedFilters(Array(n).fill(false).map((el, index) => index === change ? !prev : el))
+            onChange(Array(n).fill(false).map((el, index) => index === change ? !prev : el))
         }
     }
-
-    useEffect(() => {
-        onChange(appliedFilters)
-    }, [appliedFilters])
 
     return (
         <ul className="bg-background-highlight px-content py-contentClose rounded-xl flex flex-wrap list-none gap-content">
@@ -70,11 +66,29 @@ function FilterExclusive({ onChange, noneFilterName, filterNames }: { onChange: 
 
 type FilterExclusiveType = { noneFilterName: string; filters: {filterName: string; ids: Set<number>}[]};
 type Filters = FilterExclusiveType[]
-export default function FilterIdsGroupPage({ title, subtitle, filters }: { title: string, subtitle: string, filters: Filters}) {
+export type QueryFilter = Map<string, string>; // JSON.stringify la clé pour [filterExclusiveNumber, filterNumber]
+export default function FilterIdsGroupPage({ title, subtitle, filters, queryFilter }: { title: string, subtitle: string, filters: Filters, queryFilter?: QueryFilter}) {
     const n = filters.length;
     const lengths = filters.map(filterExclusive => filterExclusive.filters.length);
     const [filtersState, setFiltersState] = useState<boolean[][]>(() => lengths.map(len => Array(len).fill(false)));
     const allIds = Array.from(union(...filters.map((filterExclusive, _) => union(...filterExclusive.filters.map((el, _) => el.ids)))));
+
+    const searchParams = useSearchParams();
+    useEffect(() => {
+        if (!queryFilter) return;
+        const filtersAfterQuery = filters.map((filterExclusive, i) =>
+            (filterExclusive.filters.map((filter, j) => {
+                const queryName = queryFilter.get(JSON.stringify([i, j]));
+                    if (!queryName) return false;
+                    else {
+                        return searchParams.get("option") === queryName;
+                    }
+                }
+            ))
+        )
+        console.log(filtersAfterQuery)
+        setFiltersState(filtersAfterQuery);
+    }, [searchParams]);
 
     function handleChange(numFilterExclusive: number, newState: boolean[]) {
         setFiltersState(filtersState.map((el, index) => index === numFilterExclusive ? newState : el));
@@ -104,6 +118,7 @@ export default function FilterIdsGroupPage({ title, subtitle, filters }: { title
                         <FilterExclusive
                             key={index}
                             onChange={(newState) => handleChange(index, newState)}
+                            appliedFilters={filtersState[index]}
                             noneFilterName={filters[index].noneFilterName}
                             filterNames={filters[index].filters.map((e => e.filterName))}
                         />

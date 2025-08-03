@@ -1,6 +1,7 @@
 "use client";
 
 import FilterIdsGroupPage from "@/components/tarifs/filter-ids-group-page";
+import { QueryFilter } from "@/components/tarifs/filter-ids-group-page";
 import { useFormule } from "@/context/formule-context";
 
 export default function Page() {
@@ -9,6 +10,11 @@ export default function Page() {
         aqua_coursco_unmois, aqua_coursco_mensuel, aqua_coursco_annuel, 
         aqua_coursco_smallgroups_unmois, aqua_coursco_smallgroups_mensuel, aqua_coursco_smallgroups_annuel 
     } = useFormule();
+
+    const queryFilter: QueryFilter = new Map([
+        [JSON.stringify([1, 2]), "small-groups"],
+        [JSON.stringify([1, 1]), "cours-co"],
+    ]);
     
     return (
         <FilterIdsGroupPage title="Aqua" subtitle="Musculation & cardio + Aqua"
@@ -30,6 +36,7 @@ export default function Page() {
                     ]
                 }
             ]}
+            queryFilter={queryFilter}
         />
     );
 }

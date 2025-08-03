@@ -7,6 +7,22 @@ import { useImage } from "@/context/image-context";
 import Clickable from "@/components/ui/clickable";
 import { ChevronRight } from "lucide-react";
 
+function QueryFilter({ path, option, text }: { path: string; option: string, text: React.ReactNode}) {
+    return (
+        <Clickable
+            clickableType={{
+                type: "link",
+                path: path,
+                query: { option: option }
+            }}
+            style={{}}
+            className="inline-block"
+        >
+            <span className="mx-2 text-accent uppercase">{text}</span>
+        </Clickable>
+    );
+}
+
 export default function Page() {
     const { tarifs_classic_1, tarifs_classic_2, 
             tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
@@ -36,7 +52,7 @@ export default function Page() {
                         prix={<p className="textSmall">A partir de <span className="textSubH2">40€</span>/mois</p>}
                         images={[ tarifs_classic_1, tarifs_classic_2 ]}
                         checkDescription={[
-                            "Accès libre au plateau 7/7j de 6h à 23h", 
+                            <p>Accès libre au plateau 7/7j de 6h à 23h</p>, 
                         ]}
                         plusDescription={[]}
                         actionLink="/tarifs/classic"
@@ -51,11 +67,18 @@ export default function Page() {
                         prix={<p className="textSmall">A partir de <span className="textSubH2">50€</span>/mois</p>}
                         images={[ tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, ]}
                         checkDescription={[
-                            "Accès libre au plateau 7/7j de 6h à 23h", 
-                            <>Accès illimité au planning de<span className="text-accent uppercase"> Cours Co</span></>, 
+                            <p>Accès libre au plateau 7/7j de 6h à 23h</p>, 
+                            <p>Accès illimité au planning de<span className="text-accent uppercase"> Cours Co</span></p>, 
                         ]}
                         plusDescription={[
-                            <><span className="text-accent">5€</span> pour les <span className="text-accent uppercase">SmallGroups</span></>
+                            <p className="h-fit inline-block">
+                                <span className="text-accent">5€</span> pour les
+                                <QueryFilter
+                                    path="/tarifs/boost"
+                                    option="small-groups"
+                                    text={<>SmallGroups</>}
+                                />
+                            </p>
                         ]}
                         actionLink="/tarifs/boost"
                     />
@@ -69,15 +92,28 @@ export default function Page() {
                         prix={<p className="textSmall">A partir de <span className="textSubH2">75€</span>/mois</p>}
                         images={[ tarifs_aqua_1, tarifs_aqua_2, tarifs_aqua_3 ]}
                         checkDescription={[
-                            "Accès libre au plateau 7/7j de 6h à 23h", 
-                            <>Accès illimité au planning d'<span className="text-accent">AQUA</span></>
+                            <p>Accès libre au plateau 7/7j de 6h à 23h</p>, 
+                            <p>Accès illimité au planning d'<span className="text-accent">AQUA</span></p>
                         ]}
                         plusDescription={[
-                            <><span className="text-accent">5€</span> pour les <span className="text-accent uppercase">Cours Co</span></>, 
-                            <><span className="text-accent">10€</span> pour
-                                <span className="text-accent uppercase"> Cours Co</span> et 
-                                <span className="text-accent uppercase"> SmallGroups</span>
-                            </>
+                            <p className="h-fit inline-block">
+                                <span className="text-accent">5€ </span>
+                                pour les 
+                                <QueryFilter
+                                    path="/tarifs/aqua"
+                                    option="cours-co"
+                                    text={<>Cours Co</>}
+                                />
+                            </p>, 
+                            <p className="h-fit inline-block">
+                                <span className="text-accent">10€</span> pour les <span className="text-accent uppercase">Cours Co </span>
+                                et les
+                                <QueryFilter
+                                    path="/tarifs/aqua"
+                                    option="small-groups"
+                                    text={<>SmallGroups</>}
+                                />
+                            </p>
                         ]}
                         actionLink="/tarifs/aqua"
                     />
@@ -98,8 +134,8 @@ export default function Page() {
             tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
             tarifs_aqua_1 ]}
                         checkDescription={[
-                            "Accéder à la salle pour X séances sans engagement", 
-                            "Toutes activités confondues (Squash non compris)", 
+                            <p>Accéder à la salle pour X séances sans engagement</p>, 
+                            <p>Toutes activités confondues (Squash non compris)</p>, 
                         ]}
                         plusDescription={[]}
                         actionLink="/tarifs/carnet-seances"
@@ -114,8 +150,8 @@ export default function Page() {
                         prix={<p className="textSmall"><span className="textSubH2">250€</span>/an</p>}
                         images={[ tarifs_danse_1, ]}
                         checkDescription={[
-                            "Niveau débutant et avancé", 
-                            "Progression accompagnée sur l'année", 
+                            <p>Niveau débutant et avancé</p>, 
+                            <p>Progression accompagnée sur l'année</p>, 
                         ]}
                         plusDescription={[<><span className="text-accent">150€</span>/an pour 1 danse supplémentaire</>]}
                         actionLink="/tarifs/danse"

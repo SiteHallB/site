@@ -40,11 +40,9 @@ type FormuleProps =
 
 function Check({ checkDesciption, icon }: { checkDesciption: React.ReactNode, icon?: "plus" | "check" }) {
     return (
-        <div className="flex flex-row space-x-3">
-            {icon === "plus" ? <PlusCircle className="size-5 text-accent shrink-0 check"/> : <CheckCheck className="size-5 text-accent shrink-0 check"/>}
-            <p className="text-foreground-subdued text-[14px]">
-                {checkDesciption}
-            </p>
+        <div className="flex flex-row space-x-3 text-foreground-subdued">
+            {icon === "plus" ? <PlusCircle className="size-5 lg:size-7 text-accent shrink-0 check"/> : <CheckCheck className="size-5 lg:size-7 text-accent shrink-0 check"/>}
+            {checkDesciption}
         </div>
     );
 }
