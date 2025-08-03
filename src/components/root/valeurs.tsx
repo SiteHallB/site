@@ -40,7 +40,7 @@ export default function Valeurs() {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 ScrollTrigger.refresh();
-            }, 150);
+            }, 1000);
         };
 
         window.addEventListener("resize", handleResize);
