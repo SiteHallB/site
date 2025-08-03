@@ -7,7 +7,7 @@ import SportigoSquash from "@/components/ui/sportigo-squash";
 
 export default function Page() {
     return (
-        <PageStructure title="Squash" subtitle={<p>Réservez votre terrain en quelques cliques</p>}>
+        <PageStructure title="Squash" subtitle={<p>Réservez votre terrain en quelques clics</p>}>
             {/* <SportigoSquash/> */}
             <p className="text-foreground-base">Vous pourrez prochainement réserver directement en ligne !</p>
             <p className="text-foreground-base">En attendant, veuillez effectuer votre réservation en nous contactant directement par téléphone ou par mail</p>
