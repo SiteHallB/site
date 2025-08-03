@@ -175,7 +175,7 @@ export default function CookieContactForm() {
                 <p className="text-accent">Veuillez accepter les cookies anti-spam pour envoyer un message via formulaire.</p>
                 <Clickable
                     clickableType={{ type: "button", onClick: () => window.klaro?.show()}}
-                    style={{ color: "primarySubdued", variant: "secondary" }}
+                    style={{ color: "primary", variant: "secondary" }}
                     className="max-w-100 w-full"
                 >
                     Gérer mes cookies

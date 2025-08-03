@@ -14,7 +14,6 @@ const clickableVariants = cva(
             color: {
                 default: "", 
                 primary: "hoverPrimary text-foreground-base outline-foreground-base outline-[2px] outline-offset-[-2px]", 
-                primarySubdued: "hoverPrimarySubdued text-foreground-subdued outline-foreground-subdued outline-[2px] outline-offset-[-2px]", 
                 accent: "hoverAccent text-background-subdued bg-accent outline-background-subdued outline-[1px]", 
             }, 
             variant: {
@@ -26,6 +25,8 @@ const clickableVariants = cva(
                 action: "py-1 px-2 rounded-sm textLead", 
                 legal: "hoverUnderline textSmall text-foreground-subdued", 
                 secondary: "textNormal rounded p-2", 
+                filterTrue: "hoverUnderline textNormal rounded text-accent", 
+                filterFalse: "hoverUnderline textNormal rounded text-foreground-subdued", 
             }, 
         },
         defaultVariants: {

@@ -125,6 +125,8 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
                 tarifs_boost_4: images.salle_rpm, 
                 tarifs_boost_5: images.sacs_boxe_2, 
                 tarifs_aqua_1: images.piscine, 
+                tarifs_aqua_2: images.vue_plateau_2, 
+                tarifs_aqua_3: images.salle_cardio, 
                 tarifs_danse_1: images.salle_danse, 
                 menu: images.crossfit, 
                 logo: images.logo, 

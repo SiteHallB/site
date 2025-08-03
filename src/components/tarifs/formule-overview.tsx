@@ -92,16 +92,16 @@ export default function FormuleOverview({ title, subtitle, prix, images, checkDe
 
 
     return (
-        <div ref={container} className={clsx(className, "relative max-w-90 w-full flex flex-col bg-background-highlight rounded-xl px-contentClose lg:px-content py-content items-center justify-around space-y-contentClose")}>
+        <section aria-label={`Formule ${title}`} ref={container} className={clsx(className, "relative max-w-90 w-full flex flex-col bg-background-highlight rounded-xl px-contentClose lg:px-content py-content items-center justify-around space-y-contentClose")}>
             {/* Prix */}
             {prix && <div className="px-contentClose flex items-center justify-center absolute left-[-0.5rem] top-[-1.1rem] rounded-xs bg-accent">
-                <p className="text-[20px] font-futuretense"><span className="textSmall">A partir de </span>{prix}€<span className="textSmall">/mois</span></p>
+                <p className="textSubH2"><span className="textSmall">A partir de </span>{prix}€<span className="textSmall">/mois</span></p>
             </div>}
 
             {/* Titre */}
             <div className="flex flex-col items-center w-full text-center">
-                <h2 className="text-foreground-base text-[20px]">{title}</h2>
-                <p className="textSubH2 text-foreground-subdued">{subtitle}</p>
+                <h2 className="text-foreground-base">{title}</h2>
+                <h3 className="textSubH2 text-foreground-subdued">{subtitle}</h3>
             </div>
 
             {/* Images */}
@@ -132,21 +132,23 @@ export default function FormuleOverview({ title, subtitle, prix, images, checkDe
             </Swiper>
             
             {/* Check description */}
-            <div className="flex flex-col check-holder w-full">
-                {checkDescription.map((el, i) => (
+            <ul className="flex flex-col check-holder w-full">
+                {checkDescription.map((el, index) => (
+                    <li key={index}>
                     <Check 
-                        key={i}
                         checkDesciption={el}
                     />
+                    </li>
                 ))}
-                {plusDescription.map((el, i) => (
+                {plusDescription.map((el, index) => (
+                    <li key={index}>
                     <Check 
                         icon="plus"
-                        key={i}
                         checkDesciption={el}
                     />
+                    </li>
                 ))}
-            </div>
+            </ul>
 
             {/* Bouton */}
             <Clickable
@@ -155,6 +157,6 @@ export default function FormuleOverview({ title, subtitle, prix, images, checkDe
             >
                 En savoir plus
             </Clickable>
-        </div>
+        </section>
     );
 }
