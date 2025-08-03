@@ -12,7 +12,7 @@ export default function NotFound() {
             <p className="text-foreground-subdued mb-4">Vous semblez perdu. Cette page n'existe pas.</p>
             <Clickable
                 clickableType={{type: "link", path: "/"}}
-                style={{variant: "action", color: "primarySubdued"}}
+                style={{variant: "action", color: "primary"}}
                 className=""
             >
                 Retour à l'accueil

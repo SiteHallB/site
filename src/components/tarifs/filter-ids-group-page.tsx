@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Clickable from "../ui/clickable";
 import PageStructure from "../ui/page-structure";
 import SportigoFormule from "../ui/sportigo-formule";
-import { ChevronLeft } from "lucide-react";
+import RevenirAuxTarifs from "./revenir-aux-tarifs";
 
 function intersection<T>(...sets: Set<T>[]): Set<T> {
     if (sets.length === 0) return new Set();
@@ -44,7 +44,7 @@ function FilterExclusive({ onChange, noneFilterName, filterNames }: { onChange: 
     }, [appliedFilters])
 
     return (
-        <ul className="bg-background-highlight px-content py-contentClose rounded-full flex flex-row list-none gap-x-content">
+        <ul className="bg-background-highlight px-content py-contentClose rounded-xl flex flex-wrap list-none gap-content">
         {/* Filter aucun filtre */}
         <li>
         <Clickable
@@ -95,17 +95,10 @@ export default function FilterIdsGroupPage({ title, subtitle, filters }: { title
     return (
         <PageStructure title={title} subtitle={subtitle}>
             <div className="w-full overflow-x-hidden pt-1 flexCenter flex-col gap-y-content">
-                <Clickable
-                    clickableType={{type: "link", path: "/tarifs"}}
-                    style={{variant: "menuMainButton"}}
-                    className="mr-auto flexCenter flex-row"
-                >
-                    <ChevronLeft className="size-6"/>
-                    Revenir aux formules
-                </Clickable>
+                <RevenirAuxTarifs/>
 
                 {/* Boutons filters */}
-                <nav aria-label={`Filtres tarifs ${title}`} className="flex flex-col gap-y-content p-content outline-background-highlight outline-3 rounded">
+                <nav aria-label={`Filtres tarifs ${title}`} className="mx-content flex flex-col gap-y-content p-content outline-background-highlight outline-3 rounded">
                     <p className="text-foreground-base">Filtrer :</p>
                     {filters.map((el, index) => (
                         <FilterExclusive

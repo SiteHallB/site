@@ -7,7 +7,7 @@ export default function ThankYouPage() {
             <p className="text-foreground-subdued mb-4">Vous vous êtes inscrit avec succès, à très vite</p>
             <Clickable
                 clickableType={{type: "link", path: "/"}}
-                style={{variant: "action", color: "primarySubdued"}}
+                style={{variant: "action", color: "primary"}}
                 className=""
             >
                 Retour à l'accueil

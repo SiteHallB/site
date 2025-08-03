@@ -133,7 +133,7 @@ export default function Hero() {
                     { path: "/tarifs/aqua", text: "Aqua" }, 
                     { path: "/squash", text: "Squash" }, 
                     { path: osteo, text: "Osteo" }, 
-                    { path: "/tarifs/danses", text: "Danse" }, 
+                    { path: "/tarifs/danse", text: "Danse" }, 
                     ]}
                 />
 
