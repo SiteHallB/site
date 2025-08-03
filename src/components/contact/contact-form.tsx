@@ -102,7 +102,7 @@ function ContactForm() {
                 name="name"
                 id="name"
                 autoComplete="name"
-                placeholder="Gauthier Bonhomme"
+                placeholder="Jean Dupont"
                 value={form.name}
                 required
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -116,7 +116,7 @@ function ContactForm() {
                 name="email"
                 id="email"
                 autoComplete="email"
-                placeholder="gauthier.bonhome@gmail.com"
+                placeholder="jean.dupont@gmail.com"
                 value={form.email}
                 required
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
