@@ -5,6 +5,7 @@ function notifyConsentChange(service, consent) {
 }
 
 let lastGaConsent = null;
+let lastSportigoConsent = null;
 
 var klaroConfig = {
     elementID: 'klaro',
@@ -26,8 +27,16 @@ var klaroConfig = {
             hcaptcha: {
                 description: "hCaptcha protège ce site des robots. Ce service est essentiel au fonctionnement du formulaire.",
             },
+            googleAnalytics: {
+                description: "Google Analytics est un service d'analyse de la fréquentation du site proposé par Google. Les données collectées sont anonymes et permettent de mesurer l'audience et l'utilisation du site pour en améliorer le contenu.",
+            }, 
+            sportigo: {
+                description: "Sportigo gère votre compte club et permet de voir formules, plannings en ligne. Il peut utiliser des cookies pour la session.",
+            },
             purposes: {
-                security: "Sécurité et protection anti-spam"
+                security: "Sécurité et protection anti-spam", 
+                analytics: "Mesure d'audience (un changement de consentement raffraichit la page pour appliquer vos choix)",
+                fonctionnalité: "Fonctionnalités du site (un changement de consentement raffraichit la page pour appliquer vos choix)",
             },
             save: "Sauvegarder",
             acceptAll: "Tout accepter",
@@ -53,13 +62,15 @@ var klaroConfig = {
             callback: function(consent, app) { notifyConsentChange(app.name, consent); }
         }, 
         {
-            name: "google-analytics",
+            name: "googleAnalytics",
             title: "Google Analytics",
             purposes: ["analytics"],
             cookies: [
                 /^_ga/, 
                 /^_gid/, 
                 /^_gat/, 
+                /^_ga_[A-Z0-9]+/,
+                /^_gat_gtag_[A-Z0-9]+/,
                 "AMP_TOKEN", 
                 "_gac_*", 
                 "NID",
@@ -71,13 +82,34 @@ var klaroConfig = {
             default: false,
             onlyOnce: true,
             callback: function(consent, app) {
+                notifyConsentChange(app.name, consent);
                 if (app && app.name === "google-analytics") {
                     if (lastGaConsent !== null && lastGaConsent !== consent) {
-                        setTimeout(() => window.location.reload(), 100);
+                        setTimeout(() => window.location.reload(), 0);
                     }
                     lastGaConsent = consent;
                 }
             },
+        },
+        {
+            name: 'sportigo',
+            title: 'Sportigo',
+            purposes: ['fonctionnalité'],
+            cookies: [
+                [/^intercom-session-/]
+            ],
+            required: false,
+            default: false,
+            onlyOnce: false,
+            callback: function(consent, app) {
+                notifyConsentChange(app.name, consent);
+                if (app && app.name === "sportigo") {
+                    if (lastSportigoConsent !== null && lastSportigoConsent !== consent) {
+                        setTimeout(() => window.location.reload(), 0);
+                    }
+                    lastSportigoConsent = consent;
+                }
+            }
         },
     ],
 }

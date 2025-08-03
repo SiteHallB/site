@@ -37,6 +37,15 @@ export default function PopUp() {
         return () => document.body.classList.remove('overflow-hidden');
     }, [isOpen]);
 
+    useEffect(() => {
+        function handleOpenPopup() {
+            setIsOpen(true);
+        }
+        window.addEventListener("open-popup", handleOpenPopup);
+
+        return () => window.removeEventListener("open-popup", handleOpenPopup);
+    }, []);
+
     return (
         <>
             {isOpen && (
@@ -55,12 +64,12 @@ export default function PopUp() {
                             className="absolute top-1 right-1 lg:top-2 lg:right-2 hoverRotate"
                             clickableType={{type: "button", onClick: () => setIsOpen(false)}}
                             style={{}}
-                            aria-label="Fermer la pop-up"
+                            aria-label="Fermer la popup"
                         >
                             <X className="size-6 lg:size-8"/>
                         </Clickable>
                         <Clickable 
-                            clickableType={{type: "link", path: "/offert", onClick: () => setIsOpen(false)}}
+                            clickableType={{type: "link", path: "/essai-offert", onClick: () => setIsOpen(false)}}
                             style={{variant:"action", color: "accent"}}
                         >
                             J'en profite

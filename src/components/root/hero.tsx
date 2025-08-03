@@ -140,7 +140,7 @@ export default function Hero() {
                 {/* Boutons */}
                 <div className="flexCenter flex-col space-y-2">
                     <Clickable
-                        clickableType={{type:"link", path: "/offert"}}
+                        clickableType={{type:"link", path: "/essai-offert"}}
                         style={{variant: "page", color: "primary"}}
                     >
                         Séance d'essai offerte

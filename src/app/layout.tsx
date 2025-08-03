@@ -3,7 +3,7 @@ import "@/styles/globals.css";
 
 import Menu from "@/components/menu";
 import Footer from "@/components/footer";
-import PopUp from "@/components/pop-up";
+import PopUp from "@/components/popup";
 
 import Script from "next/script";
 

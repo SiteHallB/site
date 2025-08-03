@@ -60,7 +60,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
     const navLinks = [
         { label: "Accueil", path: "/"}, 
         { label: "Tarifs", path: "/tarifs"}, 
-        { label: "Essai offert", path: "/offert"}, 
+        { label: "Essai offert", path: "/essai-offert"}, 
         { label: "Plannings", path: "/plannings"}, 
         { label: "Nous contacter", path: "/contact"}, 
     ];
@@ -151,7 +151,7 @@ export default function Menu() {
             {/* Barre fixée en haut */}
             <div className="fixed right-0 w-full max-w-120 z-50 py-content px-contentClose flex justify-around items-center lg:px-8 py-1 nav-bar space-x-2">
                 <Clickable
-                    clickableType={{type: "link", onClick: () => setIsMenuOpen(false), path: "/offert"}}
+                    clickableType={{type: "link", onClick: () => setIsMenuOpen(false), path: "/essai-offert"}}
                     style={{variant: "navigationBar", color: "primary"}}
                 >
                     Essai Offert

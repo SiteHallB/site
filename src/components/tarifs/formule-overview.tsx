@@ -1,16 +1,22 @@
 "use client"
 
-import { CheckCheck, PlusCircle } from "lucide-react";
-import Image from "next/image";
 import { useEffect, useRef } from "react";
+
+import Image from "next/image";
+
+import { CheckCheck, PlusCircle } from "lucide-react";
+
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, A11y } from "swiper/modules";
-import Clickable from "@/components/ui/clickable";
+
+
 
 import type { Swiper as SwiperInstance } from "swiper";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, A11y } from "swiper/modules";
+
+import Clickable from "@/components/ui/clickable";
 
 import { ImageType } from "@/context/image-context";
 

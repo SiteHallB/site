@@ -56,7 +56,7 @@ export default function EssaiOffert() {
                     <span className="text">gratuitement et sans engagement</span>
                 </h3>
                 <Clickable
-                    clickableType={{type: "link", path: "/offert"}}
+                    clickableType={{type: "link", path: "/essai-offert"}}
                     style={{"variant": "action", "color": "accent"}}
                     className="bouton z-10"
                 >

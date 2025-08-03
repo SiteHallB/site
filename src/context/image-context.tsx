@@ -128,11 +128,62 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
                 tarifs_aqua_2: images.vue_plateau_2, 
                 tarifs_aqua_3: images.salle_cardio, 
                 tarifs_danse_1: images.salle_danse, 
+
                 menu: images.crossfit, 
+
                 logo: images.logo, 
                 pannataLogo: images.pannataLogo, 
                 technogymLogo: images.technogymLogo, 
-                palliniLogo: images.palliniLogo
+                palliniLogo: images.palliniLogo, 
+
+                plannings_desktop: {
+                    src: "/images/plannings/desktop.svg", 
+                    width: 1440, 
+                    height: 810, 
+                    alt: "Planning activités HALL B"
+                }, 
+                plannings_lundi: {
+                    src: "/images/plannings/lundi.svg", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning lundi activités HALL B"
+                }, 
+                plannings_mardi: {
+                    src: "/images/plannings/mardi.svg", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning mardi activités HALL B"
+                }, 
+                plannings_mercredi: {
+                    src: "/images/plannings/mercredi.svg", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning mercredi activités HALL B"
+                }, 
+                plannings_jeudi: {
+                    src: "/images/plannings/jeudi.svg", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning jeudi activités HALL B"
+                }, 
+                plannings_vendredi: {
+                    src: "/images/plannings/vendredi.svg", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning vendredi activités HALL B"
+                }, 
+                plannings_samedi: {
+                    src: "/images/plannings/samedi.svg", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning samedi activités HALL B"
+                }, 
+                plannings_danse: {
+                    src: "/images/plannings/danse.svg", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning danse activités HALL B"
+                }, 
             }}
         >
             {children}
