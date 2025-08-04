@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import Boost from "@/components/tarifs/boost/boost";
+import Aqua from "@/components/tarifs/aqua/aqua";
 
 export const metadata: Metadata = {
     title: "HALL B - Aqua", 
@@ -8,5 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-    return <Boost/>;
+    return <Aqua/>;
 }
