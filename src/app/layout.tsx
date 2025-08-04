@@ -16,7 +16,7 @@ import { ContactProvider } from "@/context/contact-context";
 import { Toast } from "@/components/ui/toast";
 
 export const viewport: Viewport = {
-    themeColor: "#242424",
+    themeColor: "#000000",
     width: "device-width", 
     height: "device-height", 
     initialScale: 1, 

@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 
+export const revalidate = 3600;
+
 export async function GET() {
     try {
         const apiKey = process.env.GOOGLE_PLACES_API_KEY;
@@ -10,7 +12,7 @@ export async function GET() {
         }
 
         const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=rating,reviews,user_ratings_total&language=fr&key=${apiKey}`;
-        const res = await fetch(url, { next: { revalidate: 3600 } });
+        const res = await fetch(url);
         const data = await res.json();
 
         console.log(data)
