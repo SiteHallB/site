@@ -3,7 +3,7 @@ import GoogleAnalytics from "@/components/analytics/google-analytics";
 import useKlaroConsent from "@/components/cookies/use-klaro-consent";
 
 export default function GoogleAnalyticsProvider() {
-    const hasConsent = useKlaroConsent("google-analytics");
+    const hasConsent = useKlaroConsent("googleAnalytics");
 
     return hasConsent ? (
         <GoogleAnalytics/>
