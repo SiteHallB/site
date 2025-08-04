@@ -82,6 +82,47 @@ export default function RootLayout({
                 src="https://cdn.kiprotect.com/klaro/latest/klaro.js"
                 strategy="beforeInteractive"
                 />
+
+                {/* Schema.org */}
+                <Script
+                    id="schema-org"
+                    type="application/ld+json"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "SportsActivityLocation",
+                        "name": "HALL B",
+                        "image": "https://www.hallb.fr/logo.jpg",
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": "1 chemin Azord",
+                            "addressLocality": "Saint Dionisy",
+                            "postalCode": "30980",
+                            "addressCountry": "FR"
+                        },
+                        "telephone": "+33 4 66 19 16 76",
+                        "url": "https://www.hallb.fr",
+                        "priceRange": "€€",
+                        "openingHoursSpecification": [
+                            {
+                            "@type": "OpeningHoursSpecification",
+                            "dayOfWeek": [
+                                "Monday",
+                                "Tuesday",
+                                "Wednesday",
+                                "Thursday",
+                                "Friday",
+                                "Saturday",
+                                "Sunday"
+                            ],
+                            "opens": "06:00",
+                            "closes": "23:00"
+                            }
+                        ]
+                        }),
+                    }}
+                />
             </head>
             <body className="antialiased">
                 <GoogleAnalyticsProvider/>

@@ -64,7 +64,7 @@ function Arrow({ }) {
             className="absolute bottom-20"
         >
             <ArrowDown
-                className={["parallaxArrow text-foreground-subdued", styles.arrowBounce].join(" ")}
+                className={["parallaxArrow will-change-opacity text-foreground-subdued", styles.arrowBounce].join(" ")}
             />
         </Clickable>
     );
@@ -85,7 +85,7 @@ export default function Hero() {
                 trigger: ".parallaxFill", 
                 start: () => "bottom bottom", 
                 end: () => "bottom top", 
-                scrub: 0.5, 
+                scrub: 0.8, 
             }, 
         })
         .to(".parallaxArrow", {
@@ -112,7 +112,7 @@ export default function Hero() {
             </div>
 
             {/* Texte */}
-            <div className="relative z-10 w-full min-h-screen parallaxText px-content lg:px-contentLg flex flex-col items-center justify-around pt-20 pb-20">
+            <div className="relative z-10 w-full min-h-screen parallaxText will-change-transform px-content lg:px-contentLg flex flex-col items-center justify-around pt-20 pb-20">
                 {/* Titre */}
                 <div className="flexCenter flex-col space-y-2">
                     <Image
@@ -157,7 +157,7 @@ export default function Hero() {
                 <Arrow/>
             </div>
             {/* Dégradé */}
-            <div className="parallaxGradient z-0 inset-x-0 top-[60vh] absolute w-full h-[40vh] bg-gradient-to-t from-background-base to-transparent"/>
+            <div className="parallaxGradient will-change-transform z-0 inset-x-0 top-[60vh] absolute w-full h-[40vh] bg-gradient-to-t from-background-base to-transparent"/>
             <div
                 className="parallaxFill z-0 absolute inset-x-0 top-0 h-screen bg-background-base flex flex-row justify-center transform-gpu [will-change:clip-path]"
                 style={{ clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)" }}>
