@@ -7,7 +7,7 @@ import Histoire from "@/components/root/histoire";
 import Valeurs from "@/components/root/valeurs";
 
 export const metadata: Metadata = {
-    title: "HALL B - Accueil", 
+    title: "HALL B - Votre nouvelle salle de sport en Vaunage", 
     description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage, proche de Nimes): musculation haut de gamme, cours collectifs, smallGroups, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !", 
 };
 
