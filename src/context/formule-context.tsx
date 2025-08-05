@@ -50,7 +50,12 @@ export function FormuleProvider({ children }: { children: ReactNode; }) {
                 aqua_coursco_smallgroups_mensuel: 21471,
                 aqua_coursco_smallgroups_annuel: 19917, 
 
-                danse: 19926, 
+                rock_1: 19926, 
+                rock_2: 21547, 
+                salsa_1: 21547, 
+                salsa_2: 21549, 
+                heels: 21550, 
+                streetjazz: 21551, 
             }}
         >
             {children}
