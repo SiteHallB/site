@@ -25,6 +25,7 @@ export default function BackgroundVideo({
         video.playsInline = true as any; // TS compat
         (video as any).webkitPlaysInline = true;
 
+        
         let hls: Hls | null = null;
 
         async function setup() {
