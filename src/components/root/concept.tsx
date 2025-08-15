@@ -121,8 +121,15 @@ export default function Concept() {
                 </div>
 
                 <div className="flexCenter flex-col gap-contentClose mt-content">
-                    <p className="text-foreground-base text-center"><strong>Formules illimitées</strong> - 
-                        Accédez sans contrainte à tous nos cours collectifs, small groups et séances aquatiques, sept jours sur sept.</p>
+                    <p className="text-foreground-base text-center">
+                        <Clickable
+                            clickableType={{type: "link", path: "/tarifs"}}
+                            style={{}}
+                            className="hoverUnderline"
+                        >
+                            <strong>Formules illimitées</strong>
+                        </Clickable>
+                        <span> - Accédez sans contrainte à tous nos cours collectifs, small groups et séances aquatiques, sept jours sur sept.</span></p>
                     <Clickable
                         clickableType={{type:"link", path: "/tarifs"}}
                         style={{variant: "action", color: "accent"}}

@@ -117,16 +117,6 @@
     @apply hover:cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500;
 }
 
-/* Numero de telephone */
-@media (hover: hover) and (pointer: fine) {
-  .phoneDesktop { display: inline-flex; }
-  .phoneMobile  { display: none; }
-}
-@media (hover: none) and (pointer: coarse) {
-  .phoneDesktop { display: none; }
-  .phoneMobile  { display: inline-flex; }
-}
-
 strong {
     @apply text-accent
 }
