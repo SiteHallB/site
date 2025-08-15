@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Hls from "hls.js";
+import clsx from "clsx";
 
 type Props = {
     src: string;
@@ -66,7 +67,7 @@ export default function BackgroundVideo({
     if (failed) {
         // Fallback “propre” sans contrôles (image fixe ou webp animé en loop)
         return (
-        <div className="absolute inset-0">
+        <div className={clsx(className, "absolute inset-0")}>
             <img
             src={poster}
             alt=""
