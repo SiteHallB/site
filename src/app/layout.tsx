@@ -74,13 +74,13 @@ export default function RootLayout({
             <head>
                 {/* 1. Charge la config d'abord */}
                 <Script
-                src="/klaro-config.js"
-                strategy="beforeInteractive"
+                    src="/klaro-config.js"
+                    strategy="beforeInteractive"
                 />
                 {/* 2. Charge Klaro juste après */}
                 <Script
-                src="https://cdn.kiprotect.com/klaro/latest/klaro.js"
-                strategy="beforeInteractive"
+                    src="https://cdn.kiprotect.com/klaro/latest/klaro.js"
+                    strategy="beforeInteractive"
                 />
 
                 {/* Schema.org */}

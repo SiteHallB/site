@@ -83,7 +83,7 @@ export default function BackgroundVideo({
             ref={videoRef}
             // Accessibilité : décoratif pur → aria-hidden
             aria-hidden="true"
-            className="absolute inset-0 w-full h-full object-cover"
+            className={clsx(className, "absolute inset-0 w-full h-full object-cover")}
             autoPlay
             muted
             playsInline

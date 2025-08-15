@@ -114,7 +114,7 @@ export default function Hero() {
             {/* Texte */}
             <div className="relative z-10 w-full min-h-screen parallaxText will-change-transform px-content lg:px-contentLg flex flex-col items-center justify-around pt-20 pb-20">
                 {/* Titre */}
-                <div className="flexCenter flex-col space-y-2">
+                <div className="flexCenter flex-col space-y-2 w-full">
                     <Image
                         {...logo}
                         className="h-[9rem] lg:h-[15rem] w-auto"
