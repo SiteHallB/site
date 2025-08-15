@@ -1,105 +1,102 @@
 "use client";
-
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Hls from "hls.js";
-import clsx from "clsx";
 
-interface VideoBackgroundProps {
-  className?: string;
-  videoUrl: string; // ton .m3u8 Bunny Stream
-  poster: string;
-}
+type Props = {
+    src: string;
+    poster?: string;
+    className: string;
+};
 
-export default function VideoBackground({
-  className,
-  videoUrl,
-  poster,
-}: VideoBackgroundProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+export default function BackgroundVideo({
+    src,
+    poster,
+    className, 
+}: Props) {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [failed, setFailed] = useState(false);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
 
-    let hls: Hls | null = null;
+        // Important pour iOS/Safari : définir ces flags avant toute source
+        video.muted = true;
+        video.playsInline = true as any; // TS compat
+        (video as any).webkitPlaysInline = true;
 
-    if (Hls.isSupported()) {
-      hls = new Hls();
-      hls.loadSource(videoUrl);
-      hls.attachMedia(video);
+        let hls: Hls | null = null;
 
-      // Forcer la qualité max au MANIFEST_PARSED
-      const setMaxQualityAndPlay = () => {
-        if (hls && hls.levels.length > 0) {
-          hls.currentLevel = hls.levels.length - 1; // max
+        async function setup() {
+            if (!video) return;
+            try {
+                if (video.canPlayType("application/vnd.apple.mpegURL")) {
+                    video.src = src; // Safari (iOS/macOS) lit HLS nativement
+                } else if (Hls.isSupported()) {
+                    hls = new Hls({ autoStartLoad: true });
+                    hls.loadSource(src);
+                    hls.attachMedia(video);
+                } else {
+                    // Pas de support HLS → fallback
+                    setFailed(true);
+                    return;
+                }
+
+                // Essaye l’autoplay muet
+                const playPromise = video.play();
+                if (playPromise && "catch" in playPromise) {
+                await (playPromise as Promise<void>);
+                }
+            } catch {
+                // Autoplay refusé (Low Power Mode / Data Saver / politique stricte)
+                setFailed(true);
+            }
         }
-        video.play().catch(() => {});
-      };
-      hls.on(Hls.Events.MANIFEST_PARSED, setMaxQualityAndPlay);
 
-      // Boucle custom (évite la destruction HLS)
-      const onEnded = () => {
-        video.currentTime = 0;
-        video.play().catch(() => {});
-      };
-      video.addEventListener("ended", onEnded);
+        setup();
 
-      // Toujours cacher controls JS côté client
-      video.controls = false;
+        return () => {
+            if (hls) {
+                hls.destroy();
+                hls = null;
+            }
+        };
+    }, [src]);
 
-      // Clean-up
-      return () => {
-        hls?.off(Hls.Events.MANIFEST_PARSED, setMaxQualityAndPlay);
-        video.removeEventListener("ended", onEnded);
-        hls?.destroy();
-      };
-    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      // Safari natif
-      video.src = videoUrl;
-      const onEnded = () => {
-        video.currentTime = 0;
-        video.play().catch(() => {});
-      };
-      video.addEventListener("ended", onEnded);
-      video.controls = false;
-      return () => {
-        video.removeEventListener("ended", onEnded);
-      };
+    if (failed) {
+        // Fallback “propre” sans contrôles (image fixe ou webp animé en loop)
+        return (
+        <div className="absolute inset-0">
+            <img
+            src={poster}
+            alt=""
+            className="w-full h-full object-cover pointer-events-none select-none"
+            draggable={false}
+            />
+        </div>
+        );
     }
-  }, [videoUrl]);
 
-  return (
-    <div className="absolute inset-0 overflow-hidden flexCenter">
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        playsInline
-        // PAS de loop, gérée en JS
-        controls={false}
-        className={clsx(
-          className,
-          "absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
-        )}
-        poster={poster}
-        aria-hidden="true"
-        tabIndex={-1}
-        preload="auto"
-      />
-      <style>{`
-        video::-webkit-media-controls,
-        video::-webkit-media-controls-panel,
-        video::-webkit-media-controls-play-button,
-        video::-webkit-media-controls-start-playback-button {
-          display: none !important;
-          opacity: 0 !important;
-          pointer-events: none !important;
-        }
-        video {
-          pointer-events: none !important;
-          user-select: none !important;
-        }
-      `}</style>
-    </div>
-  );
+    return (
+        <video
+            ref={videoRef}
+            // Accessibilité : décoratif pur → aria-hidden
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            muted
+            playsInline
+            loop={true}
+            // Empêche l’accès aux contrôles/menus contextuels au max possible
+            controls={false}
+            controlsList="nodownload noplaybackrate noremoteplayback nofullscreen"
+            disablePictureInPicture
+            preload="auto"
+            poster={poster}
+            onPlay={() => {
+                // Si tu veux faire qqch quand ça marche (ex: cacher un loader)
+            }}
+            onError={() => setFailed(true)}
+        />
+    );
 }
