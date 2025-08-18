@@ -13,9 +13,8 @@ var klaroConfig = {
     storageName: 'klaro',
     cookieExpiresAfterDays: 365,
     privacyPolicy: '/politique-confidentialite',
-    default: false,
-    mustConsent: true,
     acceptAll: true,
+    declineAll: true, 
 
     translations: {
         fr: {
@@ -34,14 +33,14 @@ var klaroConfig = {
                 description: "Sportigo gère votre compte club et permet de voir formules, plannings en ligne. Il peut utiliser des cookies pour la session.",
             },
             purposes: {
-                security: "Sécurité et protection anti-spam", 
-                analytics: "Mesure d'audience (un changement de consentement raffraichit la page pour appliquer vos choix)",
-                fonctionnalité: "Fonctionnalités du site (un changement de consentement raffraichit la page pour appliquer vos choix)",
+                security: "Sécurité", 
+                analytics: "Mesure d'audience",
+                fonctionnalité: "Fonctionnalités",
             },
             save: "Sauvegarder",
+            acceptSelected: "Accepter la sélection", 
             acceptAll: "Tout accepter",
-            acceptSelected: "Accepter la sélection",
-            decline: "Tout refuser",
+            declineAll: "Tout refuser",
         }
     },
     services: [
