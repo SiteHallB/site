@@ -7,6 +7,7 @@ import ContactForm from "@/components/contact/contact-form"
 import { Email, PhoneNumber } from "@/components/ui/contact-widget";
 import Clickable from "@/components/ui/clickable";
 import { useRef } from "react";
+import Horaires from "../horaires";
 
 export default function Contact() {
     const contactFormContainer = useRef<HTMLDivElement>(null);
@@ -44,6 +45,9 @@ export default function Contact() {
 
                 {/* Réseaux */}
                 <Reseaux className="w-fit"/>
+
+                {/* Horaires */}
+                <Horaires/>
             </div>
 
             {/* Message formulaire */}
