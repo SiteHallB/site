@@ -12,6 +12,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import Clickable from "@/components/ui/clickable";
+import ActivityDescription from "./activity-description";
+import Separator from "../ui/separator";
 
 export default function Plannings() {
     const { plannings_desktop, plannings_lundi, plannings_mardi, plannings_mercredi, plannings_jeudi, plannings_vendredi, plannings_samedi, plannings_danse } = useImage();
@@ -60,6 +62,15 @@ export default function Plannings() {
             <Image
                 {...plannings_danse}
             />
+            </div>
+
+            <Separator/>
+            
+            <div className="w-full px-contentLg gap-10 py-10 lg:py-20 flex flex-col lg:grid grid-cols-2">
+            <ActivityDescription title="Aqua Tonic" illustration="/images/plannings/aqua.svg" path="/tarifs/aqua" description="Une description"/>
+            <ActivityDescription title="Aqua Bike" illustration="/images/plannings/bike.svg" path="/tarifs/boost" description="Une description"/>
+            <ActivityDescription title="Yoga" illustration="/images/plannings/yoga.svg" path="/tarifs/boost" description="Une description"/>
+            <ActivityDescription title="Pilate" illustration="/images/plannings/weight.svg" path="/tarifs/boost" description="Une description"/>
             </div>
         </PageStructure>
     );
