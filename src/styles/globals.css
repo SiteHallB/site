@@ -113,22 +113,6 @@
   transition-timing-function: ease-in-out;
 }
 
-.circle{
-    position: relative;
-    overflow: hidden;
-}
-.circle::before{
-  content:"";
-  position: absolute; inset:0;
-  background: var(--color-accent);
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.1s ease-in-out;
-}
-.circle:hover::before{
-  transform: scaleX(1);
-}
-
 .clickableBase {
     @apply hover:cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500;
 }

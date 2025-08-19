@@ -1,3 +1,5 @@
+import styles from "@/styles/components/Plannings.module.css"
+
 import Image from "next/image";
 import Clickable from "../ui/clickable";
 
@@ -8,7 +10,7 @@ export default function ActivityDescription({ title, illustration, path, descrip
                 clickableType={{type: "link", path: path}}
                 style={{}}
             >
-            <div className="circle bg-background-highlight rounded-full size-35 flexCenter shadow-xl shadow-foreground-subdued/30 mb-contentLg">
+            <div className={[styles.circle, "bg-background-highlight rounded-full size-35 flexCenter shadow-xl shadow-foreground-subdued/30 mb-contentLg"].join(" ")}>
                 <Image
                     src={illustration}
                     width={50}
