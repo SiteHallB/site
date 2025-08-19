@@ -11,6 +11,7 @@ import { useLinks } from "@/context/link-context";
 import GoogleReviews from "@/components/google-reviews";
 import { useImage } from "@/context/image-context";
 import { Email, PhoneNumber } from "./ui/contact-widget";
+import Horaires from "./horaires";
 
 export default function Footer() {
     const { pannata, technogym, pallini, adresse } = useLinks();
@@ -67,16 +68,8 @@ export default function Footer() {
                 {/* Réseaux */}
                 <Reseaux className="w-full"/>
 
-                {/* Horaire */}
-                <div className="lg:items-center w-full flex flex-col">
-                    <div>
-                    <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Horaires</p>
-                    <p className="text-foreground-subdued">
-                        Tous les jours de 6h à 23h<br/>
-                        Y compris le dimanche et les jours fériés
-                    </p>
-                    </div>
-                </div>
+                {/* Horaires */}
+                <Horaires/>
 
                 {/* Ou nous trouver ? */}
                 <div className="lg:items-center w-full flex flex-col">

@@ -17,6 +17,7 @@ import clsx from "clsx";
 import { useLinks } from "@/context/link-context";
 import { useImage } from "@/context/image-context";
 import Separator from "./ui/separator";
+import Horaires from './horaires';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,6 +43,7 @@ function MenuItem({ linkInfo, onClick, outside }: MenuItemProps) {
                 <Clickable
                     clickableType={{type: "link", onClick: onClick, path: linkInfo.path, outside: outside === true}}
                     style={{variant: "menuMainButton"}}
+                    className="text-left"
                 >
                     {linkInfo.label}
                 </Clickable>
@@ -131,7 +133,10 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
                     />
                 </div> 
 
-                <Reseaux/>
+                <div className="w-full flex flex-row justify-around px-contentClose">
+                <Reseaux className={`${styles.menuImage} w-full`}/>
+                <Horaires/>
+                </div>
                 </div>
             </div>
         </div>

@@ -67,7 +67,7 @@ export default function Plannings() {
             <Separator/>
             
             <div className="w-full lg:px-50 px-contentLg gap-10 py-10 lg:py-20 flex flex-col lg:grid grid-cols-2">
-            <ActivityDescription title="Pilate" illustration="/images/plannings/yoga.svg" path="/tarifs/boost" description="Renforcez vos muscles en profondeur, améliorez votre posture et gagnez en souplesse grâce à des mouvements doux mais redoutablement efficaces."/>
+            <ActivityDescription title="Pilates" illustration="/images/plannings/yoga.svg" path="/tarifs/boost" description="Renforcez vos muscles en profondeur, améliorez votre posture et gagnez en souplesse grâce à des mouvements doux mais redoutablement efficaces."/>
             <ActivityDescription title="Abdos flash" illustration="/images/plannings/zap.svg" path="/tarifs/boost" description="Un cours express et intense pour sculpter votre sangle abdominale en un minimum de temps. Résultats garantis !"/>
             <ActivityDescription title="Zumba" illustration="/images/plannings/dance.svg" path="/tarifs/danse" description="Dansez, transpirez et amusez-vous ! Un mix explosif de rythmes latinos et de cardio qui fait brûler des calories sans s’en rendre compte."/>
             <ActivityDescription title="CAF" illustration="/images/plannings/leg.svg" path="/tarifs/boost" description="Cuisse, Abdos, Fessiers : le trio gagnant pour tonifier le bas du corps, brûler un maximum de calories et galber la silhouette."/>
