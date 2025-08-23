@@ -5,23 +5,18 @@ import Script from "next/script";
 export default function SportigoSquash() {
     const data = {
         theme: {
-            dark: false,
+            dark: true,
             googleFont: {
                 name: 'Montserrat',
                 family: 'sans-serif'
             },
+            cssFile: '/css/sportigo-squash.css',
         }
     };
-    const racketData = {...data, dev: false, id: 16862}
 
     const init = () => {
         if (typeof window.initComponent === "function") {
-            window.initComponent(
-                'Racket', 
-                'sportigoSquashPlanning', 
-                '4c334b6f-305e-413a-8541-355479dc0286', 
-                racketData
-            )
+            window.initComponent('Racket', 'sportigoSquashPlanning', '4c334b6f-305e-413a-8541-355479dc0286', {id: 2837, ...data})
         }
     };
 
@@ -34,7 +29,7 @@ export default function SportigoSquash() {
         <>
             <section id="sportigoSquashPlanning" className="w-full"></section>
             <Script
-                src="https://padel-demo.sportigo.cloud/component-standalone.js"
+                src="https://standalone.api.sportigo.fr/component-standalone.js"
                 strategy="afterInteractive"
                 onLoad={init} 
             />

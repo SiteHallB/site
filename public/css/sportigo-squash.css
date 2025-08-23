@@ -1,0 +1,30 @@
+
+@font-face {
+  font-family: 'futuretense';
+  src: local('Future Tense'), url('/fonts/FutureTense-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme inline {
+  --color-background-base: #121212;
+  --color-background-highlight: #242424;
+  --color-background-subdued: #000000;
+  --color-foreground-base: #FFFFFF;
+  --color-foreground-subdued: #FFFFFF99;
+  --color-accent: #E1C340;
+}
+
+.buttonNext::after {
+  display: none;
+}
+
+button[type="button"] {
+  background-color: var(--color-background-base);
+  color: var(--color-foreground-base);
+  border-color: var(--color-foreground-subdued);
+}
+button[type="button"]:hover {
+  background-color: var(--color-accent);
+  color: var(--color-background-base);
+}
