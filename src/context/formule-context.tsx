@@ -56,6 +56,9 @@ export function FormuleProvider({ children }: { children: ReactNode; }) {
                 salsa_2: 21549, 
                 heels: 21550, 
                 streetjazz: 21551, 
+
+                credit_squash_pleine: 22343, 
+                credit_squash_creuse: 22344
             }}
         >
             {children}

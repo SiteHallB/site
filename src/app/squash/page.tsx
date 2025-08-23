@@ -1,10 +1,6 @@
 import { Metadata } from "next";
 
-import SportigoFormule from "@/components/ui/sportigo-formule";
-import SportigoSquash from "@/components/ui/sportigo-squash";
-
-import { Email, PhoneNumber } from "@/components/ui/contact-widget";
-import PageStructure from "@/components/ui/page-structure";
+import Squash from "@/components/squash/squash";
 
 export const metadata: Metadata = {
     title: "HALL B - Squash", 
@@ -12,9 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-    return (
-        <PageStructure title="Squash" subtitle={<p>Réservez votre terrain en quelques clics</p>}>
-            <SportigoSquash/>
-        </PageStructure>
-    );
+    return <Squash/>
 }
