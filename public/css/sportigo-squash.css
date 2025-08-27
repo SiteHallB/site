@@ -57,6 +57,16 @@ div[role="dialog"] button[type="submit"]:hover {
   background-color: var(--color-foreground-base);
 }
 
+button.day-range-start[aria-selected="true"], button.day-range-end[aria-selected="true"],
+button.day-range-start[aria-selected="true"]:hover, button.day-range-end[aria-selected="true"]:hover,
+button.day-range-start[aria-selected="true"]:focus, button.day-range-end[aria-selected="true"]:focus {
+  background-color: var(--color-accent);
+}
+
+[id^="react-day-picker-"] {
+  color: var(--color-foreground-base);
+}
+
 :focus {
   outline: none !important;
 }
