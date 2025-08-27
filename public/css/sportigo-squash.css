@@ -28,3 +28,44 @@ button[type="button"]:hover {
   background-color: var(--color-accent);
   color: var(--color-background-base);
 }
+
+div[role="dialog"] {
+  background-color: var(--color-background-highlight);
+}
+
+div[role="tablist"] {
+  background-color: black;
+}
+
+p.text-sm.text-muted-foreground.text-left {
+  color: var(--color-foreground-subdued);
+}
+
+div[role="dialog"] input {
+  border: none;
+  background-color: var(--color-background-highlight);
+}
+div[role="dialog"] input::placeholder {
+  color: var(--color-foreground-subdued);
+}
+
+div[role="dialog"] button[type="submit"] {
+  background-color: var(--color-accent);
+  color: var(--color-background-base);
+}
+div[role="dialog"] button[type="submit"]:hover {
+  background-color: var(--color-foreground-base);
+}
+
+:focus {
+  outline: none !important;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 2px #3b82f6 !important;
+}

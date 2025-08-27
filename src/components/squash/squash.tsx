@@ -11,8 +11,9 @@ export default function Squash() {
 
     return (
         <PageStructure title="Squash" subtitle={<p>Réservez votre terrain en quelques clics : achetez d'abord votre <span className="text-accent">crédit Squash</span> puis utilisez le quand vous voulez en sélectionnant le créneau qui vous convient dans le planning Squash en-dessous.</p>}>
-            <SportigoFormule ids={[credit_squash_pleine, credit_squash_creuse]}/> 
+            <div className="bg-background-highlight rounded-xl w-full p-1 flexCenter">
             <SportigoSquash/>
+            </div>
         </PageStructure>
     );
 }
