@@ -44,15 +44,15 @@ export default function Plannings() {
                         key={index}
                         className="select-none overflow-hidden rounded transition-all duration-300 ease-in-out swiper-slide-custom"
                     >
-                        <Clickable
+                        {/* <Clickable
                             clickableType={{type: "button", onClick: () => window.dispatchEvent(new CustomEvent("open-popup"))}}
                             style={{}}
-                        >
+                        > */}
                         <Image
                             {...image}
                             className="w-full h-full object-cover object-center"
                         />
-                        </Clickable>
+                        {/* </Clickable> */}
                     </SwiperSlide>
                 ))}
             </Swiper>
