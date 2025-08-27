@@ -67,6 +67,19 @@ button.day-range-start[aria-selected="true"]:focus, button.day-range-end[aria-se
   color: var(--color-foreground-base);
 }
 
+button.text-primary {
+  color: var(--color-foreground-base);
+}
+
+button.text-gray-600:hover,
+button.text-gray-600:focus,
+button.text-gray-600:active {
+  color: var(--color-background-base);
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+}
+
 :focus {
   outline: none !important;
 }
