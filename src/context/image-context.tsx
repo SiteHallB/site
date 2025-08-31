@@ -184,6 +184,42 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
                     height: 1350, 
                     alt: "Planning danse activités HALL B"
                 }, 
+                plannings_aqua_desktop: {
+                    src: "/images/plannings/aqua_desktop.png", 
+                    width: 1440, 
+                    height: 810, 
+                    alt: "Planning aqua HALL B"
+                }, 
+                plannings_aqua_lundi: {
+                    src: "/images/plannings/aqua_lundi.png", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning lundi aqua HALL B"
+                }, 
+                plannings_aqua_mardi: {
+                    src: "/images/plannings/aqua_mardi.png", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning mardi aqua HALL B"
+                }, 
+                plannings_aqua_mercredi: {
+                    src: "/images/plannings/aqua_mercredi.png", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning mercredi activités HALL B"
+                }, 
+                plannings_aqua_jeudi: {
+                    src: "/images/plannings/aqua_jeudi.png", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning jeudi aqua HALL B"
+                }, 
+                plannings_aqua_vendredi: {
+                    src: "/images/plannings/aqua_vendredi.png", 
+                    width: 1080, 
+                    height: 1350, 
+                    alt: "Planning vendredi aqua HALL B"
+                }, 
             }}
         >
             {children}
