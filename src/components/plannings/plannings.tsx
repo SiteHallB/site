@@ -16,8 +16,8 @@ import ActivityDescription from "./activity-description";
 import Separator from "../ui/separator";
 
 function FullPlannings(
-    { desktop, lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche }: 
-    { desktop: ImageType; lundi?: ImageType; mardi?: ImageType; mercredi?: ImageType; jeudi?: ImageType; vendredi?: ImageType; samedi?: ImageType; dimanche?: ImageType }
+    { title, desktop, lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche }: 
+    { title: string; desktop: ImageType; lundi?: ImageType; mardi?: ImageType; mercredi?: ImageType; jeudi?: ImageType; vendredi?: ImageType; samedi?: ImageType; dimanche?: ImageType }
 ) {
     return (
         <div className="w-full">
@@ -25,7 +25,8 @@ function FullPlannings(
                 <Image {...desktop}/>
             </div>
 
-            <div className="w-full block lg:hidden">
+            <div className="w-full block lg:hidden flex flex-col items-center gap-content">
+            <h2 className="text-center">{title}</h2>
             <Swiper
                 className="w-full"
                 modules={[Navigation, Pagination, A11y]}
@@ -61,6 +62,7 @@ export default function Plannings() {
     return (
         <PageStructure title="Plannings" subtitle={<p>Consultez nos nombreuses activités</p>}>
             <FullPlannings
+                title="Cours co - Small Groups"
                 desktop={plannings_desktop}
                 lundi={plannings_lundi}
                 mardi={plannings_mardi}
@@ -71,6 +73,7 @@ export default function Plannings() {
             />
 
             <FullPlannings
+                title="AQUA"
                 desktop={plannings_aqua_desktop}
                 lundi={plannings_aqua_lundi}
                 mardi={plannings_aqua_mardi}
@@ -79,10 +82,13 @@ export default function Plannings() {
                 vendredi={plannings_aqua_vendredi}
             />
 
-            <div className="bg-background-highlight rounded-xl w-full p-1 flexCenter max-w-120">
+            <div className="w-full flex flex-col items-center gap-content">
+            <h2 className="text-center">Danse</h2>
+            <div className="bg-background-highlight rounded-xl w-full p-1 max-w-120">
             <Image
                 {...plannings_danse}
             />
+            </div>
             </div>
 
             <Separator/>
