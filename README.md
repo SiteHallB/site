@@ -10,7 +10,7 @@ Si bug, me contacter au 07 65 50 18 01 ou eliot.collombet@gmail.com
 ## Code :
 
 + Le code source est sur le github de l'organization [SiteHallB](https://github.com/SiteHallB). Les comptes github EliotCollombet et SiteHallBAdmin* en sont propriétaires (il faut toujours avoir au moins 2 comptes propriétaire sinon la récupération du compte en cas de problème est quasiment impossible).
-+ Pour protéger notre site, il vaut mieux laisser son implémentation privée : laisser le repo en privé.
++ Pour protéger notre site, il vaut mieux laisser son implémentation privée. Cependant pour eviter de payer le plan pro de Vercel, le repo est en public (le plan gratuit de Vercel ne permet pas de deployer un repo privé)
 
 ## Hebergement : 
 
