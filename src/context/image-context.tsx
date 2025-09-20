@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, ReactNode } from 'react';
 
-export type ImageType = { src: string, width: number, height: number, alt: string };
+export type ImageType = { src: string, width?: number, height?: number, alt: string };
 type ImageMap = Record<string, ImageType>;
 
 const ImageContext = createContext<ImageMap>({});
@@ -10,6 +10,8 @@ const ImageContext = createContext<ImageMap>({});
 export function useImage() { return useContext(ImageContext); }
 
 export function ImageProvider({ children }: { children: ReactNode; }) {
+    const plannings_url = `https://backoffice-two-phi.vercel.app/assets/slots`;
+
     const images = {
         vue_plateau_1: {
             src: "/images/vue_plateau_1.jpg", 
@@ -100,7 +102,65 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
             width: 1633, 
             height: 396, 
             alt: "Logo Pallini"
-        }
+        }, 
+
+
+        plannings_desktop: {
+            src: `${plannings_url}/bureau`, 
+            alt: "Planning activités HALL B"
+        }, 
+        plannings_lundi: {
+            src: `${plannings_url}/lundi`, 
+            alt: "Planning lundi activités HALL B"
+        }, 
+        plannings_mardi: {
+            src: `${plannings_url}/mardi`, 
+            alt: "Planning mardi activités HALL B"
+        }, 
+        plannings_mercredi: {
+            src: `${plannings_url}/mercredi`, 
+            alt: "Planning mercredi activités HALL B"
+        }, 
+        plannings_jeudi: {
+            src: `${plannings_url}/jeudi`, 
+            alt: "Planning jeudi activités HALL B"
+        }, 
+        plannings_vendredi: {
+            src: `${plannings_url}/vendredi`, 
+            alt: "Planning vendredi activités HALL B"
+        }, 
+        plannings_samedi: {
+            src: `${plannings_url}/samedi`, 
+            alt: "Planning samedi activités HALL B"
+        }, 
+        plannings_danse: {
+            src: `${plannings_url}/danse`, 
+            alt: "Planning danse activités HALL B"
+        }, 
+        plannings_aqua_desktop: {
+            src: `${plannings_url}/aqua_bureau`, 
+            alt: "Planning aqua HALL B"
+        }, 
+        plannings_aqua_lundi: {
+            src: `${plannings_url}/aqua_lundi`, 
+            alt: "Planning lundi aqua HALL B"
+        }, 
+        plannings_aqua_mardi: {
+            src: `${plannings_url}/aqua_mardi`, 
+            alt: "Planning mardi aqua HALL B"
+        }, 
+        plannings_aqua_mercredi: {
+            src: `${plannings_url}/aqua_mercredi`, 
+            alt: "Planning mercredi activités HALL B"
+        }, 
+        plannings_aqua_jeudi: {
+            src: `${plannings_url}/aqua_jeudi`, 
+            alt: "Planning jeudi aqua HALL B"
+        }, 
+        plannings_aqua_vendredi: {
+            src: `${plannings_url}/aqua_vendredi`, 
+            alt: "Planning vendredi aqua HALL B"
+        }, 
     }
 
     return (
@@ -136,90 +196,20 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
                 technogymLogo: images.technogymLogo, 
                 palliniLogo: images.palliniLogo, 
 
-                plannings_desktop: {
-                    src: "/images/plannings/desktop.svg", 
-                    width: 1440, 
-                    height: 810, 
-                    alt: "Planning activités HALL B"
-                }, 
-                plannings_lundi: {
-                    src: "/images/plannings/lundi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning lundi activités HALL B"
-                }, 
-                plannings_mardi: {
-                    src: "/images/plannings/mardi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning mardi activités HALL B"
-                }, 
-                plannings_mercredi: {
-                    src: "/images/plannings/mercredi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning mercredi activités HALL B"
-                }, 
-                plannings_jeudi: {
-                    src: "/images/plannings/jeudi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning jeudi activités HALL B"
-                }, 
-                plannings_vendredi: {
-                    src: "/images/plannings/vendredi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning vendredi activités HALL B"
-                }, 
-                plannings_samedi: {
-                    src: "/images/plannings/samedi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning samedi activités HALL B"
-                }, 
-                plannings_danse: {
-                    src: "/images/plannings/danse.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning danse activités HALL B"
-                }, 
-                plannings_aqua_desktop: {
-                    src: "/images/plannings/aqua_desktop.svg", 
-                    width: 1440, 
-                    height: 810, 
-                    alt: "Planning aqua HALL B"
-                }, 
-                plannings_aqua_lundi: {
-                    src: "/images/plannings/aqua_lundi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning lundi aqua HALL B"
-                }, 
-                plannings_aqua_mardi: {
-                    src: "/images/plannings/aqua_mardi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning mardi aqua HALL B"
-                }, 
-                plannings_aqua_mercredi: {
-                    src: "/images/plannings/aqua_mercredi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning mercredi activités HALL B"
-                }, 
-                plannings_aqua_jeudi: {
-                    src: "/images/plannings/aqua_jeudi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning jeudi aqua HALL B"
-                }, 
-                plannings_aqua_vendredi: {
-                    src: "/images/plannings/aqua_vendredi.svg", 
-                    width: 1080, 
-                    height: 1350, 
-                    alt: "Planning vendredi aqua HALL B"
-                }, 
+                plannings_desktop: images.plannings_desktop, 
+                plannings_lundi: images.plannings_lundi, 
+                plannings_mardi: images.plannings_mardi, 
+                plannings_mercredi: images.plannings_mercredi, 
+                plannings_jeudi: images.plannings_jeudi, 
+                plannings_vendredi: images.plannings_vendredi,
+                plannings_samedi: images.plannings_samedi,
+                plannings_danse: images.plannings_danse, 
+                plannings_aqua_desktop: images.plannings_aqua_desktop, 
+                plannings_aqua_lundi: images.plannings_aqua_lundi,
+                plannings_aqua_mardi: images.plannings_aqua_mardi, 
+                plannings_aqua_mercredi: images.plannings_aqua_mercredi,
+                plannings_aqua_jeudi: images.plannings_aqua_jeudi, 
+                plannings_aqua_vendredi: images.plannings_aqua_vendredi, 
             }}
         >
             {children}

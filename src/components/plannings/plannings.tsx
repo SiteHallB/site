@@ -11,18 +11,17 @@ import { Navigation, Pagination, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import Clickable from "@/components/ui/clickable";
 import ActivityDescription from "./activity-description";
 import Separator from "../ui/separator";
 
 function FullPlannings(
-    { title, desktop, lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche }: 
-    { title: string; desktop: ImageType; lundi?: ImageType; mardi?: ImageType; mercredi?: ImageType; jeudi?: ImageType; vendredi?: ImageType; samedi?: ImageType; dimanche?: ImageType }
+    { title, desktop, lundi, mardi, mercredi, jeudi, vendredi, samedi }: 
+    { title: string; desktop: ImageType; lundi?: ImageType; mardi?: ImageType; mercredi?: ImageType; jeudi?: ImageType; vendredi?: ImageType; samedi?: ImageType; }
 ) {
     return (
         <div className="w-full">
             <div className="bg-background-highlight rounded-xl w-full p-1 hidden lg:flex justify-center">
-                <Image {...desktop}/>
+                <img {...desktop}/>
             </div>
 
             <div className="w-full block lg:hidden flex flex-col items-center gap-content">
@@ -41,7 +40,7 @@ function FullPlannings(
                         key={index}
                         className="select-none overflow-hidden rounded transition-all duration-300 ease-in-out swiper-slide-custom"
                     >
-                        <Image
+                        <img
                             {...image}
                             className="w-full h-full object-cover object-center"
                         />
@@ -85,7 +84,7 @@ export default function Plannings() {
             <div className="w-full flex flex-col items-center gap-content">
             <h2 className="text-center">Danse</h2>
             <div className="bg-background-highlight rounded-xl w-full p-1 max-w-120">
-            <Image
+            <img
                 {...plannings_danse}
             />
             </div>
