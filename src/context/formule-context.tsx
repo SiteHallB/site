@@ -52,7 +52,7 @@ export function FormuleProvider({ children }: { children: ReactNode; }) {
 
                 rock_1: 19926, 
                 rock_2: 21547, 
-                salsa_1: 21547, 
+                salsa_1: 21548, 
                 salsa_2: 21549, 
                 heels: 21550, 
                 streetjazz: 21551, 
