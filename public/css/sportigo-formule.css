@@ -126,3 +126,11 @@ textarea:focus-visible,
   outline: none !important;
   box-shadow: 0 0 0 2px #3b82f6 !important;
 }
+
+div:has(> .lucide-sunset) {
+  display: none;
+}
+
+.bg-card\/50.backdrop-blur-sm.border.border-border\/50.rounded-xl.p-6.pt-0.shadow-sm {
+  display: none;
+}
