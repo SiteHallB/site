@@ -10,7 +10,8 @@ const ImageContext = createContext<ImageMap>({});
 export function useImage() { return useContext(ImageContext); }
 
 export function ImageProvider({ children }: { children: ReactNode; }) {
-    const plannings_url = `https://backoffice-two-phi.vercel.app/assets/slots`;
+    // const plannings_url = `https://backoffice-two-phi.vercel.app/assets/slots`;
+    const plannings_url = `/images/plannings`;
 
     const images = {
         vue_plateau_1: {
@@ -106,59 +107,59 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
 
 
         plannings_desktop: {
-            src: `${plannings_url}/bureau`, 
+            src: `${plannings_url}/bureau.svg`, 
             alt: "Planning activités HALL B"
         }, 
         plannings_lundi: {
-            src: `${plannings_url}/lundi`, 
+            src: `${plannings_url}/lundi.svg`, 
             alt: "Planning lundi activités HALL B"
         }, 
         plannings_mardi: {
-            src: `${plannings_url}/mardi`, 
+            src: `${plannings_url}/mardi.svg`, 
             alt: "Planning mardi activités HALL B"
         }, 
         plannings_mercredi: {
-            src: `${plannings_url}/mercredi`, 
+            src: `${plannings_url}/mercredi.svg`, 
             alt: "Planning mercredi activités HALL B"
         }, 
         plannings_jeudi: {
-            src: `${plannings_url}/jeudi`, 
+            src: `${plannings_url}/jeudi.svg`, 
             alt: "Planning jeudi activités HALL B"
         }, 
         plannings_vendredi: {
-            src: `${plannings_url}/vendredi`, 
+            src: `${plannings_url}/vendredi.svg`, 
             alt: "Planning vendredi activités HALL B"
         }, 
         plannings_samedi: {
-            src: `${plannings_url}/samedi`, 
+            src: `${plannings_url}/samedi.svg`, 
             alt: "Planning samedi activités HALL B"
         }, 
         plannings_danse: {
-            src: `${plannings_url}/danse`, 
+            src: `${plannings_url}/danse.svg`, 
             alt: "Planning danse activités HALL B"
         }, 
         plannings_aqua_desktop: {
-            src: `${plannings_url}/aqua_bureau`, 
+            src: `${plannings_url}/aqua_bureau.svg`, 
             alt: "Planning aqua HALL B"
         }, 
         plannings_aqua_lundi: {
-            src: `${plannings_url}/aqua_lundi`, 
+            src: `${plannings_url}/aqua_lundi.svg`, 
             alt: "Planning lundi aqua HALL B"
         }, 
         plannings_aqua_mardi: {
-            src: `${plannings_url}/aqua_mardi`, 
+            src: `${plannings_url}/aqua_mardi.svg`, 
             alt: "Planning mardi aqua HALL B"
         }, 
         plannings_aqua_mercredi: {
-            src: `${plannings_url}/aqua_mercredi`, 
+            src: `${plannings_url}/aqua_mercredi.svg`, 
             alt: "Planning mercredi activités HALL B"
         }, 
         plannings_aqua_jeudi: {
-            src: `${plannings_url}/aqua_jeudi`, 
+            src: `${plannings_url}/aqua_jeudi.svg`, 
             alt: "Planning jeudi aqua HALL B"
         }, 
         plannings_aqua_vendredi: {
-            src: `${plannings_url}/aqua_vendredi`, 
+            src: `${plannings_url}/aqua_vendredi.svg`, 
             alt: "Planning vendredi aqua HALL B"
         }, 
     }
