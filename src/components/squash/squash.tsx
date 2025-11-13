@@ -1,6 +1,5 @@
 "use client"
 
-import SportigoFormule from "@/components/ui/sportigo-formule";
 import SportigoSquash from "@/components/ui/sportigo-squash";
 
 import PageStructure from "@/components/ui/page-structure";
