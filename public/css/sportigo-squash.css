@@ -92,3 +92,8 @@ textarea:focus-visible,
   outline: none !important;
   box-shadow: 0 0 0 2px #3b82f6 !important;
 }
+
+.dateLabel.text-neutral-950 {
+  color: var(--color-accent); /* ou la couleur que tu veux */
+  font-weight: bold;
+}
