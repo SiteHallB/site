@@ -160,6 +160,24 @@ export default function Tarifs() {
                     />
                     </li>
                 </ul>
+
+                <Separator/>
+                {/* Offert */}
+
+                <FormuleOverview
+                    title="Carte Cadeau"
+                    subtitle="Pensez à vos proches !"
+                    prix={<p>Choisissez votre prix</p>}
+                    images={[ tarifs_classic_1, tarifs_classic_2, 
+            tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
+            tarifs_aqua_1 ]}
+                    checkDescription={[
+                        <p>Valable pour toutes nos activités.</p>, 
+                    ]}
+                    plusDescription={[]}
+                    actionLink="/carte-cadeau"
+                    className="mt-content"
+                />
             </div>
         </PageStructure>
     );
