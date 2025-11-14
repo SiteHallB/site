@@ -175,6 +175,12 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
             width: 800, 
             height: 600,
         }, 
+        squash: {
+            src: `/images/squash.jpg`, 
+            alt: "Terrain de squash HALL B",
+            width: 3024, 
+            height: 4032,
+        },
     }
 
     return (
@@ -227,6 +233,8 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
 
                 carte_cadeau_1: images.carte_cadeau_1, 
                 carte_cadeau_2: images.carte_cadeau_2,
+
+                squash: images.squash,
             }}
         >
             {children}

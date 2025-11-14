@@ -28,7 +28,7 @@ function QueryFilter({ path, option, text }: { path: string; option: string, tex
 export default function Tarifs() {
     const { tarifs_classic_1, tarifs_classic_2, 
             tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
-            tarifs_aqua_1, tarifs_aqua_2, tarifs_aqua_3, tarifs_danse_1, carte_cadeau_1, carte_cadeau_2 } = useImage();
+            tarifs_aqua_1, tarifs_aqua_2, tarifs_aqua_3, tarifs_danse_1, carte_cadeau_1, carte_cadeau_2, squash } = useImage();
 
     return (
         <PageStructure title="Tarifs"
@@ -168,7 +168,7 @@ export default function Tarifs() {
                     title="Carte Cadeau"
                     subtitle="Pensez à vos proches !"
                     prix={<p>Choisissez votre prix</p>}
-                    images={[ carte_cadeau_1, carte_cadeau_2, tarifs_classic_1, tarifs_classic_2, 
+                    images={[ carte_cadeau_1, carte_cadeau_2, squash, tarifs_classic_1, tarifs_classic_2, 
             tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
             tarifs_aqua_1 ]}
                     checkDescription={[
