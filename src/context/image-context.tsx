@@ -163,18 +163,6 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
             alt: "Planning vendredi aqua HALL B"
         }, 
 
-        carte_cadeau_1: {
-            src: `/images/carte_cadeau_1.png`, 
-            alt: "Carte cadeau HALL B", 
-            width: 800, 
-            height: 600,
-        }, 
-        carte_cadeau_2: {
-            src: `/images/carte_cadeau_2.png`, 
-            alt: "Carte cadeau HALL B", 
-            width: 800, 
-            height: 600,
-        }, 
         squash: {
             src: `/images/squash.jpg`, 
             alt: "Terrain de squash HALL B",
@@ -230,9 +218,6 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
                 plannings_aqua_mercredi: images.plannings_aqua_mercredi,
                 plannings_aqua_jeudi: images.plannings_aqua_jeudi, 
                 plannings_aqua_vendredi: images.plannings_aqua_vendredi, 
-
-                carte_cadeau_1: images.carte_cadeau_1, 
-                carte_cadeau_2: images.carte_cadeau_2,
 
                 squash: images.squash,
             }}
