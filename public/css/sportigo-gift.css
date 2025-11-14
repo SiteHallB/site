@@ -138,3 +138,29 @@ div:has(> .lucide-sunset) {
 .text-5xl.font-black.tracking-tight {
   color: var(--color-foreground-base) !important;
 }
+
+.flex.h-9.w-full.rounded-md.border.border-input.bg-transparent.px-3.py-1.text-base.shadow-sm.transition-colors.file\:border-0.file\:bg-transparent.file\:text-sm.file\:font-medium.file\:text-foreground.placeholder\:text-muted-foreground.focus-visible\:outline-none.focus-visible\:ring-1.focus-visible\:ring-ring.disabled\:cursor-not-allowed.disabled\:opacity-50.md\:text-sm {
+  border-color: var(--color-foreground-subdued)
+}
+
+h3.text-sm.font-semibold.mb-3.text-gray-500.dark\:text-slate-400.uppercase.tracking-widest {
+    color: var(--color-foreground-subdued);
+}
+
+div.bg-white\/80.dark\:bg-slate-800\/80 {
+    background-color: var(--color-foreground-base);
+}
+div.bg-white\/80.dark\:bg-slate-800\/80 p {
+    color: var(--color-background-subdued)
+}
+
+div.bg-gray-50.dark\:bg-slate-800\/50 {
+    background-color: var(--color-foreground-base);
+}
+div.bg-gray-50.dark\:bg-slate-800\/50 p {
+    color: var(--color-background-subdued)
+}
+
+div.relative.bg-white.dark\:bg-slate-900 {
+    background-color: var(--color-background-base);
+}

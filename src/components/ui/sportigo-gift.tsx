@@ -16,7 +16,7 @@ export default function SportigoGift() {
                 name: 'Montserrat',
                 family: 'sans-serif'
             },
-            cssFile: '/css/sportigo-formule.css',
+            cssFile: '/css/sportigo-gift.css',
         }
     };
 

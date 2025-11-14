@@ -64,6 +64,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
         { label: "Accueil", path: "/"}, 
         { label: "Tarifs", path: "/tarifs"}, 
         { label: "Essai offert", path: "/essai-offert"}, 
+        { label: "Carte cadeau", path: "/carte-cadeau"},
         { label: "Plannings", path: "/plannings"}, 
         { label: "Nous contacter", path: "/contact"}, 
     ];
