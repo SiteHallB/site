@@ -103,7 +103,6 @@ export default function Plannings() {
             <ActivityDescription title="Fessiers flash" illustration="/images/plannings/zap.svg" path="/tarifs/boost" description="15 minutes d’exercices ciblés et ultra efficaces pour raffermir et sculpter vos fessiers rapidement."/>
             <ActivityDescription title="RPM" illustration="/images/plannings/bike_exercise.svg" path="/tarifs/boost" description="En selle pour un cours de vélo indoor explosif ! Dépense calorique maximale, sensations fortes et dépassement de soi garantis."/>
             <ActivityDescription title="Cardio Boxe" illustration="/images/plannings/fist.svg" path="/tarifs/aqua" description="Un mix parfait entre boxe et cardio pour se défouler, brûler des calories et libérer tout son stress dans une ambiance survoltée."/>
-            <ActivityDescription title="Boxe française" illustration="/images/plannings/fist.svg" path="/tarifs/boost" description="Découvrez la discipline élégante et technique de la savate : un sport complet qui développe puissance, vitesse et coordination."/>
             <ActivityDescription title="Stretch" illustration="/images/plannings/yoga.svg" path="/tarifs/boost" description="Un moment de détente et de mobilité pour étirer vos muscles, relâcher les tensions et améliorer votre souplesse au quotidien."/>
             <ActivityDescription title="PPG" illustration="/images/plannings/weight.svg" path="/tarifs/boost" description="La préparation physique générale : des exercices complets pour développer endurance, force et explosivité, quel que soit votre niveau."/>
 

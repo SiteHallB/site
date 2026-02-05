@@ -20,7 +20,7 @@ export default function Boost() {
                 {
                     noneFilterName: "Tout type de paiement", 
                     filters: [
-                        { filterName: "1 mois sans engagement", ids: new Set([boost_unmois, boost_smallgroups_unmois]) },
+                        { filterName: "Sans engagement", ids: new Set([boost_unmois, boost_smallgroups_unmois]) },
                         { filterName: "Mensuel", ids: new Set([boost_mensuel, boost_smallgroups_mensuel]) },
                         { filterName: "Annuel", ids: new Set([boost_annuel, boost_smallgroups_annuel]) }
                     ]

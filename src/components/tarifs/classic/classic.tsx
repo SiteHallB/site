@@ -13,7 +13,7 @@ export default function Classic() {
                 {
                     noneFilterName: "Tout type de paiement", 
                     filters: [
-                        { filterName: "1 mois sans engagement", ids: new Set([classic_unmois]) },
+                        { filterName: "Sans engagement", ids: new Set([classic_unmois]) },
                         { filterName: "Mensuel", ids: new Set([classic_mensuel]) },
                         { filterName: "Annuel", ids: new Set([classic_annuel]) }
                     ]

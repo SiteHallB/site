@@ -22,7 +22,7 @@ export default function Aqua() {
                 {
                     noneFilterName: "Tout type de paiement", 
                     filters: [
-                        { filterName: "1 mois sans engagement", ids: new Set([aqua_unmois, aqua_coursco_unmois, aqua_coursco_smallgroups_unmois]) },
+                        { filterName: "Sans engagement", ids: new Set([aqua_unmois, aqua_coursco_unmois, aqua_coursco_smallgroups_unmois]) },
                         { filterName: "Mensuel", ids: new Set([aqua_mensuel, aqua_coursco_mensuel, aqua_coursco_smallgroups_mensuel]) },
                         { filterName: "Annuel", ids: new Set([aqua_annuel, aqua_coursco_annuel, aqua_coursco_smallgroups_annuel]) }
                     ]
