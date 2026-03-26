@@ -169,6 +169,12 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
             width: 3024, 
             height: 4032,
         },
+        bebe_nageur: {
+            src: `/images/bebe_nageur.png`,
+            width: 3024,
+            height: 4032,
+            alt: "Flyer bébés nageurs HALL B"
+        }
     }
 
     return (
@@ -220,6 +226,7 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
                 plannings_aqua_vendredi: images.plannings_aqua_vendredi, 
 
                 squash: images.squash,
+                bebe_nageur: images.bebe_nageur,
             }}
         >
             {children}

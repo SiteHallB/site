@@ -28,7 +28,7 @@ function QueryFilter({ path, option, text }: { path: string; option: string, tex
 export default function Tarifs() {
     const { tarifs_classic_1, tarifs_classic_2, 
             tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
-            tarifs_aqua_1, tarifs_aqua_2, tarifs_aqua_3, tarifs_danse_1, squash } = useImage();
+            tarifs_aqua_1, tarifs_aqua_2, tarifs_aqua_3, tarifs_danse_1, squash, bebe_nageur } = useImage();
 
     return (
         <PageStructure title="Tarifs"
@@ -157,6 +157,26 @@ export default function Tarifs() {
                         ]}
                         plusDescription={[<p><span className="text-accent">150€</span>/an pour 1 danse supplémentaire</p>]}
                         actionLink="/tarifs/danse"
+                    />
+                    </li>
+
+                    {/* Natation enfants */}
+                    <li className="w-full max-w-90">
+                    <FormuleOverview
+                        title="Natation enfants"
+                        subtitle="Tous les Mercredis"
+                        prix={<p className="textSmall">A partir de <span className="textSubH2">15€</span></p>}
+                        images={[ bebe_nageur, ]}
+                        checkDescription={[
+                            <p>11h00 : Bébés nageurs</p>, 
+                            <p>17h00 : Groupe 3 / 4 / 5 ans</p>, 
+                            <p>17h30 : Groupe 5 ans et +</p>, 
+                        ]}
+                        plusDescription={[
+                            <p>Encadré par un maître-nageur diplômé</p>, 
+                            <p>Maximum 5 enfants par cours pour un apprentissage personnalisé et de qualité</p>, 
+                        ]}
+                        actionLink="/tarifs/carnet-seances"
                     />
                     </li>
                 </ul>
