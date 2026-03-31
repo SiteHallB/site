@@ -170,7 +170,7 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
             height: 4032,
         },
         bebe_nageur: {
-            src: `/images/bebe_nageur.png`,
+            src: `/images/bebe_nageur.jpg`,
             width: 3024,
             height: 4032,
             alt: "Flyer bébés nageurs HALL B"
