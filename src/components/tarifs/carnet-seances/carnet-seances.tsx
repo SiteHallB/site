@@ -17,11 +17,11 @@ export default function CarnetSeances() {
                     <p>Choisissez un carnet de 1, 10, 30, 50 ou 100 séance(s) toutes activités confondues (sauf Squash).</p><br/>
                     <p>Natation enfants et bébés nageurs : voir infos et plannings sur
                     <Clickable
-                        clickableType={{type: "link", path: "/natation-vaunage"}}
+                        clickableType={{type: "link", path: "/natation-enfant-vaunage"}}
                         style={{}}
                         className="hoverUnderline ml-2"
                     >
-                        <strong>natation enfant vaunage</strong>
+                        <strong>natation enfant</strong>
                     </Clickable> </p>
                 </>
             }

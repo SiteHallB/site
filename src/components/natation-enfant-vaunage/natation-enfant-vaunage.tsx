@@ -8,22 +8,22 @@ import Clickable from "@/components/ui/clickable";
 import { useImage } from "@/context/image-context";
 import Image from "next/image";
 
-export default function NatationVaunage() {
+export default function NatationEnfantVaunage() {
     const { bebe_nageur } = useImage();
 
     return (
         <PageStructure title="Natation Enfant" subtitle={<p>Cours de natation en vaunage - Piscine intérieure à Saint Dionisy.</p>}>
             <div className="bg-background-highlight rounded-xl w-full p-4 flex-col">
                 <p className="my-2">Au Hall B à Saint-Dionisy, nous proposons :</p>
-                <div className="flex flex-row items-center justify-start">
+                <div className="flex flex-row items-start justify-start">
                     <Baby className="mr-2 text-accent size-5 lg:size-7 shrink-0"/>
                     <p><em>Bébés nageurs</em> - pour familiariser les tout-petits avec l'eau en douceur</p>
                 </div>
-                <div className="flex flex-row items-center justify-start">
+                <div className="flex flex-row items-start justify-start">
                     <WavesLadder className="mr-2 text-accent size-5 lg:size-7 shrink-0"/>
                     <p><em>École de natation enfants</em> - apprendre à nager et gagner en confiance</p>
                 </div>
-                <div className="flex flex-row items-center justify-start">
+                <div className="flex flex-row items-start justify-start">
                     <CheckCheck className="mr-2 text-accent size-5 lg:size-7 shrink-0"/>
                     <p><em>Tests d'aisance aquatique certifiants</em> - indispensables pour certaines activités nautiques et colonies</p>
                 </div>

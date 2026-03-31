@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 
-import NatationVaunage from "@/components/natation-vaunage/natation-vaunage";
+import NatationVaunage from "@/components/natation-enfant-vaunage/natation-enfant-vaunage";
 
 export const metadata: Metadata = {
     title: "HALL B - Natation Enfant Vaunage", 

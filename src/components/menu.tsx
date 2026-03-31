@@ -66,7 +66,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
         { label: "Essai offert", path: "/essai-offert"}, 
         { label: "Carte cadeau", path: "/carte-cadeau"},
         { label: "Plannings", path: "/plannings"}, 
-        { label: "Natation Enfant", path: "/natation-vaunage"}, 
+        { label: "Natation Enfant", path: "/natation-enfant-vaunage"}, 
         { label: "Nous contacter", path: "/contact"}, 
     ];
     
