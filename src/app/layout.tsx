@@ -135,7 +135,7 @@ export default function RootLayout({
                         <Menu/>
                     </header>
 
-                    <PopUp/>
+                    {/* <PopUp/> */}
                     <Toast/>
 
                     {/* Contenu principal */}
