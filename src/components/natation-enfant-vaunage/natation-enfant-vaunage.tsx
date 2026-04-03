@@ -12,9 +12,9 @@ export default function NatationEnfantVaunage() {
     const { bebe_nageur } = useImage();
 
     return (
-        <PageStructure title="Natation Enfant" subtitle={<p>Cours de natation en vaunage - Piscine intérieure à Saint Dionisy.</p>}>
+        <PageStructure title="Natation" subtitle={<p>Cours de natation en vaunage - Piscine intérieure à Saint Dionisy.</p>}>
             <div className="bg-background-highlight rounded-xl w-full p-4 flex-col">
-                <p className="my-2">Au Hall B à Saint-Dionisy, nous proposons :</p>
+                <p className="my-2">Chez HALL B à Saint-Dionisy, nous proposons :</p>
                 <div className="flex flex-row items-start justify-start">
                     <Baby className="mr-2 text-accent size-5 lg:size-7 shrink-0"/>
                     <p><em>Bébés nageurs</em> - pour familiariser les tout-petits avec l'eau en douceur</p>
@@ -33,14 +33,13 @@ export default function NatationEnfantVaunage() {
                     <p>Paiement à la séance : réservation par téléphone ou en achetant directement votre séance/carnet de séances en ligne</p>
                 </div>
 
-                <div className="my-8 flex flex-row h-full justify-center space-x-4">
+                <div className="my-8 flex flex-col h-full justify-center items-center space-y-4">
                     <PhoneNumber/>
                     <Clickable
                         clickableType={{type: "link", path: "/tarifs/carnet-seances"}}
-                        style={{}}
-                        className="hoverUnderline"
+                        style={{variant: "navigationBar", color: "accent"}}
                     >
-                        <p><strong>acheter en ligne</strong></p>
+                        Acheter en ligne
                     </Clickable>
                 </div>
 
