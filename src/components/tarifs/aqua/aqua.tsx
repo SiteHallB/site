@@ -7,8 +7,7 @@ import { useFormule } from "@/context/formule-context";
 export default function Aqua() {
     const {
         aqua_unmois, aqua_mensuel, aqua_annuel, 
-        aqua_coursco_unmois, aqua_coursco_mensuel, aqua_coursco_annuel, 
-        aqua_coursco_smallgroups_unmois, aqua_coursco_smallgroups_mensuel, aqua_coursco_smallgroups_annuel 
+        aqua_boost_unmois, aqua_boost_mensuel, aqua_boost_annuel 
     } = useFormule();
 
     const queryFilter: QueryFilter = new Map([
@@ -22,17 +21,16 @@ export default function Aqua() {
                 {
                     noneFilterName: "Tout type de paiement", 
                     filters: [
-                        { filterName: "Sans engagement", ids: new Set([aqua_unmois, aqua_coursco_unmois, aqua_coursco_smallgroups_unmois]) },
-                        { filterName: "Mensuel", ids: new Set([aqua_mensuel, aqua_coursco_mensuel, aqua_coursco_smallgroups_mensuel]) },
-                        { filterName: "Annuel", ids: new Set([aqua_annuel, aqua_coursco_annuel, aqua_coursco_smallgroups_annuel]) }
+                        { filterName: "Sans engagement", ids: new Set([aqua_unmois, aqua_boost_unmois]) },
+                        { filterName: "Mensuel", ids: new Set([aqua_mensuel, aqua_boost_mensuel]) },
+                        { filterName: "Annuel", ids: new Set([aqua_annuel, aqua_boost_annuel]) }
                     ]
                 }, 
                 {
                     noneFilterName: "Toutes les formules AQUA", 
                     filters: [
                         { filterName: "AQUA seul", ids: new Set([aqua_unmois, aqua_mensuel, aqua_annuel]) }, 
-                        { filterName: "AQUA + Cours co", ids: new Set([aqua_coursco_unmois, aqua_coursco_mensuel, aqua_coursco_annuel]) }, 
-                        { filterName: "AQUA + Cours co + SmallGroups", ids: new Set([aqua_coursco_smallgroups_unmois, aqua_coursco_smallgroups_mensuel, aqua_coursco_smallgroups_annuel]) }
+                        { filterName: "AQUA + Boost", ids: new Set([aqua_boost_unmois, aqua_boost_mensuel, aqua_boost_annuel]) }
                     ]
                 }
             ]}

@@ -65,23 +65,15 @@ export default function Tarifs() {
                     <li className="w-full max-w-90">
                     <FormuleOverview
                         title="Boost"
-                        subtitle="Classic + Cours collectifs"
-                        prix={<p className="textSmall">A partir de <span className="textSubH2">50€</span>/mois</p>}
+                        subtitle="Classic + Cours collectifs + SmallGroups"
+                        prix={<p className="textSmall">A partir de <span className="textSubH2">55€</span>/mois</p>}
                         images={[ tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, ]}
                         checkDescription={[
                             <p>Accès libre au plateau 7/7j de 6h à 23h</p>, 
                             <p>Accès illimité au planning de<span className="text-accent uppercase"> Cours Co</span></p>, 
+                            <p>Accès illimité aux <span className="text-accent uppercase">SmallGroups</span></p>, 
                         ]}
-                        plusDescription={[
-                            <p className="h-fit inline-block">
-                                <span className="text-accent">5€</span> pour les
-                                <QueryFilter
-                                    path="/tarifs/boost"
-                                    option="small-groups"
-                                    text={<>SmallGroups</>}
-                                />
-                            </p>
-                        ]}
+                        plusDescription={[]}
                         actionLink="/tarifs/boost"
                     />
                     </li>
@@ -99,22 +91,7 @@ export default function Tarifs() {
                         ]}
                         plusDescription={[
                             <p className="h-fit inline-block">
-                                <span className="text-accent">5€ </span>
-                                pour les 
-                                <QueryFilter
-                                    path="/tarifs/aqua"
-                                    option="cours-co"
-                                    text={<>Cours Co</>}
-                                />
-                            </p>, 
-                            <p className="h-fit inline-block">
-                                <span className="text-accent">10€</span> pour les <span className="text-accent uppercase">Cours Co </span>
-                                et les
-                                <QueryFilter
-                                    path="/tarifs/aqua"
-                                    option="small-groups"
-                                    text={<>SmallGroups</>}
-                                />
+                                <span className="text-accent">10€</span> <span className="text-accent uppercase">Boost</span>
                             </p>
                         ]}
                         actionLink="/tarifs/aqua"

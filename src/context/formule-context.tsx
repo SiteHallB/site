@@ -42,13 +42,9 @@ export function FormuleProvider({ children }: { children: ReactNode; }) {
                 aqua_mensuel: 21469, 
                 aqua_annuel: 19918, 
 
-                aqua_coursco_unmois: 20811, 
-                aqua_coursco_mensuel: 21470,
-                aqua_coursco_annuel: 20812, 
-
-                aqua_coursco_smallgroups_unmois: 19916, 
-                aqua_coursco_smallgroups_mensuel: 21471,
-                aqua_coursco_smallgroups_annuel: 19917, 
+                aqua_boost_unmois: 19916, 
+                aqua_boost_mensuel: 21471,
+                aqua_boost_annuel: 19917, 
 
                 rock_1: 19926, 
                 rock_2: 21547, 

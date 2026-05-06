@@ -15,7 +15,7 @@ export default function Boost() {
     ]);
 
     return (
-        <FilterIdsGroupPage title="Boost" subtitle={<p>Musculation & cardio + Cours Collectifs</p>}
+        <FilterIdsGroupPage title="Boost" subtitle={<p>Musculation & cardio + Cours Collectifs + SmallGroups</p>}
             filters={[
                 {
                     noneFilterName: "Tout type de paiement", 
@@ -25,13 +25,6 @@ export default function Boost() {
                         { filterName: "Annuel", ids: new Set([boost_annuel, boost_smallgroups_annuel]) }
                     ]
                 }, 
-                {
-                    noneFilterName: "Toutes les options", 
-                    filters: [
-                        { filterName: "Cours co", ids: new Set([boost_unmois, boost_mensuel, boost_annuel]) }, 
-                        { filterName: "Cours co + SmallGroups", ids: new Set([boost_smallgroups_unmois, boost_smallgroups_mensuel, boost_smallgroups_annuel]) }
-                    ]
-                }
             ]}
             queryFilter={queryFilter}
         />
