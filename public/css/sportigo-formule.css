@@ -54,10 +54,6 @@ p {
   background-color: var(--color-background-highlight) !important;
 }
 
-h4 {
-    font-family: "futuretense";
-}
-
 [data-radix-aspect-ratio-wrapper] img {
   object-fit: contain !important;
   object-position: center center !important;

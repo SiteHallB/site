@@ -103,7 +103,7 @@ export default function FormuleOverview({ title, subtitle, prix, images, checkDe
             {/* Titre */}
             <div className="flex flex-col items-center w-full text-center">
                 <h2 className="text-foreground-base">{title}</h2>
-                <h3 className="textSubH2 text-foreground-subdued">{subtitle}</h3>
+                <h3 className="textNormal text-foreground-subdued">{subtitle}</h3>
             </div>
 
             {/* Images */}
