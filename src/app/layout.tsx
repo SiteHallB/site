@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 
     openGraph: {
         title: "HALL B",
-        description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage, proche de Nimes): musculation haut de gamme, cours collectifs, smallGroups, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
+        description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage, proche de Nîmes, Gard) : musculation haut de gamme, cours collectifs, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
         url: "https://hallb.fr",
         type: "website",
         siteName: "HALL B",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "HALL B",
-        description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage, proche de Nimes): musculation haut de gamme, cours collectifs, smallGroups, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
+        description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage, proche de Nîmes, Gard) : musculation haut de gamme, cours collectifs, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
         images: ["https://hallb.fr/favicon/og-image.jpg"],
     },
 
@@ -103,6 +103,11 @@ export default function RootLayout({
                         },
                         "telephone": "+33 4 66 19 16 76",
                         "url": "https://www.hallb.fr",
+                        "areaServed": [
+                            {"@type": "City", "name": "Nîmes"},
+                            {"@type": "City", "name": "Saint Dionisy"},
+                            {"@type": "AdministrativeArea", "name": "Gard"}
+                        ],
                         "priceRange": "€€",
                         "openingHoursSpecification": [
                             {

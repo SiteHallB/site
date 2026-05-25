@@ -3,8 +3,8 @@ import { Metadata } from "next";
 import Tarifs from "@/components/tarifs/tarifs";
 
 export const metadata: Metadata = {
-    title: "HALL B - Tarifs", 
-    description: "Découvrez nos formules d'abonnement, tarifs sans engagement, et toutes les options pour profiter de votre salle de sport HALL B.",
+    title: "HALL B – Tarifs | Salle de sport Saint Dionisy, Nîmes, Gard",
+    description: "Découvrez les formules d'abonnement de HALL B, salle de sport à Saint Dionisy près de Nîmes (Gard) : Classic, Boost, Aqua, Danse.",
 };
 
 export default function Page() {

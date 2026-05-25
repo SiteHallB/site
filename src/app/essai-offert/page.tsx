@@ -3,8 +3,8 @@ import { Metadata } from "next";
 import EssaiOffert from "@/components/essai-offert/essai-offert";
 
 export const metadata: Metadata = {
-    title: "HALL B - Essai Offert", 
-    description: "Vous hésitez encore à franchir le pas ? Profitez d'une séance découverte 100% gratuite pour tester HALL B à Saint Dionisy et vivre l'expérience par vous-même.",
+    title: "HALL B – Essai gratuit | Salle de sport Nîmes, Gard",
+    description: "Testez HALL B gratuitement ! Séance découverte 100% gratuite dans notre salle de sport à Saint Dionisy, à 15 min de Nîmes (Gard).",
 };
 
 export default function Page() {

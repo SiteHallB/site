@@ -2,8 +2,8 @@ import Contact from "@/components/contact/contact";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "HALL B - Nous contacter", 
-    description: "Poser une question ou demander un renseignement à la salle HALL B à Saint Dionisy (Vaunage, proche de Nimes)",
+    title: "HALL B – Contact | Salle de sport Saint Dionisy, Nîmes",
+    description: "Contactez la salle de sport HALL B à Saint Dionisy (Vaunage, Nîmes, Gard). Questions, renseignements, réservations : notre équipe vous répond.",
 };
 
 export default function Page() {
