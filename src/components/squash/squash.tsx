@@ -13,7 +13,7 @@ export default function Squash() {
     const { squash } = useImage();
 
     return (
-        <PageStructure title="Réservation Squash" subtitle={<p>Envie de vous défouler ou de partager un bon moment entre amis ? Nos terrains de squash vous attendent au HALL B à Saint-Dionisy !</p>}>
+        <PageStructure title="Réservation Squash" subtitle={<p>Envie de vous défouler ou de partager un bon moment entre amis ? Nos terrains de squash vous attendent chez HALL B à Saint-Dionisy !</p>}>
             <div className="bg-background-highlight rounded-xl w-full p-1 flex flex-col items-center space-y-4">
                 <div className="flex flex-col items-center py-3 px-4 w-full space-y-4">
                     <ul>
