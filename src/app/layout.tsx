@@ -7,6 +7,8 @@ import PopUp from "@/components/popup";
 
 import Script from "next/script";
 
+import { Montserrat } from "next/font/google";
+
 import { LinkProvider } from "@/context/link-context";
 import GoogleAnalyticsProvider from "@/components/analytics/google-analytics-provider";
 import { ImageProvider } from "@/context/image-context";
@@ -14,6 +16,13 @@ import { FormuleProvider } from "@/context/formule-context";
 import { ContactProvider } from "@/context/contact-context";
 
 import { Toast } from "@/components/ui/toast";
+
+const montserrat = Montserrat({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
+    display: "swap",
+    variable: "--font-montserrat-loaded",
+});
 
 export const viewport: Viewport = {
     themeColor: "#000000",
@@ -24,6 +33,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://www.hallb.fr"),
   icons: {
         icon: [
             { url: "/favicon/favicon.ico" },
@@ -38,12 +48,12 @@ export const metadata: Metadata = {
     openGraph: {
         title: "HALL B",
         description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage, proche de Nîmes, Gard) : musculation haut de gamme, cours collectifs, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
-        url: "https://hallb.fr",
+        url: "https://www.hallb.fr",
         type: "website",
         siteName: "HALL B",
         images: [
             {
-                url: "https://hallb.fr/favicon/og-image.jpg",
+                url: "https://www.hallb.fr/favicon/og-image.jpg",
                 width: 1200,
                 height: 630,
                 alt: "HALL B salle de sport Saint Dionisy"
@@ -55,7 +65,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "HALL B",
         description: "Salle de sport 2 400 m² à Saint Dionisy (Vaunage, proche de Nîmes, Gard) : musculation haut de gamme, cours collectifs, squash, danse, aquagym, pôle santé. Essayez HALL B gratuitement !",
-        images: ["https://hallb.fr/favicon/og-image.jpg"],
+        images: ["https://www.hallb.fr/favicon/og-image.jpg"],
     },
 
     other: {
@@ -70,8 +80,17 @@ export default function RootLayout({
         children: React.ReactNode;
     }>) {
     return (
-        <html lang="fr">
+        <html lang="fr" className={montserrat.variable}>
             <head>
+                {/* Précharge la police critique des titres (above-the-fold) */}
+                <link
+                    rel="preload"
+                    href="/fonts/FutureTense-Regular.woff2"
+                    as="font"
+                    type="font/woff2"
+                    crossOrigin="anonymous"
+                />
+
                 {/* 1. Charge la config d'abord */}
                 <Script
                     src="/klaro-config.js"
@@ -83,17 +102,18 @@ export default function RootLayout({
                     strategy="beforeInteractive"
                 />
 
-                {/* Schema.org */}
-                <Script
-                    id="schema-org"
+                {/* Schema.org — rendu côté serveur pour être présent dans le HTML initial */}
+                <script
                     type="application/ld+json"
-                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: JSON.stringify({
                         "@context": "https://schema.org",
-                        "@type": "SportsActivityLocation",
+                        "@type": ["HealthClub", "ExerciseGym"],
+                        "@id": "https://www.hallb.fr/#business",
                         "name": "HALL B",
-                        "image": "https://www.hallb.fr/logo.jpg",
+                        "description": "Salle de sport de 2 400 m² à Saint-Dionisy (Vaunage, Gard), à 15 min de Nîmes : musculation Panatta & Technogym, cours collectifs, squash, aquagym, danse et pôle santé.",
+                        "image": "https://www.hallb.fr/favicon/og-image.jpg",
+                        "logo": "https://www.hallb.fr/images/logo.png",
                         "address": {
                             "@type": "PostalAddress",
                             "streetAddress": "1 chemin Azord",
@@ -106,6 +126,11 @@ export default function RootLayout({
                         "areaServed": [
                             {"@type": "City", "name": "Nîmes"},
                             {"@type": "City", "name": "Saint Dionisy"},
+                            {"@type": "City", "name": "Calvisson"},
+                            {"@type": "City", "name": "Sommières"},
+                            {"@type": "City", "name": "Quissac"},
+                            {"@type": "City", "name": "Caveirac"},
+                            {"@type": "AdministrativeArea", "name": "Vaunage"},
                             {"@type": "AdministrativeArea", "name": "Gard"}
                         ],
                         "priceRange": "€€",
@@ -124,6 +149,19 @@ export default function RootLayout({
                             "opens": "06:00",
                             "closes": "23:00"
                             }
+                        ],
+                        "amenityFeature": [
+                            {"@type": "LocationFeatureSpecification", "name": "Plateau de musculation", "value": true},
+                            {"@type": "LocationFeatureSpecification", "name": "Espace cardio-training", "value": true},
+                            {"@type": "LocationFeatureSpecification", "name": "Cours collectifs", "value": true},
+                            {"@type": "LocationFeatureSpecification", "name": "Small groups", "value": true},
+                            {"@type": "LocationFeatureSpecification", "name": "Squash", "value": true},
+                            {"@type": "LocationFeatureSpecification", "name": "Aquagym et bassin chauffé", "value": true},
+                            {"@type": "LocationFeatureSpecification", "name": "École de danse", "value": true},
+                            {"@type": "LocationFeatureSpecification", "name": "Pôle santé", "value": true},
+                            {"@type": "LocationFeatureSpecification", "name": "Parking gratuit", "value": true},
+                            {"@type": "LocationFeatureSpecification", "name": "Vestiaires et douches", "value": true},
+                            {"@type": "LocationFeatureSpecification", "name": "Accès 7j/7 de 6h à 23h", "value": true}
                         ]
                         }),
                     }}

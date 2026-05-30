@@ -1,6 +1,7 @@
 "use client"
 
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 import PageStructure from "@/components/ui/page-structure";
 import FormuleOverview from "@/components/tarifs/formule-overview"
@@ -175,6 +176,33 @@ export default function Tarifs() {
                     actionLink="/carte-cadeau"
                     className="mt-content"
                 />
+
+                {/* Contenu SEO */}
+                <Separator/>
+                <section className="w-full max-w-3xl mt-content text-foreground-subdued text-left">
+                    <h2 className="text-foreground-base mb-content">Quel abonnement choisir chez HALL B ?</h2>
+                    <p className="mb-content">
+                        HALL B propose des <strong>formules d&apos;abonnement</strong> adaptées à chaque objectif et
+                        chaque budget, dans sa salle de sport de 2 400 m² à <strong>Saint-Dionisy</strong>, à 15 minutes
+                        de <strong>Nîmes</strong>. La formule <strong>Classic</strong> (à partir de 40€/mois) donne un
+                        accès libre au plateau de musculation et cardio 7j/7 de 6h à 23h. La formule{" "}
+                        <strong>Boost</strong> (à partir de 55€/mois) ajoute l&apos;accès illimité à tous les{" "}
+                        <Link href="/cours" className="text-accent hoverUnderline">cours collectifs</Link> et small groups.
+                    </p>
+                    <p className="mb-content">
+                        Pour la pratique aquatique, la formule <strong>Aqua</strong> inclut le bassin chauffé et les
+                        séances d&apos;aquagym. Besoin de souplesse ? Le <strong>carnet de séances</strong> permet de
+                        venir sans engagement, et la <strong>carte cadeau</strong> est valable sur toutes nos activités.
+                        La <Link href="/squash" className="text-accent hoverUnderline">réservation de squash</Link> se
+                        fait séparément, en ligne.
+                    </p>
+                    <p>
+                        Toutes nos formules sont disponibles <strong>sans engagement, en mensuel ou en annuel</strong>.
+                        Pas encore décidé ? Profitez d&apos;une{" "}
+                        <Link href="/essai-offert" className="text-accent hoverUnderline">séance d&apos;essai offerte</Link>{" "}
+                        pour découvrir la salle avant de vous inscrire.
+                    </p>
+                </section>
             </div>
         </PageStructure>
     );

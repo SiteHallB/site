@@ -15,7 +15,7 @@ export default function ActivityDescription({ title, illustration, path, descrip
                     src={illustration}
                     width={50}
                     height={50}
-                    alt=""
+                    alt={title}
                     className="z-10"
                 />
             </div>
