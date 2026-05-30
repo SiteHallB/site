@@ -1,11 +1,12 @@
 @font-face {
   font-family: FutureTense;
   src: url("/fonts/FutureTense-Regular.woff2") format("woff2");
+  font-display: swap;
 }
 
 @theme {
   --font-futuretense: FutureTense, sans-serif;
-  --font-montserrat: "Montserrat", sans-serif; 
+  --font-montserrat: var(--font-montserrat-loaded), "Montserrat", sans-serif; 
 }
 
 html {

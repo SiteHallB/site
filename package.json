@@ -21,13 +21,10 @@
     "nodemailer": "^7.0.5",
     "react": "19.2.1",
     "react-dom": "19.2.1",
-    "react-hls-player": "^3.0.7",
     "react-markdown": "^10.1.0",
     "react-textarea-autosize": "^8.5.9",
     "sanitize-html": "^2.17.0",
-    "swiper": "^11.2.10",
-    "swipper-react": "^0.1.0",
-    "tarteaucitronjs": "^1.22.0"
+    "swiper": "^11.2.10"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

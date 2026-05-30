@@ -24,6 +24,7 @@ function FlashingBand({ items }: { items: BandElement[] }) {
 
     useGSAP(() => {
         if (!container.current) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         const bandElements = container.current.querySelectorAll(".bandElement");
 
         const tl = gsap.timeline({ repeat: -1 })
@@ -79,6 +80,7 @@ export default function Hero() {
 
     // Parallax
     useGSAP(() => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         const amount = 60;
         gsap.timeline({
             scrollTrigger: {
@@ -107,8 +109,8 @@ export default function Hero() {
         <section id="hero" ref={container} aria-label="Présentation" className="relative w-full min-h-screen">
             {/* Vidéo */}
             <div className="absolute inset-0">
-                <VideoBackground className="block md:hidden" src="https://vz-80ca2e5b-6ca.b-cdn.net/543c7316-c279-43a4-a730-782a53783e41/playlist.m3u8" poster="/images/video-mobile-poster.jpg"/>
-                <VideoBackground className="hidden md:block" src="https://vz-80ca2e5b-6ca.b-cdn.net/5d676075-41e1-410d-9582-bac89110c43b/playlist.m3u8" poster="/images/video-desktop-poster.jpg"/>
+                <VideoBackground className="block md:hidden" activeQuery="(max-width: 767.98px)" src="https://vz-80ca2e5b-6ca.b-cdn.net/543c7316-c279-43a4-a730-782a53783e41/playlist.m3u8" poster="/images/video-mobile-poster.jpg"/>
+                <VideoBackground className="hidden md:block" activeQuery="(min-width: 768px)" src="https://vz-80ca2e5b-6ca.b-cdn.net/5d676075-41e1-410d-9582-bac89110c43b/playlist.m3u8" poster="/images/video-desktop-poster.jpg"/>
             </div>
 
             {/* Texte */}
@@ -128,12 +130,12 @@ export default function Hero() {
                 {/* Bandeau clignotant */}
                 <FlashingBand
                     items={[
-                    { path: "/tarifs/classic", text: "Musculation" }, 
-                    { path: "/tarifs/boost", text: "Fitness" }, 
-                    { path: "/tarifs/aqua", text: "Aqua" }, 
-                    { path: "/squash", text: "Squash" }, 
-                    { path: osteo, text: "Osteo" }, 
-                    { path: "/tarifs/danse", text: "Danse" }, 
+                    { path: "/tarifs/classic", text: "Musculation" },
+                    { path: "/tarifs/boost", text: "Cours collectifs" },
+                    { path: "/tarifs/aqua", text: "Aqua" },
+                    { path: "/squash", text: "Squash" },
+                    { path: osteo, text: "Osteo" },
+                    { path: "/tarifs/danse", text: "Danse" },
                     ]}
                 />
 

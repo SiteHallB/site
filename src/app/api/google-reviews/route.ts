@@ -15,8 +15,6 @@ export async function GET() {
         const res = await fetch(url);
         const data = await res.json();
 
-        console.log(data)
-
         if (!data.result) {
             return NextResponse.json({
                 error: "Google API error",

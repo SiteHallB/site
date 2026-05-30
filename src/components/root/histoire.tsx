@@ -15,6 +15,7 @@ export default function Histoire() {
     const { root_histoire } = useImage();
 
     useGSAP(() => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         // Entre dans l'image et fait apparaitre le texte dessous
         gsap.timeline({
             scrollTrigger: {

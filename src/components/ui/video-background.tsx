@@ -8,6 +8,9 @@ type Props = {
   poster?: string;
   className: string;
   simulateSlowMs?: number; // optionnel pour tests
+  // Media query qui détermine si CE flux doit être chargé (ex. "(min-width: 768px)").
+  // Évite de télécharger les deux vidéos (mobile + desktop) du hero en même temps.
+  activeQuery?: string;
 };
 
 export default function BackgroundVideo({
@@ -15,6 +18,7 @@ export default function BackgroundVideo({
   poster,
   className,
   simulateSlowMs = 0,
+  activeQuery,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [failed, setFailed] = useState(false);
@@ -99,10 +103,22 @@ export default function BackgroundVideo({
       }
     }
 
-    setup();
+    // Ne lance le chargement HLS que si ce flux correspond à la taille d'écran active.
+    const mql = activeQuery ? window.matchMedia(activeQuery) : null;
+    let started = false;
+    const startIfActive = () => {
+      if (started) return;
+      if (mql && !mql.matches) return;
+      started = true;
+      setup();
+    };
+    startIfActive();
+    const onMediaChange = () => startIfActive();
+    mql?.addEventListener("change", onMediaChange);
 
     return () => {
       if (delayTimer) clearTimeout(delayTimer);
+      mql?.removeEventListener("change", onMediaChange);
       video.removeEventListener("loadeddata", onLoadedData);
       video.removeEventListener("playing", onPlaying);
       if (hls) {
@@ -110,7 +126,7 @@ export default function BackgroundVideo({
         hls = null;
       }
     };
-  }, [src, simulateSlowMs]);
+  }, [src, simulateSlowMs, activeQuery]);
 
   if (failed) {
     // Fallback image simple
