@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Hls from "hls.js";
+import type Hls from "hls.js";
 import clsx from "clsx";
 
 type Props = {
@@ -71,15 +71,16 @@ export default function BackgroundVideo({
           return;
         }
 
-        // hls.js
-        if (Hls.isSupported()) {
-          hls = new Hls({ autoStartLoad: false, lowLatencyMode: false });
+        // hls.js — importé à la demande pour alléger le bundle initial
+        const { default: HlsLib } = await import("hls.js");
+        if (HlsLib.isSupported()) {
+          hls = new HlsLib({ autoStartLoad: false, lowLatencyMode: false });
           hls.attachMedia(video);
-          hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+          hls.on(HlsLib.Events.MEDIA_ATTACHED, () => {
             hls!.loadSource(src);
           });
           // une fois le manifest parsé, on démarre réellement le chargement
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          hls.on(HlsLib.Events.MANIFEST_PARSED, () => {
             const start = () => {
               hls?.startLoad();
               // attend "canplay" pour déclencher play → évite écran noir
@@ -92,7 +93,7 @@ export default function BackgroundVideo({
             if (simulateSlowMs > 0) delayTimer = setTimeout(start, simulateSlowMs);
             else start();
           });
-          hls.on(Hls.Events.ERROR, () => setFailed(true));
+          hls.on(HlsLib.Events.ERROR, () => setFailed(true));
           return;
         }
 

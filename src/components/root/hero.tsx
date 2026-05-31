@@ -109,8 +109,8 @@ export default function Hero() {
         <section id="hero" ref={container} aria-label="Présentation" className="relative w-full min-h-screen">
             {/* Vidéo */}
             <div className="absolute inset-0">
-                <VideoBackground className="block md:hidden" activeQuery="(max-width: 767.98px)" src="https://vz-80ca2e5b-6ca.b-cdn.net/543c7316-c279-43a4-a730-782a53783e41/playlist.m3u8" poster="/images/video-mobile-poster.jpg"/>
-                <VideoBackground className="hidden md:block" activeQuery="(min-width: 768px)" src="https://vz-80ca2e5b-6ca.b-cdn.net/5d676075-41e1-410d-9582-bac89110c43b/playlist.m3u8" poster="/images/video-desktop-poster.jpg"/>
+                <VideoBackground className="block md:hidden" activeQuery="(max-width: 767.98px)" src="https://vz-80ca2e5b-6ca.b-cdn.net/543c7316-c279-43a4-a730-782a53783e41/playlist.m3u8" poster="/images/video-mobile-poster.webp"/>
+                <VideoBackground className="hidden md:block" activeQuery="(min-width: 768px)" src="https://vz-80ca2e5b-6ca.b-cdn.net/5d676075-41e1-410d-9582-bac89110c43b/playlist.m3u8" poster="/images/video-desktop-poster.webp"/>
             </div>
 
             {/* Texte */}

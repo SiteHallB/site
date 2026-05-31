@@ -23,6 +23,19 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // Assets statiques (posters, polices) : cache long pour le score Lighthouse.
+        source: "/images/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/fonts/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
     ];
   },
 };

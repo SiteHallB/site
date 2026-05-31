@@ -91,6 +91,22 @@ export default function RootLayout({
                     crossOrigin="anonymous"
                 />
 
+                {/* Précharge l'image LCP du hero (poster vidéo) selon la taille d'écran */}
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/images/video-mobile-poster.webp"
+                    media="(max-width: 767.98px)"
+                    fetchPriority="high"
+                />
+                <link
+                    rel="preload"
+                    as="image"
+                    href="/images/video-desktop-poster.webp"
+                    media="(min-width: 768px)"
+                    fetchPriority="high"
+                />
+
                 {/* 1. Charge la config d'abord */}
                 <Script
                     src="/klaro-config.js"
