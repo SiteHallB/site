@@ -112,10 +112,12 @@ export default function RootLayout({
                     src="/klaro-config.js"
                     strategy="beforeInteractive"
                 />
-                {/* 2. Charge Klaro juste après */}
+                {/* 2. Charge Klaro après l'hydratation : non bloquant pour le rendu.
+                    La config (klaro-config.js, beforeInteractive) est déjà définie,
+                    et GA/hCaptcha restent conditionnés au consentement. */}
                 <Script
                     src="https://cdn.kiprotect.com/klaro/latest/klaro.js"
-                    strategy="beforeInteractive"
+                    strategy="afterInteractive"
                 />
 
                 {/* Schema.org — rendu côté serveur pour être présent dans le HTML initial */}
