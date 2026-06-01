@@ -90,9 +90,13 @@ export default function GoogleReviews() {
                     <StarRating rating={rating}/>
                 </div>
             )}
-            {reviews.map((review, index) => (
-                <Avis key={index} {...review} />
-            ))}
+            {/* min-height : réserve l'espace pour limiter le saut de mise en page (CLS) au chargement.
+                Le fix complet (rendu serveur des avis) reste le point #5 de l'audit. */}
+            <div className="w-full flex flex-col items-center space-y-content min-h-[400px]">
+                {reviews.map((review, index) => (
+                    <Avis key={index} {...review} />
+                ))}
+            </div>
             <p className="text-foreground-subdued textSmall text-center">
                 {"Les avis affichés proviennent de Google et leur sélection est effectuée automatiquement par l'API Google. "}
                 <span>

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Hls from "hls.js";
+import type Hls from "hls.js";
 import clsx from "clsx";
 
 type Props = {
@@ -8,6 +8,9 @@ type Props = {
   poster?: string;
   className: string;
   simulateSlowMs?: number; // optionnel pour tests
+  // Media query qui détermine si CE flux doit être chargé (ex. "(min-width: 768px)").
+  // Évite de télécharger les deux vidéos (mobile + desktop) du hero en même temps.
+  activeQuery?: string;
 };
 
 export default function BackgroundVideo({
@@ -15,6 +18,7 @@ export default function BackgroundVideo({
   poster,
   className,
   simulateSlowMs = 0,
+  activeQuery,
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [failed, setFailed] = useState(false);
@@ -67,15 +71,16 @@ export default function BackgroundVideo({
           return;
         }
 
-        // hls.js
-        if (Hls.isSupported()) {
-          hls = new Hls({ autoStartLoad: false, lowLatencyMode: false });
+        // hls.js — importé à la demande pour alléger le bundle initial
+        const { default: HlsLib } = await import("hls.js");
+        if (HlsLib.isSupported()) {
+          hls = new HlsLib({ autoStartLoad: false, lowLatencyMode: false });
           hls.attachMedia(video);
-          hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+          hls.on(HlsLib.Events.MEDIA_ATTACHED, () => {
             hls!.loadSource(src);
           });
           // une fois le manifest parsé, on démarre réellement le chargement
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          hls.on(HlsLib.Events.MANIFEST_PARSED, () => {
             const start = () => {
               hls?.startLoad();
               // attend "canplay" pour déclencher play → évite écran noir
@@ -88,7 +93,7 @@ export default function BackgroundVideo({
             if (simulateSlowMs > 0) delayTimer = setTimeout(start, simulateSlowMs);
             else start();
           });
-          hls.on(Hls.Events.ERROR, () => setFailed(true));
+          hls.on(HlsLib.Events.ERROR, () => setFailed(true));
           return;
         }
 
@@ -99,10 +104,22 @@ export default function BackgroundVideo({
       }
     }
 
-    setup();
+    // Ne lance le chargement HLS que si ce flux correspond à la taille d'écran active.
+    const mql = activeQuery ? window.matchMedia(activeQuery) : null;
+    let started = false;
+    const startIfActive = () => {
+      if (started) return;
+      if (mql && !mql.matches) return;
+      started = true;
+      setup();
+    };
+    startIfActive();
+    const onMediaChange = () => startIfActive();
+    mql?.addEventListener("change", onMediaChange);
 
     return () => {
       if (delayTimer) clearTimeout(delayTimer);
+      mql?.removeEventListener("change", onMediaChange);
       video.removeEventListener("loadeddata", onLoadedData);
       video.removeEventListener("playing", onPlaying);
       if (hls) {
@@ -110,7 +127,7 @@ export default function BackgroundVideo({
         hls = null;
       }
     };
-  }, [src, simulateSlowMs]);
+  }, [src, simulateSlowMs, activeQuery]);
 
   if (failed) {
     // Fallback image simple

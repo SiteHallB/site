@@ -19,6 +19,7 @@ export default function Valeurs() {
     const { root_valeurs } = useImage();
 
     useGSAP(() => {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         gsap.from(".textValeurs", {
             scrollTrigger: {
                 trigger: ".textValeursHolder", 

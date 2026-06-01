@@ -85,6 +85,13 @@ export default function Footer() {
                         </Clickable>
                         <Email className="w-fit"/>
                         <PhoneNumber className="w-fit"/>
+                        <Clickable
+                            clickableType={{type: "link", path: "/comment-venir"}}
+                            style={{}}
+                            className="hoverUnderline textNormal text-accent w-fit mt-1"
+                        >
+                            Comment venir ?
+                        </Clickable>
                     </div>
                     </div>
                 </div>
@@ -92,6 +99,14 @@ export default function Footer() {
 
             {/* Legal */}
             <div className="z-10 bg-background-base text-foreground-subdued flex flex-col gap-y-contentClose py-contentClose lg:flex-row w-full items-center justify-around">
+                <Clickable
+                    clickableType={{type: "link", path: "/faq"}}
+                    style={{variant: "legal"}}
+                    className="w-fit"
+                >
+                    FAQ
+                </Clickable>
+
                 <Clickable
                     clickableType={{type: "link", path: "/mentions-legales"}}
                     style={{variant: "legal"}}

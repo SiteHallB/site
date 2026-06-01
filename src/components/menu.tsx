@@ -61,13 +61,12 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
     const { menu } = useImage();
 
     const navLinks = [
-        { label: "Accueil", path: "/"}, 
-        { label: "Tarifs", path: "/tarifs"}, 
-        { label: "Essai offert", path: "/essai-offert"}, 
+        { label: "Accueil", path: "/"},
+        { label: "Tarifs", path: "/tarifs"},
         { label: "Carte cadeau", path: "/carte-cadeau"},
-        { label: "Plannings", path: "/plannings"}, 
-        { label: "Natation", path: "/natation-enfant-vaunage"}, 
-        { label: "Nous contacter", path: "/contact"}, 
+        { label: "Plannings", path: "/plannings"},
+        { label: "Nos cours", path: "/cours"},
+        { label: "Nous contacter", path: "/contact"},
     ];
     
     const tl = useRef<gsap.core.Timeline | null>(null);
@@ -76,16 +75,16 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
 
         tl.current = gsap.timeline({ paused: true })
         .to(".menuOverlay", {
-            duration: 1.25, 
-            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", 
+            duration: 1.25,
+            clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
             ease: "power4.inOut",
         })
         .to(".menuItem", {
-            y: 0, 
-            duration: 1, 
-            stagger: 0.15, 
-            ease: "power4.inOut", 
-            delay: -1, 
+            y: 0,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power4.inOut",
+            delay: -1,
         })
 
         tl.current.duration(1);
@@ -119,6 +118,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
                     <div className="w-full overflow-hidden px-content">
                         <Separator className="menuItem"/>
                     </div>
+                    <MenuItem linkInfo={{ path: "/natation-enfant-vaunage", label: "Natation enfant" }} onClick={close}/>
                     <MenuItem linkInfo={{ path: "/squash", label: "Réservation Squash" }} onClick={close}/>
                 </nav>
                 <MenuItem linkInfo={{ path: osteo, label: "Consultation Ostéopathe" }} onClick={close} outside={true}/>
