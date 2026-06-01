@@ -314,7 +314,7 @@ export const COMMUNES: Commune[] = [
                     Vous y trouvez un grand{" "}
                     <Link href="/cours/musculation" className={accent}>plateau de musculation</Link> Panatta &amp;
                     Technogym, des <Link href="/cours" className={accent}>cours collectifs</Link> et small groups, un
-                    bassin de <Link href="/cours/aqua" className={accent}>cours d&apos;aqua</Link> chauffé, deux terrains
+                    bassin de <Link href="/cours/aquagym" className={accent}>cours d&apos;aqua</Link> chauffé, deux terrains
                     de <Link href="/squash" className={accent}>squash</Link>, une école de danse et un pôle santé.
                     Avec un parking gratuit et un accès 7j/7 de 6h à 23h.
                 </p>

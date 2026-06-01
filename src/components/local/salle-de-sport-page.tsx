@@ -194,7 +194,7 @@ export default function SalleDeSportPage({ commune }: { commune: Commune }) {
                             {[
                                 { label: "Nos cours", path: "/cours" },
                                 { label: "Musculation", path: "/cours/musculation" },
-                                { label: "Cours d'aqua", path: "/cours/aqua" },
+                                { label: "Cours d'aqua", path: "/cours/aquagym" },
                                 { label: "Squash", path: "/squash" },
                                 { label: "Tarifs", path: "/tarifs" },
                                 { label: "Plannings", path: "/plannings" },

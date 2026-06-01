@@ -43,7 +43,10 @@ export default function Page() {
                             { "@type": "ListItem", "position": 9, "name": "Zumba", "url": "https://www.hallb.fr/cours/zumba" },
                             { "@type": "ListItem", "position": 10, "name": "Yoga", "url": "https://www.hallb.fr/cours/yoga" },
                             { "@type": "ListItem", "position": 11, "name": "Pilates", "url": "https://www.hallb.fr/cours/pilates" },
-                            { "@type": "ListItem", "position": 12, "name": "Cours d'aqua", "url": "https://www.hallb.fr/cours/aqua" },
+                            { "@type": "ListItem", "position": 12, "name": "Aquagym", "url": "https://www.hallb.fr/cours/aquagym" },
+                            { "@type": "ListItem", "position": 13, "name": "Aquabike", "url": "https://www.hallb.fr/cours/aquabike" },
+                            { "@type": "ListItem", "position": 14, "name": "Aqua Power", "url": "https://www.hallb.fr/cours/aquapower" },
+                            { "@type": "ListItem", "position": 15, "name": "Aqua Mix", "url": "https://www.hallb.fr/cours/aquamix" },
                         ],
                     }),
                 }}
