@@ -35,6 +35,7 @@ type Discipline = {
     href?: string;
     intensite: "Modérée" | "Élevée" | "Très élevée";
     duree: string;
+    accentColor?: "blue";
 };
 
 const DISCIPLINES: Discipline[] = [
@@ -134,24 +135,59 @@ const DISCIPLINES: Discipline[] = [
         duree: "45 min",
     },
     {
-        name: "Cours d'aqua",
-        short: "Aquagym, aquabike, aqua power et aqua mix en bassin chauffé. Sans impact pour les articulations.",
+        name: "Aquagym",
+        short: "Gym tonique en bassin chauffé. Mouvements rythmés, sans impact pour les articulations.",
         Icon: Waves,
-        href: "/cours/aqua",
+        href: "/cours/aquagym",
         intensite: "Modérée",
         duree: "45 min",
+        accentColor: "blue",
+    },
+    {
+        name: "Aquabike",
+        short: "Vélo immergé : cardio intense, jambes galbées et effet anti-cellulite, sans impact.",
+        Icon: Bike,
+        href: "/cours/aquabike",
+        intensite: "Élevée",
+        duree: "45 min",
+        accentColor: "blue",
+    },
+    {
+        name: "Aqua Power",
+        short: "Renforcement aquatique tonique avec accessoires. Tout le corps, sans impact.",
+        Icon: Zap,
+        href: "/cours/aquapower",
+        intensite: "Élevée",
+        duree: "45 min",
+        accentColor: "blue",
+    },
+    {
+        name: "Aqua Mix",
+        short: "La séance complète : gym, vélo et renforcement aquatiques réunis. Variée et sans impact.",
+        Icon: Sparkles,
+        href: "/cours/aquamix",
+        intensite: "Modérée",
+        duree: "45 min",
+        accentColor: "blue",
     },
 ];
 
 function DisciplineCard({ d }: { d: Discipline }) {
+    const blue = d.accentColor === "blue";
+    const iconBg = blue ? "bg-sky-400/15" : "bg-accent/15";
+    const iconText = blue ? "text-sky-400" : "text-accent";
+    const hoverBorder = blue ? "hover:border-sky-400" : "hover:border-accent";
+    const hoverArrow = blue ? "group-hover:text-sky-400" : "group-hover:text-accent";
+    const accentText = blue ? "text-sky-400" : "text-accent";
+
     const inner = (
-        <div className="disciplineCard group relative h-full flex flex-col p-6 bg-background-highlight rounded-xl border border-foreground-subdued/10 hover:border-accent transition-all duration-300 hover:-translate-y-1">
+        <div className={`disciplineCard group relative h-full flex flex-col p-6 bg-background-highlight rounded-xl border border-foreground-subdued/10 ${hoverBorder} transition-all duration-300 hover:-translate-y-1`}>
             <div className="flex flex-row items-start justify-between mb-4">
-                <div className="w-12 h-12 rounded-full bg-accent/15 flex items-center justify-center">
-                    <d.Icon className="size-6 text-accent" />
+                <div className={`w-12 h-12 rounded-full ${iconBg} flex items-center justify-center`}>
+                    <d.Icon className={`size-6 ${iconText}`} />
                 </div>
                 {d.href && (
-                    <span className="text-foreground-subdued group-hover:text-accent transition-colors">
+                    <span className={`text-foreground-subdued ${hoverArrow} transition-colors`}>
                         <ArrowRight className="size-5" />
                     </span>
                 )}
@@ -164,15 +200,15 @@ function DisciplineCard({ d }: { d: Discipline }) {
 
             <div className="flex flex-row gap-3 mt-4 pt-4 border-t border-foreground-subdued/10">
                 <span className="textSmall text-foreground-subdued">
-                    <span className="text-accent">⏱</span> {d.duree}
+                    <span className={accentText}>⏱</span> {d.duree}
                 </span>
                 <span className="textSmall text-foreground-subdued">
-                    <span className="text-accent">🔥</span> {d.intensite}
+                    <span className={accentText}>🔥</span> {d.intensite}
                 </span>
             </div>
 
             {d.href && (
-                <span className="textSmall text-accent mt-3 hoverUnderline w-fit">
+                <span className={`textSmall ${accentText} mt-3 hoverUnderline w-fit`}>
                     Découvrir →
                 </span>
             )}
