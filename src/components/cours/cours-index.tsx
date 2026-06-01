@@ -347,6 +347,53 @@ export default function CoursIndex() {
                 </div>
             </section>
 
+            {/* ======= AQUA HIGHLIGHT ======= */}
+            <section className="w-full bg-background-subdued px-content lg:px-contentLg pb-subSection">
+                <div className="boostHighlight max-w-4xl mx-auto relative overflow-hidden rounded-xl border-2 border-sky-400/40 p-6 lg:p-10 bg-gradient-to-br from-background-highlight to-background-base">
+                    <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-sky-400/10 blur-3xl" />
+                    <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-6">
+                        <div className="w-16 h-16 rounded-full bg-sky-400 flex items-center justify-center shrink-0">
+                            <Waves className="size-8 text-background-base" />
+                        </div>
+                        <div className="flex-grow flex flex-col space-y-2">
+                            <span className="textLeadSmall text-sky-400 tracking-widest">
+                                Formule Aqua
+                            </span>
+                            <h2 className="text-foreground-base">
+                                Une formule 100% aquatique
+                            </h2>
+                            <p className="text-foreground-subdued">
+                                Aquagym, aquabike, aqua power et aqua mix : un
+                                travail tonique et{" "}
+                                <span className="text-sky-400">sans impact</span>{" "}
+                                pour les articulations, dans un bassin intérieur
+                                chauffé. Accessible à tous, sans savoir nager.
+                            </p>
+                            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                                <Link
+                                    href="/tarifs/aqua"
+                                    className="clickableBase flexCenter rounded-full px-3 py-1 textLeadSmall bg-sky-400 text-background-subdued hover:bg-sky-300 transition-colors"
+                                >
+                                    Voir la formule Aqua
+                                </Link>
+                                <Clickable
+                                    clickableType={{
+                                        type: "link",
+                                        path: "/essai-offert",
+                                    }}
+                                    style={{
+                                        variant: "navigationBar",
+                                        color: "primary",
+                                    }}
+                                >
+                                    Séance d&apos;essai offerte
+                                </Clickable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* ======= GRID DISCIPLINES ======= */}
             <section className="w-full px-content lg:px-contentLg py-subSection">
                 <div className="max-w-6xl mx-auto flex flex-col items-center">
