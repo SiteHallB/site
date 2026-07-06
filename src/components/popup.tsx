@@ -4,15 +4,22 @@ import React, { useEffect, useRef, useState } from 'react';
 import Clickable from './ui/clickable';
 import { X } from 'lucide-react';
 
-export default function PopUp() {
+export type PopUpProps = {
+    titre: string;
+    sousTitre: string;
+    texte: string;
+    bouton: { texte: string; url: string };
+    delai: number;
+};
+
+export default function PopUp({ titre, sousTitre, texte, bouton, delai }: PopUpProps) {
     const [isOpen, setIsOpen] = useState(false);
-    const apparitionDelay = 1000;
 
     const timerRef = useRef<NodeJS.Timeout | null>(null);
 
     useEffect(() => {
         function onUserAction() {
-            timerRef.current = setTimeout(() => setIsOpen(true), apparitionDelay);
+            timerRef.current = setTimeout(() => setIsOpen(true), delai);
             window.removeEventListener("click", onUserAction);
             window.removeEventListener("scroll", onUserAction);
             window.removeEventListener("keydown", onUserAction);
@@ -28,7 +35,7 @@ export default function PopUp() {
             window.removeEventListener("keydown", onUserAction);
             if (timerRef.current) clearTimeout(timerRef.current);
         };
-    }, []);
+    }, [delai]);
 
     // Empeche le scroll
     useEffect(() => {
@@ -57,9 +64,9 @@ export default function PopUp() {
                         aria-labelledby="modal-title"
                         aria-describedby="modal-desc"
                     >
-                        <h2 id="modal-title" className="text-center" style={{wordBreak: "normal"}}>Essai Offert</h2>
-                        <p id="modal-desc" className="text-center textSubH2 text-foreground-subdued mb-content">Vous hésitez encore à franchir le pas ?</p>
-                        <p className="text-center text-foreground-subdued mb-content">Profitez d'une séance découverte 100% gratuite pour tester notre salle et vivre l'expérience par vous-même.</p>
+                        <h2 id="modal-title" className="text-center" style={{wordBreak: "normal"}}>{titre}</h2>
+                        <p id="modal-desc" className="text-center textSubH2 text-foreground-subdued mb-content">{sousTitre}</p>
+                        <p className="text-center text-foreground-subdued mb-content">{texte}</p>
                         <Clickable
                             className="absolute top-1 right-1 lg:top-2 lg:right-2 hoverRotate"
                             clickableType={{type: "button", onClick: () => setIsOpen(false)}}
@@ -68,11 +75,11 @@ export default function PopUp() {
                         >
                             <X className="size-6 lg:size-8"/>
                         </Clickable>
-                        <Clickable 
-                            clickableType={{type: "link", path: "/essai-offert", onClick: () => setIsOpen(false)}}
+                        <Clickable
+                            clickableType={{type: "link", path: bouton.url, onClick: () => setIsOpen(false)}}
                             style={{variant:"action", color: "accent"}}
                         >
-                            J'en profite
+                            {bouton.texte}
                         </Clickable>
                     </div>
                 </div>

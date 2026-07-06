@@ -1,63 +1,35 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-    Dumbbell,
-    Users,
-    Waves,
-    Target,
-    SquareParking,
-    Clock,
-    ChevronDown,
-    ChevronRight,
-    MapPin,
-    Phone,
-} from "lucide-react";
+import { ChevronDown, ChevronRight, MapPin, Phone } from "lucide-react";
 
 import PageStructure from "@/components/ui/page-structure";
 import Clickable from "@/components/ui/clickable";
-import { COMMUNES, type Commune } from "@/components/local/communes-data";
+import type { ImageType } from "@/context/image-context";
+import { getIcon } from "@/lib/icons";
 
-const PHONE_DISPLAY = "04 66 19 16 76";
-const PHONE_TEL = "+33466191676";
-const MAP_SRC =
-    "https://maps.google.com/maps?q=1%20chemin%20Azord%2C%2030980%20Saint-Dionisy&z=13&hl=fr&output=embed";
+export type CommuneData = {
+    slug: string;
+    ville: string;
+    h1: string;
+    subtitle: React.ReactNode;
+    intro: React.ReactNode;
+    trajet: React.ReactNode;
+    faq: { question: string; reponse: string }[];
+    autres: { slug: string; linkLabel: string }[];
+    telephone: { affichage: string; tel: string };
+    adresseLigne: string;
+    mapSrc: string;
+    image: ImageType;
+    communs: {
+        ctaTexte: string;
+        ctaBoutonTexte: string;
+        atouts: { titre: string; liste: { icone: string; titre: string; texte: string }[] };
+        decouvrir: { titre: string; liens: { label: string; url: string }[] };
+        autresVilles: { titre: string; texte: string };
+    };
+};
 
-const FEATURES: { icon: React.ElementType; title: string; text: string }[] = [
-    {
-        icon: Dumbbell,
-        title: "2 400 m² d'équipement",
-        text: "Le plus grand plateau du Gard : machines Panatta, cardio Technogym, charges libres et espace cross-training.",
-    },
-    {
-        icon: Users,
-        title: "Cours collectifs & small groups",
-        text: "RPM, Body Pump, Body Attack, Cardio Boxe, PPG, Yoga, CAF, Step, Zumba, Pilates… un planning complet encadré par des coachs diplômés.",
-    },
-    {
-        icon: Waves,
-        title: "Cours d'aqua & piscine chauffée",
-        text: "Un bassin intérieur chauffé pour nos cours d'aqua (aquagym, aquabike…) et l'école de natation des enfants.",
-    },
-    {
-        icon: Target,
-        title: "Deux terrains de squash",
-        text: "Réservation en ligne simple et rapide, pour jouer entre amis ou en compétition.",
-    },
-    {
-        icon: SquareParking,
-        title: "Parking gratuit",
-        text: "Un grand parking gratuit juste devant l'entrée. Zéro stress de stationnement.",
-    },
-    {
-        icon: Clock,
-        title: "7j/7 de 6h à 23h",
-        text: "Accès libre tous les jours, tôt le matin comme tard le soir. À votre rythme.",
-    },
-];
-
-export default function SalleDeSportPage({ commune }: { commune: Commune }) {
-    const others = COMMUNES.filter((c) => c.slug !== commune.slug);
-
+export default function SalleDeSportPage({ data }: { data: CommuneData }) {
     const breadcrumbLd = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -71,8 +43,8 @@ export default function SalleDeSportPage({ commune }: { commune: Commune }) {
             {
                 "@type": "ListItem",
                 position: 2,
-                name: commune.h1,
-                item: `https://www.hallb.fr/${commune.slug}`,
+                name: data.h1,
+                item: `https://www.hallb.fr/${data.slug}`,
             },
         ],
     };
@@ -80,10 +52,10 @@ export default function SalleDeSportPage({ commune }: { commune: Commune }) {
     const faqLd = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: commune.faq.map((f) => ({
+        mainEntity: data.faq.map((f) => ({
             "@type": "Question",
             name: f.question,
-            acceptedAnswer: { "@type": "Answer", text: f.answer },
+            acceptedAnswer: { "@type": "Answer", text: f.reponse },
         })),
     };
 
@@ -93,22 +65,22 @@ export default function SalleDeSportPage({ commune }: { commune: Commune }) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
             />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-            />
+            {data.faq.length > 0 && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+                />
+            )}
 
-            <PageStructure title={commune.h1} subtitle={commune.subtitle}>
+            <PageStructure title={data.h1} subtitle={data.subtitle}>
                 <div className="w-full max-w-4xl mx-auto text-foreground-subdued space-y-16">
                     {/* Intro + image */}
                     <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                        <div>{commune.intro}</div>
+                        <div className="[&_p]:mb-content [&_p:last-child]:mb-0">{data.intro}</div>
                         <div className="aspect-[4/3] rounded-xl overflow-hidden">
                             <Image
-                                src="/images/vue_plateau_1.webp"
-                                alt={`Plateau de musculation de HALL B, salle de sport près de ${commune.ville}`}
-                                width={3024}
-                                height={4032}
+                                {...data.image}
+                                alt={data.image.alt || `Plateau de musculation de HALL B, salle de sport près de ${data.ville}`}
                                 className="object-cover object-center size-full"
                             />
                         </div>
@@ -117,7 +89,7 @@ export default function SalleDeSportPage({ commune }: { commune: Commune }) {
                     {/* CTA principal */}
                     <section className="bg-background-highlight rounded-xl p-6 flex flex-col items-center text-center gap-4">
                         <p className="textLead text-foreground-base">
-                            Envie d&apos;essayer&nbsp;? Votre première séance est offerte.
+                            {data.communs.ctaTexte}
                         </p>
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                             <Clickable
@@ -126,14 +98,14 @@ export default function SalleDeSportPage({ commune }: { commune: Commune }) {
                                 className="flexCenter gap-2"
                             >
                                 <MapPin className="size-5" />
-                                Je profite de l&apos;essai offert
+                                {data.communs.ctaBoutonTexte}
                             </Clickable>
                             <a
-                                href={`tel:${PHONE_TEL}`}
+                                href={`tel:${data.telephone.tel}`}
                                 className="clickableBase hoverPrimary text-foreground-base outline-[2px] outline-offset-[-2px] outline-foreground-base rounded-full px-4 py-2 textLead flexCenter gap-2"
                             >
                                 <Phone className="size-5" />
-                                {PHONE_DISPLAY}
+                                {data.telephone.affichage}
                             </a>
                         </div>
                     </section>
@@ -142,13 +114,13 @@ export default function SalleDeSportPage({ commune }: { commune: Commune }) {
                     <section>
                         <h2 className="text-foreground-base mb-content flex items-center gap-2">
                             <MapPin className="text-accent size-7 shrink-0" />
-                            Comment venir depuis {commune.ville}
+                            Comment venir depuis {data.ville}
                         </h2>
-                        <div className="mb-content">{commune.trajet}</div>
+                        <div className="mb-content">{data.trajet}</div>
                         <div className="aspect-video rounded-xl overflow-hidden">
                             <iframe
-                                title={`Itinéraire vers HALL B depuis ${commune.ville}`}
-                                src={MAP_SRC}
+                                title={`Itinéraire vers HALL B depuis ${data.ville}`}
+                                src={data.mapSrc}
                                 className="w-full h-full"
                                 style={{ border: 0 }}
                                 loading="lazy"
@@ -157,7 +129,7 @@ export default function SalleDeSportPage({ commune }: { commune: Commune }) {
                             />
                         </div>
                         <p className="textSmall mt-4">
-                            HALL B — 1 chemin Azord, 30980 Saint-Dionisy.{" "}
+                            HALL B — {data.adresseLigne}.{" "}
                             <Link href="/comment-venir" className="text-accent hoverUnderline">
                                 Voir tous les itinéraires et horaires
                             </Link>
@@ -166,93 +138,94 @@ export default function SalleDeSportPage({ commune }: { commune: Commune }) {
                     </section>
 
                     {/* Différenciateurs */}
-                    <section>
-                        <h2 className="text-foreground-base mb-subTitle text-center">
-                            Pourquoi choisir HALL B&nbsp;?
-                        </h2>
-                        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none">
-                            {FEATURES.map((f) => {
-                                const Icon = f.icon;
-                                return (
-                                    <li
-                                        key={f.title}
-                                        className="bg-background-highlight rounded-xl p-6 flex flex-col gap-2"
-                                    >
-                                        <Icon className="text-accent size-8" />
-                                        <p className="text-foreground-base font-semibold">{f.title}</p>
-                                        <p className="textSmall">{f.text}</p>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </section>
+                    {data.communs.atouts.liste.length > 0 && (
+                        <section>
+                            <h2 className="text-foreground-base mb-subTitle text-center">
+                                {data.communs.atouts.titre}
+                            </h2>
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 list-none">
+                                {data.communs.atouts.liste.map((f) => {
+                                    const Icon = getIcon(f.icone);
+                                    return (
+                                        <li
+                                            key={f.titre}
+                                            className="bg-background-highlight rounded-xl p-6 flex flex-col gap-2"
+                                        >
+                                            <Icon className="text-accent size-8" />
+                                            <p className="text-foreground-base font-semibold">{f.titre}</p>
+                                            <p className="textSmall">{f.texte}</p>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                        </section>
+                    )}
 
                     {/* Liens activités */}
-                    <section className="text-center">
-                        <h2 className="text-foreground-base mb-subTitle">Découvrir HALL B</h2>
-                        <div className="flex flex-wrap justify-center gap-3">
-                            {[
-                                { label: "Nos cours", path: "/cours" },
-                                { label: "Musculation", path: "/cours/musculation" },
-                                { label: "Cours d'aqua", path: "/cours/aquagym" },
-                                { label: "Squash", path: "/squash" },
-                                { label: "Tarifs", path: "/tarifs" },
-                                { label: "Plannings", path: "/plannings" },
-                            ].map((l) => (
-                                <Clickable
-                                    key={l.path}
-                                    clickableType={{ type: "link", path: l.path }}
-                                    style={{ variant: "navigationBar", color: "primary" }}
-                                    className="flexCenter gap-1"
-                                >
-                                    {l.label}
-                                    <ChevronRight className="size-4" />
-                                </Clickable>
-                            ))}
-                        </div>
-                    </section>
+                    {data.communs.decouvrir.liens.length > 0 && (
+                        <section className="text-center">
+                            <h2 className="text-foreground-base mb-subTitle">{data.communs.decouvrir.titre}</h2>
+                            <div className="flex flex-wrap justify-center gap-3">
+                                {data.communs.decouvrir.liens.map((l) => (
+                                    <Clickable
+                                        key={l.url}
+                                        clickableType={{ type: "link", path: l.url }}
+                                        style={{ variant: "navigationBar", color: "primary" }}
+                                        className="flexCenter gap-1"
+                                    >
+                                        {l.label}
+                                        <ChevronRight className="size-4" />
+                                    </Clickable>
+                                ))}
+                            </div>
+                        </section>
+                    )}
 
                     {/* FAQ */}
-                    <section>
-                        <h2 className="text-foreground-base mb-subTitle text-center">Questions fréquentes</h2>
-                        <ul className="list-none space-y-3">
-                            {commune.faq.map((f) => (
-                                <li key={f.question} className="bg-background-highlight rounded-xl">
-                                    <details className="group">
-                                        <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-4 flex items-center justify-between gap-4 text-foreground-base font-semibold">
-                                            {f.question}
-                                            <ChevronDown className="text-accent size-5 shrink-0 transition-transform group-open:rotate-180" />
-                                        </summary>
-                                        <p className="px-4 pb-4 textSmall">{f.answer}</p>
-                                    </details>
-                                </li>
-                            ))}
-                        </ul>
-                    </section>
+                    {data.faq.length > 0 && (
+                        <section>
+                            <h2 className="text-foreground-base mb-subTitle text-center">Questions fréquentes</h2>
+                            <ul className="list-none space-y-3">
+                                {data.faq.map((f) => (
+                                    <li key={f.question} className="bg-background-highlight rounded-xl">
+                                        <details className="group">
+                                            <summary className="cursor-pointer list-none [&::-webkit-details-marker]:hidden p-4 flex items-center justify-between gap-4 text-foreground-base font-semibold">
+                                                {f.question}
+                                                <ChevronDown className="text-accent size-5 shrink-0 transition-transform group-open:rotate-180" />
+                                            </summary>
+                                            <p className="px-4 pb-4 textSmall">{f.reponse}</p>
+                                        </details>
+                                    </li>
+                                ))}
+                            </ul>
+                        </section>
+                    )}
 
                     {/* Autres villes */}
-                    <section className="text-center">
-                        <h2 className="text-foreground-base mb-content">
-                            HALL B, votre salle de sport dans tout le bassin nîmois
-                        </h2>
-                        <p className="mb-content">
-                            Notre salle de Saint-Dionisy accueille aussi les sportifs de&nbsp;:
-                        </p>
-                        <nav
-                            aria-label="Autres villes desservies par HALL B"
-                            className="flex flex-wrap justify-center gap-3"
-                        >
-                            {others.map((o) => (
-                                <Link
-                                    key={o.slug}
-                                    href={`/${o.slug}`}
-                                    className="bg-background-subdued rounded-full px-4 py-2 text-foreground-base hoverUnderline"
-                                >
-                                    {o.linkLabel}
-                                </Link>
-                            ))}
-                        </nav>
-                    </section>
+                    {data.autres.length > 0 && (
+                        <section className="text-center">
+                            <h2 className="text-foreground-base mb-content">
+                                {data.communs.autresVilles.titre}
+                            </h2>
+                            <p className="mb-content">
+                                {data.communs.autresVilles.texte}
+                            </p>
+                            <nav
+                                aria-label="Autres villes desservies par HALL B"
+                                className="flex flex-wrap justify-center gap-3"
+                            >
+                                {data.autres.map((o) => (
+                                    <Link
+                                        key={o.slug}
+                                        href={`/${o.slug}`}
+                                        className="bg-background-subdued rounded-full px-4 py-2 text-foreground-base hoverUnderline"
+                                    >
+                                        {o.linkLabel}
+                                    </Link>
+                                ))}
+                            </nav>
+                        </section>
+                    )}
                 </div>
             </PageStructure>
         </>

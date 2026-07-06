@@ -1,5 +1,9 @@
 "use client"
 
+/**
+ * Contexte des informations de contact (téléphone, email, horaires…).
+ * Alimenté par le CMS (Réglages → Coordonnées & horaires) depuis le layout serveur.
+ */
 import React, { createContext, useContext, ReactNode } from 'react';
 
 type ContactMap = Record<string, string>;
@@ -8,14 +12,9 @@ const ContactContext = createContext<ContactMap>({});
 
 export function useContact() { return useContext(ContactContext); }
 
-export function ContactProvider({ children }: { children: ReactNode; }) {
+export function ContactProvider({ value, children }: { value: ContactMap; children: ReactNode; }) {
     return (
-        <ContactContext.Provider
-            value={{
-                numero: "04 66 19 16 76", 
-                email: "contact@hallb.fr"
-            }}
-        >
+        <ContactContext.Provider value={value}>
             {children}
         </ContactContext.Provider>
     );

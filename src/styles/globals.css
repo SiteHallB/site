@@ -5,15 +5,18 @@
 @import './swipper.css';
 @import './layout.css';
 
-@theme inline {
+/* Couleurs par défaut du site.
+   Sans « inline », les utilitaires Tailwind référencent var(--color-…) :
+   le back-office (Apparence) peut ainsi surcharger ces variables sur <html>. */
+@theme {
   --color-background-base: #121212;
   --color-background-highlight: #242424;
   --color-background-subdued: #000000;
   --color-foreground-base: #FFFFFF;
   --color-foreground-subdued: #FFFFFF99;
   --color-accent: #E1C340;
-  --color-yes: #15803D; 
-  --color-no: #EF4444; 
+  --color-yes: #15803D;
+  --color-no: #EF4444;
 }
 .hoverUnderline {
     position: relative;

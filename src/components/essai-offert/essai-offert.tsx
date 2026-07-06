@@ -1,12 +1,9 @@
 "use client";
 
 import IdsGroupPage from "@/components/tarifs/ids-group-page";
-import { useFormule } from "@/context/formule-context";
 
-export default function EssaiOffert() {
-    const { seance_decouverte } = useFormule();
-    
+export default function EssaiOffert({ titre, sousTitre, idSportigo }: { titre: string; sousTitre: string; idSportigo: number }) {
     return (
-        <IdsGroupPage revenir={false} title="Essai offert" subtitle={<p>Venez tester la salle gratuitement et sans engagement</p>} ids={[seance_decouverte]}/>
+        <IdsGroupPage revenir={false} title={titre} subtitle={<p>{sousTitre}</p>} ids={[idSportigo]}/>
     );
 }

@@ -11,9 +11,9 @@
     .inputColor:-webkit-autofill:hover,
     .inputColor:-webkit-autofill:focus,
     .inputColor:-webkit-autofill:active {
-        -webkit-text-fill-color: theme('colors.foreground.base') !important;
-        box-shadow: 0 0 0 1000px theme('colors.background-highlight') inset !important;
-        caret-color: theme('colors.foreground.base');
+        -webkit-text-fill-color: var(--color-foreground-base) !important;
+        box-shadow: 0 0 0 1000px var(--color-background-highlight) inset !important;
+        caret-color: var(--color-foreground-base);
         transition: background-color 5000s ease-in-out 0s;
     }
 }

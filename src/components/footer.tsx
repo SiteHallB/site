@@ -7,58 +7,46 @@ import Reseaux from "@/components/reseaux";
 
 import Separator from "@/components/ui/separator";
 import { useLinks } from "@/context/link-context";
+import type { ImageType } from "@/context/image-context";
 
-import GoogleReviews from "@/components/google-reviews";
-import { useImage } from "@/context/image-context";
+import GoogleReviews, { type Temoignage } from "@/components/google-reviews";
 import { Email, PhoneNumber } from "./ui/contact-widget";
 import Horaires from "./horaires";
 
-export default function Footer() {
-    const { pannata, technogym, pallini, adresse } = useLinks();
-    const { logo, pannataLogo, technogymLogo, palliniLogo } = useImage();
+export type FooterData = {
+    logo: ImageType;
+    partenaires: { nom: string; url: string; logo: ImageType }[];
+    adresseAffichage: string;
+    liensLegaux: { label: string; url: string }[];
+    avis: { source: "google" | "manuel"; temoignages: Temoignage[] };
+};
+
+export default function Footer({ data }: { data: FooterData }) {
+    const { adresse } = useLinks();
 
     return (
         <footer className="relative w-full bg-background-subdued pt-content flex flex-col items-center p-content lg:p-contentLg">
             {/* Avis */}
-            <GoogleReviews/>
+            <GoogleReviews source={data.avis.source} temoignages={data.avis.temoignages}/>
 
             <Separator/>
 
             {/* Marques */}
             <div className="z-10 flex w-full py-content space-x-content items-center justify-around">
-                <Clickable
-                    clickableType={{type: "link", path: pannata, outside: true}}
-                    style={{}}
-                    className="min-w-0 max-w-[250px] flex-1"
-                >
-                    <Image
-                        {...pannataLogo}
-                        className="w-full h-auto object-contain"
-                    />
-                    <span className="sr-only">Découvrir Pannata</span>
-                </Clickable>
-                <Clickable
-                    clickableType={{type: "link", path: technogym, outside: true}}
-                    style={{}}
-                    className="min-w-0 max-w-[250px] flex-1"
-                >
-                    <Image
-                        {...technogymLogo}
-                        className="w-full h-auto object-contain"
-                    />
-                    <span className="sr-only">Découvrir Technogym</span>
-                </Clickable>
-                <Clickable
-                    clickableType={{type: "link", path: pallini, outside: true}}
-                    style={{}}
-                    className="min-w-0 max-w-[250px] flex-1"
-                >
-                    <Image
-                        {...palliniLogo}
-                        className="w-full h-auto object-contain"
-                    />
-                    <span className="sr-only">Découvrir Pallini</span>
-                </Clickable>
+                {data.partenaires.map((partenaire, index) => (
+                    <Clickable
+                        key={index}
+                        clickableType={{type: "link", path: partenaire.url, outside: true}}
+                        style={{}}
+                        className="min-w-0 max-w-[250px] flex-1"
+                    >
+                        <Image
+                            {...partenaire.logo}
+                            className="w-full h-auto object-contain"
+                        />
+                        <span className="sr-only">Découvrir {partenaire.nom}</span>
+                    </Clickable>
+                ))}
             </div>
 
             <Separator/>
@@ -76,12 +64,12 @@ export default function Footer() {
                     <div>
                     <p className="text-foreground-base textSubH2 mb-1 lg:mb-contentClose">Où nous trouver ?</p>
                     <div className="text-foreground-subdued flex flex-col">
-                        <Clickable 
+                        <Clickable
                             clickableType={{type: "link", path: adresse, outside: true}}
                             style={{}}
                             className="hoverUnderline textNormal text-foreground-subdued w-fit"
                         >
-                            1 Chem. d'Azord, 30980 Saint-Dionisy
+                            {data.adresseAffichage}
                         </Clickable>
                         <Email className="w-fit"/>
                         <PhoneNumber className="w-fit"/>
@@ -99,30 +87,16 @@ export default function Footer() {
 
             {/* Legal */}
             <div className="z-10 bg-background-base text-foreground-subdued flex flex-col gap-y-contentClose py-contentClose lg:flex-row w-full items-center justify-around">
-                <Clickable
-                    clickableType={{type: "link", path: "/faq"}}
-                    style={{variant: "legal"}}
-                    className="w-fit"
-                >
-                    FAQ
-                </Clickable>
-
-                <Clickable
-                    clickableType={{type: "link", path: "/mentions-legales"}}
-                    style={{variant: "legal"}}
-                    className="w-fit"
-                >
-                    Mentions Légales
-                </Clickable>
-
-                {/* Politique de confidentialité */}
-                <Clickable
-                    clickableType={{type: "link", path: "/politique-confidentialite"}}
-                    style={{variant: "legal"}}
-                    className="w-fit"
-                >
-                    Politique de confidentialité
-                </Clickable>
+                {data.liensLegaux.map((lien, index) => (
+                    <Clickable
+                        key={index}
+                        clickableType={{type: "link", path: lien.url}}
+                        style={{variant: "legal"}}
+                        className="w-fit"
+                    >
+                        {lien.label}
+                    </Clickable>
+                ))}
 
                 {/* Cookies */}
                 <Clickable
@@ -137,7 +111,7 @@ export default function Footer() {
             {/* Hall b en fond */}
             <div className="absolute inset-0 overflow-hidden flexCenter p-contentClose lg:p-content">
                 <Image
-                    {...logo}
+                    {...data.logo}
                     className="max-h-full max-w-full h-auto  opacity-10"
                 />
             </div>

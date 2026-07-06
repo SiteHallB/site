@@ -2,34 +2,38 @@
 
 import Image from "next/image";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
 import Separator from "@/components/ui/separator";
-import { useImage } from "@/context/image-context";
+import type { ImageType } from "@/context/image-context";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Valeurs() {
-    const container = useRef<HTMLDivElement>(null);
+export type ValeursData = {
+    titre: string;
+    image: ImageType;
+    valeurs: string[];
+};
 
-    const { root_valeurs } = useImage();
+export default function Valeurs({ data }: { data: ValeursData }) {
+    const container = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
         gsap.from(".textValeurs", {
             scrollTrigger: {
-                trigger: ".textValeursHolder", 
-                start: () => "top 60%", 
-                end: () => "top 60%", 
+                trigger: ".textValeursHolder",
+                start: () => "top 60%",
+                end: () => "top 60%",
                 toggleActions: "play none none reverse",
-            }, 
-            stagger: 0.1, 
+            },
+            stagger: 0.1,
             yPercent: 130,
-            autoAlpha: 0, 
+            autoAlpha: 0,
             ease: "back",
         })
     })
@@ -38,25 +42,26 @@ export default function Valeurs() {
         <section ref={container} id="valeurs" className="w-full bg-background-base lg:px-40 pb-subSection">
             <div className="w-full bg-background-subdued py-content flex flex-col">
             <h2 className="z-10 notreHistoire text-foreground-base text-center mb-subTitle">
-                Nos Valeurs
+                {data.titre}
             </h2>
             {/* Contenu de la section */}
             <div className="flex flex-col lg:flex-row lg:px-20 space-x-content">
                 <div className="flexCenter w-full mb-content">
                 <div className="max-w-full aspect-square lg:max-w-150 overflow-hidden flexCenter">
-                    <Image 
-                        {...root_valeurs}
+                    <Image
+                        {...data.image}
                         className="min-w-full min-h-full object-center object-cover"
                     />
                 </div>
                 </div>
                 <div className="w-full flexCenter">
                     <div className="textValeursHolder flex flex-col items-center py-content gap-y-contentClose lg:gap-y-contentLg">
-                    <h3 className="text-xl font-futuretense w-full text-center textValeurs text-foreground-base">Convivialité</h3>
-                    <Separator/>
-                    <h3 className="text-xl font-futuretense w-full text-center textValeurs text-foreground-base">Accompagnement</h3>
-                    <Separator/>
-                    <h3 className="text-xl font-futuretense w-full text-center textValeurs text-foreground-base">Entraide</h3>
+                    {data.valeurs.map((valeur, index) => (
+                        <div key={index} className="contents">
+                            {index > 0 && <Separator/>}
+                            <h3 className="text-xl font-futuretense w-full text-center textValeurs text-foreground-base">{valeur}</h3>
+                        </div>
+                    ))}
                     </div>
                 </div>
             </div>

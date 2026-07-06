@@ -1,13 +1,13 @@
 .swiper-button-next {
-  color: theme('colors.accent') !important;
+  color: var(--color-accent) !important;
 }
 
 .swiper-button-prev {
-  color: theme('colors.accent') !important;
+  color: var(--color-accent) !important;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: theme('colors.accent') !important;
+  background-color: var(--color-accent) !important;
 }
 
 .swiper-slide {

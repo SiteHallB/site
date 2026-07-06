@@ -20,7 +20,7 @@ function Star({ half }: { half: boolean }) {
                 size={24}
                 strokeWidth={2}
                 className="text-background-highlight"
-                fill="#E1C340"
+                fill="var(--color-accent)"
             />
         );
     } else {
@@ -29,7 +29,7 @@ function Star({ half }: { half: boolean }) {
                 size={24}
                 strokeWidth={2}
                 className="text-background-highlight"
-                fill="#E1C340"
+                fill="var(--color-accent)"
             />
         );
     }
@@ -64,7 +64,9 @@ function Avis(review: Review) {
     );
 }
 
-export default function GoogleReviews() {
+export type Temoignage = { nom: string; texte: string; note: number };
+
+export default function GoogleReviews({ source = "google", temoignages = [] }: { source?: "google" | "manuel"; temoignages?: Temoignage[] }) {
     const { avis } = useLinks();
 
     const [reviews, setReviews] = useState<Review[]>([]);
@@ -72,6 +74,17 @@ export default function GoogleReviews() {
     const [count, setCount] = useState<number | null>(null);
 
     useEffect(() => {
+        if (source === "manuel") {
+            // Témoignages rédigés dans le back-office (Contenu → Témoignages).
+            setReviews(temoignages.map((t) => ({
+                author_name: t.nom,
+                profile_photo_url: "",
+                rating: t.note,
+                text: t.texte,
+                time: "",
+            })));
+            return;
+        }
         fetch("/api/google-reviews")
             .then(res => res.json())
             .then(data => {
@@ -79,7 +92,7 @@ export default function GoogleReviews() {
                 setRating(data.rating || null);
                 setCount(data.user_ratings_total || null);
             });
-    }, []);
+    }, [source]);
 
     return (
         <div className="z-10 w-full flex flex-col items-center space-y-content">
@@ -97,18 +110,20 @@ export default function GoogleReviews() {
                     <Avis key={index} {...review} />
                 ))}
             </div>
-            <p className="text-foreground-subdued textSmall text-center">
-                {"Les avis affichés proviennent de Google et leur sélection est effectuée automatiquement par l'API Google. "}
-                <span>
-                    <Clickable
-                        clickableType={{type: "link", path: avis, outside: true}}
-                        style={{}}
-                        className="hoverUnderline"
-                    >
-                        <>Tous les avis sont consultables sur <u>Google.</u></>
-                    </Clickable>
-                </span>
-            </p>
+            {source === "google" && (
+                <p className="text-foreground-subdued textSmall text-center">
+                    {"Les avis affichés proviennent de Google et leur sélection est effectuée automatiquement par l'API Google. "}
+                    <span>
+                        <Clickable
+                            clickableType={{type: "link", path: avis, outside: true}}
+                            style={{}}
+                            className="hoverUnderline"
+                        >
+                            <>Tous les avis sont consultables sur <u>Google.</u></>
+                        </Clickable>
+                    </span>
+                </p>
+            )}
             {/* Bouton pour donner son avis */}
             <Clickable
                 clickableType={{type: "link", path: avis, outside: true}}

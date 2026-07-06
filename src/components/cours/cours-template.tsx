@@ -11,7 +11,7 @@ import { ScrollTrigger } from "gsap/all";
 import Clickable from "@/components/ui/clickable";
 import Separator from "@/components/ui/separator";
 import { PhoneNumber } from "@/components/ui/contact-widget";
-import { useImage, ImageType } from "@/context/image-context";
+import { ImageType } from "@/context/image-context";
 
 import {
     MapPin,
@@ -68,8 +68,8 @@ export type Step = { n: string; title: string; text: string };
 export type FAQ = { question: string; answer: React.ReactNode };
 
 export type CoursTemplateProps = {
-    /** Clé d'image dans le contexte (ex: "cours_rpm", "cours_pilates") */
-    imageKey: string;
+    /** Image principale du cours (bandeau + sections) */
+    image: ImageType;
     /** Petit eyebrow au-dessus du H1 — ex: "Cours collectif" */
     eyebrow: string;
     /** Première partie du H1 — ex: "Cours de Pilates" */
@@ -98,10 +98,16 @@ export type CoursTemplateProps = {
     equipmentParagraph2: React.ReactNode;
     /** FAQ items */
     faq: FAQ[];
+    /** Titre de la section localisation (défaut : "À 15 min de Nîmes") */
+    localTitle?: string;
     /** Phrase de localisation (mentionner les villes alentour) */
     localText: React.ReactNode;
     /** Bouton secondaire du hero (défaut : "Voir les plannings" → /plannings) */
     secondaryCta?: { label: string; path: string };
+    /** Encart "Envie d'essayer ?" (modifiable dans le back-office, page Nos cours) */
+    cta?: { titre?: string; texte?: React.ReactNode; boutonTexte?: string };
+    /** Liens "À découvrir aussi" en bas de page */
+    maillage?: { label: string; url: string }[];
 };
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -166,8 +172,7 @@ function FAQItem({ question, answer }: FAQ) {
 
 export default function CoursTemplate(props: CoursTemplateProps) {
     const container = useRef<HTMLDivElement>(null);
-    const allImages = useImage() as Record<string, ImageType>;
-    const image = allImages[props.imageKey] ?? allImages.cours_rpm;
+    const image = props.image;
 
     useGSAP(
         () => {
@@ -447,13 +452,17 @@ export default function CoursTemplate(props: CoursTemplateProps) {
                 </div>
                 <div className="relative z-10 max-w-3xl mx-auto px-content lg:px-contentLg py-subSection flex flex-col items-center text-center space-y-content">
                     <h2 className="text-foreground-base">
-                        Envie d&apos;essayer&nbsp;?
+                        {props.cta?.titre ?? "Envie d'essayer ?"}
                     </h2>
                     <Separator className="!my-2 max-w-20" />
-                    <p className="text-foreground-subdued max-w-xl">
-                        Votre <strong>première séance est offerte</strong>.
-                        Réservez en ligne ou contactez-nous directement.
-                    </p>
+                    <div className="text-foreground-subdued max-w-xl">
+                        {props.cta?.texte ?? (
+                            <p>
+                                Votre <strong>première séance est offerte</strong>.
+                                Réservez en ligne ou contactez-nous directement.
+                            </p>
+                        )}
+                    </div>
                     <div className="flex flex-col sm:flex-row gap-3 pt-4">
                         <Clickable
                             clickableType={{
@@ -463,7 +472,7 @@ export default function CoursTemplate(props: CoursTemplateProps) {
                             style={{ variant: "page", color: "accent" }}
                             className="min-w-[15rem]"
                         >
-                            Réserver ma séance d&apos;essai
+                            {props.cta?.boutonTexte ?? "Réserver ma séance d'essai"}
                         </Clickable>
                         <div className="flexCenter">
                             <PhoneNumber />
@@ -477,7 +486,7 @@ export default function CoursTemplate(props: CoursTemplateProps) {
                 <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
                     <MapPin className="size-10 text-accent mb-4" />
                     <h2 className="text-foreground-base">
-                        À 15 min de Nîmes
+                        {props.localTitle ?? "À 15 min de Nîmes"}
                     </h2>
                     <Separator className="!my-4 max-w-20" />
                     <p className="text-foreground-subdued max-w-2xl mt-2">
@@ -512,30 +521,20 @@ export default function CoursTemplate(props: CoursTemplateProps) {
                         À découvrir aussi
                     </span>
                     <div className="flex flex-wrap justify-center gap-3">
-                        <Link
-                            href="/cours"
-                            className="px-4 py-2 rounded-full border border-foreground-subdued/30 text-foreground-base hover:border-accent hover:text-accent transition-colors textSmall"
-                        >
-                            Tous nos cours
-                        </Link>
-                        <Link
-                            href="/plannings"
-                            className="px-4 py-2 rounded-full border border-foreground-subdued/30 text-foreground-base hover:border-accent hover:text-accent transition-colors textSmall"
-                        >
-                            Planning complet
-                        </Link>
-                        <Link
-                            href="/tarifs/boost"
-                            className="px-4 py-2 rounded-full border border-foreground-subdued/30 text-foreground-base hover:border-accent hover:text-accent transition-colors textSmall"
-                        >
-                            Formule Boost
-                        </Link>
-                        <Link
-                            href="/tarifs"
-                            className="px-4 py-2 rounded-full border border-foreground-subdued/30 text-foreground-base hover:border-accent hover:text-accent transition-colors textSmall"
-                        >
-                            Tous nos tarifs
-                        </Link>
+                        {(props.maillage ?? [
+                            { label: "Tous nos cours", url: "/cours" },
+                            { label: "Planning complet", url: "/plannings" },
+                            { label: "Formule Boost", url: "/tarifs/boost" },
+                            { label: "Tous nos tarifs", url: "/tarifs" },
+                        ]).map((lien, i) => (
+                            <Link
+                                key={i}
+                                href={lien.url}
+                                className="px-4 py-2 rounded-full border border-foreground-subdued/30 text-foreground-base hover:border-accent hover:text-accent transition-colors textSmall"
+                            >
+                                {lien.label}
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </section>

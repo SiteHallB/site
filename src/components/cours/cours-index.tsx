@@ -10,167 +10,41 @@ import { ScrollTrigger } from "gsap/all";
 
 import Clickable from "@/components/ui/clickable";
 import Separator from "@/components/ui/separator";
-import { useImage } from "@/context/image-context";
+import type { ImageType } from "@/context/image-context";
+import { getIcon } from "@/lib/icons";
 
-import {
-    Bike,
-    Music,
-    Dumbbell,
-    Flame,
-    Heart,
-    Activity,
-    Waves,
-    Zap,
-    Sparkles,
-    ArrowRight,
-    Check,
-} from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type Discipline = {
+export type Discipline = {
     name: string;
     short: string;
-    Icon: React.ComponentType<{ className?: string }>;
+    icone: string;
     href?: string;
-    intensite: "Modérée" | "Élevée" | "Très élevée";
+    intensite: string;
     duree: string;
     accentColor?: "blue";
 };
 
-const DISCIPLINES: Discipline[] = [
-    {
-        name: "Musculation",
-        short: "Plateau 2 400 m² équipé Panatta & Technogym. Accès libre 7j/7 de 6h à 23h.",
-        Icon: Dumbbell,
-        href: "/cours/musculation",
-        intensite: "Élevée",
-        duree: "Libre",
-    },
-    {
-        name: "RPM",
-        short: "Vélo indoor coaché en musique. Sprints, montées, jusqu'à 600 kcal par séance.",
-        Icon: Bike,
-        href: "/cours/rpm",
-        intensite: "Très élevée",
-        duree: "45 min",
-    },
-    {
-        name: "Body Pump",
-        short: "Renforcement musculaire complet avec barres lestées sur fond de musique.",
-        Icon: Dumbbell,
-        href: "/cours/body-pump",
-        intensite: "Élevée",
-        duree: "45 min",
-    },
-    {
-        name: "Body Attack",
-        short: "Cardio athlétique haute énergie inspiré des sports. Jusqu'à 600 kcal par séance.",
-        Icon: Activity,
-        href: "/cours/body-attack",
-        intensite: "Très élevée",
-        duree: "45 min",
-    },
-    {
-        name: "Cardio Boxe",
-        short: "Boxe fitness sans contact : frappe, cardio et défoulement. Anti-stress garanti.",
-        Icon: Flame,
-        href: "/cours/cardio-boxe",
-        intensite: "Élevée",
-        duree: "45 min",
-    },
-    {
-        name: "PPG",
-        short: "Préparation physique générale : cardio, force et mobilité. La base de tous les sports.",
-        Icon: Zap,
-        href: "/cours/ppg",
-        intensite: "Élevée",
-        duree: "45 min",
-    },
-    {
-        name: "CAF",
-        short: "Cuisses, Abdos, Fessiers — Renforcement musculaire ciblé du bas du corps.",
-        Icon: Flame,
-        href: "/cours/caf",
-        intensite: "Élevée",
-        duree: "45 min",
-    },
-    {
-        name: "Abdos Flash",
-        short: "Format court et intensif dédié à la sangle abdominale. Idéal sur la pause déjeuner.",
-        Icon: Zap,
-        intensite: "Élevée",
-        duree: "15 min",
-    },
-    {
-        name: "Step",
-        short: "Cours chorégraphié sur step. Travail cardio et coordination en groupe.",
-        Icon: Activity,
-        href: "/cours/step",
-        intensite: "Élevée",
-        duree: "45 min",
-    },
-    {
-        name: "Zumba",
-        short: "Danse fitness aux rythmes latins. Cardio intense déguisé en fête.",
-        Icon: Music,
-        href: "/cours/zumba",
-        intensite: "Élevée",
-        duree: "45 min",
-    },
-    {
-        name: "Yoga",
-        short: "Postures, respiration et relaxation. Souplesse, gainage et sérénité.",
-        Icon: Heart,
-        href: "/cours/yoga",
-        intensite: "Modérée",
-        duree: "45 min",
-    },
-    {
-        name: "Pilates",
-        short: "Renforcement profond, posture, gainage. Travail doux et précis sur la sangle abdominale.",
-        Icon: Sparkles,
-        href: "/cours/pilates",
-        intensite: "Modérée",
-        duree: "45 min",
-    },
-    {
-        name: "Aquagym",
-        short: "Gym tonique en bassin chauffé. Mouvements rythmés, sans impact pour les articulations.",
-        Icon: Waves,
-        href: "/cours/aquagym",
-        intensite: "Modérée",
-        duree: "45 min",
-        accentColor: "blue",
-    },
-    {
-        name: "Aquabike",
-        short: "Vélo immergé : cardio intense, jambes galbées et effet anti-cellulite, sans impact.",
-        Icon: Bike,
-        href: "/cours/aquabike",
-        intensite: "Élevée",
-        duree: "45 min",
-        accentColor: "blue",
-    },
-    {
-        name: "Aqua Power",
-        short: "Renforcement aquatique tonique avec accessoires. Tout le corps, sans impact.",
-        Icon: Zap,
-        href: "/cours/aquapower",
-        intensite: "Élevée",
-        duree: "45 min",
-        accentColor: "blue",
-    },
-    {
-        name: "Aqua Mix",
-        short: "La séance complète : gym, vélo et renforcement aquatiques réunis. Variée et sans impact.",
-        Icon: Sparkles,
-        href: "/cours/aquamix",
-        intensite: "Modérée",
-        duree: "45 min",
-        accentColor: "blue",
-    },
-];
+type Bouton = { texte: string; url: string; style: "primary" | "accent" };
+
+export type CoursIndexData = {
+    hero: { eyebrow: string; h1Top: string; h1Bottom: string; texte: string; image: ImageType };
+    blocsFormules: {
+        eyebrow: string;
+        titre: string;
+        texte: React.ReactNode;
+        couleur: "accent" | "bleu";
+        icone: string;
+        boutons: Bouton[];
+    }[];
+    catalogue: { eyebrow: string; titre: string; texte: string };
+    disciplines: Discipline[];
+    argumentsSection: { titre: string; liste: { titre: string; texte: string }[] };
+    planningCta: { titre: string; texte: string; bouton: Bouton };
+    ctaFinal: { titre: string; texte: React.ReactNode; boutons: Bouton[] };
+};
 
 function DisciplineCard({ d }: { d: Discipline }) {
     const blue = d.accentColor === "blue";
@@ -180,11 +54,13 @@ function DisciplineCard({ d }: { d: Discipline }) {
     const hoverArrow = blue ? "group-hover:text-sky-400" : "group-hover:text-accent";
     const accentText = blue ? "text-sky-400" : "text-accent";
 
+    const Icon = getIcon(d.icone);
+
     const inner = (
         <div className={`disciplineCard group relative h-full flex flex-col p-6 bg-background-highlight rounded-xl border border-foreground-subdued/10 ${hoverBorder} transition-all duration-300 hover:-translate-y-1`}>
             <div className="flex flex-row items-start justify-between mb-4">
                 <div className={`w-12 h-12 rounded-full ${iconBg} flex items-center justify-center`}>
-                    <d.Icon className={`size-6 ${iconText}`} />
+                    <Icon className={`size-6 ${iconText}`} />
                 </div>
                 {d.href && (
                     <span className={`text-foreground-subdued ${hoverArrow} transition-colors`}>
@@ -224,13 +100,55 @@ function DisciplineCard({ d }: { d: Discipline }) {
     );
 }
 
-export default function CoursIndex() {
-    const { root_concept_encadrement, salle_coursco } = useImage();
-    const container = useRef<HTMLDivElement>(null);
+function BlocFormule({ bloc }: { bloc: CoursIndexData["blocsFormules"][number] }) {
+    const bleu = bloc.couleur === "bleu";
+    const Icon = getIcon(bloc.icone);
 
-    // Tolérant : tous les composants n'exposent pas forcément salle_coursco via le provider.
-    // On retombe sur l'image RPM/encadrement si non défini.
-    const heroImage = salle_coursco ?? root_concept_encadrement;
+    return (
+        <section className={`w-full bg-background-subdued px-content lg:px-contentLg ${bleu ? "pb-subSection" : "py-subSection"}`}>
+            <div className={`boostHighlight max-w-4xl mx-auto relative overflow-hidden rounded-xl border-2 ${bleu ? "border-sky-400/40" : "border-accent/40"} p-6 lg:p-10 bg-gradient-to-br from-background-highlight to-background-base`}>
+                <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full ${bleu ? "bg-sky-400/10" : "bg-accent/10"} blur-3xl`} />
+                <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-6">
+                    <div className={`w-16 h-16 rounded-full ${bleu ? "bg-sky-400" : "bg-accent"} flex items-center justify-center shrink-0`}>
+                        <Icon className="size-8 text-background-base" />
+                    </div>
+                    <div className="flex-grow flex flex-col space-y-2">
+                        <span className={`textLeadSmall ${bleu ? "text-sky-400" : "text-accent"} tracking-widest`}>
+                            {bloc.eyebrow}
+                        </span>
+                        <h2 className="text-foreground-base">{bloc.titre}</h2>
+                        <div className="text-foreground-subdued">{bloc.texte}</div>
+                        <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                            {bloc.boutons.map((bouton, i) =>
+                                bleu && bouton.style === "accent" ? (
+                                    <Link
+                                        key={i}
+                                        href={bouton.url}
+                                        className="clickableBase flexCenter rounded-full px-3 py-1 textLeadSmall bg-sky-400 text-background-subdued hover:bg-sky-300 transition-colors"
+                                    >
+                                        {bouton.texte}
+                                    </Link>
+                                ) : (
+                                    <Clickable
+                                        key={i}
+                                        clickableType={{ type: "link", path: bouton.url }}
+                                        style={{ variant: "navigationBar", color: bouton.style }}
+                                    >
+                                        {bouton.texte}
+                                    </Clickable>
+                                ),
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+export default function CoursIndex({ data }: { data: CoursIndexData }) {
+    const container = useRef<HTMLDivElement>(null);
+    const heroImage = data.hero.image;
 
     useGSAP(
         () => {
@@ -316,138 +234,39 @@ export default function CoursIndex() {
 
                 <div className="coursHeroContent relative z-10 w-full px-content lg:px-contentLg pb-subSection pt-32 flex flex-col items-center text-center space-y-4">
                     <span className="textLeadSmall text-accent tracking-widest">
-                        Tous nos cours
+                        {data.hero.eyebrow}
                     </span>
                     <h1 className="text-foreground-base">
-                        Cours collectifs<br />
-                        <span className="text-accent">à Saint Dionisy</span>
+                        {data.hero.h1Top}<br />
+                        <span className="text-accent">{data.hero.h1Bottom}</span>
                     </h1>
                     <p className="text-foreground-subdued max-w-2xl">
-                        Plus de 10 disciplines, des dizaines de séances chaque
-                        semaine. À 15 minutes de Nîmes, dans le Gard, encadrées
-                        par des coachs diplômés.
+                        {data.hero.texte}
                     </p>
                 </div>
             </section>
 
-            {/* ======= BOOST HIGHLIGHT ======= */}
-            <section className="w-full bg-background-subdued px-content lg:px-contentLg py-subSection">
-                <div className="boostHighlight max-w-4xl mx-auto relative overflow-hidden rounded-xl border-2 border-accent/40 p-6 lg:p-10 bg-gradient-to-br from-background-highlight to-background-base">
-                    <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-accent/10 blur-3xl" />
-                    <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-6">
-                        <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center shrink-0">
-                            <Sparkles className="size-8 text-background-base" />
-                        </div>
-                        <div className="flex-grow flex flex-col space-y-2">
-                            <span className="textLeadSmall text-accent tracking-widest">
-                                Formule Boost
-                            </span>
-                            <h2 className="text-foreground-base">
-                                Une seule formule, tous les cours
-                            </h2>
-                            <p className="text-foreground-subdued">
-                                Toutes les disciplines ci-dessous sont
-                                incluses{" "}
-                                dans la formule <strong>Boost</strong> de HALL
-                                B. Musculation, cardio, cours collectifs et
-                                small groups en accès illimité, 7 jours sur 7.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                                <Clickable
-                                    clickableType={{
-                                        type: "link",
-                                        path: "/tarifs/boost",
-                                    }}
-                                    style={{
-                                        variant: "navigationBar",
-                                        color: "accent",
-                                    }}
-                                >
-                                    Voir la formule Boost
-                                </Clickable>
-                                <Clickable
-                                    clickableType={{
-                                        type: "link",
-                                        path: "/essai-offert",
-                                    }}
-                                    style={{
-                                        variant: "navigationBar",
-                                        color: "primary",
-                                    }}
-                                >
-                                    Séance d&apos;essai offerte
-                                </Clickable>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* ======= AQUA HIGHLIGHT ======= */}
-            <section className="w-full bg-background-subdued px-content lg:px-contentLg pb-subSection">
-                <div className="boostHighlight max-w-4xl mx-auto relative overflow-hidden rounded-xl border-2 border-sky-400/40 p-6 lg:p-10 bg-gradient-to-br from-background-highlight to-background-base">
-                    <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-sky-400/10 blur-3xl" />
-                    <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-6">
-                        <div className="w-16 h-16 rounded-full bg-sky-400 flex items-center justify-center shrink-0">
-                            <Waves className="size-8 text-background-base" />
-                        </div>
-                        <div className="flex-grow flex flex-col space-y-2">
-                            <span className="textLeadSmall text-sky-400 tracking-widest">
-                                Formule Aqua
-                            </span>
-                            <h2 className="text-foreground-base">
-                                Une formule 100% aquatique
-                            </h2>
-                            <p className="text-foreground-subdued">
-                                Aquagym, aquabike, aqua power et aqua mix : un
-                                travail tonique et{" "}
-                                <span className="text-sky-400">sans impact</span>{" "}
-                                pour les articulations, dans un bassin intérieur
-                                chauffé. Accessible à tous, sans savoir nager.
-                            </p>
-                            <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                                <Link
-                                    href="/tarifs/aqua"
-                                    className="clickableBase flexCenter rounded-full px-3 py-1 textLeadSmall bg-sky-400 text-background-subdued hover:bg-sky-300 transition-colors"
-                                >
-                                    Voir la formule Aqua
-                                </Link>
-                                <Clickable
-                                    clickableType={{
-                                        type: "link",
-                                        path: "/essai-offert",
-                                    }}
-                                    style={{
-                                        variant: "navigationBar",
-                                        color: "primary",
-                                    }}
-                                >
-                                    Séance d&apos;essai offerte
-                                </Clickable>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* ======= BLOCS FORMULES (Boost, Aqua…) ======= */}
+            {data.blocsFormules.map((bloc, i) => (
+                <BlocFormule key={i} bloc={bloc} />
+            ))}
 
             {/* ======= GRID DISCIPLINES ======= */}
             <section className="w-full px-content lg:px-contentLg py-subSection">
                 <div className="max-w-6xl mx-auto flex flex-col items-center">
                     <span className="textLeadSmall text-accent tracking-widest mb-2">
-                        Le catalogue
+                        {data.catalogue.eyebrow}
                     </span>
                     <h2 className="text-foreground-base text-center">
-                        Nos disciplines
+                        {data.catalogue.titre}
                     </h2>
                     <Separator className="!my-4 max-w-20" />
                     <p className="text-foreground-subdued text-center max-w-2xl">
-                        Du cardio brûle-graisses aux séances bien-être en
-                        passant par le renforcement musculaire — choisissez ce
-                        qui vous correspond.
+                        {data.catalogue.texte}
                     </p>
 
                     <div className="disciplinesGrid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-content w-full mt-content">
-                        {DISCIPLINES.map((d) => (
+                        {data.disciplines.map((d) => (
                             <DisciplineCard key={d.name} d={d} />
                         ))}
                     </div>
@@ -458,49 +277,24 @@ export default function CoursIndex() {
             <section className="w-full bg-background-subdued px-content lg:px-contentLg py-subSection">
                 <div className="max-w-5xl mx-auto flex flex-col items-center">
                     <h2 className="text-foreground-base text-center">
-                        Pourquoi nos cours collectifs&nbsp;?
+                        {data.argumentsSection.titre}
                     </h2>
                     <Separator className="!my-4 max-w-20" />
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-content mt-content w-full">
-                        <div className="flex flex-col items-center text-center p-4">
-                            <div className="w-12 h-12 rounded-full bg-accent/15 flex items-center justify-center mb-3">
-                                <Check className="size-6 text-accent" />
+                        {data.argumentsSection.liste.map((arg, i) => (
+                            <div key={i} className="flex flex-col items-center text-center p-4">
+                                <div className="w-12 h-12 rounded-full bg-accent/15 flex items-center justify-center mb-3">
+                                    <Check className="size-6 text-accent" />
+                                </div>
+                                <h3 className="textSubH2 text-foreground-base mb-2">
+                                    {arg.titre}
+                                </h3>
+                                <p className="text-foreground-subdued textSmall">
+                                    {arg.texte}
+                                </p>
                             </div>
-                            <h3 className="textSubH2 text-foreground-base mb-2">
-                                Coachs diplômés
-                            </h3>
-                            <p className="text-foreground-subdued textSmall">
-                                Tous nos cours sont animés par des
-                                professionnels formés, passionnés et présents
-                                pour booster vos résultats.
-                            </p>
-                        </div>
-                        <div className="flex flex-col items-center text-center p-4">
-                            <div className="w-12 h-12 rounded-full bg-accent/15 flex items-center justify-center mb-3">
-                                <Check className="size-6 text-accent" />
-                            </div>
-                            <h3 className="textSubH2 text-foreground-base mb-2">
-                                Salles dédiées
-                            </h3>
-                            <p className="text-foreground-subdued textSmall">
-                                Salle de cycling, salle de cours collectifs,
-                                salle de danse — chaque discipline a son
-                                espace optimisé.
-                            </p>
-                        </div>
-                        <div className="flex flex-col items-center text-center p-4">
-                            <div className="w-12 h-12 rounded-full bg-accent/15 flex items-center justify-center mb-3">
-                                <Check className="size-6 text-accent" />
-                            </div>
-                            <h3 className="textSubH2 text-foreground-base mb-2">
-                                Petits groupes
-                            </h3>
-                            <p className="text-foreground-subdued textSmall">
-                                Effectifs contrôlés pour un suivi attentif et
-                                des conseils personnalisés du coach.
-                            </p>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -509,20 +303,18 @@ export default function CoursIndex() {
             <section className="w-full px-content lg:px-contentLg py-subSection">
                 <div className="max-w-3xl mx-auto flex flex-col items-center text-center space-y-content">
                     <h2 className="text-foreground-base">
-                        Quand viennent les cours&nbsp;?
+                        {data.planningCta.titre}
                     </h2>
                     <Separator className="!my-2 max-w-20" />
                     <p className="text-foreground-subdued">
-                        Plusieurs séances chaque jour, du lundi au dimanche.
-                        Matin, midi et soir. Consultez le planning complet
-                        pour trouver le créneau qui vous convient.
+                        {data.planningCta.texte}
                     </p>
                     <Clickable
-                        clickableType={{ type: "link", path: "/plannings" }}
-                        style={{ variant: "page", color: "accent" }}
+                        clickableType={{ type: "link", path: data.planningCta.bouton.url }}
+                        style={{ variant: "page", color: data.planningCta.bouton.style }}
                         className="min-w-[15rem]"
                     >
-                        Voir le planning complet
+                        {data.planningCta.bouton.texte}
                     </Clickable>
                 </div>
             </section>
@@ -538,34 +330,23 @@ export default function CoursIndex() {
                 </div>
                 <div className="relative z-10 max-w-3xl mx-auto px-content lg:px-contentLg py-subSection flex flex-col items-center text-center space-y-content">
                     <h2 className="text-foreground-base">
-                        Envie d&apos;essayer&nbsp;?
+                        {data.ctaFinal.titre}
                     </h2>
                     <Separator className="!my-2 max-w-20" />
-                    <p className="text-foreground-subdued max-w-xl">
-                        Votre <strong>première séance est offerte</strong> sur
-                        n&apos;importe lequel de nos cours collectifs.
-                    </p>
+                    <div className="text-foreground-subdued max-w-xl">
+                        {data.ctaFinal.texte}
+                    </div>
                     <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                        <Clickable
-                            clickableType={{
-                                type: "link",
-                                path: "/essai-offert",
-                            }}
-                            style={{ variant: "page", color: "accent" }}
-                            className="min-w-[15rem]"
-                        >
-                            Réserver mon essai
-                        </Clickable>
-                        <Clickable
-                            clickableType={{
-                                type: "link",
-                                path: "/tarifs/boost",
-                            }}
-                            style={{ variant: "page", color: "primary" }}
-                            className="min-w-[15rem]"
-                        >
-                            Voir la formule Boost
-                        </Clickable>
+                        {data.ctaFinal.boutons.map((bouton, i) => (
+                            <Clickable
+                                key={i}
+                                clickableType={{ type: "link", path: bouton.url }}
+                                style={{ variant: "page", color: bouton.style }}
+                                className="min-w-[15rem]"
+                            >
+                                {bouton.texte}
+                            </Clickable>
+                        ))}
                     </div>
                 </div>
             </section>

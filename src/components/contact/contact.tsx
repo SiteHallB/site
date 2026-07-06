@@ -1,6 +1,5 @@
 "use client";
 
-import "@/styles/contact.css";
 import PageStructure from "@/components/ui/page-structure";
 import Reseaux from "@/components/reseaux";
 import ContactForm from "@/components/contact/contact-form"
@@ -9,11 +8,11 @@ import Clickable from "@/components/ui/clickable";
 import { useRef } from "react";
 import Horaires from "../horaires";
 
-export default function Contact() {
+export default function Contact({ titre = "Contact", lienAideTexte = "Besoin d'aide ?" }: { titre?: string; lienAideTexte?: string }) {
     const contactFormContainer = useRef<HTMLDivElement>(null);
 
     return (
-        <PageStructure title="Contact" subtitle={
+        <PageStructure title={titre} subtitle={
             <Clickable
                 clickableType={{type: "button", onClick: () => {contactFormContainer.current?.scrollIntoView({
                     behavior: "smooth",
@@ -22,7 +21,7 @@ export default function Contact() {
                 style={{}}
                 className="hoverUnderline"
             >
-                <p>Besoin d'aide ?</p>
+                <p>{lienAideTexte}</p>
             </Clickable>
         }>
             {/* Coordonnées */}

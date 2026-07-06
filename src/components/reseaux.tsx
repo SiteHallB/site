@@ -6,7 +6,7 @@ import clsx from "clsx";
 import { Facebook, Instagram } from "lucide-react";
 
 export default function Reseaux({ className, title }: { className?: string, title?: string }) {
-    const { instagram: instagramPath, facebook: facebookPath } = useLinks();
+    const { instagram: instagramPath, facebook: facebookPath, instagramLabel, facebookLabel } = useLinks();
 
     return (
         <div className={clsx(className, "lg:items-center flex flex-col")}>
@@ -18,7 +18,7 @@ export default function Reseaux({ className, title }: { className?: string, titl
                 className="w-fit flex flex-row gap-x-1 items-center"
             >
                 <Instagram className="text-foreground-subdued size-4 lg:size-6"/>
-                <p>hallb.fr</p>
+                <p>{instagramLabel || "hallb.fr"}</p>
             </Clickable>
             <Clickable
                 clickableType={{type: "link", path: facebookPath, outside: true}}
@@ -26,7 +26,7 @@ export default function Reseaux({ className, title }: { className?: string, titl
                 className="w-fit flex flex-row gap-x-1 items-center"
             >
                 <Facebook className="text-foreground-subdued size-4 lg:size-6"/>
-                <p>HALL B</p>
+                <p>{facebookLabel || "HALL B"}</p>
             </Clickable>
             </div>
         </div>
