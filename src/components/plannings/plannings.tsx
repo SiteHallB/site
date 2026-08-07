@@ -54,7 +54,7 @@ function FullPlannings(
 
 export default function Plannings() {
     const {
-        plannings_desktop, plannings_lundi, plannings_mardi, plannings_mercredi, plannings_jeudi, plannings_vendredi, plannings_samedi, plannings_danse, 
+        plannings_desktop, plannings_lundi, plannings_mardi, plannings_mercredi, plannings_jeudi, plannings_vendredi, plannings_samedi,
         plannings_aqua_desktop, plannings_aqua_lundi, plannings_aqua_mardi, plannings_aqua_mercredi, plannings_aqua_jeudi, plannings_aqua_vendredi, 
     } = useImage();
 
@@ -80,15 +80,6 @@ export default function Plannings() {
                 jeudi={plannings_aqua_jeudi}
                 vendredi={plannings_aqua_vendredi}
             />
-
-            <div className="w-full flex flex-col items-center gap-content">
-            <h2 className="text-center">Danse</h2>
-            <div className="bg-background-highlight rounded-xl w-full p-1 max-w-120">
-            <img
-                {...plannings_danse}
-            />
-            </div>
-            </div>
 
             <Separator/>
             
