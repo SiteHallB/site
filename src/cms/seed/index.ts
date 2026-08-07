@@ -512,7 +512,6 @@ async function seedPagesSpeciales(payload: Payload) {
                         { image: mediaIds.pl_aqua_vendredi },
                     ],
                 },
-                { titre: "Danse", imageBureau: mediaIds.pl_danse, jours: [] },
             ],
             activites: [
                 { titre: "Pilates", illustration: mediaIds.ic_yoga, url: "/tarifs/boost", description: "Renforcez vos muscles en profondeur, améliorez votre posture et gagnez en souplesse grâce à des mouvements doux mais redoutablement efficaces." },
