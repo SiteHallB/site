@@ -227,6 +227,11 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
 
                 squash: images.squash,
                 bebe_nageur: images.bebe_nageur,
+
+                enfants_hero: images.piscine,
+                enfants_natation: images.bebe_nageur,
+                enfants_ppg_kid: images.salle_coursco,
+                enfants_ppg_teen: images.sacs_boxe_2,
                 cours_rpm: images.salle_rpm,
                 salle_coursco: images.salle_coursco,
                 cours_pilates: images.salle_coursco,

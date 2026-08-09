@@ -118,7 +118,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
                     <div className="w-full overflow-hidden px-content">
                         <Separator className="menuItem"/>
                     </div>
-                    <MenuItem linkInfo={{ path: "/natation-enfant-vaunage", label: "Natation enfant" }} onClick={close}/>
+                    <MenuItem linkInfo={{ path: "/enfants-ados", label: "Enfants / Adolescents" }} onClick={close}/>
                     <MenuItem linkInfo={{ path: "/squash", label: "Réservation Squash" }} onClick={close}/>
                 </nav>
                 <MenuItem linkInfo={{ path: osteo, label: "Consultation Ostéopathe" }} onClick={close} outside={true}/>
