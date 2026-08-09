@@ -46,7 +46,10 @@ export function FormuleProvider({ children }: { children: ReactNode; }) {
                 aqua_boost_mensuel: 21471,
                 aqua_boost_annuel: 19917, 
 
-                rock_1: 19926, 
+                ppg_kid: 37540,
+                ppg_teen: 37541,
+
+                rock_1: 19926,
                 rock_2: 21547, 
                 salsa_1: 21548, 
                 salsa_2: 21549, 
