@@ -166,6 +166,12 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
             alt: "Planning vendredi aqua HALL B"
         },
 
+        salle_ppg_enfants: {
+            src: "/images/salle_ppg_enfants.webp",
+            width: 968,
+            height: 1086,
+            alt: "Salle small groups HALL B avec TRX, anneaux et matériel ludique pour les cours enfants et ados"
+        },
         squash: {
             src: `/images/squash.webp`,
             alt: "Terrain de squash HALL B",
@@ -233,8 +239,9 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
 
                 enfants_hero: images.piscine,
                 enfants_natation: images.bebe_nageur,
-                enfants_ppg_kid: images.salle_coursco,
-                enfants_ppg_teen: images.sacs_boxe_2,
+                enfants_ppg_kid: images.salle_ppg_enfants,
+                enfants_ppg_teen: images.salle_ppg_enfants,
+                salle_ppg_enfants: images.salle_ppg_enfants,
                 cours_rpm: images.salle_rpm,
                 salle_coursco: images.salle_coursco,
                 cours_pilates: images.salle_coursco,

@@ -29,7 +29,7 @@ function QueryFilter({ path, option, text }: { path: string; option: string, tex
 export default function Tarifs() {
     const { tarifs_classic_1, tarifs_classic_2, 
             tarifs_boost_1, tarifs_boost_2, tarifs_boost_3, tarifs_boost_4, tarifs_boost_5, 
-            tarifs_aqua_1, tarifs_aqua_2, tarifs_aqua_3, tarifs_danse_1, squash, bebe_nageur, salle_coursco } = useImage();
+            tarifs_aqua_1, tarifs_aqua_2, tarifs_aqua_3, tarifs_danse_1, squash, bebe_nageur, salle_ppg_enfants } = useImage();
 
     return (
         <PageStructure title="Tarifs"
@@ -144,7 +144,7 @@ export default function Tarifs() {
                         title="PPG Kid"
                         subtitle="Préparation physique 6-9 ans"
                         prix={<p className="textSmall"><span className="textSubH2">300€</span>/an</p>}
-                        images={[ salle_coursco, ]}
+                        images={[ salle_ppg_enfants, ]}
                         checkDescription={[
                             <p>Mercredi de <span className="text-accent">16h00 à 16h45</span></p>,
                             <p>Motricité, coordination et équilibre</p>,
@@ -161,7 +161,7 @@ export default function Tarifs() {
                         title="PPG Teen"
                         subtitle="Préparation physique 10-14 ans"
                         prix={<p className="textSmall"><span className="textSubH2">300€</span>/an</p>}
-                        images={[ tarifs_boost_5, ]}
+                        images={[ salle_ppg_enfants, ]}
                         checkDescription={[
                             <p>Mercredi de <span className="text-accent">17h00 à 17h45</span></p>,
                             <p>Force, endurance et bons gestes sportifs</p>,
