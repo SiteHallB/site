@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 810 1013" width="1080" height="1350">
+<rect width="810" height="1013" fill="#000"/>
+<text x="405" y="125" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="58" font-weight="800" fill="#fff" letter-spacing="6" text-anchor="middle">VENDREDI</text>
+<rect x="345" y="147" width="120" height="5" rx="2.5" fill="#e1c340"/>
+<rect x="50.0" y="292" width="710.0" height="110" rx="9" fill="#e1c340"/>
+<text x="405.0" y="343" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">CARDIO BOXE</text>
+<text x="405.0" y="372" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">09h30-10h15</text>
+<rect x="50.0" y="418" width="710.0" height="110" rx="9" fill="#e1c340"/>
+<text x="405.0" y="469" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">TRX</text>
+<text x="405.0" y="498" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">10h30-11h15</text>
+<line x1="50" y1="560" x2="760" y2="560" stroke="#fff" stroke-width="2"/>
+<rect x="50.0" y="592" width="352.5" height="110" rx="9" fill="#e1c340"/>
+<text x="226.3" y="643" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="23" font-weight="800" fill="#000" text-anchor="middle">PPG</text>
+<text x="226.3" y="669" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#000" text-anchor="middle">18h00-18h45</text>
+<rect x="407.5" y="592" width="352.5" height="110" rx="9" fill="#e1c340"/>
+<text x="583.8" y="643" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="23" font-weight="800" fill="#000" text-anchor="middle">CARDIO BOXE</text>
+<text x="583.8" y="669" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#000" text-anchor="middle">18h00-18h45</text>
+<rect x="50.0" y="718" width="710.0" height="110" rx="9" fill="#ffffff"/>
+<text x="405.0" y="769" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">PILATES</text>
+<text x="405.0" y="798" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
+<rect x="115" y="945" width="30" height="16" rx="4" fill="#ffffff"/>
+<text x="155" y="958" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="17" font-weight="600" fill="#9ca3af">COURS CO</text>
+<rect x="415" y="945" width="30" height="16" rx="4" fill="#e1c340"/>
+<text x="455" y="958" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="17" font-weight="600" fill="#9ca3af">SMALLGROUPS</text>
+<rect x="115" y="975" width="30" height="16" rx="4" fill="#9bd37a"/>
+<text x="155" y="988" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="17" font-weight="600" fill="#9ca3af">ENFANTS/ADOS</text>
+<rect x="415" y="975" width="30" height="16" rx="4" fill="#b5a0e0"/>
+<text x="455" y="988" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="17" font-weight="600" fill="#9ca3af">DANSE</text>
+</svg>

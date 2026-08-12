@@ -61,7 +61,7 @@ export default function Plannings() {
     return (
         <PageStructure title="Plannings" subtitle={<p>Consultez nos nombreuses activités</p>}>
             <FullPlannings
-                title="Cours co - Small Groups"
+                title="Cours co · SmallGroups · Danse · Enfants/Ados"
                 desktop={plannings_desktop}
                 lundi={plannings_lundi}
                 mardi={plannings_mardi}

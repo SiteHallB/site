@@ -12,6 +12,9 @@ export function useImage() { return useContext(ImageContext); }
 export function ImageProvider({ children }: { children: ReactNode; }) {
     // const plannings_url = `https://backoffice-two-phi.vercel.app/assets/slots`;
     const plannings_url = `/images/plannings`;
+    // Les images sont servies avec un cache immuable d'un an : incrémenter cette
+    // version à chaque régénération du planning pour forcer le rafraîchissement.
+    const planning_v = `?v=3`;
 
     const images = {
         vue_plateau_1: {
@@ -107,31 +110,31 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
 
 
         plannings_desktop: {
-            src: `${plannings_url}/bureau.svg`,
-            alt: "Planning activités HALL B"
+            src: `${plannings_url}/planning2026_bureau.svg${planning_v}`,
+            alt: "Planning 2026-2027 des activités HALL B : cours collectifs, smallgroups, danse et enfants/ados"
         },
         plannings_lundi: {
-            src: `${plannings_url}/lundi.svg`,
+            src: `${plannings_url}/planning2026_lundi.svg${planning_v}`,
             alt: "Planning lundi activités HALL B"
         },
         plannings_mardi: {
-            src: `${plannings_url}/mardi.svg`,
+            src: `${plannings_url}/planning2026_mardi.svg${planning_v}`,
             alt: "Planning mardi activités HALL B"
         },
         plannings_mercredi: {
-            src: `${plannings_url}/mercredi.svg`,
+            src: `${plannings_url}/planning2026_mercredi.svg${planning_v}`,
             alt: "Planning mercredi activités HALL B"
         },
         plannings_jeudi: {
-            src: `${plannings_url}/jeudi.svg`,
+            src: `${plannings_url}/planning2026_jeudi.svg${planning_v}`,
             alt: "Planning jeudi activités HALL B"
         },
         plannings_vendredi: {
-            src: `${plannings_url}/vendredi.svg`,
+            src: `${plannings_url}/planning2026_vendredi.svg${planning_v}`,
             alt: "Planning vendredi activités HALL B"
         },
         plannings_samedi: {
-            src: `${plannings_url}/samedi.svg`,
+            src: `${plannings_url}/planning2026_samedi.svg${planning_v}`,
             alt: "Planning samedi activités HALL B"
         },
         plannings_danse: {
