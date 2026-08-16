@@ -127,13 +127,13 @@ export default function Tarifs() {
                     <FormuleOverview
                         title="Danse"
                         subtitle="1h/semaine"
-                        prix={<p className="textSmall"><span className="textSubH2">250€</span>/an</p>}
+                        prix={<p className="textSmall"><span className="textSubH2">220€</span>/an</p>}
                         images={[ tarifs_danse_1, ]}
                         checkDescription={[
                             <p>Niveau débutant et avancé</p>, 
                             <p>Progression accompagnée sur l'année</p>, 
                         ]}
-                        plusDescription={[<p><span className="text-accent">150€</span>/an pour 1 danse supplémentaire</p>]}
+                        plusDescription={[<p><span className="text-accent">180€</span>/an pour 1 danse supplémentaire</p>]}
                         actionLink="/tarifs/danse"
                     />
                     </li>

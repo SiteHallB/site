@@ -12,7 +12,7 @@ export default function Danse() {
         <IdsGroupPage
             title="Danse"
             subtitle={<>
-                <p>La seconde danse pour <span className="text-accent">150€</span> au lieu de 250€. Pour s'inscrire à une seconde danse, veuillez nous contacter directement.</p>
+                <p>La seconde danse pour <span className="text-accent">180€</span> au lieu de 220€. Pour s'inscrire à une seconde danse, veuillez nous contacter directement.</p>
                 <div className="bg-background-highlight p-content rounded-xl flex flex-wrap gap-content mt-content flexCenter w-full">
                 <PhoneNumber/>
                 <Email/>
