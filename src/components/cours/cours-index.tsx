@@ -96,13 +96,6 @@ const DISCIPLINES: Discipline[] = [
         duree: "45 min",
     },
     {
-        name: "Abdos Flash",
-        short: "Format court et intensif dédié à la sangle abdominale. Idéal sur la pause déjeuner.",
-        Icon: Zap,
-        intensite: "Élevée",
-        duree: "15 min",
-    },
-    {
         name: "Step",
         short: "Cours chorégraphié sur step. Travail cardio et coordination en groupe.",
         Icon: Activity,

@@ -245,7 +245,7 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
                 cours_rpm: images.salle_rpm,
                 salle_coursco: images.salle_coursco,
                 cours_pilates: images.salle_coursco,
-                cours_body_pump: images.sacs_boxe_1,
+                cours_body_pump: images.salle_coursco,
                 cours_zumba: images.salle_danse,
                 cours_caf: images.salle_coursco,
                 cours_step: images.salle_coursco,
