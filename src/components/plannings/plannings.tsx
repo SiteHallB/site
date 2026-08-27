@@ -72,7 +72,7 @@ export default function Plannings() {
             />
 
             <FullPlannings
-                title="AQUA"
+                title="AQUA · Adultes & Enfants"
                 desktop={plannings_aqua_desktop}
                 lundi={plannings_aqua_lundi}
                 mardi={plannings_aqua_mardi}

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 810 1013" width="1080" height="1350">
+<rect width="810" height="1013" fill="#000"/>
+<text x="405" y="125" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="58" font-weight="800" fill="#fff" letter-spacing="6" text-anchor="middle">MERCREDI</text>
+<rect x="345" y="147" width="120" height="5" rx="2.5" fill="#e1c340"/>
+<rect x="50.0" y="210" width="710.0" height="79" rx="9" fill="#7cc4f0"/>
+<text x="405.0" y="245.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">AQUAGYM</text>
+<text x="405.0" y="274.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">09h30-10h15</text>
+<rect x="50.0" y="305" width="710.0" height="79" rx="9" fill="#7cc4f0"/>
+<text x="405.0" y="340.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">AQUABIKE</text>
+<text x="405.0" y="369.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">10h30-11h15</text>
+<rect x="50.0" y="401" width="710.0" height="79" rx="9" fill="#fbd4a0"/>
+<text x="405.0" y="436.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">BÉBÉS NAGEURS</text>
+<text x="405.0" y="465.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">11h30-12h00</text>
+<line x1="50" y1="512" x2="760" y2="512" stroke="#fff" stroke-width="2"/>
+<rect x="50.0" y="544" width="710.0" height="79" rx="9" fill="#fbd4a0"/>
+<text x="405.0" y="579.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">NATATION 3-4 ANS</text>
+<text x="405.0" y="608.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">17h00-17h30</text>
+<rect x="50.0" y="640" width="710.0" height="79" rx="9" fill="#fbd4a0"/>
+<text x="405.0" y="675.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">NATATION 5 ANS +</text>
+<text x="405.0" y="704.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">17h30-18h00</text>
+<rect x="50.0" y="735" width="710.0" height="79" rx="9" fill="#7cc4f0"/>
+<text x="405.0" y="770.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">AQUABIKE</text>
+<text x="405.0" y="799.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">18h00-18h45</text>
+<rect x="50.0" y="831" width="710.0" height="79" rx="9" fill="#7cc4f0"/>
+<text x="405.0" y="866.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">AQUATRAINING</text>
+<text x="405.0" y="895.5" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
+<rect x="115" y="945" width="30" height="16" rx="4" fill="#7cc4f0"/>
+<text x="155" y="958" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="17" font-weight="600" fill="#9ca3af">ADULTES</text>
+<rect x="415" y="945" width="30" height="16" rx="4" fill="#fbd4a0"/>
+<text x="455" y="958" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="17" font-weight="600" fill="#9ca3af">ENFANTS/BÉBÉS</text>
+</svg>

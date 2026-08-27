@@ -14,7 +14,7 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
     const plannings_url = `/images/plannings`;
     // Les images sont servies avec un cache immuable d'un an : incrémenter cette
     // version à chaque régénération du planning pour forcer le rafraîchissement.
-    const planning_v = `?v=3`;
+    const planning_v = `?v=4`;
 
     const images = {
         vue_plateau_1: {
@@ -142,27 +142,27 @@ export function ImageProvider({ children }: { children: ReactNode; }) {
             alt: "Planning danse activités HALL B"
         },
         plannings_aqua_desktop: {
-            src: `${plannings_url}/aqua_bureau.svg`,
-            alt: "Planning aqua HALL B"
+            src: `${plannings_url}/planning2026_aqua_bureau.svg${planning_v}`,
+            alt: "Planning aqua 2026-2027 HALL B : aquagym, aquabike, aquapower, aquamix, aquatraining et natation enfants"
         },
         plannings_aqua_lundi: {
-            src: `${plannings_url}/aqua_lundi.svg`,
+            src: `${plannings_url}/planning2026_aqua_lundi.svg${planning_v}`,
             alt: "Planning lundi aqua HALL B"
         },
         plannings_aqua_mardi: {
-            src: `${plannings_url}/aqua_mardi.svg`,
+            src: `${plannings_url}/planning2026_aqua_mardi.svg${planning_v}`,
             alt: "Planning mardi aqua HALL B"
         },
         plannings_aqua_mercredi: {
-            src: `${plannings_url}/aqua_mercredi.svg`,
-            alt: "Planning mercredi activités HALL B"
+            src: `${plannings_url}/planning2026_aqua_mercredi.svg${planning_v}`,
+            alt: "Planning mercredi aqua HALL B"
         },
         plannings_aqua_jeudi: {
-            src: `${plannings_url}/aqua_jeudi.svg`,
+            src: `${plannings_url}/planning2026_aqua_jeudi.svg${planning_v}`,
             alt: "Planning jeudi aqua HALL B"
         },
         plannings_aqua_vendredi: {
-            src: `${plannings_url}/aqua_vendredi.svg`,
+            src: `${plannings_url}/planning2026_aqua_vendredi.svg${planning_v}`,
             alt: "Planning vendredi aqua HALL B"
         },
 

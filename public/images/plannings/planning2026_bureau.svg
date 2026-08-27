@@ -13,7 +13,7 @@
 <text x="199.5" y="225" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="600" fill="#000" text-anchor="middle">09h30-10h15</text>
 <rect x="36.0" y="249" width="216.3" height="56" rx="9" fill="#ffffff"/>
 <text x="144.2" y="273" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="16" font-weight="800" fill="#000" text-anchor="middle">STRETCH</text>
-<text x="144.2" y="294" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="13" font-weight="600" fill="#000" text-anchor="middle">10h30-11h15</text>
+<text x="144.2" y="294" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="13" font-weight="600" fill="#000" text-anchor="middle">10h15-11h15</text>
 <rect x="36.0" y="316" width="216.3" height="56" rx="9" fill="#ffffff"/>
 <text x="144.2" y="340" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="16" font-weight="800" fill="#000" text-anchor="middle">PILATES</text>
 <text x="144.2" y="361" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="13" font-weight="600" fill="#000" text-anchor="middle">12h15-13h00</text>
@@ -43,23 +43,20 @@
 <text x="319.2" y="273" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="14" font-weight="800" fill="#000" text-anchor="middle">RPM</text>
 <text x="319.2" y="292" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="600" fill="#000" text-anchor="middle">10h30-11h15</text>
 <rect x="377.0" y="249" width="105.7" height="56" rx="9" fill="#ffffff"/>
-<text x="429.8" y="273" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="14" font-weight="800" fill="#000" text-anchor="middle">STEP 1</text>
-<text x="429.8" y="292" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="600" fill="#000" text-anchor="middle">10h30-11h15</text>
+<text x="429.8" y="273" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="14" font-weight="800" fill="#000" text-anchor="middle">STEP</text>
+<text x="429.8" y="292" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="600" fill="#000" text-anchor="middle">10h15-11h00</text>
 <rect x="266.3" y="517" width="105.7" height="56" rx="9" fill="#ffffff"/>
 <text x="319.2" y="541" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="14" font-weight="800" fill="#000" text-anchor="middle">CAF</text>
 <text x="319.2" y="560" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="600" fill="#000" text-anchor="middle">18h00-18h45</text>
 <rect x="377.0" y="517" width="105.7" height="56" rx="9" fill="#e1c340"/>
 <text x="429.8" y="541" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="800" fill="#000" text-anchor="middle">CARDIO BOXE</text>
 <text x="429.8" y="560" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="600" fill="#000" text-anchor="middle">18h00-18h45</text>
-<rect x="266.3" y="584" width="68.8" height="56" rx="9" fill="#e1c340"/>
-<text x="300.7" y="608" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="800" fill="#000" text-anchor="middle">RPM</text>
-<text x="300.7" y="625" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="8" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
-<rect x="340.1" y="584" width="68.8" height="56" rx="9" fill="#ffffff"/>
-<text x="374.5" y="608" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="800" fill="#000" text-anchor="middle">STEP 2</text>
-<text x="374.5" y="625" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="8" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
-<rect x="413.9" y="584" width="68.8" height="56" rx="9" fill="#e1c340"/>
-<text x="448.3" y="608" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="800" fill="#000" text-anchor="middle">TRX</text>
-<text x="448.3" y="625" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="8" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
+<rect x="266.3" y="584" width="105.7" height="56" rx="9" fill="#e1c340"/>
+<text x="319.2" y="608" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="14" font-weight="800" fill="#000" text-anchor="middle">RPM</text>
+<text x="319.2" y="627" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
+<rect x="377.0" y="584" width="105.7" height="56" rx="9" fill="#e1c340"/>
+<text x="429.8" y="608" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="9" font-weight="800" fill="#000" text-anchor="middle">CROSSTRAINING</text>
+<text x="429.8" y="627" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
 <rect x="266.3" y="651" width="216.3" height="56" rx="9" fill="#ffffff"/>
 <text x="374.5" y="675" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="16" font-weight="800" fill="#000" text-anchor="middle">PILATES</text>
 <text x="374.5" y="696" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="13" font-weight="600" fill="#000" text-anchor="middle">20h00-20h45</text>
@@ -107,9 +104,12 @@
 <rect x="727.0" y="316" width="216.3" height="56" rx="9" fill="#e1c340"/>
 <text x="835.2" y="340" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="16" font-weight="800" fill="#000" text-anchor="middle">RPM</text>
 <text x="835.2" y="361" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="13" font-weight="600" fill="#000" text-anchor="middle">12h15-13h00</text>
-<rect x="727.0" y="517" width="216.3" height="56" rx="9" fill="#ffffff"/>
-<text x="835.2" y="541" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="16" font-weight="800" fill="#000" text-anchor="middle">YOGA</text>
-<text x="835.2" y="562" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="13" font-weight="600" fill="#000" text-anchor="middle">18h00-18h45</text>
+<rect x="727.0" y="517" width="105.7" height="56" rx="9" fill="#ffffff"/>
+<text x="779.8" y="541" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="14" font-weight="800" fill="#000" text-anchor="middle">YOGA</text>
+<text x="779.8" y="560" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="600" fill="#000" text-anchor="middle">18h00-18h45</text>
+<rect x="837.7" y="517" width="105.7" height="56" rx="9" fill="#e1c340"/>
+<text x="890.5" y="541" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="14" font-weight="800" fill="#000" text-anchor="middle">TRX</text>
+<text x="890.5" y="560" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="11" font-weight="600" fill="#000" text-anchor="middle">18h00-18h45</text>
 <rect x="727.0" y="584" width="216.3" height="56" rx="9" fill="#ffffff"/>
 <text x="835.2" y="608" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="16" font-weight="800" fill="#000" text-anchor="middle">PUMP</text>
 <text x="835.2" y="629" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="13" font-weight="600" fill="#000" text-anchor="middle">18h45-19h30</text>

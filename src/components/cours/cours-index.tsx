@@ -163,6 +163,14 @@ const DISCIPLINES: Discipline[] = [
         duree: "45 min",
         accentColor: "blue",
     },
+    {
+        name: "Aquatraining",
+        short: "Circuit training dans l’eau : cardio et renforcement enchaînés, sans impact pour les articulations.",
+        Icon: Waves,
+        intensite: "Élevée",
+        duree: "45 min",
+        accentColor: "blue",
+    },
 ];
 
 function DisciplineCard({ d }: { d: Discipline }) {

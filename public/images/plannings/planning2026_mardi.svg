@@ -12,8 +12,8 @@
 <text x="226.3" y="406" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="23" font-weight="800" fill="#000" text-anchor="middle">RPM</text>
 <text x="226.3" y="432" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#000" text-anchor="middle">10h30-11h15</text>
 <rect x="407.5" y="355" width="352.5" height="110" rx="9" fill="#ffffff"/>
-<text x="583.8" y="406" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="23" font-weight="800" fill="#000" text-anchor="middle">STEP 1</text>
-<text x="583.8" y="432" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#000" text-anchor="middle">10h30-11h15</text>
+<text x="583.8" y="406" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="23" font-weight="800" fill="#000" text-anchor="middle">STEP</text>
+<text x="583.8" y="432" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#000" text-anchor="middle">10h15-11h00</text>
 <line x1="50" y1="497" x2="760" y2="497" stroke="#fff" stroke-width="2"/>
 <rect x="50.0" y="529" width="352.5" height="110" rx="9" fill="#ffffff"/>
 <text x="226.3" y="580" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="23" font-weight="800" fill="#000" text-anchor="middle">CAF</text>
@@ -21,15 +21,12 @@
 <rect x="407.5" y="529" width="352.5" height="110" rx="9" fill="#e1c340"/>
 <text x="583.8" y="580" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="23" font-weight="800" fill="#000" text-anchor="middle">CARDIO BOXE</text>
 <text x="583.8" y="606" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#000" text-anchor="middle">18h00-18h45</text>
-<rect x="50.0" y="655" width="233.3" height="110" rx="9" fill="#e1c340"/>
-<text x="166.7" y="706" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="800" fill="#000" text-anchor="middle">RPM</text>
-<text x="166.7" y="728" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="14" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
-<rect x="288.3" y="655" width="233.3" height="110" rx="9" fill="#ffffff"/>
-<text x="405.0" y="706" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="800" fill="#000" text-anchor="middle">STEP 2</text>
-<text x="405.0" y="728" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="14" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
-<rect x="526.7" y="655" width="233.3" height="110" rx="9" fill="#e1c340"/>
-<text x="643.3" y="706" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="800" fill="#000" text-anchor="middle">TRX</text>
-<text x="643.3" y="728" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="14" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
+<rect x="50.0" y="655" width="352.5" height="110" rx="9" fill="#e1c340"/>
+<text x="226.3" y="706" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="23" font-weight="800" fill="#000" text-anchor="middle">RPM</text>
+<text x="226.3" y="732" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
+<rect x="407.5" y="655" width="352.5" height="110" rx="9" fill="#e1c340"/>
+<text x="583.8" y="706" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="23" font-weight="800" fill="#000" text-anchor="middle">CROSSTRAINING</text>
+<text x="583.8" y="732" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="18" font-weight="600" fill="#000" text-anchor="middle">19h00-19h45</text>
 <rect x="50.0" y="781" width="710.0" height="110" rx="9" fill="#ffffff"/>
 <text x="405.0" y="832" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="27" font-weight="800" fill="#000" text-anchor="middle">PILATES</text>
 <text x="405.0" y="861" font-family="'Montserrat','Segoe UI',Arial,sans-serif" font-size="21" font-weight="600" fill="#000" text-anchor="middle">20h00-20h45</text>

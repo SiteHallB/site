@@ -46,9 +46,9 @@ export default function NatationEnfantVaunage() {
                 <div className="my-8 flex flex-col items-center h-full">
                     <p><strong>Horaires :</strong> (tous les Mercredis)</p>
                     <ul>
-                        <li><p>11h00 : Bébés nageurs</p></li>
-                        <li><p>17h00 : Groupe 3 / 4 / 5 ans</p></li>
-                        <li><p>17h30 : Groupe 5 ans et +</p></li>
+                        <li><p>11h30 - 12h00 : Bébés nageurs</p></li>
+                        <li><p>17h00 - 17h30 : Natation 3 / 4 ans</p></li>
+                        <li><p>17h30 - 18h00 : Natation 5 ans et +</p></li>
                     </ul>
                 </div>
 

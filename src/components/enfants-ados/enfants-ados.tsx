@@ -49,9 +49,9 @@ const ACTIVITES: Activite[] = [
         ages: "Dès 6 mois",
         titre: "Natation enfants",
         horaires: [
-            <>Mercredi <span className="text-accent">11h00</span> — Bébés nageurs</>,
-            <>Mercredi <span className="text-accent">17h00</span> — Groupe 3 / 4 / 5 ans</>,
-            <>Mercredi <span className="text-accent">17h30</span> — Groupe 5 ans et +</>,
+            <>Mercredi <span className="text-accent">11h30</span> — Bébés nageurs</>,
+            <>Mercredi <span className="text-accent">17h00</span> — Natation 3 / 4 ans</>,
+            <>Mercredi <span className="text-accent">17h30</span> — Natation 5 ans et +</>,
         ],
         description:
             "Bébés nageurs, école de natation et tests d'aisance aquatique dans notre bassin chauffé. Maximum 5 enfants par cours, encadrés par un maître-nageur diplômé.",
@@ -89,9 +89,9 @@ const ACTIVITES: Activite[] = [
 // ─── Le mercredi, c'est leur jour ────────────────────────────────────────────
 
 const CRENEAUX: { heure: string; activite: string; ages: string }[] = [
-    { heure: "11h00", activite: "Bébés nageurs", ages: "Les tout-petits, avec un parent" },
+    { heure: "11h30", activite: "Bébés nageurs", ages: "Les tout-petits, avec un parent" },
     { heure: "16h00", activite: "PPG Kid", ages: "6 - 9 ans" },
-    { heure: "17h00", activite: "Natation — groupe débutants", ages: "3 - 5 ans" },
+    { heure: "17h00", activite: "Natation — groupe débutants", ages: "3 - 4 ans" },
     { heure: "17h00", activite: "PPG Teen", ages: "10 - 14 ans" },
     { heure: "17h30", activite: "Natation — groupe confirmés", ages: "5 ans et +" },
 ];

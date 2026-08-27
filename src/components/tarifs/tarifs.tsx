@@ -180,9 +180,9 @@ export default function Tarifs() {
                         prix={<p className="textSmall">A partir de <span className="textSubH2">15€</span></p>}
                         images={[ bebe_nageur, ]}
                         checkDescription={[
-                            <p>11h00 : Bébés nageurs</p>, 
-                            <p>17h00 : Groupe 3 / 4 / 5 ans</p>, 
-                            <p>17h30 : Groupe 5 ans et +</p>, 
+                            <p>11h30 : Bébés nageurs</p>, 
+                            <p>17h00 : Natation 3 / 4 ans</p>, 
+                            <p>17h30 : Natation 5 ans et +</p>, 
                         ]}
                         plusDescription={[
                             <p>Encadré par un maître-nageur diplômé</p>, 
