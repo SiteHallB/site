@@ -6,17 +6,17 @@ export default function SportigoSquash() {
     const data = {
         theme: {
             dark: true,
-            googleFont: {
-                name: 'Montserrat',
-                family: 'sans-serif'
-            },
-            cssFile: '/css/sportigo-squash.css',
-        }
+        },
+        source: {
+            kind: "widget",
+            ref: "appointment-full",
+        },
+        planning: 4645,
     };
 
     const init = () => {
         if (typeof window.initComponent === "function") {
-            window.initComponent('Racket', 'sportigoSquashPlanning', '4c334b6f-305e-413a-8541-355479dc0286', {id: 2837, ...data})
+            window.initComponent('AppointmentFull', 'sportigo-appointment-full-container', '4c334b6f-305e-413a-8541-355479dc0286', data)
         }
     };
 
@@ -27,7 +27,7 @@ export default function SportigoSquash() {
 
     return (
         <>
-            <section id="sportigoSquashPlanning" className="w-full"></section>
+            <div id="sportigo-appointment-full-container" className="w-full"></div>
             <Script
                 src="https://standalone.api.sportigo.fr/component-standalone.js"
                 strategy="afterInteractive"
