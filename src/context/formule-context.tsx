@@ -56,8 +56,9 @@ export function FormuleProvider({ children }: { children: ReactNode; }) {
                 heels: 21550, 
                 streetjazz: 21551, 
 
-                credit_squash_pleine: 22343, 
-                credit_squash_creuse: 22344
+                pass_squash: 40432,
+                squash_heure_creuse: 40166,
+                squash_heure_pleine: 40431
             }}
         >
             {children}

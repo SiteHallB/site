@@ -65,8 +65,12 @@ export default function Page() {
                         answer: "HALL B dispose de deux terrains de squash, à Saint Dionisy, à 15 minutes de Nîmes. Des tournois sont organisés régulièrement pour se challenger entre joueurs.",
                     },
                     {
+                        question: "Combien coûte une partie de squash ?",
+                        answer: "Le créneau d'1h coûte 16€ en heure creuse (du lundi au vendredi de 8h à 17h, le samedi et le dimanche de 8h à 20h) et 22€ en heure pleine (du lundi au vendredi de 17h à 22h). Pour les joueurs réguliers, le Pass Squash à 450€/an donne droit à 2 réservations par semaine, partenaire inclus.",
+                    },
+                    {
                         question: "Faut-il être adhérent pour jouer au squash ?",
-                        answer: "Non. La location de terrain de squash est accessible à tous, adhérents comme non-adhérents, via la réservation en ligne. Le squash n'est pas inclus dans les formules d'abonnement.",
+                        answer: "Non. La location de terrain de squash est accessible à tous, adhérents comme non-adhérents, via la réservation en ligne. Le squash n'est pas inclus dans les formules Classic, Boost et Aqua : il se règle à la séance ou avec le Pass Squash.",
                     },
                     {
                         question: "Le squash est-il un bon sport pour se dépenser ?",

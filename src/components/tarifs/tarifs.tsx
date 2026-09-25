@@ -1,6 +1,5 @@
 "use client"
 
-import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 import PageStructure from "@/components/ui/page-structure";
@@ -35,16 +34,6 @@ export default function Tarifs() {
         <PageStructure title="Tarifs"
             subtitle={<p>Choisissez l'offre adaptée à vos besoins. Nos formules Classic, Boost, et Aqua sont disponibles en paiement sans engagement, mensuel, ou annuel.</p>}>
             <div className="w-full pt-1 flexCenter flex-col">
-                {/* Liens squash */}
-                <Clickable
-                    clickableType={{type: "link", path: "/squash"}}
-                    style={{variant: "menuMainButton"}}
-                    className="mb-subSection flexCenter flex-row"
-                >
-                    Voir tarifs Squash
-                    <ChevronRight className="size-4 lg:size-6"/>
-                </Clickable>
-
                 {/* Formules principales */}
                 <ul className="list-none w-full flex flex-wrap justify-center gap-y-10 gap-x-content lg:gap-x-contentLg">
                     {/* Classic */}
@@ -119,6 +108,24 @@ export default function Tarifs() {
                         ]}
                         plusDescription={[]}
                         actionLink="/tarifs/carnet-seances"
+                    />
+                    </li>
+
+                    {/* Squash */}
+                    <li className="w-full max-w-90">
+                    <FormuleOverview
+                        title="Squash"
+                        subtitle="2 terrains, réservation en ligne"
+                        prix={<p className="textSmall">A partir de <span className="textSubH2">16€</span></p>}
+                        images={[ squash, ]}
+                        checkDescription={[
+                            <p><span className="text-accent uppercase">Pass Squash</span> : 450€/an</p>,
+                            <p>2 réservations par semaine, partenaire inclus</p>,
+                        ]}
+                        plusDescription={[
+                            <p>À la séance : <span className="text-accent">16€</span> en heure creuse, <span className="text-accent">22€</span> en heure pleine</p>,
+                        ]}
+                        actionLink="/tarifs/squash"
                     />
                     </li>
 
@@ -227,8 +234,9 @@ export default function Tarifs() {
                         Pour la pratique aquatique, la formule <strong>Aqua</strong> inclut le bassin chauffé et les
                         séances d&apos;aquagym. Besoin de souplesse ? Le <strong>carnet de séances</strong> permet de
                         venir sans engagement, et la <strong>carte cadeau</strong> est valable sur toutes nos activités.
-                        La <Link href="/squash" className="text-accent hoverUnderline">réservation de squash</Link> se
-                        fait séparément, en ligne.
+                        Le <Link href="/tarifs/squash" className="text-accent hoverUnderline">squash</Link> se réserve
+                        en ligne, à la séance (16€ en heure creuse, 22€ en heure pleine) ou avec le{" "}
+                        <strong>Pass Squash</strong> à 450€/an.
                     </p>
                     <p>
                         Toutes nos formules sont disponibles <strong>sans engagement, en mensuel ou en annuel</strong>.

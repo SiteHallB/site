@@ -3,8 +3,9 @@
 import SportigoSquash from "@/components/ui/sportigo-squash";
 
 import PageStructure from "@/components/ui/page-structure";
+import Clickable from "@/components/ui/clickable";
 import { useImage } from "@/context/image-context";
-import { Flame, Zap, Brain, Users, ChevronDown } from "lucide-react";
+import { Flame, Zap, Brain, Users, ChevronDown, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
 const BENEFITS = [
@@ -44,8 +45,12 @@ const FAQ = [
         a: "HALL B dispose de deux terrains de squash, à Saint-Dionisy, à 15 minutes de Nîmes. Des tournois sont organisés régulièrement pour se challenger entre joueurs.",
     },
     {
+        q: "Combien coûte une partie de squash ?",
+        a: "Le créneau d'1h coûte 16€ en heure creuse (du lundi au vendredi de 8h à 17h, le samedi et le dimanche de 8h à 20h) et 22€ en heure pleine (du lundi au vendredi de 17h à 22h). Pour les joueurs réguliers, le Pass Squash à 450€/an donne droit à 2 réservations par semaine, partenaire inclus.",
+    },
+    {
         q: "Faut-il être adhérent pour jouer au squash ?",
-        a: "Non. La location de terrain de squash est accessible à tous, adhérents comme non-adhérents, via la réservation en ligne. Le squash n'est pas inclus dans les formules d'abonnement.",
+        a: "Non. La location de terrain de squash est accessible à tous, adhérents comme non-adhérents, via la réservation en ligne. Le squash n'est pas inclus dans les formules Classic, Boost et Aqua : il se règle à la séance ou avec le Pass Squash.",
     },
     {
         q: "Le squash est-il un bon sport pour se dépenser ?",
@@ -66,9 +71,19 @@ export default function Squash() {
                 <div className="flex flex-col items-center py-3 px-4 w-full space-y-4">
                     <ul className="text-foreground-subdued space-y-1">
                         <li><p>• Location de terrain facilement en ligne</p></li>
+                        <li><p>• À la séance : <span className="text-accent">16€</span> en heure creuse, <span className="text-accent">22€</span> en heure pleine</p></li>
+                        <li><p>• <span className="text-accent uppercase">Pass Squash</span> : <span className="text-accent">450€</span>/an, partenaire inclus</p></li>
                         <li><p>• Location de raquettes sur place</p></li>
                         <li><p>• Tournois réguliers pour se challenger</p></li>
                     </ul>
+                    <Clickable
+                        clickableType={{type: "link", path: "/tarifs/squash"}}
+                        style={{variant: "menuMainButton"}}
+                        className="flexCenter flex-row"
+                    >
+                        Voir les tarifs Squash
+                        <ChevronRight className="size-4 lg:size-6"/>
+                    </Clickable>
                     <div className="max-w-100 aspect-square rounded-xl overflow-hidden mb-content mx-auto">
                         <Image
                             {...squash}
