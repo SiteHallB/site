@@ -110,8 +110,11 @@ export default function Hero() {
         <section id="hero" ref={container} aria-label="Présentation" className="relative w-full min-h-screen">
             {/* Vidéo */}
             <div className="absolute inset-0">
-                <VideoBackground className="block md:hidden" activeQuery="(max-width: 767.98px)" src="/videos/hero-mobile-v1.mp4" poster="/images/video-mobile-poster.webp"/>
-                <VideoBackground className="hidden md:block" activeQuery="(min-width: 768px)" src="/videos/hero-desktop-v1.mp4" poster="/images/video-desktop-poster.webp"/>
+                {/* Choix par orientation (et non par largeur) : la vidéo verticale 9:16 pour un écran en hauteur,
+                    la 16:9 pour un écran en largeur — sinon object-cover recadre/zoome fortement
+                    (tablette portrait, téléphone paysage, fenêtre redimensionnée). */}
+                <VideoBackground className="block landscape:hidden" activeQuery="(orientation: portrait)" src="/videos/hero-mobile-v1.mp4" poster="/images/video-mobile-poster.webp"/>
+                <VideoBackground className="hidden landscape:block" activeQuery="(orientation: landscape)" src="/videos/hero-desktop-v1.mp4" poster="/images/video-desktop-poster.webp"/>
             </div>
 
             {/* Texte */}

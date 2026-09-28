@@ -98,19 +98,19 @@ export default function RootLayout({
                     crossOrigin="anonymous"
                 />
 
-                {/* Précharge l'image LCP du hero (poster vidéo) selon la taille d'écran */}
+                {/* Précharge l'image LCP du hero (poster vidéo) selon l'orientation de l'écran (cf. hero.tsx) */}
                 <link
                     rel="preload"
                     as="image"
                     href="/images/video-mobile-poster.webp"
-                    media="(max-width: 767.98px)"
+                    media="(orientation: portrait)"
                     fetchPriority="high"
                 />
                 <link
                     rel="preload"
                     as="image"
                     href="/images/video-desktop-poster.webp"
-                    media="(min-width: 768px)"
+                    media="(orientation: landscape)"
                     fetchPriority="high"
                 />
 
