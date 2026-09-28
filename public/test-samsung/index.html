@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="dark">
+<title>Test couleurs Samsung</title>
+<style>
+  @font-face { font-family: FutureTense; src: url("/fonts/FutureTense-Regular.woff2") format("woff2"); }
+  :root { color-scheme: dark; background: #121212; }
+  body { overflow-x: hidden; margin: 0; background: #121212; color: #fff; font: 15px/1.4 system-ui, sans-serif; }
+  main { max-width: 480px; margin: 0 auto; padding: 16px; }
+  h1 { font: 20px FutureTense, sans-serif; text-transform: uppercase; margin: 8px 0 4px; }
+  h2 { font-size: 16px; margin: 28px 0 8px; border-top: 1px solid #333; padding-top: 16px; }
+  .intro { color: #FFFFFFB0; margin: 0 0 8px; }
+  .case { display: flex; align-items: center; gap: 10px; margin: 12px 0; }
+  .num { flex: 0 0 34px; width: 34px; height: 34px; box-sizing: border-box; border-radius: 50%; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+  .zone { flex: 1; min-width: 0; }
+  .legend { font-size: 12px; color: #FFFFFF99; margin-top: 3px; }
+
+  /* Bouton type « Je m'inscris » du site */
+  .btn { display: flex; align-items: center; justify-content: center; height: 44px; border-radius: 22px;
+         font: 18px FutureTense, sans-serif; text-transform: uppercase; color: #000; }
+  .c-color  { background-color: #E1C340; }
+  .c-pill   { background: url("pill.png") center / 100% 100% no-repeat; }
+  .c-solid  { background: url("solid.png") center / 100% 100%; }
+  .c-jpg    { background: url("solid.jpg") center / 100% 100%; }
+  .c-shadow { box-shadow: inset 0 0 0 40px #E1C340; }
+  .c-border { border: 22px solid #E1C340; box-sizing: border-box; }
+  .t-clip { background-image: linear-gradient(#000, #000); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .btn svg { display: block; }
+  .full { display: block; width: 100%; height: auto; }
+
+  .hero { position: relative; border-radius: 12px; overflow: hidden; padding: 16px; margin-top: 8px;
+          background: url("/images/video-mobile-poster.webp") center / cover; }
+  .hero .row { display: flex; gap: 12px; align-items: center; justify-content: center; }
+  .logo { height: 110px; width: auto; }
+  .band { font: 16px FutureTense, sans-serif; text-transform: uppercase; text-align: center; }
+  pre { white-space: pre-wrap; word-break: break-all; font-size: 12px; background: #000; padding: 10px; border-radius: 8px; color: #ccc; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Test couleurs Samsung</h1>
+  <p class="intro">Ouvre cette page dans <b>Samsung Internet</b>, avec le <b>mode sombre activé</b> (comme chez l'adhérent). Note les numéros où le bouton est <b>jaune avec texte noir</b>, comme sur l'image de référence ci-dessous.</p>
+
+  <h2>Référence (à quoi ça doit ressembler)</h2>
+  <div class="case"><div class="num">R</div><div class="zone">
+    <img class="full" src="button-full.png" alt="Bouton de référence">
+    <div class="legend">Image complète (texte compris)</div>
+  </div></div>
+
+  <h2>Fond du bouton + texte</h2>
+  <div class="case"><div class="num">1</div><div class="zone">
+    <div class="btn c-color">Je m'inscris</div>
+    <div class="legend">Actuel du site (couleur CSS)</div>
+  </div></div>
+
+  <div class="case"><div class="num">2</div><div class="zone">
+    <div class="btn c-pill">Je m'inscris</div>
+    <div class="legend">Fond image PNG (pilule) + texte normal</div>
+  </div></div>
+
+  <div class="case"><div class="num">3</div><div class="zone">
+    <div class="btn c-pill"><span class="t-clip">Je m'inscris</span></div>
+    <div class="legend">Fond image PNG (pilule) + texte « clip »</div>
+  </div></div>
+
+  <div class="case"><div class="num">4</div><div class="zone">
+    <div class="btn c-pill"><svg width="220" height="24" viewBox="0 0 220 24"><text x="110" y="19" text-anchor="middle" fill="#000" font-family="FutureTense, sans-serif" font-size="18">JE M'INSCRIS</text></svg></div>
+    <div class="legend">Fond image PNG (pilule) + texte SVG</div>
+  </div></div>
+
+  <div class="case"><div class="num">5</div><div class="zone">
+    <div class="btn c-solid"><span class="t-clip">Je m'inscris</span></div>
+    <div class="legend">Petite image PNG étirée + texte « clip »</div>
+  </div></div>
+
+  <div class="case"><div class="num">6</div><div class="zone">
+    <div class="btn c-jpg"><span class="t-clip">Je m'inscris</span></div>
+    <div class="legend">Image JPEG étirée + texte « clip »</div>
+  </div></div>
+
+  <div class="case"><div class="num">7</div><div class="zone">
+    <div class="btn c-color"><span class="t-clip">Je m'inscris</span></div>
+    <div class="legend">Couleur CSS + texte « clip »</div>
+  </div></div>
+
+  <div class="case"><div class="num">8</div><div class="zone">
+    <div class="btn c-shadow"><span class="t-clip">Je m'inscris</span></div>
+    <div class="legend">Ombre interne jaune + texte « clip »</div>
+  </div></div>
+
+  <div class="case"><div class="num">9</div><div class="zone">
+    <div class="btn c-border"><span class="t-clip">Je m'inscris</span></div>
+    <div class="legend">Bordure épaisse jaune + texte « clip »</div>
+  </div></div>
+
+  <div class="case"><div class="num">10</div><div class="zone">
+    <svg class="full" viewBox="0 0 300 44"><rect width="300" height="44" rx="22" fill="#E1C340"/><text x="150" y="29" text-anchor="middle" fill="#000" font-family="FutureTense, sans-serif" font-size="18">JE M'INSCRIS</text></svg>
+    <div class="legend">Bouton entièrement en SVG</div>
+  </div></div>
+
+  <div class="case"><div class="num">11</div><div class="zone">
+    <canvas id="cv" class="full" width="600" height="88"></canvas>
+    <div class="legend">Bouton dessiné en canvas</div>
+  </div></div>
+
+  <h2>Logo et textes sur la vidéo</h2>
+  <div class="hero">
+    <div class="row">
+      <div style="text-align:center"><div class="num" style="margin:0 auto 6px">L1</div><img class="logo" src="/images/logo.png" alt="Logo actuel"></div>
+      <div style="text-align:center"><div class="num" style="margin:0 auto 6px">L2</div><img class="logo" src="logo-opaque.jpg" alt="Logo sur fond opaque"></div>
+    </div>
+    <p class="band" style="color:#fff">T1 · texte blanc</p>
+    <p class="band" style="color:#FFFFFF99">T2 · texte blanc atténué</p>
+  </div>
+  <p class="legend">L1 = logo actuel (PNG transparent) · L2 = logo sur fond sombre opaque. Lequel reste bien blanc ?</p>
+
+  <h2>Infos techniques (fais-en une capture)</h2>
+  <pre id="info">…</pre>
+</main>
+<script>
+  // Canvas (variante 11)
+  (function () {
+    var c = document.getElementById("cv"), x = c.getContext("2d");
+    function draw() {
+      x.clearRect(0, 0, 600, 88);
+      x.fillStyle = "#E1C340"; x.beginPath();
+      if (x.roundRect) x.roundRect(0, 0, 600, 88, 44); else x.rect(0, 0, 600, 88);
+      x.fill();
+      x.fillStyle = "#000"; x.font = "36px FutureTense, sans-serif"; x.textAlign = "center"; x.textBaseline = "middle";
+      x.fillText("JE M'INSCRIS", 300, 46);
+    }
+    draw();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  })();
+  // Infos navigateur
+  (function () {
+    var mq = function (q) { return window.matchMedia ? window.matchMedia(q).matches : "?"; };
+    document.getElementById("info").textContent =
+      "UA: " + navigator.userAgent +
+      "\nprefers-color-scheme: dark = " + mq("(prefers-color-scheme: dark)") +
+      "\nprefers-color-scheme: light = " + mq("(prefers-color-scheme: light)") +
+      "\nforced-colors: active = " + mq("(forced-colors: active)") +
+      "\ncolor-scheme calculé = " + getComputedStyle(document.documentElement).colorScheme;
+  })();
+</script>
+</body>
+</html>
