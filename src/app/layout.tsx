@@ -72,7 +72,8 @@ export const metadata: Metadata = {
         "msapplication-TileColor": "#242424",
         "msapplication-TileImage": "/favicon/mstile-150x150.png",
         // Site déjà sombre : empêche l'extension Dark Reader de le recolorer
-        "darkreader-lock": ""
+        // (Next omet une meta au contenu vide ; Dark Reader ne teste que la présence)
+        "darkreader-lock": "true"
     }
 };
 
