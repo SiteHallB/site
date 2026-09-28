@@ -70,7 +70,9 @@ export const metadata: Metadata = {
 
     other: {
         "msapplication-TileColor": "#242424",
-        "msapplication-TileImage": "/favicon/mstile-150x150.png"
+        "msapplication-TileImage": "/favicon/mstile-150x150.png",
+        // Site déjà sombre : empêche l'extension Dark Reader de le recolorer
+        "darkreader-lock": ""
     }
 };
 

@@ -13,7 +13,24 @@
   --color-foreground-subdued: #FFFFFF99;
   --color-accent: #E1C340;
   --color-yes: #15803D; 
-  --color-no: #EF4444; 
+  --color-no: #EF4444;
+}
+
+/* Le site est sombre par nature : on le déclare aussi en CSS (en plus de la
+   balise meta color-scheme) pour que les navigateurs à « mode sombre forcé »
+   (Samsung Internet, Chrome Android, WebView…) ne recolorent pas la page —
+   sinon le jaune des boutons vire au marron et le texte noir passe en blanc.
+   Le bloc prefers-color-scheme signale en plus un thème sombre « natif ». */
+:root {
+  color-scheme: dark;
+  background-color: #121212;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    background-color: #121212;
+  }
 }
 .hoverUnderline {
     position: relative;
