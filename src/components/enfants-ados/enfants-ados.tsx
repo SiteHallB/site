@@ -1,5 +1,6 @@
 "use client";
 
+import { AccentFill } from "@/components/ui/samsung-fix";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -234,8 +235,9 @@ export default function EnfantsAdos() {
                                         className="object-cover object-center size-full"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-background-highlight to-transparent" />
-                                    <span className="absolute top-3 left-3 bg-accent text-background-base rounded-xs px-3 py-1 textSmall">
-                                        {a.ages}
+                                    <span className="accentSurface absolute top-3 left-3 bg-accent text-background-base rounded-xs px-3 py-1 textSmall">
+                                        <AccentFill/>
+                                        <span className="accentInk">{a.ages}</span>
                                     </span>
                                 </div>
 

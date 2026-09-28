@@ -1,3 +1,4 @@
+import { AccentFill } from "@/components/ui/samsung-fix";
 import Link from "next/link";
 import { MapPin, Clock, Phone, Car, Navigation, SquareParking } from "lucide-react";
 
@@ -85,10 +86,13 @@ export default function CommentVenir() {
                                 href={MAP_DIR}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="clickableBase hoverAccent text-background-subdued bg-accent rounded-full px-4 py-2 textLead flexCenter gap-2 mt-2 w-fit"
+                                className="accentSurface clickableBase hoverAccent text-background-subdued bg-accent rounded-full px-4 py-2 textLead flexCenter gap-2 mt-2 w-fit"
                             >
-                                <Navigation className="size-5" />
-                                Ouvrir l&apos;itinéraire
+                                <AccentFill/>
+                                <span className="accentInk">
+                                    <Navigation className="size-5" />
+                                    Ouvrir l&apos;itinéraire
+                                </span>
                             </a>
                         </div>
 

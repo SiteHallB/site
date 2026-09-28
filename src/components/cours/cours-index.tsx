@@ -1,5 +1,6 @@
 "use client";
 
+import { AccentFill } from "@/components/ui/samsung-fix";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -336,8 +337,11 @@ export default function CoursIndex() {
                 <div className="boostHighlight max-w-4xl mx-auto relative overflow-hidden rounded-xl border-2 border-accent/40 p-6 lg:p-10 bg-gradient-to-br from-background-highlight to-background-base">
                     <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-accent/10 blur-3xl" />
                     <div className="relative z-10 flex flex-col lg:flex-row items-start lg:items-center gap-6">
-                        <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center shrink-0">
-                            <Sparkles className="size-8 text-background-base" />
+                        <div className="accentSurface w-16 h-16 rounded-full bg-accent flex items-center justify-center shrink-0">
+                            <AccentFill/>
+                            <span className="accentInk">
+                                <Sparkles className="size-8 text-background-base" />
+                            </span>
                         </div>
                         <div className="flex-grow flex flex-col space-y-2">
                             <span className="textLeadSmall text-accent tracking-widest">

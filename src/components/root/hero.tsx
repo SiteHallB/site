@@ -13,6 +13,7 @@ import { useGSAP } from "@gsap/react";
 
 import VideoBackground from "@/components/ui/video-background";
 import Clickable from "@/components/ui/clickable";
+import { CanvasImage } from "@/components/ui/samsung-fix";
 
 import { useImage } from "@/context/image-context";
 import { useLinks } from "@/context/link-context";
@@ -117,11 +118,13 @@ export default function Hero() {
             <div className="relative z-10 w-full min-h-screen parallaxText will-change-transform px-content lg:px-contentLg flex flex-col items-center justify-around pt-20 pb-20">
                 {/* Titre */}
                 <div className="flexCenter flex-col space-y-2 w-full">
-                    <Image
-                        {...logo}
-                        className="h-[9rem] lg:h-[15rem] w-auto"
-                        priority
-                    />
+                    <CanvasImage src={logo.src}>
+                        <Image
+                            {...logo}
+                            className="h-[9rem] lg:h-[15rem] w-auto"
+                            priority
+                        />
+                    </CanvasImage>
                     <h1 className={"text-foreground-base textNormal"}>
                         La plus grande salle de sport du Gard
                     </h1>

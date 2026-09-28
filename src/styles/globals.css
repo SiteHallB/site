@@ -163,3 +163,80 @@ video {
     scroll-behavior: auto !important;
   }
 }
+/* ------------------------------------------------------------------
+   Samsung Internet — mode sombre forcé (voir components/ui/samsung-fix.tsx)
+   Hors classe html.sb-fix : canvas masqués, enveloppes neutres.
+   ------------------------------------------------------------------ */
+.accentFill,
+.canvasImageLayer {
+    display: none;
+}
+
+.accentInk {
+    display: contents;
+}
+
+.canvasImage {
+    position: relative;
+    display: flex;
+}
+
+html.sb-fix .accentSurface {
+    background-color: transparent !important;
+    isolation: isolate;
+}
+
+html.sb-fix .accentSurface:not(.absolute):not(.fixed):not(.sticky) {
+    position: relative;
+}
+
+html.sb-fix .accentFill {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Texte noir « découpé » dans un dégradé noir : Samsung ne l'éclaircit pas */
+html.sb-fix .accentInk {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: inherit;
+    gap: inherit;
+    color: transparent !important;
+    background-image: linear-gradient(#000, #000);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+html.sb-fix .accentInk svg {
+    color: #000;
+}
+
+html.sb-fix .canvasImageLayer {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+html.sb-fix .canvasImageDrawn > :not(canvas) {
+    visibility: hidden;
+}
+
+/* États survol/tap des boutons jaunes : fond transparent + texte blanc */
+@media (hover: hover) and (pointer: fine) {
+    html.sb-fix .hoverAccent:hover .accentFill { visibility: hidden; }
+    html.sb-fix .hoverAccent:hover .accentInk { background-image: none; color: var(--color-foreground-base) !important; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    html.sb-fix .hoverAccent:active .accentFill { visibility: hidden; }
+    html.sb-fix .hoverAccent:active .accentInk { background-image: none; color: var(--color-foreground-base) !important; }
+}

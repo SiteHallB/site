@@ -6,6 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import trackEvent from "@/components/analytics/google-analytics-track-event";
 import clsx from "clsx";
+import { AccentFill } from "@/components/ui/samsung-fix";
 
 const clickableVariants = cva(
     "text-center clickableBase", 
@@ -14,7 +15,7 @@ const clickableVariants = cva(
             color: {
                 default: "", 
                 primary: "hoverPrimary text-foreground-base outline-foreground-base outline-[2px] outline-offset-[-2px]", 
-                accent: "hoverAccent text-background-subdued bg-accent outline-background-subdued outline-[1px]", 
+                accent: "accentSurface hoverAccent text-background-subdued bg-accent outline-background-subdued outline-[1px]", 
             }, 
             variant: {
                 default: "", 
@@ -83,6 +84,12 @@ export default function Clickable({ clickableType, trackingConfig, className, ch
     }
 
     const cn = clsx(clickableVariants(style), className)
+
+    // Boutons jaunes : fond en canvas + texte « découpé » pour Samsung Internet
+    // (sans effet ailleurs, voir samsung-fix.tsx)
+    const content = style.color === "accent"
+        ? <><AccentFill/><span className="accentInk">{children}</span></>
+        : <>{children}</>
     
     if (clickableType.type === "button") {
         return (
@@ -92,7 +99,7 @@ export default function Clickable({ clickableType, trackingConfig, className, ch
                 className={cn}
                 {...rest}
             >
-                <>{children}</>
+                {content}
             </button>
         );
     } else {
@@ -111,7 +118,7 @@ export default function Clickable({ clickableType, trackingConfig, className, ch
                 className={cn}
                 {...rest}
             >
-                <>{children}</>
+                {content}
             </Link>
         );
     }

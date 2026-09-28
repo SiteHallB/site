@@ -16,6 +16,7 @@ import { FormuleProvider } from "@/context/formule-context";
 import { ContactProvider } from "@/context/contact-context";
 
 import { Toast } from "@/components/ui/toast";
+import { SAMSUNG_FIX_SCRIPT } from "@/components/ui/samsung-fix";
 
 const montserrat = Montserrat({
     subsets: ["latin"],
@@ -83,8 +84,11 @@ export default function RootLayout({
         children: React.ReactNode;
     }>) {
     return (
-        <html lang="fr" className={montserrat.variable}>
+        <html lang="fr" className={montserrat.variable} suppressHydrationWarning>
             <head>
+                {/* Samsung Internet : pose html.sb-fix avant le premier rendu (voir samsung-fix.tsx) */}
+                <script dangerouslySetInnerHTML={{ __html: SAMSUNG_FIX_SCRIPT }} />
+
                 {/* Précharge la police critique des titres (above-the-fold) */}
                 <link
                     rel="preload"
