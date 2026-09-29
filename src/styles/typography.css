@@ -1,7 +1,10 @@
 @font-face {
   font-family: FutureTense;
   src: url("/fonts/FutureTense-Regular.woff2") format("woff2");
-  font-display: optional;
+  /* swap et non optional : avec optional, si la police n'arrive pas en ~100 ms
+     (concurrence avec la vidéo/les posters du hero), le navigateur garde la
+     police de secours pour toute la durée de la page. */
+  font-display: swap;
 }
 
 @theme {
