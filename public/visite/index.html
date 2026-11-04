@@ -99,8 +99,9 @@ const viewer = new Viewer({
   defaultYaw: deg(depart.vueInitiale?.yaw ?? 0),
   defaultPitch: deg(depart.vueInitiale?.pitch ?? 0),
   // Champ de vision : plus large en portrait (téléphone), sinon on ne voit qu'une tranche étroite
-  maxFov: 110,
-  defaultZoomLvl: innerWidth < innerHeight ? 0 : 40,
+  // (130° vertical en portrait ≈ 90° de large en plein écran, ≈ 105° dans la page ; ~80° vertical en paysage)
+  maxFov: 130,
+  defaultZoomLvl: innerWidth < innerHeight ? 0 : 50,
   // Un seul doigt pour tourner, même intégrée dans la page ; la molette ne zoome qu'avec Ctrl dans l'iframe
   touchmoveTwoFingers: false,
   mousewheelCtrlKey: new URLSearchParams(location.search).has('integre'),
