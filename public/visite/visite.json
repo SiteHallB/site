@@ -1,0 +1,519 @@
+{
+  "titre": "HALL B — Visite virtuelle",
+  "depart": "1",
+  "streetview": {
+    "origine": {
+      "lat": null,
+      "lng": null
+    },
+    "capCamera": null,
+    "placeId": "",
+    "distanceParDefaut": 4
+  },
+  "points": [
+    {
+      "id": "1",
+      "nom": "1 — Entrée",
+      "photo": "photos/1.jpg",
+      "vignette": "photos/vignettes/1.jpg",
+      "liens": [
+        {
+          "vers": "2",
+          "yaw": 9.5,
+          "pitch": -20
+        },
+        {
+          "vers": "25",
+          "yaw": 105.2,
+          "pitch": -20
+        }
+      ],
+      "vueInitiale": {
+        "yaw": -5,
+        "pitch": 0
+      }
+    },
+    {
+      "id": "2",
+      "nom": "2 — Accueil",
+      "photo": "photos/2.jpg",
+      "vignette": "photos/vignettes/2.jpg",
+      "liens": [
+        {
+          "vers": "3",
+          "yaw": -5.9,
+          "pitch": -20
+        },
+        {
+          "vers": "19",
+          "yaw": -116.8,
+          "pitch": -20
+        },
+        {
+          "vers": "1",
+          "yaw": -175,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "nom": "3 — Entrée du plateau",
+      "photo": "photos/3.jpg",
+      "vignette": "photos/vignettes/3.jpg",
+      "liens": [
+        {
+          "vers": "16",
+          "yaw": -60,
+          "pitch": -20
+        },
+        {
+          "vers": "4",
+          "yaw": 6.6,
+          "pitch": -20
+        },
+        {
+          "vers": "2",
+          "yaw": 176.9,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "nom": "Photo 4",
+      "photo": "photos/4.jpg",
+      "vignette": "photos/vignettes/4.jpg",
+      "liens": [
+        {
+          "vers": "12",
+          "yaw": 8.3,
+          "pitch": -20
+        },
+        {
+          "vers": "3",
+          "yaw": -169,
+          "pitch": -20
+        },
+        {
+          "vers": "5",
+          "yaw": 95,
+          "pitch": -20
+        },
+        {
+          "vers": "13",
+          "yaw": -25,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "nom": "Photo 5",
+      "photo": "photos/5.jpg",
+      "vignette": "photos/vignettes/5.jpg",
+      "liens": [
+        {
+          "vers": "11",
+          "yaw": 22.9,
+          "pitch": -20
+        },
+        {
+          "vers": "4",
+          "yaw": -86.8,
+          "pitch": -20
+        },
+        {
+          "vers": "6",
+          "yaw": 92.9,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "nom": "Photo 6",
+      "photo": "photos/6.jpg",
+      "vignette": "photos/vignettes/6.jpg",
+      "liens": [
+        {
+          "vers": "10",
+          "yaw": 37,
+          "pitch": -20
+        },
+        {
+          "vers": "5",
+          "yaw": -89.9,
+          "pitch": -20
+        },
+        {
+          "vers": "7",
+          "yaw": 90.2,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "nom": "Photo 7",
+      "photo": "photos/7.jpg",
+      "vignette": "photos/vignettes/7.jpg",
+      "liens": [
+        {
+          "vers": "10",
+          "yaw": -6,
+          "pitch": -20
+        },
+        {
+          "vers": "6",
+          "yaw": -87.3,
+          "pitch": -20
+        },
+        {
+          "vers": "8",
+          "yaw": 93,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "nom": "Photo 8",
+      "photo": "photos/8.jpg",
+      "vignette": "photos/vignettes/8.jpg",
+      "liens": [
+        {
+          "vers": "9",
+          "yaw": -0.9,
+          "pitch": -20
+        },
+        {
+          "vers": "7",
+          "yaw": -91,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "nom": "Photo 9",
+      "photo": "photos/9.jpg",
+      "vignette": "photos/vignettes/9.jpg",
+      "liens": [
+        {
+          "vers": "10",
+          "yaw": -90,
+          "pitch": -20
+        },
+        {
+          "vers": "8",
+          "yaw": 178.3,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "nom": "Photo 10",
+      "photo": "photos/10.jpg",
+      "vignette": "photos/vignettes/10.jpg",
+      "liens": [
+        {
+          "vers": "11",
+          "yaw": -89.2,
+          "pitch": -20
+        },
+        {
+          "vers": "9",
+          "yaw": 90,
+          "pitch": -20
+        },
+        {
+          "vers": "6",
+          "yaw": -142,
+          "pitch": -20
+        },
+        {
+          "vers": "7",
+          "yaw": 173,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "nom": "Photo 11",
+      "photo": "photos/11.jpg",
+      "vignette": "photos/vignettes/11.jpg",
+      "liens": [
+        {
+          "vers": "12",
+          "yaw": -93.4,
+          "pitch": -20
+        },
+        {
+          "vers": "10",
+          "yaw": 88.6,
+          "pitch": -20
+        },
+        {
+          "vers": "5",
+          "yaw": -163.1,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "nom": "Photo 12",
+      "photo": "photos/12.jpg",
+      "vignette": "photos/vignettes/12.jpg",
+      "liens": [
+        {
+          "vers": "13",
+          "yaw": -96.4,
+          "pitch": -20
+        },
+        {
+          "vers": "11",
+          "yaw": 84.3,
+          "pitch": -20
+        },
+        {
+          "vers": "4",
+          "yaw": 176.3,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "nom": "Photo 13",
+      "photo": "photos/13.jpg",
+      "vignette": "photos/vignettes/13.jpg",
+      "liens": [
+        {
+          "vers": "14",
+          "yaw": -93.3,
+          "pitch": -20
+        },
+        {
+          "vers": "12",
+          "yaw": 84.6,
+          "pitch": -20
+        },
+        {
+          "vers": "4",
+          "yaw": 155,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "nom": "Photo 14",
+      "photo": "photos/14.jpg",
+      "vignette": "photos/vignettes/14.jpg",
+      "liens": [
+        {
+          "vers": "13",
+          "yaw": 90.5,
+          "pitch": -20
+        },
+        {
+          "vers": "15",
+          "yaw": 179.2,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "nom": "Photo 15",
+      "photo": "photos/15.jpg",
+      "vignette": "photos/vignettes/15.jpg",
+      "liens": [
+        {
+          "vers": "14",
+          "yaw": -4.8,
+          "pitch": -20
+        },
+        {
+          "vers": "16",
+          "yaw": -179.2,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "nom": "Photo 16",
+      "photo": "photos/16.jpg",
+      "vignette": "photos/vignettes/16.jpg",
+      "liens": [
+        {
+          "vers": "15",
+          "yaw": -1.3,
+          "pitch": -20
+        },
+        {
+          "vers": "17",
+          "yaw": -115,
+          "pitch": -20
+        },
+        {
+          "vers": "3",
+          "yaw": 120,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "nom": "Photo 17",
+      "photo": "photos/17.jpg",
+      "vignette": "photos/vignettes/17.jpg",
+      "liens": [
+        {
+          "vers": "18",
+          "yaw": -90,
+          "pitch": -20
+        },
+        {
+          "vers": "16",
+          "yaw": 74,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "nom": "Photo 18",
+      "photo": "photos/18.jpg",
+      "vignette": "photos/vignettes/18.jpg",
+      "liens": [
+        {
+          "vers": "17",
+          "yaw": 90,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "nom": "19 — Pied de l’escalier",
+      "photo": "photos/19.jpg",
+      "vignette": "photos/vignettes/19.jpg",
+      "liens": [
+        {
+          "vers": "2",
+          "yaw": 65.2,
+          "pitch": -20
+        },
+        {
+          "vers": "20",
+          "yaw": 0,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "nom": "20 — 1er étage",
+      "photo": "photos/20.jpg",
+      "vignette": "photos/vignettes/20.jpg",
+      "liens": [
+        {
+          "vers": "21",
+          "yaw": -90,
+          "pitch": -20
+        },
+        {
+          "vers": "22",
+          "yaw": 83.8,
+          "pitch": -20
+        },
+        {
+          "vers": "19",
+          "yaw": 180,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "nom": "Photo 21",
+      "photo": "photos/21.jpg",
+      "vignette": "photos/vignettes/21.jpg",
+      "liens": [
+        {
+          "vers": "20",
+          "yaw": 90,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "nom": "Photo 22",
+      "photo": "photos/22.jpg",
+      "vignette": "photos/vignettes/22.jpg",
+      "liens": [
+        {
+          "vers": "20",
+          "yaw": -96.5,
+          "pitch": -20
+        },
+        {
+          "vers": "23",
+          "yaw": 93.9,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "nom": "Photo 23",
+      "photo": "photos/23.jpg",
+      "vignette": "photos/vignettes/23.jpg",
+      "liens": [
+        {
+          "vers": "22",
+          "yaw": -92.7,
+          "pitch": -20
+        },
+        {
+          "vers": "24",
+          "yaw": -165.8,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "24",
+      "nom": "Photo 24",
+      "photo": "photos/24.jpg",
+      "vignette": "photos/vignettes/24.jpg",
+      "liens": [
+        {
+          "vers": "23",
+          "yaw": 16.2,
+          "pitch": -20
+        }
+      ]
+    },
+    {
+      "id": "25",
+      "nom": "25 — Salle 1",
+      "photo": "photos/25.jpg",
+      "vignette": "photos/vignettes/25.jpg",
+      "liens": [
+        {
+          "vers": "1",
+          "yaw": -74.2,
+          "pitch": -20
+        }
+      ]
+    }
+  ]
+}

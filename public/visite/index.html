@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visite virtuelle — HALL B</title>
+<meta name="robots" content="noindex">
+<!--
+  Visite virtuelle autonome : ce dossier fonctionne seul, sur n'importe quel hébergement
+  statique (aucun CDN, aucun service tiers). Contenu = visite.json + photos/.
+  Mode édition (placer les flèches) : ajouter ?edition à l'adresse.
+-->
+<link rel="stylesheet" href="lib/psv/core/index.css">
+<link rel="stylesheet" href="lib/psv/markers-plugin/index.css">
+<link rel="stylesheet" href="lib/psv/virtual-tour-plugin/index.css">
+<link rel="stylesheet" href="lib/psv/gallery-plugin/index.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./lib/three/three.module.min.js",
+    "@photo-sphere-viewer/core": "./lib/psv/core/index.module.js",
+    "@photo-sphere-viewer/markers-plugin": "./lib/psv/markers-plugin/index.module.js",
+    "@photo-sphere-viewer/virtual-tour-plugin": "./lib/psv/virtual-tour-plugin/index.module.js",
+    "@photo-sphere-viewer/gallery-plugin": "./lib/psv/gallery-plugin/index.module.js"
+  }
+}
+</script>
+<style>
+  html, body { margin: 0; height: 100%; background: #111; color: #eee; font: 14px/1.4 system-ui, sans-serif; }
+  #viewer { position: absolute; inset: 0; }
+  #erreur { position: absolute; inset: 0; display: none; place-items: center; text-align: center; padding: 24px; }
+  /* Panneau d'édition */
+  #edition { position: absolute; top: 12px; left: 12px; z-index: 200; width: 300px; max-height: calc(100% - 90px); overflow: auto;
+    background: rgba(20,20,20,.92); border: 1px solid #444; border-radius: 8px; padding: 12px; display: none; }
+  #edition h2 { font-size: 15px; margin: 0 0 8px; }
+  #edition .bloc { border-top: 1px solid #333; margin-top: 10px; padding-top: 10px; }
+  #edition button, #edition select, #edition input { font: inherit; margin: 2px 0; }
+  #edition button { cursor: pointer; background: #f5c400; color: #111; border: 0; border-radius: 4px; padding: 4px 8px; }
+  #edition button.discret { background: #333; color: #eee; }
+  #edition ul { margin: 4px 0; padding-left: 18px; }
+  #edition .clic { font-family: ui-monospace, monospace; color: #f5c400; }
+  #edition .aide { color: #aaa; font-size: 12px; }
+</style>
+</head>
+<body>
+<div id="viewer"></div>
+<div id="erreur"></div>
+<div id="edition"></div>
+
+<script type="module">
+import { Viewer } from '@photo-sphere-viewer/core';
+import { MarkersPlugin } from '@photo-sphere-viewer/markers-plugin';
+import { VirtualTourPlugin } from '@photo-sphere-viewer/virtual-tour-plugin';
+import { GalleryPlugin } from '@photo-sphere-viewer/gallery-plugin';
+
+const EDITION = new URLSearchParams(location.search).has('edition');
+const deg = (d) => `${d}deg`;
+const arrondi = (rad) => Math.round(rad * 180 / Math.PI * 10) / 10;
+
+let visite;
+try {
+  visite = await (await fetch('visite.json', { cache: 'no-cache' })).json();
+} catch (e) {
+  const el = document.getElementById('erreur');
+  el.style.display = 'grid';
+  el.textContent = 'Impossible de charger visite.json (ouvrir ce dossier via un serveur web, pas en double-cliquant le fichier).';
+  throw e;
+}
+if (!visite.points?.length) {
+  const el = document.getElementById('erreur');
+  el.style.display = 'grid';
+  el.textContent = 'La visite virtuelle arrive bientôt.';
+  throw new Error('visite.json ne contient aucun point');
+}
+
+// visite.json (format lisible, en degrés) -> nœuds Photo Sphere Viewer
+function versNoeuds() {
+  return visite.points.map((p) => ({
+    id: p.id,
+    panorama: p.photo,
+    thumbnail: p.vignette,
+    name: p.nom,
+    caption: p.legende ? `${p.nom} — ${p.legende}` : p.nom,
+    sphereCorrection: p.correction ? { pan: deg(p.correction) } : undefined,
+    links: (p.liens || []).map((l) => ({ nodeId: l.vers, position: { yaw: deg(l.yaw), pitch: deg(l.pitch ?? -15) } })),
+  }));
+}
+
+const depart = visite.points.find((p) => p.id === visite.depart) || visite.points[0];
+
+const viewer = new Viewer({
+  container: 'viewer',
+  lang: {
+    zoom: 'Zoom', zoomOut: 'Dézoomer', zoomIn: 'Zoomer', moveUp: 'Haut', moveDown: 'Bas', moveLeft: 'Gauche', moveRight: 'Droite',
+    fullscreen: 'Plein écran', menu: 'Menu', close: 'Fermer', twoFingers: 'Utilisez deux doigts pour naviguer',
+    ctrlZoom: 'Ctrl + molette pour zoomer', loadError: 'La photo n\'a pas pu être chargée', gallery: 'Lieux',
+  },
+  navbar: ['zoom', 'move', 'gallery', 'caption', 'fullscreen'],
+  defaultYaw: deg(depart.vueInitiale?.yaw ?? 0),
+  defaultPitch: deg(depart.vueInitiale?.pitch ?? 0),
+  defaultZoomLvl: 30,
+  touchmoveTwoFingers: new URLSearchParams(location.search).has('integre'),
+  mousewheelCtrlKey: new URLSearchParams(location.search).has('integre'),
+  plugins: [
+    MarkersPlugin,
+    [GalleryPlugin, { thumbnailSize: { width: 160, height: 90 }, hideOnClick: true }],
+    [VirtualTourPlugin, {
+      positionMode: 'manual',
+      renderMode: '3d',
+      nodes: versNoeuds(),
+      startNodeId: depart.id,
+      preload: true,
+      transitionOptions: { showLoader: true, speed: '20rpm', effect: 'fade', rotation: true },
+      arrowStyle: { size: { width: 80, height: 80 } },
+      // Défaut PSV = 45° : deux flèches plus proches se gênent (l'une n'est plus cliquable),
+      // fréquent dans une salle où plusieurs points sont dans la même direction.
+      arrowsPosition: { linkOverlapAngle: Math.PI / 18 },
+    }],
+  ],
+});
+
+const tour = viewer.getPlugin(VirtualTourPlugin);
+
+if (EDITION) {
+  // ——— Mode édition : cliquer dans la photo, choisir la destination, exporter visite.json ———
+  const panneau = document.getElementById('edition');
+  panneau.style.display = 'block';
+  let dernierClic = null;
+
+  const pointCourant = () => visite.points.find((p) => p.id === tour.getCurrentNode()?.id);
+
+  function rafraichir() {
+    const p = pointCourant();
+    if (!p) return;
+    const autres = visite.points.filter((q) => q.id !== p.id);
+    panneau.innerHTML = `
+      <h2>✏️ Édition — ${p.nom}</h2>
+      <div class="aide">Cliquez dans la photo à l'endroit où doit apparaître la flèche (le sol, vers la destination).</div>
+      <div>Dernier clic : <span class="clic">${dernierClic ? `yaw ${dernierClic.yaw}°, pitch ${dernierClic.pitch}°` : '—'}</span></div>
+      <div class="bloc">
+        <b>Ajouter un lien vers</b><br>
+        <select id="cible">${autres.map((q) => `<option value="${q.id}">${q.nom}</option>`).join('')}</select>
+        <input id="distance" type="number" min="0" step="0.5" placeholder="m" style="width:4em" title="Distance en mètres (facultatif, pour Street View)">
+        <button id="ajouter" ${dernierClic ? '' : 'disabled'}>Ajouter ici</button>
+      </div>
+      <div class="bloc">
+        <b>Liens de ce point</b>
+        <ul>${(p.liens || []).map((l, i) => `<li>${visite.points.find((q) => q.id === l.vers)?.nom ?? l.vers}
+          (${l.yaw}°${l.distance ? `, ${l.distance} m` : ''}) <button class="discret" data-suppr="${i}">✕</button></li>`).join('') || '<li>aucun</li>'}</ul>
+      </div>
+      <div class="bloc">
+        <b>Street View</b>
+        <div class="aide">Tournez la vue vers un repère, mesurez sa direction à la boussole du téléphone depuis ce point, puis :</div>
+        <input id="cap" type="number" min="0" max="360" placeholder="°" style="width:4em">
+        <button class="discret" id="orienter">Orientation boussole de la vue actuelle</button>
+        <div class="aide">capCamera : ${visite.streetview?.capCamera ?? 'non réglé'}</div>
+      </div>
+      <div class="bloc">
+        <button class="discret" id="vue">Vue actuelle = vue de départ de ce point</button>
+        <button class="discret" id="depart">Faire de ce point le départ de la visite</button>
+        <div class="aide">Départ actuel : ${visite.points.find((q) => q.id === visite.depart)?.nom ?? '—'}</div>
+      </div>
+      <div class="bloc">
+        <button id="exporter">💾 Télécharger visite.json</button>
+        <div class="aide">Remplacez ensuite public/visite/visite.json par le fichier téléchargé.</div>
+      </div>`;
+
+    panneau.querySelector('#ajouter').onclick = () => {
+      p.liens = p.liens || [];
+      const lien = { vers: panneau.querySelector('#cible').value, yaw: dernierClic.yaw, pitch: dernierClic.pitch };
+      const distance = parseFloat(panneau.querySelector('#distance').value);
+      if (distance > 0) lien.distance = distance;
+      p.liens.push(lien);
+      recharger();
+    };
+    panneau.querySelector('#orienter').onclick = () => {
+      const cap = parseFloat(panneau.querySelector('#cap').value);
+      if (Number.isNaN(cap)) return;
+      // yaw affiché + capCamera = cap boussole (même convention que scripts/visite-streetview.mjs)
+      let capCamera = Math.round((cap - arrondi(viewer.getPosition().yaw)) * 10) / 10;
+      capCamera = ((capCamera % 360) + 360) % 360;
+      visite.streetview = { ...visite.streetview, capCamera };
+      rafraichir();
+    };
+    panneau.querySelectorAll('[data-suppr]').forEach((b) => b.onclick = () => {
+      p.liens.splice(Number(b.dataset.suppr), 1);
+      recharger();
+    });
+    panneau.querySelector('#vue').onclick = () => {
+      const pos = viewer.getPosition();
+      p.vueInitiale = { yaw: arrondi(pos.yaw), pitch: arrondi(pos.pitch) };
+      rafraichir();
+    };
+    panneau.querySelector('#depart').onclick = () => { visite.depart = p.id; rafraichir(); };
+    panneau.querySelector('#exporter').onclick = () => {
+      const blob = new Blob([JSON.stringify(visite, null, 2) + '\n'], { type: 'application/json' });
+      const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(blob), download: 'visite.json' });
+      a.click();
+      URL.revokeObjectURL(a.href);
+    };
+  }
+
+  function recharger() {
+    tour.setNodes(versNoeuds(), pointCourant().id);
+    rafraichir();
+  }
+
+  viewer.addEventListener('click', ({ data }) => {
+    // yaw ramené dans ]-180 ; 180]
+    let yaw = arrondi(data.yaw);
+    if (yaw > 180) yaw -= 360;
+    dernierClic = { yaw, pitch: arrondi(data.pitch) };
+    rafraichir();
+  });
+  tour.addEventListener('node-changed', () => { dernierClic = null; rafraichir(); });
+}
+
+window.visiteViewer = viewer; // pratique pour déboguer dans la console
+</script>
+</body>
+</html>

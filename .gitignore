@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# visite virtuelle : accès Google et suivi des publications Street View (privé)
+/.streetview/
