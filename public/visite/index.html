@@ -98,8 +98,11 @@ const viewer = new Viewer({
   navbar: ['zoom', 'move', 'gallery', 'caption', 'fullscreen'],
   defaultYaw: deg(depart.vueInitiale?.yaw ?? 0),
   defaultPitch: deg(depart.vueInitiale?.pitch ?? 0),
-  defaultZoomLvl: 30,
-  touchmoveTwoFingers: new URLSearchParams(location.search).has('integre'),
+  // Champ de vision : plus large en portrait (téléphone), sinon on ne voit qu'une tranche étroite
+  maxFov: 110,
+  defaultZoomLvl: innerWidth < innerHeight ? 0 : 40,
+  // Un seul doigt pour tourner, même intégrée dans la page ; la molette ne zoome qu'avec Ctrl dans l'iframe
+  touchmoveTwoFingers: false,
   mousewheelCtrlKey: new URLSearchParams(location.search).has('integre'),
   plugins: [
     MarkersPlugin,
