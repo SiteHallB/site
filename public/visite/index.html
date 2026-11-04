@@ -54,6 +54,7 @@ import { VirtualTourPlugin } from '@photo-sphere-viewer/virtual-tour-plugin';
 import { GalleryPlugin } from '@photo-sphere-viewer/gallery-plugin';
 
 const EDITION = new URLSearchParams(location.search).has('edition');
+const INTEGRE = new URLSearchParams(location.search).has('integre'); // affichée dans l'iframe du site
 const deg = (d) => `${d}deg`;
 const arrondi = (rad) => Math.round(rad * 180 / Math.PI * 10) / 10;
 
@@ -102,9 +103,11 @@ const viewer = new Viewer({
   // (130° vertical en portrait ≈ 90° de large en plein écran, ≈ 105° dans la page ; ~80° vertical en paysage)
   maxFov: 130,
   defaultZoomLvl: innerWidth < innerHeight ? 0 : 50,
-  // Un seul doigt pour tourner, même intégrée dans la page ; la molette ne zoome qu'avec Ctrl dans l'iframe
+  // Un seul doigt pour tourner, même intégrée dans la page.
+  // Intégrée dans la page, la molette seule fait défiler la page : le zoom (Ctrl + molette, pincement
+  // du pavé tactile) est géré plus bas, car PSV exige une vraie touche Ctrl enfoncée.
   touchmoveTwoFingers: false,
-  mousewheelCtrlKey: new URLSearchParams(location.search).has('integre'),
+  mousewheel: !INTEGRE,
   plugins: [
     MarkersPlugin,
     [GalleryPlugin, { thumbnailSize: { width: 160, height: 90 }, hideOnClick: true }],
@@ -124,6 +127,21 @@ const viewer = new Viewer({
 });
 
 const tour = viewer.getPlugin(VirtualTourPlugin);
+
+if (INTEGRE) {
+  // Pincement du pavé tactile = événement « wheel » avec ctrlKey (Chrome, Edge, Firefox)
+  const el = document.getElementById('viewer');
+  el.addEventListener('wheel', (e) => {
+    if (!e.ctrlKey) return; // défilement normal : laisser la page défiler
+    e.preventDefault();
+    const pas = Math.max(-8, Math.min(8, -e.deltaY * (e.deltaMode === 1 ? 10 : 0.6)));
+    viewer.zoom(viewer.getZoomLevel() + pas);
+  }, { passive: false });
+  // Safari (macOS) : le pincement arrive en « gesture* »
+  let zoomDepart = 0;
+  el.addEventListener('gesturestart', (e) => { e.preventDefault(); zoomDepart = viewer.getZoomLevel(); });
+  el.addEventListener('gesturechange', (e) => { e.preventDefault(); viewer.zoom(zoomDepart + (e.scale - 1) * 60); });
+}
 
 if (EDITION) {
   // ——— Mode édition : cliquer dans la photo, choisir la destination, exporter visite.json ———
