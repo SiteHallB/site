@@ -5,10 +5,8 @@ import PageStructure from "@/components/ui/page-structure";
 export const metadata: Metadata = {
     title: "Visite virtuelle 360° | HALL B – Salle de sport à Saint-Dionisy (Nîmes)",
     description:
-        "Visitez HALL B en 360° avant de venir : plateau de musculation, salles de cours, espace aquatique. Promenez-vous dans la salle depuis chez vous.",
+        "Visitez HALL B en 360° avant de venir : accueil, plateau de musculation, cardio, salles de cours. Promenez-vous dans la salle depuis chez vous.",
     alternates: { canonical: "https://www.hallb.fr/visite-virtuelle" },
-    // Version de test partagée par lien pour recueillir des avis : pas d'indexation, pas d'entrée dans le menu.
-    robots: { index: false, follow: false },
     openGraph: {
         title: "Visite virtuelle 360° | HALL B",
         description: "Promenez-vous dans HALL B en 360°, de salle en salle, depuis chez vous.",

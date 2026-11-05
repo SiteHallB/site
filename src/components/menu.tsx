@@ -63,7 +63,7 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
     const navLinks = [
         { label: "Accueil", path: "/"},
         { label: "Tarifs", path: "/tarifs"},
-        { label: "Carte cadeau", path: "/carte-cadeau"},
+        { label: "Visite de la salle en ligne", path: "/visite-virtuelle"},
         { label: "Plannings", path: "/plannings"},
         { label: "Nos cours", path: "/cours"},
         { label: "Nous contacter", path: "/contact"},
