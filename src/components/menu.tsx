@@ -14,7 +14,6 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Clickable from "@/components/ui/clickable";
 import Reseaux from "@/components/reseaux";
 import clsx from "clsx";
-import { useLinks } from "@/context/link-context";
 import { useImage } from "@/context/image-context";
 import Separator from "./ui/separator";
 import Horaires from './horaires';
@@ -55,8 +54,6 @@ function MenuItem({ linkInfo, onClick, outside }: MenuItemProps) {
 function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuShown: (value: boolean) => void; isMenuOpen: boolean; setIsMenuOpen: (value: boolean) => void }) {
     const close = () => { setIsMenuOpen(false); };
     const container = useRef<HTMLDivElement>(null);
-
-    const { osteo } = useLinks();
 
     const { menu } = useImage();
 
@@ -121,7 +118,6 @@ function MenuOverlay({ setIsMenuShown, isMenuOpen, setIsMenuOpen }: { setIsMenuS
                     <MenuItem linkInfo={{ path: "/enfants-ados", label: "Enfants / Adolescents" }} onClick={close}/>
                     <MenuItem linkInfo={{ path: "/squash", label: "Réservation Squash" }} onClick={close}/>
                 </nav>
-                <MenuItem linkInfo={{ path: osteo, label: "Consultation Ostéopathe" }} onClick={close} outside={true}/>
                 </div>
 
                 <div className="w-full h-full flex flex-col items-center justify-evenly py-contentClose space-y-contentClose">
